@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use or build on this work, please cite it as below."
+title: "Shared Substrate: A Discipline for Sustained Human–AI Coupling on Complex Problems"
+type: generic
+authors:
+  - family-names: Roshka
+    given-names: Oleg
+    email: oleg.roshka@proton.me
+date-released: "2026-07-14"
+version: 0.2-draft
+repository-code: "https://github.com/olegroshka/shared-substrate"
+license: CC-BY-4.0
+keywords:
+  - human-AI collaboration
+  - agentic AI
+  - external memory
+  - distributed cognition
+  - methodology
+  - context engineering
+  - verification oracles
+abstract: >-
+  A discipline of forming, maintaining, and cascading hierarchical external
+  representations across the manifestation trajectory of a project, for
+  sustained human-AI coupling on complex problems. The substrate is the
+  deliberately pinned centroid of the collaborating ensemble and a compressed
+  representation of the work being manifested; agentic pipelines expand it,
+  verification oracles bound the distortion, and the discipline's purpose is
+  the separation of genuine human creative input from cognitive load.
