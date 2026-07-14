@@ -535,6 +535,25 @@ Replace a legacy low-latency Java process — years of accreted responsibility, 
 
 ---
 
+## Yes, it is heavy. No, you do not need all of it.
+
+The elements are **separable by design** — each targets its own failure mode, so the synthesis mapping doubles as an **à la carte adoption menu**:
+
+| If this is what hurts | Adopt just this | Cost |
+|---|---|---|
+| Phantom decisions | append-only ADR log | minutes per decision |
+| Monday restart cost | bootstrap file + one-page inventory | an hour, once |
+| Terminology drift | glossary | grows organically |
+| Reference rot | stable IDs everywhere | a habit, not a tool |
+| One component you're afraid to touch | behavioural contracts, there only | a day |
+| Performance regressions in a rebuild | NFR budgets from the incumbent | a day |
+
+- Each element pays back **independently**. Combined, they **compound** — the full discipline is just the limit of the compounding.
+- One near-universal prerequisite: **stable identifiers** — free, and they underwrite everything else.
+- Nothing is all-or-nothing. Two artefact categories + the trivial-fix mindset already beats flat chat.
+
+---
+
 ## Starting Monday: the minimal viable substrate
 
 1. **One inventory file** — list the artefacts that *should* exist, mark them `MISSING` (that's a plan, honestly labelled)

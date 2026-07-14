@@ -2012,6 +2012,25 @@ for the common case. The aim is not to maximise discipline; it is
 to match discipline to project, with the project's complexity as
 the dial.
 
+The discipline also adopts \emph{\`a la carte}, and this deserves
+emphasis, because the full specification reads heavy. Its elements
+are separable by design: each row of Table~\ref{tab:synthesis}
+pairs one element with the failure mode it targets, so the
+synthesis table doubles as an adoption menu. Suffer phantom
+decisions --- adopt the append-only decision log, alone, today.
+Pay restart cost every Monday --- adopt the bootstrap file and a
+one-page inventory. Watch terminology drift --- adopt the
+glossary. Fear one component above all others --- lock its
+behaviour in executable contracts and stop there. Each element
+pays back independently because each addresses its own failure
+mode; combined, they compound, and the full discipline is simply
+the limit of that compounding. The one near-universal
+prerequisite is the stable-identifier convention, which costs
+nothing and underwrites everything else. Nothing in this paper is
+all-or-nothing: a team that adopts two artefact categories and
+the trivial-fix mindset is already substantially better off than
+flat chat.
+
 Finally, the cost picture above assumes the fully-manual
 baseline. The adoption stack of \S\ref{sec:governance} changes its
 shape: L0 removes the warm-up's friction (though not the human's

@@ -159,6 +159,21 @@ $$P_T \;=\; \frac{I_T \;-\; \lambda\, \Delta D_T}{t_{\mathrm{kernel}} + t_{\math
 
 Note what $P_T$ does not contain: gross generated volume $V_T$ — the quantity felt productivity tracks. The ratio $V_T / I_T$ is a project's calibration failure, measurable continuously instead of discovered in a randomised trial. Every term comes from event streams the substrate already externalises; the metering layer is the L1 integrity watchdog, read for a second purpose.
 
+## Heavy in full — useful in parts
+
+The full specification reads heavy, and that is the right first impression to correct: **the discipline adopts à la carte.** Its elements are separable by design — each targets its own failure mode — so the synthesis table above doubles as an adoption menu:
+
+| If this is what hurts | Adopt just this | Cost |
+|---|---|---|
+| Phantom decisions ("did we decide X?") | the append-only ADR log | minutes per decision |
+| Monday restart cost | bootstrap pointer file + one-page inventory | an hour, once |
+| Terminology drift | the glossary | grows organically |
+| Reference rot | stable IDs in cross-references | a habit, not a tool |
+| Rework surprises on one scary component | executable behavioural contracts, there only | a day |
+| Performance regressions in a rebuild | NFR budgets captured from the incumbent | a day |
+
+Each element pays back independently; combined they compound, and the full discipline is simply the limit of that compounding. The one near-universal prerequisite is stable identifiers — they cost nothing and underwrite everything else. Nothing here is all-or-nothing.
+
 ## Honest limits
 
 The paper names where the discipline does not help: genuinely novel research whose right ontology is unknown until the work is mostly done; projects below a complexity threshold (a handful of sessions, decisions, collaborators — use flat notes); the bureaucracy risk when ceremony exceeds benefit; the hidden expertise requirement (a substrate is no better than the judgement of its author); multi-author coordination (its own open problem); and the failure modes agentic execution itself introduces (confabulated decision drafts, drafting-bias drift, over-delegation). The discipline preserves reasoning; it does not produce it. A well-organised wrong project is still wrong.

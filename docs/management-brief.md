@@ -44,6 +44,8 @@ Stop counting volume; the amplifier inflates volume whether it is right or wrong
 
 The method costs more in the first week or two: the project memory must be set up, and acceptance criteria must be written down. Payback typically begins within a handful of working sessions and compounds with project size and team churn. The comparison to hold in mind: **this method's costs are front-loaded and visible; unmanaged AI's costs are back-loaded and hidden** — they arrive as rework, missed budgets, and decisions nobody can reconstruct.
 
+Adoption is also **incremental by design** — the controls pay back independently, so a team can start with the two or three that target its worst pain: a decision log alone eliminates "did we decide this?"; a project-memory entry point alone eliminates the Monday re-explaining tax; acceptance contracts on the single scariest component alone de-risk the work everyone avoids. Full adoption is the limit, not the entry fee.
+
 ## The ask
 
 A pilot: one team, one meaningful project, six to eight weeks, with the five metrics instrumented from day one. The success criterion is falsifiable, and we state it in advance: the pilot exits the slowdown regime — validated throughput up, rework liability trending down, context-restart cost flat. If the dashboard says otherwise, the method has failed on its own terms and we say so.

@@ -5,6 +5,12 @@ paper's Appendix A as a standalone reference; see
 [the paper](../paper/shared_substrate.pdf) §4 for the full specification and
 the rationale behind every rule.
 
+**This manual describes the discipline in full — you are not expected to adopt
+it in full.** The elements are separable and each pays back on its own (the
+paper's synthesis table doubles as the adoption menu). Start with whatever
+targets your worst failure mode; stable identifiers are the only
+near-universal prerequisite. Nothing here is all-or-nothing.
+
 ## Frontmatter (every artefact)
 
 ```yaml
