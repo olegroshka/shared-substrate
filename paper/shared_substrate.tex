@@ -148,13 +148,13 @@ centroid pinned.
 % orbit (dashed ellipse)
 \draw[gray!45,dashed] (0,0) ellipse (2.9 and 1.75);
 % pinned centroid
-\filldraw[fill=blue!25,draw=blue!60,thick] (0,0) circle (0.46);
+\filldraw[fill=blue!25,draw=blue!60,thick] (0,0) circle (0.78);
 \node[font=\scriptsize,align=center] at (0,0) {shared\\substrate};
 % pin: post + ground hatching
-\draw[thick,blue!60] (0,-0.46) -- (0,-0.95);
-\draw[thick,blue!60] (-0.42,-0.95) -- (0.42,-0.95);
+\draw[thick,blue!60] (0,-0.78) -- (0,-1.12);
+\draw[thick,blue!60] (-0.42,-1.12) -- (0.42,-1.12);
 \foreach \x in {-0.42,-0.24,-0.06,0.12,0.30}
-  \draw[blue!60] (\x,-0.95) -- (\x+0.14,-1.12);
+  \draw[blue!60] (\x,-1.12) -- (\x+0.14,-1.29);
 % point masses on / near the orbit
 \filldraw[black!75] (2.55,0.85) circle (0.09);
 \node[font=\scriptsize,anchor=west] at (2.66,0.85) {human};
@@ -168,8 +168,8 @@ centroid pinned.
 \draw[->,>=stealth,red!70,thick] (-2.55,0.85) -- (-3.30,1.55);
 \node[font=\scriptsize,red!75,anchor=south east] at (-2.55,1.50) {drift};
 % reversion (warm-up): human arrow bending to centroid
-\draw[->,>=stealth,blue!70,thick] (2.55,0.85) to[bend left=18] (0.55,0.12);
-\node[font=\scriptsize,blue!75,anchor=south] at (1.80,0.15) {warm-up};
+\draw[->,>=stealth,blue!70,thick] (2.55,0.85) to[bend left=18] (0.90,0.24);
+\node[font=\scriptsize,blue!75,anchor=south] at (1.90,0.22) {warm-up};
 \end{tikzpicture}
 \caption{The pinned centroid. Participants in sustained work ---
 human, agents, successive models, colleagues --- are noisy point
