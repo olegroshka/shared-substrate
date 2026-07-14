@@ -145,6 +145,20 @@ The moderators that reconcile these — task abstraction level, project maturity
 
 The paper also draws the consequence for measurement: in a coupled environment, productivity is not generated volume — the amplifier inflates volume regardless of sign, which is why slowed-down practitioners sincerely felt faster — but **validated intent made durable** per unit of scarce human input (creative kernel, oracle capacity, loop time). Unverified volume is not output; it is rework not yet scheduled.
 
+Concretely, the paper sketches the accounting. The **creative kernel** of a deposit $x$ is its conditional description length given the prior substrate $S$ and pipeline $d$, estimated by a strong model's code length:
+
+$$\kappa(x) \;=\; K(x \mid S, d) \;\approx\; -\log p_\theta(x \mid S)$$
+
+**Validated intent made durable** over a period accrues kernel bits weighted by the discriminating power $v(x) \in [0,1]$ of the contracts locked (mutation kill rate — resistant to padding) and their survival $s_k(x)$ after $k$ sessions:
+
+$$I_T \;=\; \sum_{x \in \mathcal{D}_T} \kappa(x)\, v(x)\, s_k(x)$$
+
+**Productivity** is net accrual per unit of scarce human time, with divergence debt $\Delta D_T$ — unverified volume priced at its empirically observed rework rate — entering as a liability:
+
+$$P_T \;=\; \frac{I_T \;-\; \lambda\, \Delta D_T}{t_{\mathrm{kernel}} + t_{\mathrm{oracle}} + t_{\mathrm{load}}}$$
+
+Note what $P_T$ does not contain: gross generated volume $V_T$ — the quantity felt productivity tracks. The ratio $V_T / I_T$ is a project's calibration failure, measurable continuously instead of discovered in a randomised trial. Every term comes from event streams the substrate already externalises; the metering layer is the L1 integrity watchdog, read for a second purpose.
+
 ## Honest limits
 
 The paper names where the discipline does not help: genuinely novel research whose right ontology is unknown until the work is mostly done; projects below a complexity threshold (a handful of sessions, decisions, collaborators — use flat notes); the bureaucracy risk when ceremony exceeds benefit; the hidden expertise requirement (a substrate is no better than the judgement of its author); multi-author coordination (its own open problem); and the failure modes agentic execution itself introduces (confabulated decision drafts, drafting-bias drift, over-delegation). The discipline preserves reasoning; it does not produce it. A well-organised wrong project is still wrong.

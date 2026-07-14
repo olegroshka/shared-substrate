@@ -1516,7 +1516,33 @@ and grows with project size without it. The denominator is logged
 by construction --- kernel time, oracle time (approvals at L2 are
 events), load time. Unverified volume outstanding is the
 liability account, and churn attributable to failed oracles is
-the debt coming due. None of this needs apparatus beyond
+the debt coming due. Assembled, the accounting is compact.
+Writing $S$ for the substrate before deposit $x$ and $d$ for the
+pipeline,
+\[
+\kappa(x) \;=\; K(x \mid S, d) \;\approx\; -\log p_{\theta}(x \mid S)
+\]
+is the deposit's kernel content --- its conditional description
+length, estimated by a strong model's code length. Over the
+deposits $\mathcal{D}_T$ of a period,
+\[
+I_T \;=\; \sum_{x \in \mathcal{D}_T} \kappa(x)\, v(x)\, s_k(x)
+\]
+is validated intent made durable, with $v(x) \in [0,1]$ the
+mutation kill rate of the contracts locked by $x$ and
+$s_k(x)$ its survival $k$ sessions on. Then
+\[
+P_T \;=\; \frac{I_T \;-\; \lambda\, \Delta D_T}
+               {t_{\mathrm{kernel}} + t_{\mathrm{oracle}} + t_{\mathrm{load}}}
+\]
+is productivity: net accrual per unit of scarce human time, where
+$\Delta D_T$ is the change in divergence debt --- unverified
+volume priced at its empirically observed rework rate --- and
+$\lambda$ its weight. Note what $P_T$ does not contain: gross
+generated volume $V_T$, the quantity felt productivity tracks.
+The ratio $V_T / I_T$ is a project's calibration failure,
+measurable continuously instead of discovered in a randomised
+trial. None of this needs apparatus beyond
 \S\ref{sec:governance}: the metering layer is the L1 integrity
 watchdog, read for a second purpose.
 
