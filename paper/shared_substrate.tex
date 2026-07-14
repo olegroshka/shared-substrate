@@ -1444,7 +1444,19 @@ stored is what no pipeline can re-derive: the choices among
 alternatives, the intent behind them, the taste that selected
 this design over that one. It is no accident that the append-only
 Decision Records are the substrate's most protected artefacts;
-they are the incompressible kernel. This gives the discipline's
+they are the incompressible kernel. The reading has a standard
+formalisation. In algorithmic information theory, the information
+in a deposit $x$ that is derivable from a substrate $S$ is
+captured by conditional complexity $K(x \mid S)$ --- the length
+of the shortest program producing $x$ given $S$ as input
+\citep{kolmogorov1965, li2008kolmogorov}. Relative to a pipeline
+$d$, a contribution is \emph{derivable} exactly when
+$K_d(x \mid S)$ is negligible, and the creative kernel of a
+deposit is its conditional description length given the prior
+substrate and the pipeline. The pipeline-relativity is a feature,
+not a defect: as pipelines strengthen, more becomes derivable and
+the kernel shrinks --- the formal shadow of the operator's
+migration up the abstraction hierarchy. This gives the discipline's
 purpose its sharpest statement: the entire apparatus exists to
 \textbf{separate genuine human creative input from cognitive
 load}. The human supplies the bits that cannot come from anywhere
@@ -1482,9 +1494,35 @@ human input. Generated volume drops out of the measure entirely;
 on the trajectory scale, unverified volume is not output at all
 --- it is rework not yet scheduled.
 
+\paragraph{From definition to measurement.} $K$ is uncomputable,
+but the definition admits computable surrogates --- and the
+discipline is self-instrumenting: every term of the measure
+corresponds to an event stream the substrate already
+externalises. Kernel content is estimable by
+minimum-description-length surrogates \citep{rissanen1978} or,
+directly practicable today, by the code length a strong language
+model assigns to a deposit conditioned on the prior substrate,
+$-\log p(x \mid S)$ --- language models are, formally,
+general-purpose compressors \citep{deletang2023lmic} --- so
+derivable content scores near zero while a direction-changing
+decision scores high. Validation weight is the locked contracts'
+\emph{discriminating power}: the fraction of injected behavioural
+mutations they catch \citep{endres2024postconditions}, which
+resists inflation by padding in a way raw contract counts do not.
+Durability is survival: the fraction of deposited artefacts still
+referenced and un-invalidated $k$ sessions later, together with
+the warm-up cost curve, which stays flat under working durability
+and grows with project size without it. The denominator is logged
+by construction --- kernel time, oracle time (approvals at L2 are
+events), load time. Unverified volume outstanding is the
+liability account, and churn attributable to failed oracles is
+the debt coming due. None of this needs apparatus beyond
+\S\ref{sec:governance}: the metering layer is the L1 integrity
+watchdog, read for a second purpose.
+
 \paragraph{A research horizon, flagged as such.} The pairing in
 Table~\ref{tab:oracles} is stated, not derived, and the
-compression reading above is qualitative. A formal treatment
+estimators above are surrogates, not theory. A formal treatment
 would model the human--agent channel in rate--distortion terms ---
 rate as specification effort, distortion as residual intent
 misalignment --- for which program-induction work already supplies
