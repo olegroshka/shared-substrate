@@ -4,7 +4,7 @@
 
 > For complex work that spans many sessions, many decisions, and many abstraction layers, **the substrate matters at least as much as the model** — the substrate being the externalised state any sustained reasoning, organic or artificial, must traverse.
 
-📄 **[Read the paper (PDF)](paper/shared_substrate.pdf)** — draft v0.2, July 2026 · [LaTeX source](paper/shared_substrate.tex) · [Field manual](method/field-manual.md) · [Executive brief](docs/management-brief.md)
+📄 **[Read the paper (PDF)](paper/shared_substrate.pdf)** — draft v0.2, July 2026 · [LaTeX source](paper/shared_substrate.tex) · [Field manual](method/field-manual.md) · [Executive brief](docs/management-brief.md) · [Slide walkthrough](docs/presentation.md)
 
 This README is a digest of the paper: read it end to end and you have the philosophy and its grounding; read the paper for the full specification, the worked examples, and the honest limits.
 
@@ -179,6 +179,9 @@ shared-substrate/
 ├── method/
 │   ├── field-manual.md          # the practitioner's compact field manual
 │   └── amendments-log.md        # historical amendment record from the origin project
+├── docs/
+│   ├── presentation.md          # slide walkthrough (Marp-compatible) with worked examples
+│   └── management-brief.md      # one-page executive brief
 ├── research/
 │   └── human-ai-centroid-research.md   # literature survey grounding the paper
 ├── assets/                      # figures rendered from the paper's TikZ sources
