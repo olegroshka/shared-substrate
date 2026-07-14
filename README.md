@@ -141,6 +141,8 @@ The empirical record on AI-assisted work is genuinely contested — and the disc
 
 The moderators that reconcile these — task abstraction level, project maturity, operator experience — are precisely substrate-adjacent variables. **The discipline is an intervention on those moderators, and the claim is falsifiable:** if practised substrate discipline does not move experienced operators on mature projects out of the slowdown regime, the thesis fails.
 
+The paper also draws the consequence for measurement: in a coupled environment, productivity is not generated volume — the amplifier inflates volume regardless of sign, which is why slowed-down practitioners sincerely felt faster — but **validated intent made durable** per unit of scarce human input (creative kernel, oracle capacity, loop time). Unverified volume is not output; it is rework not yet scheduled.
+
 ## Honest limits
 
 The paper names where the discipline does not help: genuinely novel research whose right ontology is unknown until the work is mostly done; projects below a complexity threshold (a handful of sessions, decisions, collaborators — use flat notes); the bureaucracy risk when ceremony exceeds benefit; the hidden expertise requirement (a substrate is no better than the judgement of its author); multi-author coordination (its own open problem); and the failure modes agentic execution itself introduces (confabulated decision drafts, drafting-bias drift, over-delegation). The discipline preserves reasoning; it does not produce it. A well-organised wrong project is still wrong.
