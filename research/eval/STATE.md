@@ -12,7 +12,7 @@
 | WS1 rubric | **DONE (REVIEWED) 2026-07-25** | S1 · Fable 5 → reviewed S2 | instrument `rubric/RUBRIC.md`; evidence `data/rubric-evidence.md`; scores `data/rubric-scores.json` v1.1 — judgment calls adjudicated; **P8 blanks stay open** (only fillable in-org) |
 | WS-X complexity profile | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/complexity_profile.py` → `data/complexity-profiles.json`; Kendall's W in 3 runs; declared ratings set via `data/qualitative-ratings.json` |
 | WS2 git miners | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/git_miner.py` (+ `scripts/corpus_common.py`) → `data/git-metrics/*.json` |
-| WS3 session-log analysis | pending | S3 · **Opus 5** | altitude-classifier taxonomy is judgment-heavy (headline exhibit); feasibility per project: see WS0 findings |
+| WS3 session-log analysis | **DONE 2026-07-25** | S3 · Opus 5 | `scripts/log_miner.py` + `sample_turns.py` + `altitude_classify.py` + `session_yield.py` → `data/session-metrics/*.json`; instrument `rubric/ALTITUDE.md` v1.0; hand labels `data/altitude-labels.json`; **(a) survives only length-controlled, (b) is the clean positive, (c) inconclusive** |
 | WS4a probe pre-registration | pending | S4 · **Fable 5** | question design IS the experiment's validity; pre-registration commit BEFORE any run |
 | WS4b probe runs + scoring | pending | S5 · **Sonnet 5** | frozen protocol execution; probe *subjects*: one fixed model across projects (suggest Sonnet 5, record in protocol) |
 | WS5 survival curves | pending | S6 · **Sonnet 5** | kernel teaser only if time — if attempted, bump to Opus |
@@ -238,6 +238,94 @@ a 37-line dotfile undercount, a tag regex that required a space-free tag and rea
 110 instead of 293, and a tier-grouped AIT concatenation that diverged from PLAN §4's
 sorted-path definition. All three are fixed; the sweeps above are post-fix.
 
+## WS3 findings (2026-07-25)
+
+Instrument: `rubric/ALTITUDE.md` v1.0 (four classes, nine numbered boundary rules,
+fixed precedence), frozen after a 99-turn stratified hand-labelling pass and before
+the classifier was written. Corpus: **1,480 turns / 168 sessions** from three log
+stores, of which **1,061 are classifiable operator turns** (slash, machine-rendered,
+off-project and unrecoverable-paste turns excluded and counted).
+
+**Agreement (hand vs automated), the number PLAN §4 requires.** Four-way: dev
+0.820 (κ=0.713), held-out **0.895 (κ=0.835)**. High-vs-mechanical collapse: dev
+0.869, held-out **0.947 (κ=0.902)**. The first run, before four rule-implementation
+defects were fixed, scored held-out 0.868/κ=0.806 four-way — published alongside as
+the uncontaminated measurement, since five held-out disagreements had been read by
+the time the fixes were made. This is instrument *stability*, not inter-rater
+reliability: there is one rater. **The four-way split is noisy; the high/low split
+is solid — so the exhibit is built on high/low.**
+
+1. **The naive cross-project altitude comparison fails, and it fails for a
+   measurable reason.** Raw high-altitude share: b-autobot 0.46 · seamQ 0.35 ·
+   blive 0.30 · btest 0.25 — which puts the *least* substrated build near the top.
+   That ordering is mostly turn length: high share rises monotonically with typed
+   length inside every project (btest 0.08 → 0.15 → 0.35 → 0.65 across the 0–39 /
+   40–119 / 120–399 / 400+ character bands). **No altitude number is publishable
+   without its length band.**
+2. **Length-controlled, the contrast returns and btest is last.** In every band,
+   btest is the lowest of the four measurable projects, and blive beats it in every
+   band (0–39: 0.08 vs 0.19; 40–119: 0.15 vs 0.26; 120–399: 0.35 vs 0.42; 400+:
+   0.65 vs 0.80). This is the honest version of the headline claim.
+3. **The sharpest exhibit is what a *short* turn is made of.** Among turns under 40
+   characters — dispatch-by-reference ("read `NEXT_PROMPT.md`, execute") per bare
+   assent ("continue"): **seamQ 5.0 · b-autobot 0.50 · blive 0.25 · btest 0.10**
+   (3 dispatches against 29 "continue"s). btest also has the most short turns: 147,
+   19% of everything it typed. In a substrated project brevity is delegation; in a
+   flat one it is a clock tick.
+4. **WS3(b) is the clean positive — and it is about *shape*, not amount.** blive
+   opens 9 of its 10 sessions with a warm-up turn (mean prefix 1.00) costing ~106
+   characters; btest warms up in 43 of 68 sessions (prefix 0.53) at ~417 characters
+   — **4× the cost, half as often**. Direction over each project's own lifetime
+   (first vs second half of its sessions): btest **rising** 477 → 607 warm-up chars
+   per session, blive **falling** 192 → 106, seamQ falling 740 → 456, b-autobot
+   rising 26 → 322 (n=7, 6-day span). Two caveats travel with this: btest's sessions
+   also got longer (9.1 → 19.8 turns), and paste bodies survive for only 74 of 204
+   paste-referencing turns, so payload-shaped warm-ups are *under*-counted —
+   conservative against the finding.
+5. **Negative result, reported as such: within btest, altitude does not track the
+   discipline curve.** Monthly high share runs 0.256 (Mar) · 0.251 (Apr) · 0.192
+   (May) · 0.400 (Jun, n=5) · 0.303 (Jul) against WS2's stable-ID tag curve of
+   91% → 96% → 50% → 40% → 0%. July has btest's *least* artifact discipline and its
+   second-highest altitude. PLAN §4's hope that "the migration is visible in P2
+   chronology" is not supported by this measurement.
+6. **seamQ's rubric score and its session posture disagree by construction, and
+   both are right.** WS1 scored the surviving tree (7/24); seamQ stripped its
+   substrate at publication (−37,861 lines, commit e9d951e). Its *in-flight* posture
+   has the corpus's highest dispatch ratio and its highest warm-up share (0.176).
+   Any exhibit plotting rubric score against altitude must footnote seamQ or it
+   reads as a counterexample when it is a measurement-window artefact.
+7. **WS3(c) is inconclusive and is written up that way.** Turns per landed commit
+   sits at 1.56–2.92 across the four measurable projects and separates nothing.
+   Line-based yield is unusable in this corpus: one btest notebook commit adds
+   151,591 "source lines", and btest's −147,711 net over the window is produced by
+   the `research/` removal (−254,072), the SMIM extraction (−104,667) and the
+   datacli extraction (−15,208) — deliberate moves, not waste. Excluding notebooks,
+   retention is blive 0.87 · b-autobot 0.53 · btest 0.13 · seamQ 0.09; datacli and
+   harp are attribution artefacts (both were built inside btest's folder).
+
+**Evidence corrections and coverage, for the report's honesty ledger:**
+- **WS0 finding 3 was imprecise.** history.jsonl's first entry is `/init` in the
+  btest folder; the b-autobot bootstrap prompts that follow are correctly recorded
+  under the b-autobot folder. Folder attribution is *cleaner* than WS0 assumed —
+  only **12 of 1,480 turns** were re-attributed (10 by explicit foreign path, 2 by
+  hand override), and the signature rule fired zero times once extraction windows
+  were applied.
+- **WS0's Copilot user-message counts are ~2.3× too high.** They counted
+  `user.message_rendered`; the store holds only **96 verbatim `user.message`
+  records**, and 48 of its 57 sessions carry *only* a machine-composed third-person
+  brief. Those are excluded from altitude — classifying them would measure the
+  renderer.
+- **Attribution needs time windows, not just content.** SMIM lived inside btest
+  until 2026-05-02 and the EODHD tooling until 2026-07-09, so four March/April
+  "smim" turns were btest's. Windows and two hand overrides are frozen in
+  `data/attribution-rules.json` as a script *input*.
+- **btest's last logged session (Jul 16) is printer troubleshooting**, not
+  engineering — 8 turns, caught by session-level off-project pooling and excluded.
+  22 off-project turns total across 4 sessions.
+- Verbatim prompt text stays local and gitignored
+  (`data/session-metrics/local/`); the published JSON carries a 160-character
+  preview and a sha1 per turn, and re-running `log_miner.py` reproduces the rest.
+
 ## Session log
 
 - **S1 · 2026-07-25:** PLAN.md drafted and iterated (talk reframed to abstract; corp
@@ -271,3 +359,23 @@ sorted-path definition. All three are fixed; the sweeps above are post-fix.
   catalogued for WS3/WS6). P8's four blanks filled PROVISIONAL-INFERRED → 18/24.
   **Nothing is now pending on Oleg.** Next: **WS3 session-log analysis (S3, Opus 5)** — the
   altitude classifier.
+- **S3 · 2026-07-25 · Opus 5:** WS3 executed end to end. Wrote `scripts/log_miner.py`
+  (three log formats → one session/turn schema, with content+window project
+  re-attribution), `scripts/sample_turns.py` (deterministic stratified draw),
+  `scripts/altitude_classify.py` (WS3a+b) and `scripts/session_yield.py` (WS3c);
+  added session-log plumbing to `corpus_common.py`. Hand-labelled 99 stratified turns
+  *before* writing any classifier, froze `rubric/ALTITUDE.md` v1.0 (nine numbered
+  boundary rules), then scored the automated pass against the labels on a
+  pre-assigned dev/held-out split: **held-out 0.895 four-way (κ=0.835), 0.947
+  high/low (κ=0.902)**, with the pre-fix run published too. Three hand-verifications
+  ran before the sweeps (per-folder grep counts, Copilot turnId dedup 73→65,
+  history-vs-transcript cross-check 9/11 exact with both deltas explained); two real
+  defects were caught by hand-reading rather than by counts — pre-extraction smim
+  turns being stolen from btest, and a printer-support session counted as btest
+  operator work. Findings above. The headline moved: the raw altitude ordering is a
+  **verbosity artefact**, and the defensible exhibits are the length-banded
+  comparison, the short-turn composition, and WS3(b)'s bounded-vs-growing warm-up
+  cost. WS3(c) is inconclusive by construction and says so. Two WS0 numbers
+  corrected (the b-autobot bleed, the Copilot user-message count). Next:
+  **WS4a probe pre-registration (S4, Fable 5)** — question design, frozen by commit
+  before any probe runs.

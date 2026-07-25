@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "purpose": "Hand-set inputs to log_miner.py's turn->project attribution. Kept as a script INPUT (the qualitative-ratings.json pattern from WS-X) so a re-run cannot silently overwrite an adjudicated call, and so every judgment carries its reason in the published record.",
+    "author_judgment": true,
+    "set_in": "S3 (WS3), 2026-07-25",
+    "how_used": "log_miner.py attributes a turn by folder, then by content (RULE P: explicit foreign project path; RULE S: >=2 foreign markers and 0 own). `windows` bounds which project a turn CAN be re-attributed to at a given date; `overrides` settles individual turns the rules get wrong. All 18 rule-fired re-attributions in the first pass were hand-read before this file was written."
+  },
+  "windows": {
+    "_note": "A turn can only be re-attributed to project X if its timestamp falls inside X's window. Dates are inclusive; null end = open. The windows exist because three corpus projects were EXTRACTED from btest and one was designed weeks before its first commit - so 'this turn mentions smim' does not mean 'this turn belongs to the smim repo' when smim was still a package inside btest.",
+    "btest": {
+      "start": "2025-12-09",
+      "end": null,
+      "reason": "First commit. Owns all SMIM work before 2026-05-02 and all EODHD tooling work before 2026-07-09, because those trees lived inside btest until they were extracted."
+    },
+    "b-autobot": {
+      "start": "2026-03-03",
+      "end": "2026-03-31",
+      "reason": "Bootstrap prompt in history 2026-03-03; git span 2026-03-05..03-11; nothing after March. Bounded end stops later 'cucumber/maven' chatter from being read as b-autobot work."
+    },
+    "blive": {
+      "start": "2026-04-26",
+      "end": "2026-07-31",
+      "reason": "First commit 2026-04-26 (the day claude.ai authored Requirements v0). End extended past the last commit (2026-06-06) because the method paper continued to live in blive/docs/method/paper into July."
+    },
+    "smim": {
+      "start": "2026-05-02",
+      "end": null,
+      "reason": "Standalone repo created 2026-05-02 (single squashed commit). Before that date SMIM was src/quantdsl_backtest/smim inside btest, so its turns are btest's - this is what blocked four March/April false positives."
+    },
+    "harp": {
+      "start": "2026-04-08",
+      "end": null,
+      "reason": "Repo created 2026-04-08 out of btest (the creation prompt itself was typed in the btest folder). Open end: the paper went to arXiv/SSRN in June, well after the last commit."
+    },
+    "datacli": {
+      "start": "2026-07-09",
+      "end": null,
+      "reason": "Extracted from btest 2026-07-09 (btest commit 5e8cd8f). Raw EODHD snapshots stay in btest, so datacli sessions legitimately run in the btest folder."
+    },
+    "seamQ": {
+      "start": "2026-04-30",
+      "end": null,
+      "reason": "claude.ai handoff/kickoff artifacts dated 2026-04-30 precede the first commit (2026-05-16) by over two weeks (OQ-2). The git span is not the project span."
+    }
+  },
+  "overrides": [
+    {
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:*",
+      "match_preview": "oh no we are just starting:).. so let's do this now study this strategy also using dsl but its in a notebook",
+      "rule_said": "btest",
+      "verdict": "blive",
+      "reason": "RULE P false positive. The turn cites a btest notebook path as INPUT; the deliverable is blive's (paper-account milestone for the first live-trading candidate). Citing another project's artifact is not doing that project's work."
+    },
+    {
+      "turn_id": "claude_history:14203a5c-5c42-4137-b96c-7df2d81ace7a:*",
+      "match_preview": "next phase 0 task:",
+      "rule_said": "harp",
+      "verdict": "seamQ",
+      "reason": "RULE P false positive, same shape: harp supplies the residuals and block partition, seamQ implements the frame-incompatibility diagnostic. The deposit lands in seamQ."
+    }
+  ],
+  "adjudication_log": [
+    {"turns": 4, "rule_said": "btest->smim", "verdict": "btest", "settled_by": "window", "reason": "2026-03-20 .. 2026-04-05: docs/smim/, quantdsl_backtest.smim.profiling, [SMIM GPU-0.1] commit tags - all btest-internal paths from the era when SMIM was a btest package."},
+    {"turns": 2, "rule_said": "btest->harp", "verdict": "harp", "settled_by": "kept", "reason": "2026-04-08 is harp's own creation prompt ('copy what is needed into the new empty repo here .../harp'), typed from the btest folder; 2026-04-15 is harp journal strategy. Both are harp work."},
+    {"turns": 3, "rule_said": "btest->datacli", "verdict": "datacli", "settled_by": "kept", "reason": "2026-07-11, after the 2026-07-09 extraction; the `eodhd>` shell is datacli's. datacli sessions run in the btest folder because the raw snapshots stayed there."},
+    {"turns": 2, "rule_said": "btest->blive", "verdict": "blive", "settled_by": "kept", "reason": "2026-07-14, reading blive/docs/method/paper - the method-paper draft in blive's tree."},
+    {"turns": 1, "rule_said": "blive->btest", "verdict": "blive", "settled_by": "override", "reason": "see overrides[0]"},
+    {"turns": 1, "rule_said": "seamQ->harp", "verdict": "seamQ", "settled_by": "override", "reason": "see overrides[1]"},
+    {"turns": 2, "rule_said": "shared-substrate->b-autobot", "verdict": "shared-substrate", "settled_by": "corpus-folder guard", "reason": "The eval repo's own sessions discuss every corpus project by construction; re-attributing them would inject meta-research turns into the projects being measured."},
+    {"turns": 3, "rule_said": "harp->btest", "verdict": "btest", "settled_by": "kept", "reason": "Copilot sessions attributed to harp by raw path-hit counting (WS0's session-level method) whose actual briefs are btest EODHD work. Turn-level attribution is strictly better here."}
+  ]
+}

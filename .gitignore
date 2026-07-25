@@ -24,3 +24,7 @@ __pycache__/
 
 # Claude Code runtime state
 .claude/scheduled_tasks.lock
+
+# WS3 verbatim session-log text (local only; the published JSON carries
+# previews + hashes, and re-running scripts/log_miner.py reproduces this)
+research/eval/data/session-metrics/local/

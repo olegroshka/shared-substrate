@@ -1,0 +1,992 @@
+{
+  "_meta": {
+    "script": "altitude_classify.py",
+    "version": "1.0",
+    "generated_utc": "2026-07-25T21:40:49+00:00",
+    "taxonomy": "rubric/ALTITUDE.md v1.0 (frozen before this script existed)",
+    "hand_labels": "..\\data\\altitude-labels.json",
+    "precedence": "UNK -> M(bare assent, R3) -> C -> D -> I -> M(default)",
+    "definitions": {
+      "classified_turn": "operator-typed, verbatim, on-project prompt",
+      "high_altitude": "I + D + C; the headline collapse",
+      "warmup_pointer": "context reconstruction that names a durable artifact and lets the agent read it - bounded cost",
+      "warmup_payload": "context reconstruction that re-transmits the context itself as prose or paste - unbounded cost"
+    },
+    "coverage_caveats": [
+      "paste bodies survive for only 74 of 204 paste-referencing turns, so warmup_chars is a LOWER bound and paste-heavy payload warm-ups are under-measured",
+      "smim (2 turns) and datacli (5) and harp (11) are too small for a distribution; they are reported as counts and must not be plotted as shares without n",
+      "blive has 112 classifiable turns but no surviving assistant-side transcript (WS0), so its session-level volume is not comparable"
+    ]
+  },
+  "agreement": {
+    "four_way": {
+      "dev": {
+        "n": 61,
+        "raw_agreement": 0.82,
+        "cohens_kappa": 0.713,
+        "confusion_hand_rows_auto_cols": {
+          "I": {
+            "I": 8,
+            "M": 3,
+            "D": 1
+          },
+          "D": {
+            "D": 7,
+            "C": 1,
+            "M": 1
+          },
+          "C": {
+            "C": 3,
+            "I": 1,
+            "M": 2
+          },
+          "M": {
+            "M": 30,
+            "I": 2
+          },
+          "UNK": {
+            "UNK": 2
+          }
+        },
+        "per_class": {
+          "I": {
+            "hand_n": 12,
+            "auto_n": 11,
+            "precision": 0.727,
+            "recall": 0.667
+          },
+          "D": {
+            "hand_n": 9,
+            "auto_n": 8,
+            "precision": 0.875,
+            "recall": 0.778
+          },
+          "C": {
+            "hand_n": 6,
+            "auto_n": 4,
+            "precision": 0.75,
+            "recall": 0.5
+          },
+          "M": {
+            "hand_n": 32,
+            "auto_n": 36,
+            "precision": 0.833,
+            "recall": 0.938
+          },
+          "UNK": {
+            "hand_n": 2,
+            "auto_n": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      },
+      "held_out": {
+        "n": 38,
+        "raw_agreement": 0.895,
+        "cohens_kappa": 0.835,
+        "confusion_hand_rows_auto_cols": {
+          "I": {
+            "I": 4,
+            "M": 1
+          },
+          "D": {
+            "D": 5,
+            "M": 1,
+            "I": 1
+          },
+          "C": {
+            "C": 3,
+            "I": 1
+          },
+          "M": {
+            "M": 20
+          },
+          "UNK": {
+            "UNK": 2
+          }
+        },
+        "per_class": {
+          "I": {
+            "hand_n": 5,
+            "auto_n": 6,
+            "precision": 0.667,
+            "recall": 0.8
+          },
+          "D": {
+            "hand_n": 7,
+            "auto_n": 5,
+            "precision": 1.0,
+            "recall": 0.714
+          },
+          "C": {
+            "hand_n": 4,
+            "auto_n": 3,
+            "precision": 1.0,
+            "recall": 0.75
+          },
+          "M": {
+            "hand_n": 20,
+            "auto_n": 22,
+            "precision": 0.909,
+            "recall": 1.0
+          },
+          "UNK": {
+            "hand_n": 2,
+            "auto_n": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      },
+      "all": {
+        "n": 99,
+        "raw_agreement": 0.848,
+        "cohens_kappa": 0.761,
+        "confusion_hand_rows_auto_cols": {
+          "I": {
+            "I": 12,
+            "M": 4,
+            "D": 1
+          },
+          "D": {
+            "D": 12,
+            "C": 1,
+            "M": 2,
+            "I": 1
+          },
+          "C": {
+            "C": 6,
+            "I": 2,
+            "M": 2
+          },
+          "M": {
+            "M": 50,
+            "I": 2
+          },
+          "UNK": {
+            "UNK": 4
+          }
+        },
+        "per_class": {
+          "I": {
+            "hand_n": 17,
+            "auto_n": 17,
+            "precision": 0.706,
+            "recall": 0.706
+          },
+          "D": {
+            "hand_n": 16,
+            "auto_n": 13,
+            "precision": 0.923,
+            "recall": 0.75
+          },
+          "C": {
+            "hand_n": 10,
+            "auto_n": 7,
+            "precision": 0.857,
+            "recall": 0.6
+          },
+          "M": {
+            "hand_n": 52,
+            "auto_n": 58,
+            "precision": 0.862,
+            "recall": 0.962
+          },
+          "UNK": {
+            "hand_n": 4,
+            "auto_n": 4,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      }
+    },
+    "high_vs_mechanical": {
+      "dev": {
+        "n": 61,
+        "raw_agreement": 0.869,
+        "cohens_kappa": 0.749,
+        "confusion_hand_rows_auto_cols": {
+          "high": {
+            "high": 21,
+            "low": 6
+          },
+          "low": {
+            "low": 30,
+            "high": 2
+          },
+          "UNK": {
+            "UNK": 2
+          }
+        },
+        "per_class": {
+          "high": {
+            "hand_n": 27,
+            "auto_n": 23,
+            "precision": 0.913,
+            "recall": 0.778
+          },
+          "low": {
+            "hand_n": 32,
+            "auto_n": 36,
+            "precision": 0.833,
+            "recall": 0.938
+          },
+          "UNK": {
+            "hand_n": 2,
+            "auto_n": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      },
+      "held_out": {
+        "n": 38,
+        "raw_agreement": 0.947,
+        "cohens_kappa": 0.902,
+        "confusion_hand_rows_auto_cols": {
+          "high": {
+            "high": 14,
+            "low": 2
+          },
+          "low": {
+            "low": 20
+          },
+          "UNK": {
+            "UNK": 2
+          }
+        },
+        "per_class": {
+          "high": {
+            "hand_n": 16,
+            "auto_n": 14,
+            "precision": 1.0,
+            "recall": 0.875
+          },
+          "low": {
+            "hand_n": 20,
+            "auto_n": 22,
+            "precision": 0.909,
+            "recall": 1.0
+          },
+          "UNK": {
+            "hand_n": 2,
+            "auto_n": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      },
+      "all": {
+        "n": 99,
+        "raw_agreement": 0.899,
+        "cohens_kappa": 0.809,
+        "confusion_hand_rows_auto_cols": {
+          "high": {
+            "high": 35,
+            "low": 8
+          },
+          "low": {
+            "low": 50,
+            "high": 2
+          },
+          "UNK": {
+            "UNK": 4
+          }
+        },
+        "per_class": {
+          "high": {
+            "hand_n": 43,
+            "auto_n": 37,
+            "precision": 0.946,
+            "recall": 0.814
+          },
+          "low": {
+            "hand_n": 52,
+            "auto_n": 58,
+            "precision": 0.862,
+            "recall": 0.962
+          },
+          "UNK": {
+            "hand_n": 4,
+            "auto_n": 4,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      }
+    },
+    "disagreements": [
+      {
+        "n": 8,
+        "split": "dev",
+        "project": "b-autobot",
+        "hand": "M",
+        "auto": "I",
+        "rule": "R1-goal:\\bi want (?:us )?to\\b",
+        "preview": "ok great can you spin the deploymen web app I want to see how it looks and click through this site"
+      },
+      {
+        "n": 41,
+        "split": "dev",
+        "project": "btest",
+        "hand": "C",
+        "auto": "I",
+        "rule": "R1-goal:\\blet'?s (?:build|create|make|add|",
+        "preview": "lets do this 1. first git add new files if any missed and commit all the current clean up 2. think deep and sl"
+      },
+      {
+        "n": 42,
+        "split": "dev",
+        "project": "btest",
+        "hand": "D",
+        "auto": "C",
+        "rule": "R6-contract:\\b(must|should) (be|have|not|alway",
+        "preview": "I added tex doc for the origicnal proposal we can use it later to draft the paper docs/smim/proposal/research_"
+      },
+      {
+        "n": 46,
+        "split": "dev",
+        "project": "btest",
+        "hand": "I",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "hey here is the problem now.. I cannot submit to arxive unless I am endorsed can you please run a systematic a"
+      },
+      {
+        "n": 52,
+        "split": "dev",
+        "project": "btest",
+        "hand": "C",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "I changed the rewrite plan can you please review it let me know if you have any questions or awant to rise any"
+      },
+      {
+        "n": 73,
+        "split": "dev",
+        "project": "btest",
+        "hand": "I",
+        "auto": "D",
+        "rule": "R4-decision:\\bi (actually )?(agree|prefer|like",
+        "preview": "next let's add ability to run /qc comman for line and for line + data set also do a butification pick smart cl"
+      },
+      {
+        "n": 81,
+        "split": "dev",
+        "project": "harp",
+        "hand": "C",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "noxt task is rather big we need to copy all the code/configs etc required to reproduce the experiment into the"
+      },
+      {
+        "n": 82,
+        "split": "dev",
+        "project": "harp",
+        "hand": "I",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "hey read the paper visuals and lets pal an article on linked int I want it to be professional and intersting t"
+      },
+      {
+        "n": 92,
+        "split": "dev",
+        "project": "seamQ",
+        "hand": "D",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "I passed a btw emssge asking to shorten the abstract to smth like: [Pasted text #6 +2 lines] one full page of "
+      },
+      {
+        "n": 97,
+        "split": "dev",
+        "project": "seamQ",
+        "hand": "I",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "ok here refere 1 was opus 4.8, referee 2 - gpt 5.5, referee 3 gemini 3 pro reports are here - review/round-1/p"
+      },
+      {
+        "n": 98,
+        "split": "dev",
+        "project": "smim",
+        "hand": "M",
+        "auto": "I",
+        "rule": "R1-goal:\\bcan you (?:please )?(?:build|cre",
+        "preview": "hey can you pull smim-reproduction from github on the same level as smim and other projects are"
+      },
+      {
+        "n": 10,
+        "split": "held_out",
+        "project": "b-autobot",
+        "hand": "C",
+        "auto": "I",
+        "rule": "R2-dispatch-by-reference",
+        "preview": "ok next let's make or pt-blotter-regression-tmplate features example actually runnable let's use simillar but "
+      },
+      {
+        "n": 39,
+        "split": "held_out",
+        "project": "btest",
+        "hand": "I",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "[Pasted text #7 +14 lines]"
+      },
+      {
+        "n": 64,
+        "split": "held_out",
+        "project": "btest",
+        "hand": "D",
+        "auto": "M",
+        "rule": "R8-default-mechanical",
+        "preview": "hey do you think abstract is too long too or is it just me?"
+      },
+      {
+        "n": 74,
+        "split": "held_out",
+        "project": "btest",
+        "hand": "D",
+        "auto": "I",
+        "rule": "R1-goal:\\bi want (?:us )?to\\b",
+        "preview": "yes I do in fact I want us to add another 6 scenaroius to those 5 (let's have 11 sort of smoke scenarious).. a"
+      }
+    ],
+    "interpretation_note": "This is instrument STABILITY (does a stated rule set reproduce the labeller's own judgment), not inter-rater reliability - there is only one rater. The held-out half was not read while the rules were written, but the same person wrote both, so it is unrehearsed rather than blind.",
+    "first_run_uncontaminated": {
+      "note": "The FIRST run of the classifier, before any rule was touched, is the only fully uncontaminated held-out measurement: after it, four implementation defects were fixed and five held-out disagreements had been read. The fixes were all traceable to rules already written in ALTITUDE.md (R8 - a paste is input, so dispatch is read from typed text only; R9 - retransmission is mechanical, now checked before C/D) or to cue over-breadth ('do' as a sentence-initial goal verb caught 'do you think...?'; 'should we' caught 'what should we do next?'). No cue was added to rescue an individual turn. Both runs are published so the reader can take the conservative number.",
+      "four_way": {
+        "dev": {
+          "n": 61,
+          "raw_agreement": 0.787,
+          "cohens_kappa": 0.666
+        },
+        "held_out": {
+          "n": 38,
+          "raw_agreement": 0.868,
+          "cohens_kappa": 0.806
+        }
+      },
+      "high_vs_mechanical": {
+        "dev": {
+          "n": 61,
+          "raw_agreement": 0.836,
+          "cohens_kappa": 0.688
+        },
+        "held_out": {
+          "n": 38,
+          "raw_agreement": 0.947,
+          "cohens_kappa": 0.904
+        }
+      }
+    }
+  },
+  "projects": {
+    "blive": {
+      "n_classified": 112,
+      "n_unclassifiable": 0,
+      "counts": {
+        "I": 18,
+        "D": 10,
+        "C": 5,
+        "M": 79
+      },
+      "shares": {
+        "I": 0.1607,
+        "D": 0.0893,
+        "C": 0.0446,
+        "M": 0.7054
+      },
+      "high_share": 0.2946,
+      "mean_chars": 119.4,
+      "excluded": {
+        "slash": 8,
+        "rendered": 2,
+        "off_project": 0
+      },
+      "r3_sensitivity_high_share": 0.4018,
+      "by_length_band": {
+        "0-39": {
+          "n": 37,
+          "high_share": 0.1892
+        },
+        "40-119": {
+          "n": 46,
+          "high_share": 0.2609
+        },
+        "120-399": {
+          "n": 24,
+          "high_share": 0.4167
+        },
+        "400+": {
+          "n": 5,
+          "high_share": 0.8
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 37,
+        "share_of_all_turns": 0.3304,
+        "bare_assent": 12,
+        "dispatch_by_reference": 3,
+        "other": 22,
+        "dispatch_per_bare_assent": 0.25
+      },
+      "by_month": {
+        "2026-05": {
+          "n": 62,
+          "high_share": 0.2742,
+          "shares": {
+            "I": 0.1613,
+            "D": 0.0806,
+            "C": 0.0323,
+            "M": 0.7258
+          }
+        },
+        "2026-06": {
+          "n": 49,
+          "high_share": 0.3061,
+          "shares": {
+            "I": 0.1429,
+            "D": 0.102,
+            "C": 0.0612,
+            "M": 0.6939
+          }
+        },
+        "2026-07": {
+          "n": 1,
+          "high_share": 1.0,
+          "shares": {
+            "I": 1.0,
+            "D": 0.0,
+            "C": 0.0,
+            "M": 0.0
+          }
+        }
+      }
+    },
+    "btest": {
+      "n_classified": 757,
+      "n_unclassifiable": 62,
+      "counts": {
+        "I": 112,
+        "D": 50,
+        "C": 28,
+        "M": 567
+      },
+      "shares": {
+        "I": 0.148,
+        "D": 0.0661,
+        "C": 0.037,
+        "M": 0.749
+      },
+      "high_share": 0.251,
+      "mean_chars": 178.0,
+      "excluded": {
+        "slash": 95,
+        "rendered": 43,
+        "off_project": 20
+      },
+      "r3_sensitivity_high_share": 0.2893,
+      "by_length_band": {
+        "0-39": {
+          "n": 147,
+          "high_share": 0.0816
+        },
+        "40-119": {
+          "n": 286,
+          "high_share": 0.1538
+        },
+        "120-399": {
+          "n": 258,
+          "high_share": 0.3527
+        },
+        "400+": {
+          "n": 66,
+          "high_share": 0.6515
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 147,
+        "share_of_all_turns": 0.1942,
+        "bare_assent": 29,
+        "dispatch_by_reference": 3,
+        "other": 115,
+        "dispatch_per_bare_assent": 0.103
+      },
+      "by_month": {
+        "2026-03": {
+          "n": 117,
+          "high_share": 0.2564,
+          "shares": {
+            "I": 0.1709,
+            "D": 0.0427,
+            "C": 0.0427,
+            "M": 0.7436
+          }
+        },
+        "2026-04": {
+          "n": 447,
+          "high_share": 0.2506,
+          "shares": {
+            "I": 0.1588,
+            "D": 0.0694,
+            "C": 0.0224,
+            "M": 0.7494
+          }
+        },
+        "2026-05": {
+          "n": 99,
+          "high_share": 0.1919,
+          "shares": {
+            "I": 0.0909,
+            "D": 0.0505,
+            "C": 0.0505,
+            "M": 0.8081
+          }
+        },
+        "2026-06": {
+          "n": 5,
+          "high_share": 0.4,
+          "shares": {
+            "I": 0.0,
+            "D": 0.2,
+            "C": 0.2,
+            "M": 0.6
+          }
+        },
+        "2026-07": {
+          "n": 89,
+          "high_share": 0.3034,
+          "shares": {
+            "I": 0.1348,
+            "D": 0.0899,
+            "C": 0.0787,
+            "M": 0.6966
+          }
+        }
+      }
+    },
+    "b-autobot": {
+      "n_classified": 100,
+      "n_unclassifiable": 0,
+      "counts": {
+        "I": 28,
+        "D": 2,
+        "C": 16,
+        "M": 54
+      },
+      "shares": {
+        "I": 0.28,
+        "D": 0.02,
+        "C": 0.16,
+        "M": 0.54
+      },
+      "high_share": 0.46,
+      "mean_chars": 269.7,
+      "excluded": {
+        "slash": 23,
+        "rendered": 0,
+        "off_project": 0
+      },
+      "r3_sensitivity_high_share": 0.52,
+      "by_length_band": {
+        "0-39": {
+          "n": 21,
+          "high_share": 0.1905
+        },
+        "40-119": {
+          "n": 26,
+          "high_share": 0.2308
+        },
+        "120-399": {
+          "n": 30,
+          "high_share": 0.5667
+        },
+        "400+": {
+          "n": 23,
+          "high_share": 0.8261
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 21,
+        "share_of_all_turns": 0.21,
+        "bare_assent": 6,
+        "dispatch_by_reference": 3,
+        "other": 12,
+        "dispatch_per_bare_assent": 0.5
+      },
+      "by_month": {
+        "2026-03": {
+          "n": 100,
+          "high_share": 0.46,
+          "shares": {
+            "I": 0.28,
+            "D": 0.02,
+            "C": 0.16,
+            "M": 0.54
+          }
+        }
+      }
+    },
+    "datacli": {
+      "n_classified": 5,
+      "n_unclassifiable": 0,
+      "counts": {
+        "I": 1,
+        "D": 0,
+        "C": 0,
+        "M": 4
+      },
+      "shares": {
+        "I": 0.2,
+        "D": 0.0,
+        "C": 0.0,
+        "M": 0.8
+      },
+      "high_share": 0.2,
+      "mean_chars": 100.0,
+      "excluded": {
+        "slash": 2,
+        "rendered": 0,
+        "off_project": 0
+      },
+      "r3_sensitivity_high_share": 0.2,
+      "by_length_band": {
+        "0-39": {
+          "n": 1,
+          "high_share": 0.0
+        },
+        "40-119": {
+          "n": 2,
+          "high_share": 0.0
+        },
+        "120-399": {
+          "n": 2,
+          "high_share": 0.5
+        },
+        "400+": {
+          "n": 0,
+          "high_share": null
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 1,
+        "share_of_all_turns": 0.2,
+        "bare_assent": 0,
+        "dispatch_by_reference": 0,
+        "other": 1,
+        "dispatch_per_bare_assent": null
+      },
+      "by_month": {
+        "2026-07": {
+          "n": 5,
+          "high_share": 0.2,
+          "shares": {
+            "I": 0.2,
+            "D": 0.0,
+            "C": 0.0,
+            "M": 0.8
+          }
+        }
+      }
+    },
+    "smim": {
+      "n_classified": 2,
+      "n_unclassifiable": 0,
+      "counts": {
+        "I": 1,
+        "D": 0,
+        "C": 0,
+        "M": 1
+      },
+      "shares": {
+        "I": 0.5,
+        "D": 0.0,
+        "C": 0.0,
+        "M": 0.5
+      },
+      "high_share": 0.5,
+      "mean_chars": 70.5,
+      "excluded": {
+        "slash": 0,
+        "rendered": 2,
+        "off_project": 0
+      },
+      "r3_sensitivity_high_share": 0.5,
+      "by_length_band": {
+        "0-39": {
+          "n": 0,
+          "high_share": null
+        },
+        "40-119": {
+          "n": 2,
+          "high_share": 0.5
+        },
+        "120-399": {
+          "n": 0,
+          "high_share": null
+        },
+        "400+": {
+          "n": 0,
+          "high_share": null
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 0,
+        "share_of_all_turns": 0.0,
+        "bare_assent": 0,
+        "dispatch_by_reference": 0,
+        "other": 0,
+        "dispatch_per_bare_assent": null
+      },
+      "by_month": {
+        "2026-05": {
+          "n": 2,
+          "high_share": 0.5,
+          "shares": {
+            "I": 0.5,
+            "D": 0.0,
+            "C": 0.0,
+            "M": 0.5
+          }
+        }
+      }
+    },
+    "harp": {
+      "n_classified": 11,
+      "n_unclassifiable": 0,
+      "counts": {
+        "I": 2,
+        "D": 2,
+        "C": 0,
+        "M": 7
+      },
+      "shares": {
+        "I": 0.1818,
+        "D": 0.1818,
+        "C": 0.0,
+        "M": 0.6364
+      },
+      "high_share": 0.3636,
+      "mean_chars": 271.2,
+      "excluded": {
+        "slash": 2,
+        "rendered": 1,
+        "off_project": 0
+      },
+      "r3_sensitivity_high_share": 0.4545,
+      "by_length_band": {
+        "0-39": {
+          "n": 1,
+          "high_share": 0.0
+        },
+        "40-119": {
+          "n": 2,
+          "high_share": 0.0
+        },
+        "120-399": {
+          "n": 4,
+          "high_share": 0.5
+        },
+        "400+": {
+          "n": 4,
+          "high_share": 0.5
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 1,
+        "share_of_all_turns": 0.0909,
+        "bare_assent": 1,
+        "dispatch_by_reference": 0,
+        "other": 0,
+        "dispatch_per_bare_assent": 0.0
+      },
+      "by_month": {
+        "2026-04": {
+          "n": 2,
+          "high_share": 0.5,
+          "shares": {
+            "I": 0.5,
+            "D": 0.0,
+            "C": 0.0,
+            "M": 0.5
+          }
+        },
+        "2026-06": {
+          "n": 9,
+          "high_share": 0.3333,
+          "shares": {
+            "I": 0.1111,
+            "D": 0.2222,
+            "C": 0.0,
+            "M": 0.6667
+          }
+        }
+      }
+    },
+    "seamQ": {
+      "n_classified": 74,
+      "n_unclassifiable": 0,
+      "counts": {
+        "I": 17,
+        "D": 7,
+        "C": 2,
+        "M": 48
+      },
+      "shares": {
+        "I": 0.2297,
+        "D": 0.0946,
+        "C": 0.027,
+        "M": 0.6486
+      },
+      "high_share": 0.3514,
+      "mean_chars": 172.3,
+      "excluded": {
+        "slash": 12,
+        "rendered": 0,
+        "off_project": 1
+      },
+      "r3_sensitivity_high_share": 0.3649,
+      "by_length_band": {
+        "0-39": {
+          "n": 13,
+          "high_share": 0.4615
+        },
+        "40-119": {
+          "n": 26,
+          "high_share": 0.3077
+        },
+        "120-399": {
+          "n": 27,
+          "high_share": 0.3704
+        },
+        "400+": {
+          "n": 8,
+          "high_share": 0.25
+        }
+      },
+      "short_turn_composition": {
+        "n_under_40_chars": 13,
+        "share_of_all_turns": 0.1757,
+        "bare_assent": 1,
+        "dispatch_by_reference": 5,
+        "other": 7,
+        "dispatch_per_bare_assent": 5.0
+      },
+      "by_month": {
+        "2026-05": {
+          "n": 74,
+          "high_share": 0.3514,
+          "shares": {
+            "I": 0.2297,
+            "D": 0.0946,
+            "C": 0.027,
+            "M": 0.6486
+          }
+        }
+      }
+    }
+  }
+}

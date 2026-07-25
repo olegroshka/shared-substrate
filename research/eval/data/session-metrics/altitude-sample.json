@@ -1,0 +1,917 @@
+{
+  "_meta": {
+    "script": "sample_turns.py",
+    "method": "systematic every-k sampling within per-project strata, turns time-sorted; split = 3 of every 5 to dev",
+    "quota": {
+      "btest": 40,
+      "blive": 20,
+      "b-autobot": 15,
+      "seamQ": 12,
+      "harp": 5,
+      "datacli": 5,
+      "smim": 2
+    },
+    "pool_sizes": {
+      "btest": 819,
+      "blive": 112,
+      "b-autobot": 100,
+      "seamQ": 74,
+      "harp": 11,
+      "datacli": 5,
+      "smim": 2
+    }
+  },
+  "sample": [
+    {
+      "n": 1,
+      "turn_id": "claude_history:be20b91b-0da4-469c-9e87-ba363ba7d3a0:0",
+      "project": "b-autobot",
+      "ts": "2026-03-03T22:08:06.867000+00:00",
+      "split": "dev",
+      "sha1": "5715d82f863f",
+      "preview": "[Pasted text #1 +8 lines]"
+    },
+    {
+      "n": 2,
+      "turn_id": "claude_history:1fada3b7-bfc5-4b30-b1f7-6988e8890920:3",
+      "project": "b-autobot",
+      "ts": "2026-03-04T08:34:43.341000+00:00",
+      "split": "dev",
+      "sha1": "8d1d02b6456f",
+      "preview": "let's continue"
+    },
+    {
+      "n": 3,
+      "turn_id": "claude_history:85d8a20a-4994-4286-9250-81ecdfea7b01:5",
+      "project": "b-autobot",
+      "ts": "2026-03-05T19:23:20.548000+00:00",
+      "split": "dev",
+      "sha1": "501cda93376b",
+      "preview": "ok great run the tests and the cucumber features again to verify all works, update readme.md and claude.md unless you already done, add to git all the new files..."
+    },
+    {
+      "n": 4,
+      "turn_id": "claude_history:85d8a20a-4994-4286-9250-81ecdfea7b01:14",
+      "project": "b-autobot",
+      "ts": "2026-03-06T08:37:24.906000+00:00",
+      "split": "held_out",
+      "sha1": "eaa4f49574dd",
+      "preview": "hey let's make some amendments to the milestone plan mainly arround the UI so we will not have comboboxes to choose ref side etc on the row (bond line item ) bu..."
+    },
+    {
+      "n": 5,
+      "turn_id": "claude_history:85d8a20a-4994-4286-9250-81ecdfea7b01:20",
+      "project": "b-autobot",
+      "ts": "2026-03-06T14:45:18.514000+00:00",
+      "split": "held_out",
+      "sha1": "d1706b7f0080",
+      "preview": "now its blank page here is the content of the browser console: [Pasted text #2 +3 lines] and issues tab: [Pasted text #3 +5 lines]"
+    },
+    {
+      "n": 6,
+      "turn_id": "claude_history:85d8a20a-4994-4286-9250-81ecdfea7b01:29",
+      "project": "b-autobot",
+      "ts": "2026-03-06T19:24:32.842000+00:00",
+      "split": "dev",
+      "sha1": "e1b45f898f5b",
+      "preview": "ok its past 6pm lets continue"
+    },
+    {
+      "n": 7,
+      "turn_id": "claude_history:a37f566a-82e6-47b5-8d62-9d7349312ba5:4",
+      "project": "b-autobot",
+      "ts": "2026-03-06T22:43:04.962000+00:00",
+      "split": "dev",
+      "sha1": "3c450d403264",
+      "preview": "well its good but in your ui choice for the config I thinj we are missing some Add/+, Clone, Remove buttons to add new key and config for the config type say Pe..."
+    },
+    {
+      "n": 8,
+      "turn_id": "claude_history:a37f566a-82e6-47b5-8d62-9d7349312ba5:12",
+      "project": "b-autobot",
+      "ts": "2026-03-07T09:34:52.346000+00:00",
+      "split": "dev",
+      "sha1": "64a72ee973e9",
+      "preview": "ok great can you spin the deploymen web app I want to see how it looks and click through this site"
+    },
+    {
+      "n": 9,
+      "turn_id": "claude_history:c0db56a4-3b9f-4b26-b48c-a88c1309a547:5",
+      "project": "b-autobot",
+      "ts": "2026-03-07T11:28:44.692000+00:00",
+      "split": "held_out",
+      "sha1": "b9eb8620c5c9",
+      "preview": "great let's go M3"
+    },
+    {
+      "n": 10,
+      "turn_id": "claude_history:c0db56a4-3b9f-4b26-b48c-a88c1309a547:16",
+      "project": "b-autobot",
+      "ts": "2026-03-07T15:41:42.904000+00:00",
+      "split": "held_out",
+      "sha1": "7938d422c237",
+      "preview": "ok next let's make or pt-blotter-regression-tmplate features example actually runnable let's use simillar but may be less scenarious focus on the philosophy or ..."
+    },
+    {
+      "n": 11,
+      "turn_id": "claude_history:c0db56a4-3b9f-4b26-b48c-a88c1309a547:24",
+      "project": "b-autobot",
+      "ts": "2026-03-07T22:05:21.189000+00:00",
+      "split": "dev",
+      "sha1": "eee0bbba4ff9",
+      "preview": "continue"
+    },
+    {
+      "n": 12,
+      "turn_id": "claude_history:d7909198-1c1b-4845-9788-1a0cbd6c2fac:1",
+      "project": "b-autobot",
+      "ts": "2026-03-08T12:26:45.870000+00:00",
+      "split": "dev",
+      "sha1": "e72662a36c4d",
+      "preview": "hey let's clean a lot of warnings/errors in this code base [Pasted text #1 +37 lines] can carefully replace deprecated calls with the new replacement implementa..."
+    },
+    {
+      "n": 13,
+      "turn_id": "claude_history:d7909198-1c1b-4845-9788-1a0cbd6c2fac:12",
+      "project": "b-autobot",
+      "ts": "2026-03-08T17:11:53.587000+00:00",
+      "split": "dev",
+      "sha1": "eee0bbba4ff9",
+      "preview": "continue"
+    },
+    {
+      "n": 14,
+      "turn_id": "claude_history:d7909198-1c1b-4845-9788-1a0cbd6c2fac:18",
+      "project": "b-autobot",
+      "ts": "2026-03-08T20:33:12.023000+00:00",
+      "split": "held_out",
+      "sha1": "b7f788aa3e40",
+      "preview": "sorry foPT_DYN maturity and descriptions are missing not just clietn"
+    },
+    {
+      "n": 15,
+      "turn_id": "claude_history:345a470b-c3bc-462e-a440-cede54565217:1",
+      "project": "b-autobot",
+      "ts": "2026-03-09T22:30:05.404000+00:00",
+      "split": "held_out",
+      "sha1": "2bb83eee4920",
+      "preview": "did you run pt-blotter-regression-template cucumber tests?.."
+    },
+    {
+      "n": 16,
+      "turn_id": "claude_history:158b6f16-681a-4ec5-b551-ec46d548b61c:0",
+      "project": "blive",
+      "ts": "2026-05-02T12:47:19.743000+00:00",
+      "split": "dev",
+      "sha1": "876aa1771ef1",
+      "preview": "continue from where we left in this project yesterday: [Pasted text #1 +175 lines]"
+    },
+    {
+      "n": 17,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:5",
+      "project": "blive",
+      "ts": "2026-05-02T15:37:21.340000+00:00",
+      "split": "dev",
+      "sha1": "f0f34770581e",
+      "preview": "no we will move the human/agent substrate emergence research/work into a separate project and do a proper research but here since we are using this intuaition w..."
+    },
+    {
+      "n": 18,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:11",
+      "project": "blive",
+      "ts": "2026-05-02T18:51:58.853000+00:00",
+      "split": "dev",
+      "sha1": "2ae27e90df39",
+      "preview": "ok ticked #1 and pplied can you try now"
+    },
+    {
+      "n": 19,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:16",
+      "project": "blive",
+      "ts": "2026-05-02T19:54:45.304000+00:00",
+      "split": "held_out",
+      "sha1": "5b3c80fff7ba",
+      "preview": "https://github.com/olegroshka"
+    },
+    {
+      "n": 20,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:22",
+      "project": "blive",
+      "ts": "2026-05-02T20:47:45.029000+00:00",
+      "split": "held_out",
+      "sha1": "fea41fd03f68",
+      "preview": "oh no we are just starting:).. so let's do this now study this strategy also using dsl but its in a notebook C:\\Users\\olegr\\PycharmProjects\\btest\\research\\Tripl..."
+    },
+    {
+      "n": 21,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:28",
+      "project": "blive",
+      "ts": "2026-05-03T08:48:44.097000+00:00",
+      "split": "dev",
+      "sha1": "920a4fc7e097",
+      "preview": "1. can see QQL3 others two are there (shows up in trade station )"
+    },
+    {
+      "n": 22,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:33",
+      "project": "blive",
+      "ts": "2026-05-03T11:51:40.855000+00:00",
+      "split": "dev",
+      "sha1": "bb0155a494fe",
+      "preview": "remind me pls which ETFs exactly I cannot trade on mi live acount from UK and why and what we replaced them with"
+    },
+    {
+      "n": 23,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:40",
+      "project": "blive",
+      "ts": "2026-05-06T09:20:35.863000+00:00",
+      "split": "dev",
+      "sha1": "a51d17795e59",
+      "preview": "yes good plan please go"
+    },
+    {
+      "n": 24,
+      "turn_id": "claude_history:b5183891-fa48-424b-afc4-bef1b1cb5724:45",
+      "project": "blive",
+      "ts": "2026-05-06T12:57:35.348000+00:00",
+      "split": "held_out",
+      "sha1": "923b0e316b5c",
+      "preview": "ok what should we do next according to our paln?.."
+    },
+    {
+      "n": 25,
+      "turn_id": "claude_history:ecaaa55c-d111-4e4d-a51e-099a184b5773:3",
+      "project": "blive",
+      "ts": "2026-05-06T18:22:05.595000+00:00",
+      "split": "held_out",
+      "sha1": "671388c021b4",
+      "preview": "tbh not sure.. make a choice but make sure you document why"
+    },
+    {
+      "n": 26,
+      "turn_id": "claude_history:b3707938-f135-4321-881d-4cfd5893b7df:2",
+      "project": "blive",
+      "ts": "2026-05-06T19:49:12.341000+00:00",
+      "split": "dev",
+      "sha1": "90c304edf463",
+      "preview": "go ahead with the 8-task plan"
+    },
+    {
+      "n": 27,
+      "turn_id": "claude_history:2f27920e-5e02-4151-8088-726d91f26655:4",
+      "project": "blive",
+      "ts": "2026-05-11T07:06:28.590000+00:00",
+      "split": "dev",
+      "sha1": "afceeff84ada",
+      "preview": "hey its Monday exchange is open let's contnue"
+    },
+    {
+      "n": 28,
+      "turn_id": "claude_history:8d3459e3-a921-4b4a-a54c-96582b272db5:6",
+      "project": "blive",
+      "ts": "2026-06-04T20:43:31.961000+00:00",
+      "split": "dev",
+      "sha1": "76fa9ef11ecd",
+      "preview": "rejected see img_3.png"
+    },
+    {
+      "n": 29,
+      "turn_id": "claude_history:8d3459e3-a921-4b4a-a54c-96582b272db5:12",
+      "project": "blive",
+      "ts": "2026-06-05T09:07:14.724000+00:00",
+      "split": "held_out",
+      "sha1": "6534cdf2ff41",
+      "preview": "try again I estarted the gateway img.png not sure what's wrong"
+    },
+    {
+      "n": 30,
+      "turn_id": "claude_history:8d3459e3-a921-4b4a-a54c-96582b272db5:18",
+      "project": "blive",
+      "ts": "2026-06-05T11:22:24.105000+00:00",
+      "split": "held_out",
+      "sha1": "6c0b60fb473c",
+      "preview": "I pushed it, should we contnue here or start a new session"
+    },
+    {
+      "n": 31,
+      "turn_id": "claude_history:4ec9ad5d-49fc-417f-b715-0d272ac090fb:1",
+      "project": "blive",
+      "ts": "2026-06-05T14:53:07.932000+00:00",
+      "split": "dev",
+      "sha1": "395b66270138",
+      "preview": "read NEXT_PROMPT.md reflect on it stop.. wait.. think hard wait again.. execute this milestone"
+    },
+    {
+      "n": 32,
+      "turn_id": "claude_history:8d3459e3-a921-4b4a-a54c-96582b272db5:21",
+      "project": "blive",
+      "ts": "2026-06-05T15:37:42.669000+00:00",
+      "split": "dev",
+      "sha1": "9da6a5ea5cf8",
+      "preview": "what do you think [Pasted text #3 +111 lines]?"
+    },
+    {
+      "n": 33,
+      "turn_id": "claude_history:4ec9ad5d-49fc-417f-b715-0d272ac090fb:8",
+      "project": "blive",
+      "ts": "2026-06-05T20:34:48.089000+00:00",
+      "split": "dev",
+      "sha1": "3079a30e1070",
+      "preview": "tag the close and trim snapshot, then push"
+    },
+    {
+      "n": 34,
+      "turn_id": "claude_history:4f6d7036-4c8a-4f1f-83eb-96839c9a480c:1",
+      "project": "blive",
+      "ts": "2026-06-05T22:46:37.502000+00:00",
+      "split": "held_out",
+      "sha1": "10b64416445f",
+      "preview": "read NEXT_PROMPT.md reflect on it think hard and execute"
+    },
+    {
+      "n": 35,
+      "turn_id": "claude_history:4f6d7036-4c8a-4f1f-83eb-96839c9a480c:7",
+      "project": "blive",
+      "ts": "2026-06-06T13:09:14.152000+00:00",
+      "split": "held_out",
+      "sha1": "b3d0ce09e9ec",
+      "preview": "why don't we palan here you context is warm"
+    },
+    {
+      "n": 36,
+      "turn_id": "claude_history:fe55f33a-ff21-4704-86fc-238cef2c71da:1",
+      "project": "btest",
+      "ts": "2026-03-06T15:00:10.332000+00:00",
+      "split": "dev",
+      "sha1": "2a6d05d314b0",
+      "preview": "ok amazing work on the mock pt-blotter: let's add few missing columns PTId=PT_BBG_<some datetime + shor hash> (Protfolio ID we can have the same bonds in differ..."
+    },
+    {
+      "n": 37,
+      "turn_id": "claude_history:97369e0b-0993-4602-9e26-621e2249be0b:3",
+      "project": "btest",
+      "ts": "2026-03-18T20:34:11.330000+00:00",
+      "split": "dev",
+      "sha1": "f04fd84cf48e",
+      "preview": "[Pasted text #3 +41 lines]"
+    },
+    {
+      "n": 38,
+      "turn_id": "claude_history:0dcc57f4-0864-4967-a69c-ef3068be521b:2",
+      "project": "btest",
+      "ts": "2026-03-19T21:55:34.555000+00:00",
+      "split": "dev",
+      "sha1": "8eceacb95bc3",
+      "preview": "[Pasted text #2 +73 lines]"
+    },
+    {
+      "n": 39,
+      "turn_id": "claude_history:a559a6d1-0b5b-47e9-acb4-f30df84e54fd:1",
+      "project": "btest",
+      "ts": "2026-03-21T00:17:46.210000+00:00",
+      "split": "held_out",
+      "sha1": "5a0ed9dcd926",
+      "preview": "[Pasted text #7 +14 lines]"
+    },
+    {
+      "n": 40,
+      "turn_id": "claude_history:55e4d77d-22e3-4e32-a790-72f654ce5624:4",
+      "project": "btest",
+      "ts": "2026-03-22T20:51:18.735000+00:00",
+      "split": "held_out",
+      "sha1": "75df8978eda6",
+      "preview": "did you update src/quantdsl_backtest/smim/README.md ?"
+    },
+    {
+      "n": 41,
+      "turn_id": "claude_history:eb6f632e-dd0d-4436-b4b5-9d3ec01e8c28:6",
+      "project": "btest",
+      "ts": "2026-03-29T18:30:22.391000+00:00",
+      "split": "dev",
+      "sha1": "365c41c66d47",
+      "preview": "lets do this 1. first git add new files if any missed and commit all the current clean up 2. think deep and slow rait.. reflect and based on al the knowledge an..."
+    },
+    {
+      "n": 42,
+      "turn_id": "claude_history:47d634a7-1f84-41c8-b169-07de0d01abc0:21",
+      "project": "btest",
+      "ts": "2026-03-30T19:23:58.269000+00:00",
+      "split": "dev",
+      "sha1": "b3d5c5b53ef0",
+      "preview": "I added tex doc for the origicnal proposal we can use it later to draft the paper docs/smim/proposal/research_proposal_v5.tex. So.. I agree - let's first do a p..."
+    },
+    {
+      "n": 43,
+      "turn_id": "claude_history:47d634a7-1f84-41c8-b169-07de0d01abc0:42",
+      "project": "btest",
+      "ts": "2026-03-30T23:05:08.261000+00:00",
+      "split": "dev",
+      "sha1": "0741747e1076",
+      "preview": "check the new diagrams they are missalighned etc iterate untel they flook as professional and high qualiity as other diagrams"
+    },
+    {
+      "n": 44,
+      "turn_id": "claude_history:e56d3a5d-f797-4eb4-8c29-e3cac0dde934:17",
+      "project": "btest",
+      "ts": "2026-04-02T20:51:01.326000+00:00",
+      "split": "held_out",
+      "sha1": "e45767ebac57",
+      "preview": "can you now fox the curved line in this diagram to point from the middle of the bos to the middle of the bos not from corner to corner"
+    },
+    {
+      "n": 45,
+      "turn_id": "claude_history:d8f36365-6bb0-48d3-b09d-07acd1c968ca:2",
+      "project": "btest",
+      "ts": "2026-04-02T22:52:05.106000+00:00",
+      "split": "held_out",
+      "sha1": "cce13dce7004",
+      "preview": "yes let build and execute new required experiment code"
+    },
+    {
+      "n": 46,
+      "turn_id": "claude_history:f30792a3-083b-41ca-8792-8a36351824a0:0",
+      "project": "btest",
+      "ts": "2026-04-03T13:09:32.385000+00:00",
+      "split": "dev",
+      "sha1": "428b0e428f7c",
+      "preview": "hey here is the problem now.. I cannot submit to arxive unless I am endorsed can you please run a systematic and methodological search through the papers and fi..."
+    },
+    {
+      "n": 47,
+      "turn_id": "claude_history:3485cb26-2c24-4ce3-ac97-5d322317661e:19",
+      "project": "btest",
+      "ts": "2026-04-04T12:18:44.254000+00:00",
+      "split": "dev",
+      "sha1": "50415937d22f",
+      "preview": "yes please let's keep iterating"
+    },
+    {
+      "n": 48,
+      "turn_id": "claude_history:552a9649-7a66-4456-b4cd-a8505ed3803b:14",
+      "project": "btest",
+      "ts": "2026-04-04T19:34:48.917000+00:00",
+      "split": "dev",
+      "sha1": "75502c9513cb",
+      "preview": "should we be more carefull and conservative with words like \"innovation\"?.."
+    },
+    {
+      "n": 49,
+      "turn_id": "claude_history:24a6cbec-7a83-483d-ae4e-0d3cfafccf4d:6",
+      "project": "btest",
+      "ts": "2026-04-05T05:59:40.951000+00:00",
+      "split": "held_out",
+      "sha1": "7c66a533032d",
+      "preview": "let's commit this iteration so far"
+    },
+    {
+      "n": 50,
+      "turn_id": "claude_history:336ffc2b-1eed-4d4c-9d81-da715e3b0902:0",
+      "project": "btest",
+      "ts": "2026-04-05T14:57:10.070000+00:00",
+      "split": "held_out",
+      "sha1": "7ab212b0a673",
+      "preview": "[Pasted text #1 +121 lines]"
+    },
+    {
+      "n": 51,
+      "turn_id": "claude_history:f0e554dd-2368-4f5e-98df-c701836ae97e:11",
+      "project": "btest",
+      "ts": "2026-04-05T21:40:39.269000+00:00",
+      "split": "dev",
+      "sha1": "542fcf0adeef",
+      "preview": "create a very good paper review prompt to trigger the 3rd party AI model into its best deep an thorough paper review mode"
+    },
+    {
+      "n": 52,
+      "turn_id": "claude_history:4c901c16-1ba8-454b-b125-a54e43cf160d:18",
+      "project": "btest",
+      "ts": "2026-04-06T20:04:00.042000+00:00",
+      "split": "dev",
+      "sha1": "d1cf7b6a360b",
+      "preview": "I changed the rewrite plan can you please review it let me know if you have any questions or awant to rise any isseues suggestions to improve?.."
+    },
+    {
+      "n": 53,
+      "turn_id": "claude_history:4c901c16-1ba8-454b-b125-a54e43cf160d:39",
+      "project": "btest",
+      "ts": "2026-04-06T22:46:34.883000+00:00",
+      "split": "dev",
+      "sha1": "eadd434fadbd",
+      "preview": "Gemini report: [Pasted text #14 +131 lines]"
+    },
+    {
+      "n": 54,
+      "turn_id": "claude_history:4c901c16-1ba8-454b-b125-a54e43cf160d:60",
+      "project": "btest",
+      "ts": "2026-04-07T19:44:24.177000+00:00",
+      "split": "held_out",
+      "sha1": "7c59429ca7cf",
+      "preview": "please execute"
+    },
+    {
+      "n": 55,
+      "turn_id": "claude_history:33e9ba29-827e-4645-981c-e75261e166b8:13",
+      "project": "btest",
+      "ts": "2026-04-07T21:55:35.537000+00:00",
+      "split": "held_out",
+      "sha1": "42396c6a60b1",
+      "preview": "[Pasted text #9 +243 lines]"
+    },
+    {
+      "n": 56,
+      "turn_id": "claude_history:21678623-7aaa-42d0-9252-b965a4bf991d:4",
+      "project": "btest",
+      "ts": "2026-04-08T06:34:03.406000+00:00",
+      "split": "dev",
+      "sha1": "b697ee7a996c",
+      "preview": "yes please lets crete new experimints and run"
+    },
+    {
+      "n": 57,
+      "turn_id": "claude_history:716cc3de-3ac7-46b9-ba0f-2dc661430b29:4",
+      "project": "btest",
+      "ts": "2026-04-08T16:18:02.090000+00:00",
+      "split": "dev",
+      "sha1": "ed7f46dea59f",
+      "preview": "let run round B now"
+    },
+    {
+      "n": 58,
+      "turn_id": "claude_history:716cc3de-3ac7-46b9-ba0f-2dc661430b29:26",
+      "project": "btest",
+      "ts": "2026-04-08T23:21:37.423000+00:00",
+      "split": "dev",
+      "sha1": "73a6407813b4",
+      "preview": "waht is the email addresses?"
+    },
+    {
+      "n": 59,
+      "turn_id": "claude_history:716cc3de-3ac7-46b9-ba0f-2dc661430b29:46",
+      "project": "btest",
+      "ts": "2026-04-09T22:01:52.338000+00:00",
+      "split": "held_out",
+      "sha1": "68135b7a150a",
+      "preview": "ok sounds good let's addthis edits but without any overclaiming or undecliming do we also show some results?.."
+    },
+    {
+      "n": 60,
+      "turn_id": "claude_history:716cc3de-3ac7-46b9-ba0f-2dc661430b29:67",
+      "project": "btest",
+      "ts": "2026-04-10T17:03:33.776000+00:00",
+      "split": "held_out",
+      "sha1": "2df16338768a",
+      "preview": "not sure what is the status of mu anonymised repo paper/img.png was it removed?.. when I try to open it it says still preparing the repo.."
+    },
+    {
+      "n": 61,
+      "turn_id": "claude_history:716cc3de-3ac7-46b9-ba0f-2dc661430b29:87",
+      "project": "btest",
+      "ts": "2026-04-11T12:29:48.606000+00:00",
+      "split": "dev",
+      "sha1": "e38ca0a9a53d",
+      "preview": "ok submitted to ssrn too.. now let's wrap it up in this chat and save your jopranal options suggestions in some md file but let not add it and commit let's just..."
+    },
+    {
+      "n": 62,
+      "turn_id": "claude_history:4283d9ff-c824-431c-98e2-d87ba27f59c0:11",
+      "project": "btest",
+      "ts": "2026-04-15T22:19:15.764000+00:00",
+      "split": "dev",
+      "sha1": "72af50c982cc",
+      "preview": "improve this [Pasted text #5 +6 lines]"
+    },
+    {
+      "n": 63,
+      "turn_id": "claude_history:4283d9ff-c824-431c-98e2-d87ba27f59c0:33",
+      "project": "btest",
+      "ts": "2026-04-25T14:42:18.863000+00:00",
+      "split": "dev",
+      "sha1": "f7a2920d539b",
+      "preview": "ok is it still fetching the data?.."
+    },
+    {
+      "n": 64,
+      "turn_id": "claude_history:3b73d643-a9f2-45fc-9b8c-4636b6f02402:21",
+      "project": "btest",
+      "ts": "2026-04-26T09:35:22.886000+00:00",
+      "split": "held_out",
+      "sha1": "2b17737fd0dc",
+      "preview": "hey do you think abstract is too long too or is it just me?"
+    },
+    {
+      "n": 65,
+      "turn_id": "claude_history:04cee8c3-fb3e-4263-9a03-02e7689c380a:7",
+      "project": "btest",
+      "ts": "2026-04-26T17:21:13.205000+00:00",
+      "split": "held_out",
+      "sha1": "5ae20132cd0f",
+      "preview": "it does not compile"
+    },
+    {
+      "n": 66,
+      "turn_id": "claude_history:3a3a5e7a-464b-40d5-b359-a8c2887c7e9a:3",
+      "project": "btest",
+      "ts": "2026-04-27T21:18:24.183000+00:00",
+      "split": "dev",
+      "sha1": "77de68daecd8",
+      "preview": "3"
+    },
+    {
+      "n": 67,
+      "turn_id": "claude_history:5d832486-8bd9-42db-94dc-553d2b38a601:12",
+      "project": "btest",
+      "ts": "2026-05-01T21:38:49.842000+00:00",
+      "split": "dev",
+      "sha1": "c28778bc3b81",
+      "preview": "they are expensive look: [Pasted text #1 +53 lines]"
+    },
+    {
+      "n": 68,
+      "turn_id": "copilot_jb:f83d6027-752b-490e-91a1-bc9175af37eb:2",
+      "project": "btest",
+      "ts": "2026-05-05T20:55:28.824Z",
+      "split": "dev",
+      "sha1": "3672d67013c8",
+      "preview": "looks sound let's execute now"
+    },
+    {
+      "n": 69,
+      "turn_id": "copilot_jb:f83d6027-752b-490e-91a1-bc9175af37eb:22",
+      "project": "btest",
+      "ts": "2026-05-06T07:37:36.443Z",
+      "split": "held_out",
+      "sha1": "867690cd06a7",
+      "preview": "actually another agent is working in blive ...what did you do exactly ?! waht cahnges in blive? you need to roll them abck carefully"
+    },
+    {
+      "n": 70,
+      "turn_id": "copilot_jb:f83d6027-752b-490e-91a1-bc9175af37eb:43",
+      "project": "btest",
+      "ts": "2026-05-06T17:41:14.231Z",
+      "split": "held_out",
+      "sha1": "eb50c1d7c043",
+      "preview": "ok go"
+    },
+    {
+      "n": 71,
+      "turn_id": "copilot_jb:f83d6027-752b-490e-91a1-bc9175af37eb:56",
+      "project": "btest",
+      "ts": "2026-05-07T17:03:46.513Z",
+      "split": "dev",
+      "sha1": "c324810c3fa6",
+      "preview": "no let's retry for missing parts of the data"
+    },
+    {
+      "n": 72,
+      "turn_id": "claude_history:dc3c57ea-9046-476f-9883-f7193619ef15:7",
+      "project": "btest",
+      "ts": "2026-07-06T22:10:56.326000+00:00",
+      "split": "dev",
+      "sha1": "38b3f6fcaa41",
+      "preview": "ok let's pull the latest data across all datasets"
+    },
+    {
+      "n": 73,
+      "turn_id": "claude_history:dc3c57ea-9046-476f-9883-f7193619ef15:27",
+      "project": "btest",
+      "ts": "2026-07-11T11:43:00.139000+00:00",
+      "split": "dev",
+      "sha1": "155705f6a9bf",
+      "preview": "next let's add ability to run /qc comman for line and for line + data set also do a butification pick smart clours matching column semantics etc.. eg I like you..."
+    },
+    {
+      "n": 74,
+      "turn_id": "claude_history:dc3c57ea-9046-476f-9883-f7193619ef15:48",
+      "project": "btest",
+      "ts": "2026-07-11T17:24:38.037000+00:00",
+      "split": "held_out",
+      "sha1": "3ce64a8e6024",
+      "preview": "yes I do in fact I want us to add another 6 scenaroius to those 5 (let's have 11 sort of smoke scenarious).. and yes let's run expensive fable 5 and gpt 5.6 inv..."
+    },
+    {
+      "n": 75,
+      "turn_id": "claude_history:7b39d07a-d19d-44a7-b3a8-dc60236c6eba:9",
+      "project": "btest",
+      "ts": "2026-07-14T11:49:29.172000+00:00",
+      "split": "held_out",
+      "sha1": "45078c081801",
+      "preview": "good I like it but let's turn the readme into sort of short version or digest of the paper add all the illustrations that really help to cmmunicate the ides so ..."
+    },
+    {
+      "n": 76,
+      "turn_id": "claude_history:dc3c57ea-9046-476f-9883-f7193619ef15:54",
+      "project": "datacli",
+      "ts": "2026-07-11T21:07:07.094000+00:00",
+      "split": "dev",
+      "sha1": "7b1906130536",
+      "preview": "ok.. can youi test this well keep breaking thinkgs [Pasted text #1 +13 lines]"
+    },
+    {
+      "n": 77,
+      "turn_id": "claude_history:205d4699-18e9-4183-abe5-edeeb53040d4:1",
+      "project": "datacli",
+      "ts": "2026-07-19T18:39:06.366000+00:00",
+      "split": "dev",
+      "sha1": "27a6f7864dfd",
+      "preview": "hey can you help me pls sort out this issue.. tried running this but failing.. [Pasted text #2 +76 lines]"
+    },
+    {
+      "n": 78,
+      "turn_id": "claude_history:205d4699-18e9-4183-abe5-edeeb53040d4:2",
+      "project": "datacli",
+      "ts": "2026-07-19T19:12:11.199000+00:00",
+      "split": "dev",
+      "sha1": "ba2a708c9ff6",
+      "preview": "ok add a comment and let's push"
+    },
+    {
+      "n": 79,
+      "turn_id": "claude_history:205d4699-18e9-4183-abe5-edeeb53040d4:3",
+      "project": "datacli",
+      "ts": "2026-07-19T19:14:41.975000+00:00",
+      "split": "held_out",
+      "sha1": "fe34b6b5736a",
+      "preview": "hey can you copy into this datacli project calude settings from blive or btest with all the permissions default remote session etc"
+    },
+    {
+      "n": 80,
+      "turn_id": "claude_history:ae004c5d-07e3-4170-9823-ddc5c5ac4419:0",
+      "project": "datacli",
+      "ts": "2026-07-19T19:34:27.193000+00:00",
+      "split": "held_out",
+      "sha1": "20cb8f99eece",
+      "preview": "hey let's have a look at the db choice in datcli project?.. eg in data clie projec can u check for me what are we actually storinng there?.. only meta info?"
+    },
+    {
+      "n": 81,
+      "turn_id": "claude_history:716cc3de-3ac7-46b9-ba0f-2dc661430b29:5",
+      "project": "harp",
+      "ts": "2026-04-08T16:24:05.601000+00:00",
+      "split": "dev",
+      "sha1": "c3c6696fdc14",
+      "preview": "noxt task is rather big we need to copy all the code/configs etc required to reproduce the experiment into the new emptu repo here C:\\Users\\olegr\\PycharmProject..."
+    },
+    {
+      "n": 82,
+      "turn_id": "claude_history:4517c47a-3cc8-4a93-8486-8f43d5e2315a:2",
+      "project": "harp",
+      "ts": "2026-06-08T18:40:50.001000+00:00",
+      "split": "dev",
+      "sha1": "96528b1ce3b4",
+      "preview": "hey read the paper visuals and lets pal an article on linked int I want it to be professional and intersting to read, the reader is a finance professsional, qua..."
+    },
+    {
+      "n": 83,
+      "turn_id": "claude_history:4517c47a-3cc8-4a93-8486-8f43d5e2315a:4",
+      "project": "harp",
+      "ts": "2026-06-08T19:42:00.527000+00:00",
+      "split": "dev",
+      "sha1": "c5a7d79d4d87",
+      "preview": "I actually like your \"On one panel, adding a factor model made the forecasts worse \u2014 and fixing it produced a principle worth stealing.\" also talking about myse..."
+    },
+    {
+      "n": 84,
+      "turn_id": "claude_history:4517c47a-3cc8-4a93-8486-8f43d5e2315a:6",
+      "project": "harp",
+      "ts": "2026-06-08T20:04:13.791000+00:00",
+      "split": "held_out",
+      "sha1": "c7b32056fcb4",
+      "preview": "review gpt-5.5 improved version pls - linkedin_article_v1.md so it dialed down on the philosopy I think it is a right call.. jsut fix the place holders for plot..."
+    },
+    {
+      "n": 85,
+      "turn_id": "claude_history:4517c47a-3cc8-4a93-8486-8f43d5e2315a:8",
+      "project": "harp",
+      "ts": "2026-06-09T07:28:25.221000+00:00",
+      "split": "held_out",
+      "sha1": "c98e6732d701",
+      "preview": "what could be a good cover image for this article?"
+    },
+    {
+      "n": 86,
+      "turn_id": "claude_history:5456a933-e733-4ca0-a511-480eef866964:0",
+      "project": "seamQ",
+      "ts": "2026-05-12T13:03:55.202000+00:00",
+      "split": "dev",
+      "sha1": "19f4d6c494f0",
+      "preview": "please war up yourself by reading README.md and the paper seam_paper.tex Now here is the email I received firs of all does it look like a real email not some sc..."
+    },
+    {
+      "n": 87,
+      "turn_id": "claude_history:14203a5c-5c42-4137-b96c-7df2d81ace7a:6",
+      "project": "seamQ",
+      "ts": "2026-05-16T17:23:53.422000+00:00",
+      "split": "dev",
+      "sha1": "d7f03403954e",
+      "preview": "ok just check before you commit the untracked files whic hwe need to add etc and commit"
+    },
+    {
+      "n": 88,
+      "turn_id": "claude_history:14203a5c-5c42-4137-b96c-7df2d81ace7a:13",
+      "project": "seamQ",
+      "ts": "2026-05-17T08:37:49.817000+00:00",
+      "split": "dev",
+      "sha1": "19c1e51f8457",
+      "preview": "please execute week 2 plan"
+    },
+    {
+      "n": 89,
+      "turn_id": "claude_history:14203a5c-5c42-4137-b96c-7df2d81ace7a:19",
+      "project": "seamQ",
+      "ts": "2026-05-17T10:54:58.761000+00:00",
+      "split": "held_out",
+      "sha1": "eafb18609a20",
+      "preview": "I asked you to keep the quantum-journal paper inside quantum-journal folder yo ufo some reason ignored and instead ruined the ieee paper... the quantum journal ..."
+    },
+    {
+      "n": 90,
+      "turn_id": "claude_history:2f82d380-24a3-4aa3-b34c-c9a506e2aeb9:2",
+      "project": "seamQ",
+      "ts": "2026-05-17T12:49:36.310000+00:00",
+      "split": "held_out",
+      "sha1": "f7b2e34b937b",
+      "preview": "[Pasted text #1 +320 lines] here is the first round review reports docs/Phase-6/seamqi_draft/review/round-1 read and first stop and reflect deep.. think hard pl..."
+    },
+    {
+      "n": 91,
+      "turn_id": "claude_history:2f82d380-24a3-4aa3-b34c-c9a506e2aeb9:8",
+      "project": "seamQ",
+      "ts": "2026-05-17T18:28:20.383000+00:00",
+      "split": "dev",
+      "sha1": "65884d4a861b",
+      "preview": "ok let's set up round 2 see if our reviewr prompts are still good or we need an upgrade"
+    },
+    {
+      "n": 92,
+      "turn_id": "claude_history:5e627dd5-cc3a-467c-a302-a222a9a766ab:5",
+      "project": "seamQ",
+      "ts": "2026-05-17T20:43:39.312000+00:00",
+      "split": "dev",
+      "sha1": "3fd3193c6ecc",
+      "preview": "I passed a btw emssge asking to shorten the abstract to smth like: [Pasted text #6 +2 lines] one full page of abstract is unreasonable"
+    },
+    {
+      "n": 93,
+      "turn_id": "claude_history:627d3e15-06ae-45fe-a786-9180c2e887f1:2",
+      "project": "seamQ",
+      "ts": "2026-05-18T07:41:16.881000+00:00",
+      "split": "dev",
+      "sha1": "992b5d69cea1",
+      "preview": "address pass 2 review in docs/Phase-6/seamqi_draft/review/round-3 look for *_v2.md files"
+    },
+    {
+      "n": 94,
+      "turn_id": "claude_history:627d3e15-06ae-45fe-a786-9180c2e887f1:8",
+      "project": "seamQ",
+      "ts": "2026-05-18T11:19:13.966000+00:00",
+      "split": "held_out",
+      "sha1": "00f05dafd16f",
+      "preview": "yes do it"
+    },
+    {
+      "n": 95,
+      "turn_id": "claude_history:d59a3aee-4c37-4f39-a7bb-d9c250eddf3e:4",
+      "project": "seamQ",
+      "ts": "2026-05-18T20:47:45.149000+00:00",
+      "split": "held_out",
+      "sha1": "81c0d25c9351",
+      "preview": "both, correctness fixes first"
+    },
+    {
+      "n": 96,
+      "turn_id": "claude_history:d59a3aee-4c37-4f39-a7bb-d9c250eddf3e:10",
+      "project": "seamQ",
+      "ts": "2026-05-19T06:56:30.574000+00:00",
+      "split": "dev",
+      "sha1": "af76486925b2",
+      "preview": "go and impelment keep only one version of the paper seam_paper.pdf remove others"
+    },
+    {
+      "n": 97,
+      "turn_id": "claude_history:54d403ba-3f3c-4f46-9801-89abb104fb68:5",
+      "project": "seamQ",
+      "ts": "2026-05-31T12:12:31.444000+00:00",
+      "split": "dev",
+      "sha1": "3e4934917595",
+      "preview": "ok here refere 1 was opus 4.8, referee 2 - gpt 5.5, referee 3 gemini 3 pro reports are here - review/round-1/pass-3 conflicting a bit.. let's first review think..."
+    },
+    {
+      "n": 98,
+      "turn_id": "claude_history:d2323d31-021a-421e-b6ad-9d9e3d31583e:0",
+      "project": "smim",
+      "ts": "2026-05-12T12:57:45.510000+00:00",
+      "split": "dev",
+      "sha1": "2101d3305cb3",
+      "preview": "hey can you pull smim-reproduction from github on the same level as smim and other projects are"
+    },
+    {
+      "n": 99,
+      "turn_id": "claude_history:d2323d31-021a-421e-b6ad-9d9e3d31583e:1",
+      "project": "smim",
+      "ts": "2026-05-12T12:59:45.504000+00:00",
+      "split": "dev",
+      "sha1": "0b3f7b0eda6f",
+      "preview": "my bad seam-reproduction too many abreviations"
+    }
+  ]
+}

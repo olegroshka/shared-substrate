@@ -1,0 +1,367 @@
+{
+  "_meta": {
+    "script": "session_yield.py",
+    "version": "1.0",
+    "generated_utc": "2026-07-25T21:39:53+00:00",
+    "git_version": "git version 2.52.0.windows.1",
+    "definitions": {
+      "retained": "computed on SOURCE files only (corpus_common.is_source), non-merge commits, inside the overlap window",
+      "net_source_lines": "added minus deleted in the window - a transparent retention proxy, NOT the LIFO survival reconstruction WS2 uses; the two answer different questions and are not interchangeable",
+      "turns_per_commit": "operator turns spent per commit that landed"
+    },
+    "verdict": "INCONCLUSIVE, and reported as such. Turns per landed commit sits in a narrow 1.6-2.9 band across the four projects large enough to measure and does not separate the substrate postures. Line-based yield is not usable in this corpus at all: a single btest notebook commit adds 151,591 'source lines', and btest's negative net over the window is produced by two deliberate extractions (SMIM, datacli) plus a research/ tree removal, not by waste. WS3(c) is the analysis PLAN 8 lists first in the cut order; this is why.",
+    "caveats": [
+      "Copilot-era volume is under-counted: b-autobot's Copilot logs are lost entirely and btest's surviving Copilot store is mostly machine-composed briefs, so btest's turn count is a LOWER bound and its turns_per_commit is therefore flattering to btest - the direction is conservative against this research's own argument.",
+      "A commit is not a unit of value and a line is not a unit of work. These ratios are texture (PLAN 7), and they are dominated by project nature: a paper repo retains prose, a trading engine retains little.",
+      "smim's history is a single squashed commit, so every line in its window is 'added' once and nothing can be seen to have been reworked.",
+      "datacli and harp ratios are attribution artefacts, not measurements: both were built inside ANOTHER project's folder (datacli during July btest sessions, harp during April btest sessions) before their own session history existed, so their turn counts are far too low against their commit counts. Do not read 0.15 turns/commit as efficiency.",
+      "Notebook (.ipynb) deltas are reported separately because they are JSON with embedded outputs: one btest commit adds 151,591 lines."
+    ]
+  },
+  "projects": {
+    "btest": {
+      "windows": {
+        "log": [
+          "2026-03-06",
+          "2026-07-25"
+        ],
+        "git": [
+          "2025-12-09",
+          "2026-07-09"
+        ],
+        "overlap": [
+          "2026-03-06",
+          "2026-07-09"
+        ],
+        "commits_before_any_log": 80,
+        "note": "all ratios below are computed over the overlap window"
+      },
+      "spent": {
+        "sessions_all_time": 68,
+        "turns_in_window": 753,
+        "typed_plus_pasted_chars_in_window": 148293,
+        "turns_all_time": 819
+      },
+      "retained": {
+        "commits_in_window": 335,
+        "source_lines_added": 522981,
+        "source_lines_deleted": 670692,
+        "net_source_lines": -147711,
+        "notebook_lines_added": 322312,
+        "notebook_lines_deleted": 496053,
+        "source_lines_added_ex_notebooks": 200669,
+        "net_source_lines_ex_notebooks": 26030,
+        "largest_net_deletion_commits": [
+          {
+            "date": "2026-05-16",
+            "subject": "Remove research/ from btest; gitignore prompt/benchmark files",
+            "net_deleted": 254072
+          },
+          {
+            "date": "2026-05-02",
+            "subject": "refactor: extract SMIM into standalone repo",
+            "net_deleted": 104667
+          },
+          {
+            "date": "2026-04-19",
+            "subject": "research: 3x leveraged ETF strategy, kalman/TKAN refactor, polymarket, cleanup",
+            "net_deleted": 71893
+          }
+        ]
+      },
+      "ratios": {
+        "turns_per_commit": 2.25,
+        "chars_per_commit": 442.67,
+        "net_lines_per_turn": -196.16,
+        "chars_per_net_line": null,
+        "added_lines_per_turn": 694.53,
+        "retention": -0.2824,
+        "retention_ex_notebooks": 0.1297
+      }
+    },
+    "blive": {
+      "windows": {
+        "log": [
+          "2026-05-02",
+          "2026-07-14"
+        ],
+        "git": [
+          "2026-04-26",
+          "2026-06-06"
+        ],
+        "overlap": [
+          "2026-05-02",
+          "2026-06-06"
+        ],
+        "commits_before_any_log": 29,
+        "note": "all ratios below are computed over the overlap window"
+      },
+      "spent": {
+        "sessions_all_time": 11,
+        "turns_in_window": 111,
+        "typed_plus_pasted_chars_in_window": 11504,
+        "turns_all_time": 112
+      },
+      "retained": {
+        "commits_in_window": 38,
+        "source_lines_added": 14475,
+        "source_lines_deleted": 1858,
+        "net_source_lines": 12617,
+        "notebook_lines_added": 0,
+        "notebook_lines_deleted": 0,
+        "source_lines_added_ex_notebooks": 14475,
+        "net_source_lines_ex_notebooks": 12617,
+        "largest_net_deletion_commits": [
+          {
+            "date": "2026-06-05",
+            "subject": "[blive] chore: pin black==26.3.1 + isort==8.0.1; reformat M2-IG-era drift (cosme",
+            "net_deleted": 20
+          }
+        ]
+      },
+      "ratios": {
+        "turns_per_commit": 2.92,
+        "chars_per_commit": 302.74,
+        "net_lines_per_turn": 113.67,
+        "chars_per_net_line": 0.91,
+        "added_lines_per_turn": 130.41,
+        "retention": 0.8716,
+        "retention_ex_notebooks": 0.8716
+      }
+    },
+    "b-autobot": {
+      "windows": {
+        "log": [
+          "2026-03-03",
+          "2026-03-11"
+        ],
+        "git": [
+          "2026-03-05",
+          "2026-03-11"
+        ],
+        "overlap": [
+          "2026-03-05",
+          "2026-03-11"
+        ],
+        "commits_before_any_log": 0,
+        "note": "all ratios below are computed over the overlap window"
+      },
+      "spent": {
+        "sessions_all_time": 9,
+        "turns_in_window": 89,
+        "typed_plus_pasted_chars_in_window": 28955,
+        "turns_all_time": 100
+      },
+      "retained": {
+        "commits_in_window": 57,
+        "source_lines_added": 42889,
+        "source_lines_deleted": 20319,
+        "net_source_lines": 22570,
+        "notebook_lines_added": 0,
+        "notebook_lines_deleted": 0,
+        "source_lines_added_ex_notebooks": 42889,
+        "net_source_lines_ex_notebooks": 22570,
+        "largest_net_deletion_commits": [
+          {
+            "date": "2026-03-07",
+            "subject": "chore: clean up project structure post-modularisation",
+            "net_deleted": 9398
+          },
+          {
+            "date": "2026-03-11",
+            "subject": "chore: remove completed plan docs; tidy README",
+            "net_deleted": 4391
+          },
+          {
+            "date": "2026-03-07",
+            "subject": "docs: update all MD files to reflect multi-module structure (M1-M5 done)",
+            "net_deleted": 274
+          }
+        ]
+      },
+      "ratios": {
+        "turns_per_commit": 1.56,
+        "chars_per_commit": 507.98,
+        "net_lines_per_turn": 253.6,
+        "chars_per_net_line": 1.28,
+        "added_lines_per_turn": 481.9,
+        "retention": 0.5262,
+        "retention_ex_notebooks": 0.5262
+      }
+    },
+    "datacli": {
+      "windows": {
+        "log": [
+          "2026-07-11",
+          "2026-07-19"
+        ],
+        "git": [
+          "2026-07-09",
+          "2026-07-19"
+        ],
+        "overlap": [
+          "2026-07-11",
+          "2026-07-19"
+        ],
+        "commits_before_any_log": 1,
+        "note": "all ratios below are computed over the overlap window"
+      },
+      "spent": {
+        "sessions_all_time": 3,
+        "turns_in_window": 5,
+        "typed_plus_pasted_chars_in_window": 1440,
+        "turns_all_time": 5
+      },
+      "retained": {
+        "commits_in_window": 34,
+        "source_lines_added": 9352,
+        "source_lines_deleted": 965,
+        "net_source_lines": 8387,
+        "notebook_lines_added": 0,
+        "notebook_lines_deleted": 0,
+        "source_lines_added_ex_notebooks": 9352,
+        "net_source_lines_ex_notebooks": 8387,
+        "largest_net_deletion_commits": [
+          {
+            "date": "2026-07-11",
+            "subject": "docs(readme): tighten the lab section, frame the ways to talk to your data",
+            "net_deleted": 13
+          }
+        ]
+      },
+      "ratios": {
+        "turns_per_commit": 0.15,
+        "chars_per_commit": 42.35,
+        "net_lines_per_turn": 1677.4,
+        "chars_per_net_line": 0.17,
+        "added_lines_per_turn": 1870.4,
+        "retention": 0.8968,
+        "retention_ex_notebooks": 0.8968
+      }
+    },
+    "smim": {
+      "windows": {
+        "log": [
+          "2026-05-12",
+          "2026-05-12"
+        ],
+        "git": [
+          "2026-05-02",
+          "2026-05-02"
+        ],
+        "overlap": null
+      },
+      "note": "log window and commit window do not overlap - no ratio is computable"
+    },
+    "harp": {
+      "windows": {
+        "log": [
+          "2026-04-08",
+          "2026-06-09"
+        ],
+        "git": [
+          "2026-04-08",
+          "2026-04-26"
+        ],
+        "overlap": [
+          "2026-04-08",
+          "2026-04-26"
+        ],
+        "commits_before_any_log": 0,
+        "note": "all ratios below are computed over the overlap window"
+      },
+      "spent": {
+        "sessions_all_time": 3,
+        "turns_in_window": 2,
+        "typed_plus_pasted_chars_in_window": 915,
+        "turns_all_time": 11
+      },
+      "retained": {
+        "commits_in_window": 11,
+        "source_lines_added": 48943,
+        "source_lines_deleted": 317,
+        "net_source_lines": 48626,
+        "notebook_lines_added": 0,
+        "notebook_lines_deleted": 0,
+        "source_lines_added_ex_notebooks": 48943,
+        "net_source_lines_ex_notebooks": 48626,
+        "largest_net_deletion_commits": [
+          {
+            "date": "2026-04-09",
+            "subject": "Remove internal planning document",
+            "net_deleted": 292
+          }
+        ]
+      },
+      "ratios": {
+        "turns_per_commit": 0.18,
+        "chars_per_commit": 83.18,
+        "net_lines_per_turn": 24313.0,
+        "chars_per_net_line": 0.02,
+        "added_lines_per_turn": 24471.5,
+        "retention": 0.9935,
+        "retention_ex_notebooks": 0.9935
+      }
+    },
+    "seamQ": {
+      "windows": {
+        "log": [
+          "2026-05-12",
+          "2026-05-31"
+        ],
+        "git": [
+          "2026-05-16",
+          "2026-05-18"
+        ],
+        "overlap": [
+          "2026-05-16",
+          "2026-05-18"
+        ],
+        "commits_before_any_log": 0,
+        "note": "all ratios below are computed over the overlap window"
+      },
+      "spent": {
+        "sessions_all_time": 8,
+        "turns_in_window": 58,
+        "typed_plus_pasted_chars_in_window": 11904,
+        "turns_all_time": 74
+      },
+      "retained": {
+        "commits_in_window": 25,
+        "source_lines_added": 46889,
+        "source_lines_deleted": 42641,
+        "net_source_lines": 4248,
+        "notebook_lines_added": 0,
+        "notebook_lines_deleted": 0,
+        "source_lines_added_ex_notebooks": 46889,
+        "net_source_lines_ex_notebooks": 4248,
+        "largest_net_deletion_commits": [
+          {
+            "date": "2026-05-18",
+            "subject": "seamqi: strip repo to minimal public reproduction artifact",
+            "net_deleted": 37861
+          },
+          {
+            "date": "2026-05-17",
+            "subject": "Paper 1: drop IEEE pathway, consolidate into quantum-journal/ impeccable build",
+            "net_deleted": 1468
+          },
+          {
+            "date": "2026-05-18",
+            "subject": "chore: untrack .idea/ IDE metadata (carried over from earlier commits)",
+            "net_deleted": 14
+          }
+        ]
+      },
+      "ratios": {
+        "turns_per_commit": 2.32,
+        "chars_per_commit": 476.16,
+        "net_lines_per_turn": 73.24,
+        "chars_per_net_line": 2.8,
+        "added_lines_per_turn": 808.43,
+        "retention": 0.0906,
+        "retention_ex_notebooks": 0.0906
+      }
+    }
+  }
+}

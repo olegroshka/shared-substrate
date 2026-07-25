@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""Shared helpers for the WS2 / WS-X miners.
+"""Shared helpers for the WS2 / WS-X / WS3 miners.
 
 Stdlib-only. No project-specific constants beyond the file-classification
-tables, which are stated here once so `git_miner.py` and `complexity_profile.py`
-cannot drift apart in what they call a "source file".
+tables and the corpus alias map, which are stated here once so `git_miner.py`,
+`complexity_profile.py` and `log_miner.py` cannot drift apart in what they call
+a "source file" or a "project".
 
 Portability note (PLAN.md 5): this module runs unmodified inside a corporate
 environment; it shells out to `git` only, never to the network.
 """
 
+import json
 import re
 import subprocess
 import sys
+from datetime import datetime, timezone
 
 # --------------------------------------------------------------------------
 # Path classification
@@ -279,3 +282,66 @@ def count_merges(repo):
 def eprint(*a):
     """ASCII-only stderr (Windows console is cp1252 - no arrows, no unicode)."""
     print(*a, file=sys.stderr)
+
+
+# --------------------------------------------------------------------------
+# session-log plumbing (WS3; shared by log_miner.py and altitude_classify.py)
+# --------------------------------------------------------------------------
+
+# Working folders that are the same *project* under a different directory name.
+# seam-reproduction is P7's second working folder (the same seam paper, pulled
+# from GitHub into a fresh PyCharm env on 2026-05-12); merging is reported as an
+# alias, never silently.
+FOLDER_ALIASES = {
+    "seam-reproduction": "seamQ",
+}
+
+# The corpus proper (PLAN.md 2). Anything else a log mentions is `_non_corpus`
+# and is carried, not dropped - the eval repo's own sessions are the obvious
+# case, and dropping them would hide the fact that they exist.
+CORPUS_PROJECTS = ["blive", "btest", "b-autobot", "datacli", "smim", "harp", "seamQ"]
+
+PROJECT_PATH_RE = re.compile(
+    r"(?:PycharmProjects|IdeaProjects)[\\/]+([A-Za-z0-9._-]+)"
+)
+
+
+def canonical_project(name_or_path):
+    """Folder name or full path -> canonical corpus project name."""
+    if not name_or_path:
+        return None
+    s = str(name_or_path).replace("\\", "/").rstrip("/")
+    name = s.rsplit("/", 1)[-1]
+    return FOLDER_ALIASES.get(name, name)
+
+
+def iter_jsonl(path):
+    """Yield (obj_or_None, raw_line) for each non-blank line of a JSONL file.
+
+    obj is None on a decode error; callers count those rather than dying, because
+    a single truncated tail line must not cost a whole session.
+    """
+    with open(path, "r", encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                yield json.loads(line), line
+            except json.JSONDecodeError:
+                yield None, line
+
+
+def iso_from_ms(ms):
+    """Epoch milliseconds -> ISO-8601 UTC string (history.jsonl's format)."""
+    if not isinstance(ms, (int, float)):
+        return None
+    return datetime.fromtimestamp(ms / 1000.0, tz=timezone.utc).isoformat()
+
+
+def norm_ws(text, limit=None):
+    """Collapse whitespace; optionally truncate. ASCII-safe for cp1252 consoles."""
+    s = " ".join((text or "").split())
+    if limit is not None and len(s) > limit:
+        s = s[:limit] + "..."
+    return s

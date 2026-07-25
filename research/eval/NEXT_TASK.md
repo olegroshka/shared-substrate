@@ -1,110 +1,119 @@
-# NEXT_TASK — S3: WS3 session-log analysis (operator altitude + retransmission tax)
+# NEXT_TASK — S4: WS4a phantom-decision probe, pre-registration
 
-**Recommended model: Opus 5** (per STATE.md's schedule column — the altitude taxonomy is
-judgment-heavy and is the talk's closing exhibit). Copy the prompt below into a fresh
-session started in this repo.
+**Recommended model: Fable 5** (per STATE.md's schedule column — this session is
+question *design* and a freeze, not a sweep; the reasoning is careful but the volume
+is small). Copy the prompt below into a fresh session started in this repo.
+
+> **The one hard rule of this session: the pre-registration commit lands BEFORE any
+> probe is run.** Not "before scoring" — before a single question is put to a single
+> agent. If you find yourself curious how an answer would come out, that is exactly
+> the moment the commit must already exist. WS4 is the talk's only controlled number
+> and pre-registration is the only thing that makes it one (PLAN §7 risk 3).
 
 ---
 
-## Prompt for S3
+## Prompt for S4
 
-Warm up first, then execute. This is session S3 of the shared-substrate eval research.
+Warm up first, then execute. This is session S4 of the shared-substrate eval research.
 
 **Warm-up (read in this order, ~5 min):**
-1. `research/eval/STATE.md` — status, WS0/WS1/WS2/WS-X findings, open questions.
-2. `research/eval/PLAN.md` §4 WS3 — the spec (three analyses: altitude, warm-up
-   fraction, volume-vs-yield). Follow it exactly, including the labelled-sample
-   agreement requirement.
-3. `research/eval/data/evidence-map.json` — what logs exist per project, and the
-   coverage gaps you must not paper over.
-4. Skim `research/eval/scripts/corpus_common.py` — reuse its git/path helpers rather
-   than re-deriving them; add anything log-shaped to it if both scripts need it.
+1. `research/eval/STATE.md` — status table, WS0–WS3 findings, corrections ledger.
+2. `research/eval/PLAN.md` §4 WS4 — the spec (~20 questions per project for P1, P2,
+   P3; checkable ground truth; frozen by commit; correct / abstained / confabulated;
+   orientation cost measured separately). Follow it exactly.
+3. `research/eval/rubric/ALTITUDE.md` — not because you need the taxonomy, but
+   because it is the worked example of what "freeze the instrument, then report
+   agreement" looks like in this repo. WS4's protocol should read the same way.
+4. Skim the `_meta` header of `research/eval/data/session-metrics/altitude.json` and
+   `data/attribution-rules.json` — the house style for published definitions, stated
+   caveats, and hand judgment kept as a script *input* rather than a hard-coded
+   constant.
 
-**Evidence sources (all local, all read-only):**
-- Claude Code full transcripts: `~/.claude/projects/<munged-path>/*.jsonl` — two-sided,
-  token-accounted, but retention-trimmed to btest (4 sessions), datacli (2),
-  shared-substrate (3). `isSidechain: true` marks subagent traffic — separate it from
-  real human turns before classifying anything.
-- Claude Code global history: `~/.claude/history.jsonl` — **every user prompt since
-  2026-03-03**, with project, sessionId, timestamp. Human-side turns for all corpus
-  projects; this is what makes altitude analysis corpus-wide (WS0 finding 2).
-- Copilot JetBrains store: `~/.copilot/jb/<uuid>/partition-N.jsonl` — two-sided,
-  Mar 20–May 31, no token fields (use bytes as the volume proxy). **Confirmed in S2 to be
-  the only Copilot store on the machine** (OQ-3 closed): b-autobot's Mar 5–11 sprint
-  predates it, so those logs are lost, not mislaid — do not go hunting again.
-- **claude.ai artifacts in `~/Downloads` (found S2, OQ-2).** No conversation exports exist,
-  but three authored artifacts survive and are evidence: `ib_algo_engine_requirements_v0.md`
-  (2026-04-26, blive's first commit day — the paper's "first artefact deposited to the
-  substrate"), and `HANDOFF_to_new_chat_v2.md` + `KICKOFF_PROMPT_v2.md` (2026-04-30,
-  **seamQ**). Read the kickoff early: *"The prior version of this prompt assumed
-  `/home/claude/` would persist across chats. It doesn't."* That is a retransmission-tax
-  artifact in raw form and belongs in WS3(b), not just WS6.
-- **btest's Dec 2025–Feb 2026 era has no session log by construction** (OQ-1 closed in S2):
-  it was PyCharm 2025.2 + JetBrains AI Assistant on a metered quota, a surface that keeps
-  no recoverable transcript. Treat it as the corpus's **unsubstrated baseline**, evidenced
-  by commit prose (49 mean chars vs 585 from March) rather than by turns.
+**What S4 must produce (and nothing more):**
+- `research/eval/probes/PROTOCOL.md` — the frozen procedure: how an agent instance is
+  started, what it may and may not read, how many turns it gets, how orientation cost
+  is measured, the exact scoring rubric for correct / abstained / confabulated, who
+  scores and how ties break, and the stopping rule. Name the probe *subject* model
+  and record it (PLAN suggests one fixed model across projects; Sonnet 5 unless you
+  have a reason).
+- `research/eval/probes/questions-p1.md`, `questions-p2.md`, `questions-p3.md` —
+  ~20 questions each for **blive (P1), btest (P2), b-autobot (P3)**, every one with
+  its ground truth and the artifact or commit that establishes it.
+- **A commit containing exactly those files, with nothing run.** The commit hash is
+  the timestamp; say so in the commit message.
 
-**Corpus paths (P1–P7):** P1 blive · P2 btest · P3 b-autobot (`IdeaProjects/`) ·
-P4 datacli · P5 smim · P6 harp · P7 seamQ — all under `C:\Users\olegr\PycharmProjects\`
-except P3.
+**Question design is the experiment's validity — spend the session here.**
+- Three question types, per PLAN: *"did we decide X?"* · *"what is the current state
+  of Y?"* · *"why was Z rejected?"* Keep the mix roughly even, and the *same* mix in
+  all three projects, or the cross-project comparison means nothing.
+- Every question needs **checkable ground truth that exists independently of the
+  agent** — an ADR, a commit, a manifest line, a test, a plan file. If you cannot
+  cite the receipt, the question is not usable. Write the receipt next to the
+  question.
+- **Include questions whose ground truth is "no"** — decisions that were never made,
+  states that do not exist. Without them, "confabulated" cannot be told apart from
+  "lucky": an agent that always answers confidently scores well on a question set
+  whose answers all exist.
+- **Balance difficulty across projects deliberately, and write down how.** The
+  obvious failure mode: blive's substrate makes it easy to write 20 answerable
+  questions, btest's absence of one makes it easy to write 20 unanswerable ones, and
+  the probe then measures the question-writer. Counter it by deriving questions from
+  the *same event classes* in each project — a reversal, a rejected alternative, a
+  current status, a naming/ownership fact — rather than from whatever each repo
+  happens to document well.
+- **Watch instrument circularity (PLAN §7 risk 4).** You are writing the test for a
+  method you are also advocating. Ask of each question: could a well-run project
+  *without* this method answer it? If the honest answer is "never", the question
+  tests the presence of an artifact rather than the agent's orientation — reword or
+  drop it.
 
-**Task A — `research/eval/scripts/log_miner.py`.** Stdlib-only, path-parameterised,
-read-only. Parse all three formats into one session schema (project, start/end, turns,
-tokens where they exist, human turns verbatim) → `research/eval/data/session-metrics/`.
-Attribution by folder has known bleed (WS0: btest's first history entry is a b-autobot
-bootstrap prompt) — attribute by content where it matters and report how many turns
-you re-attributed.
+**Evidence you can mine for ground truth (all local, read-only):**
+- **blive (P1):** `C:\Users\olegr\PycharmProjects\blive` — ADRs, `NEXT_PROMPT.md`,
+  the method docs under `docs/method/`, decision records, the KB. Richest source of
+  "why was Z rejected" receipts. WS1 scored it 22/24.
+- **btest (P2):** `C:\Users\olegr\PycharmProjects\btest` — 415 non-merge commits,
+  `[SMIM …]` stable-ID tags on 293 of them (WS2), CLAUDE.md accretion, and the two
+  extraction commits (SMIM 2026-05-02, EODHD→datacli 2026-07-09), which are excellent
+  "current state of Y" material precisely because the tree moved under the agent.
+- **b-autobot (P3):** `C:\Users\olegr\IdeaProjects\b-autobot` — 91 BDD scenarios, a
+  6-day sprint, and stale CLAUDE.md references to deleted plan docs (a WS1 war-story
+  lead, and a natural "did we decide X?" trap).
+- Session logs are now parsed and classified:
+  `research/eval/data/session-metrics/turns-classified.json` (previews + labels) and,
+  locally, `.../local/turns-fulltext.jsonl` (verbatim, gitignored — regenerate with
+  `scripts/log_miner.py`). Use them to find decisions that were made *only in
+  conversation* and never deposited: those make the best confabulation traps, and
+  WS6 wants the same list.
 
-**Task B — the altitude classifier (WS3a; this is the judgment work, not the scripting).**
-Classify each human turn into: intent/goal declaration · decision/trade-off resolution ·
-design/contract shaping · mechanical steering. **Hand-label a sample first** (~100 turns,
-stratified across projects and eras), freeze the taxonomy and its decision rules in
-`research/eval/rubric/ALTITUDE.md`, then apply it and **report agreement between your
-hand labels and the automated pass** — PLAN §4 calls turn classification the crux, so an
-unreported agreement number makes the exhibit worthless. Compare distributions across
-substrate postures and along each project's lifetime; btest spans both eras, so its
-within-project P2 chronology is the strongest available signal (as with WS2's ID curve).
+**Constraints (carried from S1–S3):** console output ASCII-only (Windows cp1252 — no
+arrows, no unicode); Python 3.11 via `python`; never modify the target repos or the
+log stores; anything that is author judgment stays a published *input* file rather
+than something a re-run can silently overwrite.
 
-**Task C — warm-up fraction / retransmission tax (WS3b).** Classify each session's early
-turns as context reconstruction vs new work; compare across postures. The prediction to
-test honestly: substrated projects pay a *bounded* warm-up cost, flat projects an
-unbounded recurring one.
-
-**Task D — volume vs durable yield (WS3c, supporting).** Only if A–C are solid; it is
-first in the cut order after WS5's kernel.
-
-**Constraints (learned in S1–S2):** console output ASCII-only (Windows cp1252 — no
-arrows, no unicode); Python 3.11 via `python`; never modify the target repos or the log
-stores. Coverage gaps (blive's 119 prompts and 2 Copilot sessions; nothing for smim/harp
-/seamQ beyond history.jsonl) are **findings to report**, not problems to work around —
-session-based claims about blive stay modest, exactly as WS0 recorded.
-
-**Sanity (S2 earned this the hard way — three of five hand-checks caught real bugs):**
-hand-verify at least two extracted quantities against independent counts on one small
-log set *before* the full pass, and record the verification in the output JSON's `_meta`
-header, as `git_miner.py` and `complexity_profile.py` do.
-
-**Deposit before ending:** update `research/eval/STATE.md` (WS3 status + 3–6 line
-findings summary + session-log entry), then **rewrite this NEXT_TASK.md** for S4 — the
-next session and model come from the schedule column in STATE.md's status table
-(S4 = WS4a probe pre-registration, Fable 5), which is the source of truth for the
-session/model plan. Note for S4: WS4a's pre-registration commit must land **before** any
-probe is run.
+**Deposit before ending:** update `research/eval/STATE.md` (WS4a status + 3–6 line
+findings summary + session-log entry), then **rewrite this NEXT_TASK.md** for S5 —
+the next session and model come from the schedule column in STATE.md's status table
+(S5 = WS4b probe runs + scoring, Sonnet 5), which is the source of truth for the
+session/model plan.
 
 ---
 
-**Nothing is pending on Oleg.** As of S2 the rubric is reviewed (v1.1), the 21 declared
-complexity ratings are set (`data/qualitative-ratings.json`), and all three open questions
-are closed. Two items are carried as *reconcile-before-the-talk*, not blockers:
+**Nothing is pending on Oleg.** Three items are carried as *reconcile-before-the-talk*,
+none of them blockers, and none of them S4's job unless S4 touches them anyway:
 
-1. blive's Requirements v0 is **3,375 words**; the paper says "around six thousand". Either
-   the document grew before its v0.2 pass or the paper rounds generously — check which, and
-   fix whichever artifact is wrong.
-2. seamQ's claude.ai design work predates its first commit by over two weeks, so its **git
-   span (1.9 days) is not its project duration**. `duration_days` in
-   `data/complexity-profiles.json` is correctly labelled but must not be read as project
-   length for that project in any exhibit.
+1. blive's Requirements v0 is **3,375 words**; the paper says "around six thousand".
+   Either the document grew before its v0.2 pass or the paper rounds generously —
+   check which, and fix whichever artifact is wrong.
+2. seamQ's claude.ai design work predates its first commit by over two weeks, so its
+   **git span (1.9 days) is not its project duration**. `duration_days` in
+   `data/complexity-profiles.json` is correctly labelled but must not be read as
+   project length for that project in any exhibit.
+3. **New from S3:** any exhibit plotting rubric score against session-log altitude
+   must footnote **seamQ**. WS1 scored the surviving tree (7/24) *after* the substrate
+   was deliberately stripped at publication; WS3 measured the in-flight posture, which
+   is the corpus's highest. The two instruments have different measurement windows,
+   and seamQ is where that shows.
 
-The one genuinely soft number in the corpus is **P8 A5** (rubric decisions axis, scored 2
-PROVISIONAL-INFERRED) — the paper cannot settle 1-vs-2, and Oleg's memory can. Worth one
-question if the topic comes up; not worth blocking on.
+The one genuinely soft number in the corpus is still **P8 A5** (rubric decisions axis,
+scored 2 PROVISIONAL-INFERRED) — the paper cannot settle 1-vs-2, and Oleg's memory can.
+Worth one question if the topic comes up; not worth blocking on.
