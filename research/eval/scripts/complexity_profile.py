@@ -533,14 +533,25 @@ QUALITATIVE_TEMPLATE = {
 }
 
 
-def profile(name, repo, evidence):
+def profile(name, repo, evidence, qualitative=None):
     commits = read_log(repo)
     prof = {"project": name, "repo_path": str(repo)}
     prof.update(size_and_ait(repo))
     prof["change_entropy"] = change_entropy(commits)
     prof["coordination_scope"] = coordination_scope(name, repo, commits, evidence)
     prof["dependencies"] = dependencies(repo)
-    prof["declared_qualitative"] = dict(QUALITATIVE_TEMPLATE)
+
+    # Declared ratings come from an INPUT file, never from computation, so a
+    # re-run cannot silently wipe them back to null.
+    q = dict(QUALITATIVE_TEMPLATE)
+    supplied = ((qualitative or {}).get("ratings") or {}).get(name)
+    if supplied:
+        for k in ("integration_surface", "constraint_tightness",
+                  "statefulness_concurrency"):
+            q[k] = supplied.get(k)
+        q["note"] = supplied.get("note")
+        q["_source"] = "declared by author (data/qualitative-ratings.json)"
+    prof["declared_qualitative"] = q
     return prof
 
 
@@ -584,16 +595,21 @@ def main():
     ap.add_argument("--repo", action="append", type=parse_repo_arg, required=True,
                     metavar="NAME=PATH")
     ap.add_argument("--evidence-map", type=Path, required=True)
+    ap.add_argument("--qualitative", type=Path, default=None,
+                    help="declared WS-X(b) ratings (author judgment); omitted "
+                         "leaves them null rather than inventing them")
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--verification-note", default=None)
     args = ap.parse_args()
 
     evidence = json.loads(args.evidence_map.read_text(encoding="utf-8"))
+    qualitative = (json.loads(args.qualitative.read_text(encoding="utf-8"))
+                   if args.qualitative else None)
 
     profiles = []
     for name, repo in args.repo:
         try:
-            profiles.append(profile(name, repo, evidence))
+            profiles.append(profile(name, repo, evidence, qualitative))
         except Exception as exc:
             eprint("ERROR %s: %s" % (name, exc))
     names = [p["project"] for p in profiles]

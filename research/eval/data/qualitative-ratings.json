@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "purpose": "PLAN.md §4 WS-X(b) declared qualitative ratings. AUTHOR JUDGMENT in the COCOMO cost-driver tradition — 0-3 each, criteria published below, used for narrative placement only. Explicitly EXCLUDED from Kendall's W and from every computed number in complexity-profiles.json.",
+    "status": "set 2026-07-25 (S2) — proposed by Claude from the repo sweeps, adopted by Oleg; override any cell and re-run complexity_profile.py",
+    "why_a_separate_file": "kept as an INPUT to complexity_profile.py rather than edited into its output, so re-running the sweep cannot silently wipe the ratings back to null",
+    "criteria": {
+      "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+      "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+      "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+    }
+  },
+  "ratings": {
+    "blive": {
+      "integration_surface": 3,
+      "constraint_tightness": 3,
+      "statefulness_concurrency": 3,
+      "note": "IB and IG broker gateways, both live and bidirectional; real money at risk under UK regulatory constraints (docs/kb/uk_regulatory.md); concurrent live session state — connections, positions, reconnect handling. The only project in the corpus at 3/3/3, and the reason it must not be read as 'small' merely because btest outranks it on every objective size primitive."
+    },
+    "btest": {
+      "integration_surface": 2,
+      "constraint_tightness": 2,
+      "statefulness_concurrency": 2,
+      "note": "Judgment call, stated so a reader can disagree: EODHD + Yahoo + FRED is literally 'multiple external systems', but they are read-only batch pulls, not the live bidirectional systems the 3 anchor is written for — scored 2. Constraint 2 for the vectorbt engine-parity suite (a genuine numerical-parity budget). Statefulness 2: ArcticDB cache and the on-disk run store both survive across runs."
+    },
+    "b-autobot": {
+      "integration_surface": 2,
+      "constraint_tightness": 2,
+      "statefulness_concurrency": 1,
+      "note": "One external API (the blotter), and deliberately WireMock-simulated throughout — the simulation is the method, not a shortfall. Constraint 2: behavioural parity against the incumbent is the point, but this is the personal rehearsal, not the regulated production run (that is P8, which rates 3). Statefulness 1: a test harness over cached fixtures."
+    },
+    "datacli": {
+      "integration_surface": 2,
+      "constraint_tightness": 1,
+      "statefulness_concurrency": 2,
+      "note": "EODHD + FRED provider APIs. Constraint 1: the enforced API cost ceiling is a real budget but a commercial one, not a latency or parity envelope — the 2 anchor is about the operational envelope. Statefulness 2: snapshots plus state sidecars are explicitly designed to persist across runs (that is the tool's whole job)."
+    },
+    "smim": {
+      "integration_surface": 1,
+      "constraint_tightness": 2,
+      "statefulness_concurrency": 2,
+      "note": "Single panel data source. Constraint 2 is the interesting one: bitwise GPU determinism plus statsmodels parity is a numerical-parity budget in the full sense, which is why a research project rates the same here as the backtesting platform. Statefulness 2: PIT store and processed data persist across runs by design (point-in-time correctness demands it)."
+    },
+    "harp": {
+      "integration_surface": 1,
+      "constraint_tightness": 1,
+      "statefulness_concurrency": 1,
+      "note": "One UK/EU panel; cached. Constraint 1 rather than 2 because the pre-registration binds inferential validity, not a runtime envelope — a tight constraint of a different kind, and one the rubric's A3 already scores at 3. Recording it as 1 here is the honest reading of THIS axis, not a claim that harp is loosely constrained."
+    },
+    "seamQ": {
+      "integration_surface": 0,
+      "constraint_tightness": 1,
+      "statefulness_concurrency": 0,
+      "note": "Self-contained; cross-references harp's residuals as data, integrates with nothing. Pure batch scripts. Constraint 1: the README pins 12 claims to bit-stable seeded values, which is a real reproducibility contract, but it is not an operational envelope and it is not automated — it is scored where it belongs, on rubric axis A3."
+    }
+  }
+}

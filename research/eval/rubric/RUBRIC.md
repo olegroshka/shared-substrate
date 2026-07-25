@@ -98,20 +98,34 @@ with a handoff deposit?
 |------|---------|---------|--------------|-----------|---------|---------|----------|---------|
 | A1 layers | 3 | 1 | 1 | 2 | 2 | 1 | 0 | 2? |
 | A2 gates | 3 | 1 | 2 | 3 | 3 | 3 | 0 | 3? |
-| A3 contracts | 2 | 2 | 3 | 3 | 2 | 3 | 2 | 3? |
+| A3 contracts | 2 | 2 | **2** | 3 | 2 | 3 | 2 | 3? |
 | A4 protocol | 3 | 1 | 2 | 1 | 2 | 1 | 0 | ? |
 | A5 decisions | 3 | 1 | 1 | 2 | 2 | 2 | 1 | ? |
-| A6 inventories | 3 | 2 | 2 | 2 | 3 | 3 | 1 | ? |
+| A6 inventories | 3 | 2 | 2 | 2 | 3 | **2** | 1 | ? |
 | A7 oracles | 2 | 2 | 3 | 2 | 3 | 2 | 2 | 3? |
 | A8 observability | 3 | 2 | 2 | 2 | 3 | 2 | 1 | ? |
-| **Total /24** | **22** | **12** | **16** | **17** | **20** | **17** | **7** | prov. |
+| **Total /24** | **22** | **12** | **15** | **17** | **20** | **16** | **7** | prov. |
 
-Scores are **DRAFT v1.0** (2026-07-25), assigned by Claude from the repo sweeps in
-`../data/rubric-evidence.md`; per-axis notes and flagged judgment calls in
-`../data/rubric-scores.json` — pending operator review. P8 is PROVISIONAL (from the paper's
-worked example; blanks need operator input) until refreshed inside the org. P7 scores the
-*current, deliberately stripped* tree — its pre-publication history (session warm-up doc,
-weekly gates, adversarial-review pipeline) would score far higher; see evidence notes.
+Ranking: blive 22 · smim 20 · datacli 17 · harp 16 · b-autobot 15 · btest 12 · seamQ 7.
+
+Scores are **v1.1-REVIEWED** (2026-07-25), assigned by Claude from the repo sweeps in
+`../data/rubric-evidence.md`, with the four flagged judgment calls adjudicated in session
+S2; per-axis notes and the full review log in `../data/rubric-scores.json`. Two calls moved
+(**bold** above): b-autobot A3 3→2 (executable contracts yes, but budgets are config
+comments, not values asserted against — the same deficiency that held blive A3 to 2) and
+harp A6 3→2 (exhaustive manifest and schema dictionary, but no glossary artifact and no
+artifact status lifecycle). Both moved *against* the talk's own argument, which is the
+direction a self-authored instrument should be willing to move. Two calls were upheld:
+blive A8=3 and smim A3=2.
+
+P8 is PROVISIONAL (from the paper's worked example 2) and its four blanks are **not
+fillable from any artifact reachable outside the org** — the paper is silent on edit
+protocol, decision records and inventories for that project. One anchor for scoring A8
+when refreshed: the paper does evidence the observability half ("budgets … queryable
+in-loop so that a violation surfaced during implementation rather than at review") but says
+nothing about a session protocol. P7 scores the *current, deliberately stripped* tree — its
+pre-publication history (session warm-up doc, weekly gates, adversarial-review pipeline)
+would score far higher; see evidence notes.
 
 ## 4. Audience handout — score your own project (one page)
 

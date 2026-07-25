@@ -2,13 +2,13 @@
   "_meta": {
     "script": "complexity_profile.py",
     "version": "1.0",
-    "generated_utc": "2026-07-25T20:09:47+00:00",
+    "generated_utc": "2026-07-25T20:40:41+00:00",
     "git_version": "git version 2.52.0.windows.1",
     "python": "3.11.14",
     "lzma_spec": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
     "evidence_map": "..\\data\\evidence-map.json",
     "design_rule": "vector of primitives, never collapsed into a scalar (PLAN.md 4 WS-X); no weights, concordance instead",
-    "verification": "Hand-verified on seamQ 2026-07-25 before the sweep: (1) loc_source_total = 3836, matched exactly by an independent per-file 'grep -c [^[:space:]]' over all 10 source files; (2) AIT raw_bytes_source = 190452 and compressed_bytes_source = 49704, both matched byte-exactly by an independent script applying the same pinned LZMA filter to the same files concatenated in sorted-path order (the check caught an implementation that concatenated tier-grouped rather than path-sorted, a 1-byte divergence from the PLAN.md WS-X definition, now corrected). language_count=1 confirmed correct for seamQ (Python only; .tex/.bib/.md are docs tier). (3) Kendall's W recomputed by hand from the published rank matrix for the no-entropy run: rank sums 224 = m*n*(n+1)/2 as required, S=1036, tie correction T=120 (five projects tied at language_count=1), denominator = 64*336 - 8*120 = 20544, W = 12*1036/20544 = 0.6051, matching the script's 0.605."
+    "verification": "Hand-verified on seamQ 2026-07-25 before the sweep: (1) loc_source_total = 3836, matched exactly by an independent per-file 'grep -c [^[:space:]]' over all 10 source files; (2) AIT raw_bytes_source = 190452 and compressed_bytes_source = 49704, both matched byte-exactly by an independent script applying the same pinned LZMA filter to the same files concatenated in sorted-path order (the check caught an implementation that concatenated tier-grouped rather than path-sorted, a 1-byte divergence from the PLAN.md WS-X definition, now corrected). language_count=1 confirmed correct for seamQ (Python only; .tex/.bib/.md are docs tier). (3) Kendall's W recomputed by hand from the published rank matrix for the no-entropy run: rank sums 224 = m*n*(n+1)/2 as required, S=1036, tie correction T=120 (five projects tied at language_count=1), denominator = 64*336 - 8*120 = 20544, W = 12*1036/20544 = 0.6051, matching the script's 0.605. Declared qualitative ratings adopted 2026-07-25 from data/qualitative-ratings.json; they are author judgment and enter no computation."
   },
   "profiles": {
     "blive": {
@@ -115,14 +115,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 3,
+        "constraint_tightness": 3,
+        "statefulness_concurrency": 3,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "IB and IG broker gateways, both live and bidirectional; real money at risk under UK regulatory constraints (docs/kb/uk_regulatory.md); concurrent live session state \u2014 connections, positions, reconnect handling. The only project in the corpus at 3/3/3, and the reason it must not be read as 'small' merely because btest outranks it on every objective size primitive.",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     },
     "btest": {
@@ -258,14 +260,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 2,
+        "constraint_tightness": 2,
+        "statefulness_concurrency": 2,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "Judgment call, stated so a reader can disagree: EODHD + Yahoo + FRED is literally 'multiple external systems', but they are read-only batch pulls, not the live bidirectional systems the 3 anchor is written for \u2014 scored 2. Constraint 2 for the vectorbt engine-parity suite (a genuine numerical-parity budget). Statefulness 2: ArcticDB cache and the on-disk run store both survive across runs.",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     },
     "b-autobot": {
@@ -381,14 +385,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 2,
+        "constraint_tightness": 2,
+        "statefulness_concurrency": 1,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "One external API (the blotter), and deliberately WireMock-simulated throughout \u2014 the simulation is the method, not a shortfall. Constraint 2: behavioural parity against the incumbent is the point, but this is the personal rehearsal, not the regulated production run (that is P8, which rates 3). Statefulness 1: a test harness over cached fixtures.",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     },
     "datacli": {
@@ -490,14 +496,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 2,
+        "constraint_tightness": 1,
+        "statefulness_concurrency": 2,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "EODHD + FRED provider APIs. Constraint 1: the enforced API cost ceiling is a real budget but a commercial one, not a latency or parity envelope \u2014 the 2 anchor is about the operational envelope. Statefulness 2: snapshots plus state sidecars are explicitly designed to persist across runs (that is the tool's whole job).",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     },
     "smim": {
@@ -602,14 +610,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 1,
+        "constraint_tightness": 2,
+        "statefulness_concurrency": 2,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "Single panel data source. Constraint 2 is the interesting one: bitwise GPU determinism plus statsmodels parity is a numerical-parity budget in the full sense, which is why a research project rates the same here as the backtesting platform. Statefulness 2: PIT store and processed data persist across runs by design (point-in-time correctness demands it).",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     },
     "harp": {
@@ -711,14 +721,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 1,
+        "constraint_tightness": 1,
+        "statefulness_concurrency": 1,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "One UK/EU panel; cached. Constraint 1 rather than 2 because the pre-registration binds inferential validity, not a runtime envelope \u2014 a tight constraint of a different kind, and one the rubric's A3 already scores at 3. Recording it as 1 here is the honest reading of THIS axis, not a claim that harp is loosely constrained.",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     },
     "seamQ": {
@@ -818,14 +830,16 @@
       },
       "declared_qualitative": {
         "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
-        "integration_surface": null,
-        "constraint_tightness": null,
-        "statefulness_concurrency": null,
+        "integration_surface": 0,
+        "constraint_tightness": 1,
+        "statefulness_concurrency": 0,
         "_criteria": {
           "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
           "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
           "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
-        }
+        },
+        "note": "Self-contained; cross-references harp's residuals as data, integrates with nothing. Pure batch scripts. Constraint 1: the README pins 12 claims to bit-stable seeded values, which is a real reproducibility contract, but it is not an operational envelope and it is not automated \u2014 it is scored where it belongs, on rubric axis A3.",
+        "_source": "declared by author (data/qualitative-ratings.json)"
       }
     }
   },

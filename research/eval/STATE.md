@@ -9,8 +9,8 @@
 | WS | Status | Session · model | Notes |
 |----|--------|-----------------|-------|
 | WS0 evidence audit | **DONE 2026-07-25** | S1 · Fable 5 | `data/evidence-map.json`; findings below |
-| WS1 rubric | **DONE (DRAFT) 2026-07-25** | S1 · Fable 5 | instrument `rubric/RUBRIC.md`; evidence `data/rubric-evidence.md`; scores `data/rubric-scores.json` — **pending Oleg's review** of flagged judgment calls + P8 blanks (A4/A5/A6/A8) |
-| WS-X complexity profile | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/complexity_profile.py` → `data/complexity-profiles.json`; Kendall's W in 3 runs |
+| WS1 rubric | **DONE (REVIEWED) 2026-07-25** | S1 · Fable 5 → reviewed S2 | instrument `rubric/RUBRIC.md`; evidence `data/rubric-evidence.md`; scores `data/rubric-scores.json` v1.1 — judgment calls adjudicated; **P8 blanks stay open** (only fillable in-org) |
+| WS-X complexity profile | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/complexity_profile.py` → `data/complexity-profiles.json`; Kendall's W in 3 runs; declared ratings set via `data/qualitative-ratings.json` |
 | WS2 git miners | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/git_miner.py` (+ `scripts/corpus_common.py`) → `data/git-metrics/*.json` |
 | WS3 session-log analysis | pending | S3 · **Opus 5** | altitude-classifier taxonomy is judgment-heavy (headline exhibit); feasibility per project: see WS0 findings |
 | WS4a probe pre-registration | pending | S4 · **Fable 5** | question design IS the experiment's validity; pre-registration commit BEFORE any run |
@@ -65,20 +65,45 @@ Leads deposited for later WS:
 - **OQ-3:** b-autobot's Copilot-era logs (pre-`jb/` store) — any other local store? (low
   priority; CC history covers the sprint's human turns.)
 
-## WS1 findings (2026-07-25)
+## WS1 findings (2026-07-25, reviewed in S2)
 
-Scores (DRAFT, /24): blive 22 · smim 20 · harp 17 · datacli 17 · b-autobot 16 · btest 12 ·
-seamQ 7 (current tree) · work-project provisional. Headline observations (full list in
-`data/rubric-scores.json`):
+Scores (**v1.1-REVIEWED**, /24): blive 22 · smim 20 · datacli 17 · harp 16 ·
+b-autobot 15 · btest 12 · seamQ 7 (current tree) · work-project provisional.
+
+**Review outcome (S2).** Two of the four flagged judgment calls were adjudicated down,
+both toward the conservative reading, and both *against* the talk's own argument:
+- **b-autobot A3 3→2** — 91 BDD scenarios are executable contracts on the critical
+  surface, but the latency budgets are comments in a `reference.conf` timeouts block, not
+  measured values asserted against. blive A3 was held to 2 for the identical deficiency.
+  b-autobot is the local rehearsal of the focal case, so this is the score most likely to
+  have been inflated by the instrument's own circularity (PLAN §7 risk 4).
+- **harp A6 3→2** — the 759-line manifest is an exhaustive inventory plus a real schema
+  dictionary, but harp's notation lives in the paper (no glossary artifact) and its
+  CRITICAL/MODERATE/LOW tags mark data-quality severity, not artifact freshness. The two
+  remaining 3s on this axis (blive, smim) carry both a glossary and a status lifecycle.
+
+Upheld: **blive A8=3** (the planned drift-audit scripts sit beyond the anchor, which asks
+only for agent-runnable checks + a maintained warm-up/handoff artifact — both present) and
+**smim A3=2** (partial executable spec, no NFR envelope).
+
+**P8's four blanks (A4/A5/A6/A8) remain open and should stay open.** The paper's worked
+example 2 was checked specifically for them and is silent on edit protocol, decision
+records and inventories; filling them from it would be fabrication. One anchor for the
+in-org refresh: the paper *does* evidence A8's observability half — budgets "queryable
+in-loop so that a violation surfaced during implementation rather than at review" — but
+says nothing about a session protocol.
+
+Headline observations (full list in `data/rubric-scores.json`):
 
 1. **The ordering defies the naive story.** Research projects score mid-high — via
    *research-native* instruments (harp's pre-registration with stop-for-futility rules,
    smim's notation sheet + kill rules, seamQ's adversarial-review pipeline). The paper's
    boundary claim refines: exploratory work has *different substrate artifact types and
    lifecycle*, not no substrate. Pre-registration is a frozen intent contract.
-2. **btest decayed, measurably.** 280/423 commits carried [SMIM] stable IDs; after the smim
-   extraction the last 30 commits have zero. Within-project temporal evidence — stronger
-   than any cross-project comparison (WS2 should quantify the decay curve).
+2. **btest decayed, measurably.** 293/415 non-merge commits carry a bracketed stable-ID tag
+   (280 of them `[SMIM]`, often scoped as `[SMIM DATA-6]`); the trailing 13 commits carry
+   none. Within-project temporal evidence — stronger than any cross-project comparison.
+   **WS2 has now quantified the curve** (finding 2 below): 0% → 91% → 96% → 50% → 40% → 0%.
 3. **datacli = à-la-carte in vivo:** kept gates/executable contracts/status-tagged
    manifests, skipped ADRs/glossary/session protocol at 117-file scale — consistent with
    the complexity threshold.
@@ -193,5 +218,10 @@ sorted-path definition. All three are fixed; the sweeps above are post-fix.
   on-disk scratch count because btest gitignores its litter, and short-horizon churn
   needed a `rework_share_any_horizon` companion plus a `window_exceeds_history` flag
   because four of seven projects are shorter than the 14-day window. Corrected WS1
-  finding 2's "last 30 commits" phrasing (it is the last 13). Next: **WS3
-  session-log analysis (S3, Opus 5)** — the altitude classifier.
+  finding 2's "last 30 commits" phrasing (it is the last 13). Then closed the two open
+  workstreams with Oleg: **WS-X's 21 declared ratings set** (via a new
+  `data/qualitative-ratings.json`, kept as a script *input* so a re-run cannot wipe them —
+  Kendall's W confirmed unchanged, proving they enter no computation), and **WS1's four
+  flagged judgment calls adjudicated** (two down: b-autobot A3, harp A6; two upheld). P8's
+  four blanks deliberately left open. Next: **WS3 session-log analysis (S3, Opus 5)** — the
+  altitude classifier.
