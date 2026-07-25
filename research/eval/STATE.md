@@ -13,8 +13,8 @@
 | WS-X complexity profile | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/complexity_profile.py` → `data/complexity-profiles.json`; Kendall's W in 3 runs; declared ratings set via `data/qualitative-ratings.json` |
 | WS2 git miners | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/git_miner.py` (+ `scripts/corpus_common.py`) → `data/git-metrics/*.json` |
 | WS3 session-log analysis | **DONE 2026-07-25** | S3 · Opus 5 | `scripts/log_miner.py` + `sample_turns.py` + `altitude_classify.py` + `session_yield.py` → `data/session-metrics/*.json`; instrument `rubric/ALTITUDE.md` v1.0; hand labels `data/altitude-labels.json`; **(a) survives only length-controlled, (b) is the clean positive, (c) inconclusive** |
-| WS4a probe pre-registration | pending | S4 · **Fable 5** | question design IS the experiment's validity; pre-registration commit BEFORE any run |
-| WS4b probe runs + scoring | pending | S5 · **Sonnet 5** | frozen protocol execution; probe *subjects*: one fixed model across projects (suggest Sonnet 5, record in protocol) |
+| WS4a probe pre-registration | **DONE 2026-07-25** | S4 · Fable 5 | frozen at commit `ab9c62d` **before any run**: `probes/PROTOCOL.md` + 60 questions (20 x 3, one fixed slot template); subject `claude-sonnet-5`; 2 runs/project |
+| WS4b probe runs + scoring | pending | S5 · **Sonnet 5** | execute the frozen protocol exactly; instrument may not change (void + report, never improvise); → `data/probe-results.json` |
 | WS5 survival curves | pending | S6 · **Sonnet 5** | kernel teaser only if time — if attempted, bump to Opus |
 | WS6 archaeology | pending | S7 · **Opus 5** | narrative judgment; see memory-folder lead below |
 | Report assembly | pending | S8 · **Fable 5** | cross-workstream synthesis → `report/` |
@@ -326,6 +326,33 @@ is solid — so the exhibit is built on high/low.**
   (`data/session-metrics/local/`); the published JSON carries a 160-character
   preview and a sha1 per turn, and re-running `log_miner.py` reproduces the rest.
 
+## WS4a findings (2026-07-25)
+
+1. **Pre-registered at `ab9c62dc3cb421174eca13a5f9ebc1692ccef0b6` (2026-07-25 23:57 +0100), with
+   nothing run.** Instrument: PROTOCOL.md (subject `claude-sonnet-5`, repo-only access, no
+   cross-session memory + contamination check, frozen texts F1–F6, SC1–SC10 scoring with a
+   false-absence subtype and a published sensitivity run, ties resolve *against* the
+   hypothesis, 2 runs/project, one pre-registered Fisher test) + 20 questions per project on
+   one fixed slot template (7 decide / 7 state / 6 why; 14 recorded / 6 absence-shaped).
+2. **The absence-shaped slots converted differently per project, and that is itself a
+   result:** blive documents its own gaps (its traps became `recorded-absence` — receipts for
+   what doesn't exist); b-autobot deposited every conversational *decision* in code but lost
+   the *reasons* (no conversation-only decision was recoverable; the substitution is declared
+   in questions-p3.md); btest lost both — the SMIM extraction (−104,959 lines) has an empty
+   commit body and no recoverable rationale anywhere in the repo.
+3. **Every project got a doc-vs-code divergence question** (the stale-substrate trap family):
+   blive's OQ-035 vs `types.py` (order-type surface), btest's CLAUDE.md 3-scheme list vs 6 in
+   code, b-autobot's "66 scenarios" vs 91 countable + a dead CI advertised by a live README
+   badge.
+4. **Two candidate traps were rejected at design time and recorded in questions-p3.md** (the
+   combobox rejection was actually deposited; the M6/corp-env deferral has contested ground
+   truth because the deletion commit claims "all milestones complete") — the reject log is
+   part of the instrument's honesty.
+5. **WS6 handoff — conversation-only receipts** (sha1s in `turns-classified.json`): btest
+   no-skips policy `a878c86c0eeb`; blive work-on-main `01bab5bd50f0`/`1d771f968cb2`;
+   b-autobot gridbot-name rejection `b64900916546`; btest SMIM-extraction rationale
+   `e66460c50699`/`3a39b4ff5c61`.
+
 ## Session log
 
 - **S1 · 2026-07-25:** PLAN.md drafted and iterated (talk reframed to abstract; corp
@@ -379,3 +406,18 @@ is solid — so the exhibit is built on high/low.**
   corrected (the b-autobot bleed, the Copilot user-message count). Next:
   **WS4a probe pre-registration (S4, Fable 5)** — question design, frozen by commit
   before any probe runs.
+- **S4 · 2026-07-25 · Fable 5:** WS4a executed — question design + freeze, nothing run.
+  Warm-up per NEXT_TASK, then three parallel read-only evidence sweeps (blive, btest,
+  b-autobot) + a mine of the classified session-log turns for decisions made only in
+  conversation. Every candidate receipt was re-verified before freezing, and the absence
+  checks were extended to **git history** (`git log -S`, deleted-file contents) because the
+  probe subject gets git access — that check killed two b-autobot traps (combobox: 54
+  history hits; M6/corp-env: contested by the deletion commit's blanket claim) and both
+  rejections are recorded in questions-p3.md. PROTOCOL.md written in the ALTITUDE house
+  pattern (numbered rules, precedence, stated biases, sensitivity run, conservative
+  tie-break); the scoring rubric distinguishes invention / contradiction / false-absence,
+  and SC9 publishes the headline both with and without false-absence counted as
+  confabulation. **Pre-registration commit `ab9c62d` contains exactly the four instrument
+  files; no probe question has been put to any agent.** Findings above; WS6 receives the
+  conversation-only decision list. Next: **WS4b probe runs + scoring (S5, Sonnet 5)** —
+  execute the frozen protocol, then score, then `data/probe-results.json`.
