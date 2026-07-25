@@ -58,12 +58,47 @@ Leads deposited for later WS:
   folder — session→project attribution by folder has occasional bleed; attribute by content
   when it matters.
 
-## Open questions
+## Open questions — all three CLOSED 2026-07-25 (S2)
 
-- **OQ-1:** what tooling built btest Dec 2025–Feb 2026 (pre-history-log era)? → ask Oleg.
-- **OQ-2:** do claude.ai web/desktop exports exist for blive's lost sessions? → ask Oleg.
-- **OQ-3:** b-autobot's Copilot-era logs (pre-`jb/` store) — any other local store? (low
-  priority; CC history covers the sprint's human turns.)
+- **OQ-1 · CLOSED, answered from evidence.** btest's Dec 2025–Feb 2026 era was built in
+  **PyCharm 2025.2 with JetBrains AI Assistant**, and that tool keeps no recoverable
+  per-session transcript. Evidence: the `PyCharm2025.2` config dir first appears 2025-12-13
+  (btest's first commit is 2025-12-09); `llm.for.code.xml`, `llm.nextEdits.xml` and
+  `AIChatContextPopupPromotionState.xml` are all dated **2025-12-05**, four days before the
+  project began; `AIAssistantQuotaManager2.xml` (2025-12-13) records a live metered
+  subscription with **~1.39M of 3.5M units already consumed**. GitHub Copilot is absent
+  until March (`github-copilot/iu/` 2026-03-03, `.copilot/jb/` store 2026-03-20) and Claude
+  Code until 2026-03-15 (`CLAUDE.md` added). **VS Code is not installed anywhere on the
+  machine** — the `.vscode/settings.json` committed 2026-02-11 is a false lead, not evidence
+  of use. Quantitative signature of the transition: mean commit-subject+body length is
+  **49 chars in Dec–Feb (n=78) vs 585 chars in Mar–Jul (n=337)**, a 12x jump at the tool
+  boundary.
+  *Why this matters:* that era **was** AI-assisted — quota was being burned — using a
+  surface with no substrate and no recoverable log. It produced terse commits, zero
+  agent-instruction files, zero decision records. It is the corpus's **unsubstrated
+  baseline**, not a hole in it.
+- **OQ-2 · CLOSED, partially answered.** No claude.ai conversation export exists locally
+  (no `conversations.json`, no data-export archive; the four `Downloads/files*.zip` are an
+  unrelated maths study guide). Transcripts for blive's lost sessions are **not
+  recoverable**. But claude.ai-authored *artifacts* from the relevant windows do survive in
+  `~/Downloads` and are catalogued for WS3/WS6:
+  - `ib_algo_engine_requirements_v0.md` (2026-04-26 — **blive's first commit day**) is
+    blive's Requirements v0, i.e. the paper's "first artefact deposited to the substrate".
+    Direct evidence the origin artifact was authored in claude.ai web. **Discrepancy to
+    reconcile before the talk:** it is 3,375 words; the paper says "around six thousand".
+  - `HANDOFF_to_new_chat_v2.md` + `KICKOFF_PROMPT_v2.md` (2026-04-30) are **seamQ**, not
+    blive. The kickoff opens: *"The prior version of this prompt assumed `/home/claude/`
+    would persist across chats. It doesn't."* — a retransmission-tax artifact in raw form,
+    a session protocol being revised because state was silently lost. Prime WS3/WS6 material.
+  - *Consequence for WS-X:* those artifacts predate seamQ's first commit (2026-05-16) by
+    over two weeks, so **seamQ's real project span is ~3 weeks, not the 1.9 days its git
+    span reports**. `duration_days` is correctly labelled as git span but must not be read
+    as project duration for that project.
+- **OQ-3 · CLOSED, negative.** No other local Copilot store exists. `~/.copilot/` holds
+  only `jb/` (plus instructions/prompts/skills); `AppData/Local/github-copilot/` is auth
+  plus a 16 KB `copilot-intellij.db` with no session content. b-autobot's sprint
+  (Mar 5–11) genuinely predates the `jb/` store (Mar 20) — **those logs are confirmed
+  lost**, and CC history covers the sprint's human turns.
 
 ## WS1 findings (2026-07-25, reviewed in S2)
 
@@ -86,12 +121,17 @@ Upheld: **blive A8=3** (the planned drift-audit scripts sit beyond the anchor, w
 only for agent-runnable checks + a maintained warm-up/handoff artifact — both present) and
 **smim A3=2** (partial executable spec, no NFR envelope).
 
-**P8's four blanks (A4/A5/A6/A8) remain open and should stay open.** The paper's worked
-example 2 was checked specifically for them and is silent on edit protocol, decision
-records and inventories; filling them from it would be fabrication. One anchor for the
-in-org refresh: the paper *does* evidence A8's observability half — budgets "queryable
-in-loop so that a violation surfaced during implementation rather than at review" — but
-says nothing about a session protocol.
+**P8's four blanks (A4/A5/A6/A8) are now filled PROVISIONAL-INFERRED**, from the same
+source as the rest of that row and each carrying its reasoning in `data/rubric-scores.json`:
+A4=1, A5=2, A6=2, A8=2 → **P8 = 18/24**, placing it 3rd (blive 22 · smim 20 · **P8 18** ·
+datacli 17 · harp 16 · b-autobot 15 · btest 12 · seamQ 7). Two things to carry forward:
+**A5 is the lowest-confidence cell in the whole matrix** — the 1-vs-2 call (decisions
+living in the increment plan, vs a decision log kept irregularly) is not settleable from
+the paper and should be overruled from memory if memory disagrees. And P8 landing at 18
+rather than 22 is a *credible* placement rather than a convenient one: the focal case
+scores high but not top, which is what a two-week timeboxed brownfield job under "partial
+discipline" (PLAN §2's own phrase) should look like. The whole row is still refreshed
+in-org against real git history and Copilot CLI logs (PLAN §5).
 
 Headline observations (full list in `data/rubric-scores.json`):
 
@@ -222,6 +262,12 @@ sorted-path definition. All three are fixed; the sweeps above are post-fix.
   workstreams with Oleg: **WS-X's 21 declared ratings set** (via a new
   `data/qualitative-ratings.json`, kept as a script *input* so a re-run cannot wipe them —
   Kendall's W confirmed unchanged, proving they enter no computation), and **WS1's four
-  flagged judgment calls adjudicated** (two down: b-autobot A3, harp A6; two upheld). P8's
-  four blanks deliberately left open. Next: **WS3 session-log analysis (S3, Opus 5)** — the
+  flagged judgment calls adjudicated** (two down: b-autobot A3, harp A6; two upheld).
+  Finally closed **all three open questions**: OQ-1 answered from filesystem + git evidence
+  (PyCharm 2025.2 + JetBrains AI Assistant, metered quota, no recoverable transcript — the
+  corpus's unsubstrated baseline), OQ-3 answered negative (b-autobot's Copilot logs
+  confirmed lost), OQ-2 answered partially (no transcripts recoverable, but blive's
+  Requirements v0 and two seamQ session-handoff artifacts located in `~/Downloads` and
+  catalogued for WS3/WS6). P8's four blanks filled PROVISIONAL-INFERRED → 18/24.
+  **Nothing is now pending on Oleg.** Next: **WS3 session-log analysis (S3, Opus 5)** — the
   altitude classifier.

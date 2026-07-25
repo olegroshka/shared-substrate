@@ -99,14 +99,21 @@ with a handoff deposit?
 | A1 layers | 3 | 1 | 1 | 2 | 2 | 1 | 0 | 2? |
 | A2 gates | 3 | 1 | 2 | 3 | 3 | 3 | 0 | 3? |
 | A3 contracts | 2 | 2 | **2** | 3 | 2 | 3 | 2 | 3? |
-| A4 protocol | 3 | 1 | 2 | 1 | 2 | 1 | 0 | ? |
-| A5 decisions | 3 | 1 | 1 | 2 | 2 | 2 | 1 | ? |
-| A6 inventories | 3 | 2 | 2 | 2 | 3 | **2** | 1 | ? |
+| A4 protocol | 3 | 1 | 2 | 1 | 2 | 1 | 0 | 1? |
+| A5 decisions | 3 | 1 | 1 | 2 | 2 | 2 | 1 | 2?? |
+| A6 inventories | 3 | 2 | 2 | 2 | 3 | **2** | 1 | 2? |
 | A7 oracles | 2 | 2 | 3 | 2 | 3 | 2 | 2 | 3? |
-| A8 observability | 3 | 2 | 2 | 2 | 3 | 2 | 1 | ? |
-| **Total /24** | **22** | **12** | **15** | **17** | **20** | **16** | **7** | prov. |
+| A8 observability | 3 | 2 | 2 | 2 | 3 | 2 | 1 | 2? |
+| **Total /24** | **22** | **12** | **15** | **17** | **20** | **16** | **7** | **18?** |
 
-Ranking: blive 22 · smim 20 · datacli 17 · harp 16 · b-autobot 15 · btest 12 · seamQ 7.
+Ranking (local corpus): blive 22 · smim 20 · datacli 17 · harp 16 · b-autobot 15 ·
+btest 12 · seamQ 7. With P8 placed provisionally: blive 22 · smim 20 · **P8 18** ·
+datacli 17 · harp 16 · b-autobot 15 · btest 12 · seamQ 7.
+
+`?` marks a provisional cell inferred from the paper's worked example 2; `??` marks the
+one cell (P8 A5) whose 1-vs-2 call the source cannot settle. P8 at 18 is a *credible*
+placement rather than a convenient one — the focal case scores high but not top, which is
+what a two-week timeboxed brownfield job under partial discipline should look like.
 
 Scores are **v1.1-REVIEWED** (2026-07-25), assigned by Claude from the repo sweeps in
 `../data/rubric-evidence.md`, with the four flagged judgment calls adjudicated in session
@@ -118,12 +125,19 @@ artifact status lifecycle). Both moved *against* the talk's own argument, which 
 direction a self-authored instrument should be willing to move. Two calls were upheld:
 blive A8=3 and smim A3=2.
 
-P8 is PROVISIONAL (from the paper's worked example 2) and its four blanks are **not
-fillable from any artifact reachable outside the org** — the paper is silent on edit
-protocol, decision records and inventories for that project. One anchor for scoring A8
-when refreshed: the paper does evidence the observability half ("budgets … queryable
-in-loop so that a violation surfaced during implementation rather than at review") but says
-nothing about a session protocol. P7 scores the *current, deliberately stripped* tree — its
+P8 is PROVISIONAL throughout, and its whole row is refreshed inside the org against real
+git history and Copilot CLI logs (PLAN §5). The four cells that were blank until S2 are now
+inferred from the same source as the rest of the row, each carrying its reasoning in
+`../data/rubric-scores.json`: A4=1 (the paper names a Context Protocol as the *greenfield*
+project's third artefact and names nothing equivalent for brownfield — a deliberate-looking
+contrast, consistent with PLAN §2's "partial discipline"), A5=2 (19 numbered increments are
+a de facto ID scheme, but no ADR log is evidenced — **lowest-confidence cell in the
+matrix**), A6=2 (each phase mapped to a layer "with its own representation", plus the
+incumbent-behaviour inventory; no glossary or status lifecycle), A8=2 (the observability
+half is a clear 3 — budgets "queryable in-loop so that a violation surfaced during
+implementation rather than at review" — but the session-protocol half is unevidenced, so 2
+is the honest composite of a 3 and an unknown). P7 scores the *current, deliberately
+stripped* tree — its
 pre-publication history (session warm-up doc, weekly gates, adversarial-review pipeline)
 would score far higher; see evidence notes.
 

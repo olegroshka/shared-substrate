@@ -272,9 +272,9 @@
       }
     },
     "P8_work_project": {
-      "total": null,
+      "total": 18,
       "provisional": true,
-      "note": "PROVISIONAL from the paper's worked example 2 only; blanks require operator input, then refresh inside the org",
+      "note": "PROVISIONAL. A1/A2/A3/A7 inferred from the paper's worked example 2 (S1); A4/A5/A6/A8 inferred in S2 from the same source read specifically for them, each marked PROVISIONAL-INFERRED with its reasoning. The whole row is refreshed inside the org against real git history and Copilot CLI logs (PLAN section 5). A5 is the weakest cell and the one most worth overruling from memory.",
       "axes": {
         "A1_layers": {
           "score": 2,
@@ -289,24 +289,24 @@
           "note": "provisional: behavioural lock-in of incumbent + memory/latency budgets from runtime instrumentation"
         },
         "A4_protocol": {
-          "score": null,
-          "note": "unknown — operator to score"
+          "score": 1,
+          "note": "PROVISIONAL-INFERRED: the paper names a Context Protocol as the GREENFIELD project's third artefact and names nothing equivalent for the brownfield one - a contrast that reads as deliberate. PLAN section 2 independently calls P8 'partial discipline', under a 2-week timebox. Scored 1 (conventions carried in the practitioner's head, no protocol artifact evidenced). Refresh in-org."
         },
         "A5_decisions": {
-          "score": null,
-          "note": "unknown — operator to score"
+          "score": 2,
+          "note": "PROVISIONAL-INFERRED, LOWEST CONFIDENCE of the four: 19 numbered gated increments is a de facto ID scheme and the phased plan records sequencing choices, but no ADR log is evidenced anywhere in the paper or the abstract. The 1-vs-2 call (some decisions in the increment plan, vs a decision log kept irregularly) is exactly what only the operator can settle. Refresh in-org."
         },
         "A6_inventories": {
-          "score": null,
-          "note": "unknown — operator to score"
+          "score": 2,
+          "note": "PROVISIONAL-INFERRED: the paper states each phase of the plan mapped to one abstraction layer 'with its own representation and its own oracle', and the incumbent-behaviour recovery necessarily produced a behaviour inventory. No glossary and no status lifecycle evidenced, so not 3. Refresh in-org."
         },
         "A7_oracles": {
           "score": 3,
           "note": "provisional: incumbent-as-oracle at every layer; parity continuous"
         },
         "A8_observability": {
-          "score": null,
-          "note": "unknown — operator to score"
+          "score": 2,
+          "note": "PROVISIONAL-INFERRED: the observability half is a clear 3 - budgets 'queryable in-loop so that a violation surfaced during implementation rather than at review' is precisely the anchor - but the session-protocol half is entirely unevidenced. 2 is the honest composite of a 3 and an unknown. Refresh in-org."
         }
       }
     }
@@ -314,6 +314,7 @@
   "ranking_current_practice": [
     "P1_blive 22",
     "P5_smim 20",
+    "P8_work_project 18 (PROVISIONAL)",
     "P4_datacli 17",
     "P6_harp 16",
     "P3_b_autobot 15",
@@ -327,5 +328,14 @@
     "b-autobot and blive have INVERSE profiles (guardrails+validation vs representation+session) - the four practices are separable in practice, not a package. The review sharpened this: b-autobot's A3 drop to 2 shows even its strongest practice is contracts-without-budgets, i.e. half of one practice.",
     "seamQ shows substrate-as-scaffolding: erected during work, deliberately torn down at publication.",
     "REVIEW EFFECT (S2): two of four flagged judgment calls were adjudicated down (b-autobot A3, harp A6), both toward the conservative reading. The corpus ordering is unchanged at the top and bottom; the middle re-sorts to datacli 17 > harp 16 > b-autobot 15. Note that the two downgrades both moved AGAINST the talk's own argument - b-autobot is the local rehearsal of the focal case, and harp is the boundary case whose research-native instruments the paper leans on."
+  ],
+  "ranking_local_corpus_only": [
+    "P1_blive 22",
+    "P5_smim 20",
+    "P4_datacli 17",
+    "P6_harp 16",
+    "P3_b_autobot 15",
+    "P2_btest 12",
+    "P7_seamQ 7"
   ]
 }

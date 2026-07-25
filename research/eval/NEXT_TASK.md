@@ -29,7 +29,20 @@ Warm up first, then execute. This is session S3 of the shared-substrate eval res
   2026-03-03**, with project, sessionId, timestamp. Human-side turns for all corpus
   projects; this is what makes altitude analysis corpus-wide (WS0 finding 2).
 - Copilot JetBrains store: `~/.copilot/jb/<uuid>/partition-N.jsonl` — two-sided,
-  Mar 20–May 31, no token fields (use bytes as the volume proxy).
+  Mar 20–May 31, no token fields (use bytes as the volume proxy). **Confirmed in S2 to be
+  the only Copilot store on the machine** (OQ-3 closed): b-autobot's Mar 5–11 sprint
+  predates it, so those logs are lost, not mislaid — do not go hunting again.
+- **claude.ai artifacts in `~/Downloads` (found S2, OQ-2).** No conversation exports exist,
+  but three authored artifacts survive and are evidence: `ib_algo_engine_requirements_v0.md`
+  (2026-04-26, blive's first commit day — the paper's "first artefact deposited to the
+  substrate"), and `HANDOFF_to_new_chat_v2.md` + `KICKOFF_PROMPT_v2.md` (2026-04-30,
+  **seamQ**). Read the kickoff early: *"The prior version of this prompt assumed
+  `/home/claude/` would persist across chats. It doesn't."* That is a retransmission-tax
+  artifact in raw form and belongs in WS3(b), not just WS6.
+- **btest's Dec 2025–Feb 2026 era has no session log by construction** (OQ-1 closed in S2):
+  it was PyCharm 2025.2 + JetBrains AI Assistant on a metered quota, a surface that keeps
+  no recoverable transcript. Treat it as the corpus's **unsubstrated baseline**, evidenced
+  by commit prose (49 mean chars vs 585 from March) rather than by turns.
 
 **Corpus paths (P1–P7):** P1 blive · P2 btest · P3 b-autobot (`IdeaProjects/`) ·
 P4 datacli · P5 smim · P6 harp · P7 seamQ — all under `C:\Users\olegr\PycharmProjects\`
@@ -80,10 +93,18 @@ probe is run.
 
 ---
 
-Oleg's parallel inputs (any time): review DRAFT rubric scores + fill P8 blanks
-(`data/rubric-scores.json`); fill the three `declared_qualitative` ratings per project in
-`data/complexity-profiles.json` (0–3 each, criteria are inline in the file — they are
-author judgment by design and no script will ever compute them); answer STATE.md OQ-1
-(btest Dec–Feb tooling — WS2 now shows that era at 0% ID-tagging with free-text commit
-subjects, so what built it is a live question) and OQ-2 (claude.ai exports for blive's
-lost sessions — these would directly widen WS3's thinnest coverage).
+**Nothing is pending on Oleg.** As of S2 the rubric is reviewed (v1.1), the 21 declared
+complexity ratings are set (`data/qualitative-ratings.json`), and all three open questions
+are closed. Two items are carried as *reconcile-before-the-talk*, not blockers:
+
+1. blive's Requirements v0 is **3,375 words**; the paper says "around six thousand". Either
+   the document grew before its v0.2 pass or the paper rounds generously — check which, and
+   fix whichever artifact is wrong.
+2. seamQ's claude.ai design work predates its first commit by over two weeks, so its **git
+   span (1.9 days) is not its project duration**. `duration_days` in
+   `data/complexity-profiles.json` is correctly labelled but must not be read as project
+   length for that project in any exhibit.
+
+The one genuinely soft number in the corpus is **P8 A5** (rubric decisions axis, scored 2
+PROVISIONAL-INFERRED) — the paper cannot settle 1-vs-2, and Oleg's memory can. Worth one
+question if the topic comes up; not worth blocking on.

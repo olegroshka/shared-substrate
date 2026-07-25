@@ -89,10 +89,16 @@ land (calibration across projects); citations abbreviated — sweep transcripts 
 - **A4 edit protocol:** informal, in CLAUDE.md rules ("modify only with explicit
   discussion"; "run pytest before every commit"); SSOT documented only for generated
   artifacts ("Do not edit by hand"). No trivial lane.
-- **A5 decisions/IDs:** split. **280/423 commits carry [SMIM …] stable IDs** cross-refing
-  frozen config/metrics artifacts — but NO decision-record docs (DECISIONS.md prescribed,
-  never created). Recent commits switched to Conventional Commits, zero IDs in last 30 →
-  the discipline *decayed* after SMIM extraction (WS6/WS2 lead).
+- **A5 decisions/IDs:** split. **293/415 non-merge commits carry a bracketed stable-ID
+  prefix** (280 of them `[SMIM ...]`, frequently scoped as `[SMIM DATA-6]`, `[SMIM GPU-1.2]`)
+  cross-refing frozen config/metrics artifacts — but NO decision-record docs
+  (DECISIONS.md prescribed, never created). Recent commits switched to Conventional
+  Commits; the trailing **13** commits carry no tag at all and all of July is untagged —
+  the discipline *decayed* after SMIM extraction. **Quantified in WS2**
+  (`data/git-metrics/btest.json`): 0% Dec–Feb → 91% Mar → 96% Apr → 50% May → 40% Jun →
+  0% Jul. (Corrected in S2: the S1 figure of 280/423 mixed the `[SMIM` count with the
+  all-commits denominator, and 'zero IDs in last 30' overstated it — the last 30 are 30%
+  tagged.)
 - **A6 inventories:** PARTIAL, machine-generated: auto STATUS.md freshness/QC inventory
   (stale threshold 7d), 15 universe registries + manifest, strategy_backlog.csv; schema in
   docstrings. No glossary; no status lifecycle.
