@@ -1,0 +1,1325 @@
+{
+  "_meta": {
+    "script": "complexity_profile.py",
+    "version": "1.0",
+    "generated_utc": "2026-07-25T20:09:47+00:00",
+    "git_version": "git version 2.52.0.windows.1",
+    "python": "3.11.14",
+    "lzma_spec": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+    "evidence_map": "..\\data\\evidence-map.json",
+    "design_rule": "vector of primitives, never collapsed into a scalar (PLAN.md 4 WS-X); no weights, concordance instead",
+    "verification": "Hand-verified on seamQ 2026-07-25 before the sweep: (1) loc_source_total = 3836, matched exactly by an independent per-file 'grep -c [^[:space:]]' over all 10 source files; (2) AIT raw_bytes_source = 190452 and compressed_bytes_source = 49704, both matched byte-exactly by an independent script applying the same pinned LZMA filter to the same files concatenated in sorted-path order (the check caught an implementation that concatenated tier-grouped rather than path-sorted, a 1-byte divergence from the PLAN.md WS-X definition, now corrected). language_count=1 confirmed correct for seamQ (Python only; .tex/.bib/.md are docs tier). (3) Kendall's W recomputed by hand from the published rank matrix for the no-entropy run: rank sums 224 = m*n*(n+1)/2 as required, S=1036, tie correction T=120 (five projects tied at language_count=1), denominator = 64*336 - 8*120 = 20544, W = 12*1036/20544 = 0.6051, matching the script's 0.605."
+  },
+  "profiles": {
+    "blive": {
+      "project": "blive",
+      "repo_path": "C:\\Users\\olegr\\PycharmProjects\\blive",
+      "size": {
+        "tracked_files_total": 192,
+        "vendored_files_excluded": 1,
+        "source_files": 184,
+        "files_by_tier": {
+          "config": 5,
+          "docs": 55,
+          "code": 124
+        },
+        "loc_by_tier": {
+          "config": 244,
+          "docs": 13835,
+          "code": 22711
+        },
+        "loc_source_total": 36790,
+        "loc_code": 22711,
+        "docs_loc_share_of_code_plus_docs": 0.3786,
+        "language_count": 1,
+        "languages": {
+          "Python": 124
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 2598633,
+        "compressed_bytes_source": 519197,
+        "compression_ratio_source": 0.1998,
+        "raw_bytes_code": 1020790,
+        "compressed_bytes_code": 179352,
+        "compression_ratio_code": 0.1757
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 6.6955,
+        "entropy_normalised": 0.8918,
+        "files_changed": 182,
+        "file_changes": 417,
+        "degenerate": false,
+        "degenerate_note": null,
+        "per_quarter": [
+          {
+            "quarter": "2026-Q2",
+            "entropy_bits": 6.6955,
+            "entropy_normalised": 0.8918,
+            "files_changed": 182,
+            "file_changes": 417
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 40.6,
+        "active_months": 3,
+        "first_commit": "2026-04-26",
+        "last_commit": "2026-06-06",
+        "sessions_claude_history": 10,
+        "sessions_copilot": 2,
+        "sessions_claude_code_transcripts": 0,
+        "sessions_total": 12,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 25.67,
+          "median": 20,
+          "max": 40,
+          "series": [
+            40,
+            20,
+            17
+          ]
+        },
+        "decision_records": {
+          "record_files": 2,
+          "record_file_paths": [
+            "docs/decisions/DECISIONS.md",
+            "docs/decisions/OPEN_QUESTIONS.md"
+          ],
+          "distinct_ids": {
+            "ADR": 55,
+            "OQ": 36,
+            "KB": 16,
+            "DD": 8,
+            "INV": 14
+          },
+          "decision_count": 55,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 18,
+        "maven_direct": 0,
+        "npm_direct": 0,
+        "total_direct": 18,
+        "manifests": [
+          "pyproject.toml"
+        ],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    },
+    "btest": {
+      "project": "btest",
+      "repo_path": "C:\\Users\\olegr\\PycharmProjects\\btest",
+      "size": {
+        "tracked_files_total": 4227,
+        "vendored_files_excluded": 5,
+        "source_files": 398,
+        "files_by_tier": {
+          "docs": 9,
+          "config": 42,
+          "code": 347
+        },
+        "loc_by_tier": {
+          "docs": 2032,
+          "config": 21119,
+          "code": 181927
+        },
+        "loc_source_total": 205078,
+        "loc_code": 181927,
+        "docs_loc_share_of_code_plus_docs": 0.011,
+        "language_count": 6,
+        "languages": {
+          "Python": 304,
+          "HTML": 19,
+          "TypeScript": 14,
+          "PowerShell": 4,
+          "CSS": 3,
+          "Notebook": 3
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 14827257,
+        "compressed_bytes_source": 2932155,
+        "compression_ratio_source": 0.19775,
+        "raw_bytes_code": 14255606,
+        "compressed_bytes_code": 2878891,
+        "compression_ratio_code": 0.20195
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 9.6402,
+        "entropy_normalised": 0.9563,
+        "files_changed": 1083,
+        "file_changes": 2385,
+        "degenerate": false,
+        "degenerate_note": null,
+        "per_quarter": [
+          {
+            "quarter": "2025-Q4",
+            "entropy_bits": 7.8929,
+            "entropy_normalised": 0.9395,
+            "files_changed": 338,
+            "file_changes": 611
+          },
+          {
+            "quarter": "2026-Q1",
+            "entropy_bits": 8.5255,
+            "entropy_normalised": 0.9509,
+            "files_changed": 500,
+            "file_changes": 778
+          },
+          {
+            "quarter": "2026-Q2",
+            "entropy_bits": 8.7406,
+            "entropy_normalised": 0.9585,
+            "files_changed": 556,
+            "file_changes": 905
+          },
+          {
+            "quarter": "2026-Q3",
+            "entropy_bits": 5.6178,
+            "entropy_normalised": 0.9631,
+            "files_changed": 57,
+            "file_changes": 91
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 212.9,
+        "active_months": 8,
+        "first_commit": "2025-12-09",
+        "last_commit": "2026-07-09",
+        "sessions_claude_history": 63,
+        "sessions_copilot": 48,
+        "sessions_claude_code_transcripts": 4,
+        "sessions_total": 111,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 35.38,
+          "median": 26.5,
+          "max": 73,
+          "series": [
+            64,
+            11,
+            25,
+            71,
+            28,
+            73,
+            7,
+            4
+          ]
+        },
+        "decision_records": {
+          "record_files": 0,
+          "record_file_paths": [],
+          "distinct_ids": {
+            "ADR": 0,
+            "OQ": 0,
+            "KB": 0,
+            "DD": 0,
+            "INV": 0
+          },
+          "decision_count": 0,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 35,
+        "maven_direct": 0,
+        "npm_direct": 10,
+        "total_direct": 45,
+        "manifests": [
+          "frontend/package.json",
+          "pyproject.toml"
+        ],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    },
+    "b-autobot": {
+      "project": "b-autobot",
+      "repo_path": "C:\\Users\\olegr\\IdeaProjects\\b-autobot",
+      "size": {
+        "tracked_files_total": 9456,
+        "vendored_files_excluded": 9248,
+        "source_files": 208,
+        "files_by_tier": {
+          "config": 36,
+          "docs": 6,
+          "code": 166
+        },
+        "loc_by_tier": {
+          "config": 1912,
+          "docs": 1035,
+          "code": 16544
+        },
+        "loc_source_total": 19491,
+        "loc_code": 16544,
+        "docs_loc_share_of_code_plus_docs": 0.0589,
+        "language_count": 8,
+        "languages": {
+          "Java": 102,
+          "TypeScript": 21,
+          "JavaScript": 18,
+          "CSS": 8,
+          "Gherkin": 7,
+          "HTML": 6,
+          "Batch": 2,
+          "Shell": 2
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 3355512,
+        "compressed_bytes_source": 448803,
+        "compression_ratio_source": 0.13375,
+        "raw_bytes_code": 3219247,
+        "compressed_bytes_code": 422877,
+        "compression_ratio_code": 0.13136
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 7.9691,
+        "entropy_normalised": 0.9545,
+        "files_changed": 326,
+        "file_changes": 888,
+        "degenerate": false,
+        "degenerate_note": null,
+        "per_quarter": [
+          {
+            "quarter": "2026-Q1",
+            "entropy_bits": 7.9691,
+            "entropy_normalised": 0.9545,
+            "files_changed": 326,
+            "file_changes": 888
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 6.3,
+        "active_months": 1,
+        "first_commit": "2026-03-05",
+        "last_commit": "2026-03-11",
+        "sessions_claude_history": 9,
+        "sessions_copilot": 0,
+        "sessions_claude_code_transcripts": 0,
+        "sessions_total": 9,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 84,
+          "median": 84,
+          "max": 84,
+          "series": [
+            84
+          ]
+        },
+        "decision_records": {
+          "record_files": 0,
+          "record_file_paths": [],
+          "distinct_ids": {
+            "ADR": 0,
+            "OQ": 0,
+            "KB": 0,
+            "DD": 0,
+            "INV": 0
+          },
+          "decision_count": 0,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 0,
+        "maven_direct": 16,
+        "npm_direct": 12,
+        "total_direct": 28,
+        "manifests": [
+          "b-bot-core/pom.xml",
+          "b-bot-sandbox/pom.xml",
+          "b-bot-sandbox/src/test/js/package.json",
+          "b-bot-sandbox/src/test/webapp-config/package.json",
+          "b-bot-sandbox/src/test/webapp-deployment/package.json",
+          "b-bot-sandbox/src/test/webapp/package.json",
+          "pom.xml",
+          "pt-blotter-regression-template/pom.xml"
+        ],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    },
+    "datacli": {
+      "project": "datacli",
+      "repo_path": "C:\\Users\\olegr\\PycharmProjects\\datacli",
+      "size": {
+        "tracked_files_total": 117,
+        "vendored_files_excluded": 0,
+        "source_files": 117,
+        "files_by_tier": {
+          "config": 12,
+          "docs": 15,
+          "code": 90
+        },
+        "loc_by_tier": {
+          "config": 313,
+          "docs": 2101,
+          "code": 18985
+        },
+        "loc_source_total": 21399,
+        "loc_code": 18985,
+        "docs_loc_share_of_code_plus_docs": 0.0996,
+        "language_count": 1,
+        "languages": {
+          "Python": 90
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 906787,
+        "compressed_bytes_source": 145305,
+        "compression_ratio_source": 0.16024,
+        "raw_bytes_code": 765049,
+        "compressed_bytes_code": 111110,
+        "compression_ratio_code": 0.14523
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 6.4368,
+        "entropy_normalised": 0.9369,
+        "files_changed": 117,
+        "file_changes": 296,
+        "degenerate": false,
+        "degenerate_note": null,
+        "per_quarter": [
+          {
+            "quarter": "2026-Q3",
+            "entropy_bits": 6.4368,
+            "entropy_normalised": 0.9369,
+            "files_changed": 117,
+            "file_changes": 296
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 9.9,
+        "active_months": 1,
+        "first_commit": "2026-07-09",
+        "last_commit": "2026-07-19",
+        "sessions_claude_history": 2,
+        "sessions_copilot": 0,
+        "sessions_claude_code_transcripts": 2,
+        "sessions_total": 2,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 10,
+          "median": 10,
+          "max": 10,
+          "series": [
+            10
+          ]
+        },
+        "decision_records": {
+          "record_files": 0,
+          "record_file_paths": [],
+          "distinct_ids": {
+            "ADR": 0,
+            "OQ": 0,
+            "KB": 0,
+            "DD": 0,
+            "INV": 0
+          },
+          "decision_count": 0,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 14,
+        "maven_direct": 0,
+        "npm_direct": 0,
+        "total_direct": 14,
+        "manifests": [
+          "pyproject.toml"
+        ],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    },
+    "smim": {
+      "project": "smim",
+      "repo_path": "C:\\Users\\olegr\\PycharmProjects\\smim",
+      "size": {
+        "tracked_files_total": 353,
+        "vendored_files_excluded": 0,
+        "source_files": 306,
+        "files_by_tier": {
+          "config": 3,
+          "docs": 65,
+          "code": 238
+        },
+        "loc_by_tier": {
+          "config": 175,
+          "docs": 19701,
+          "code": 61195
+        },
+        "loc_source_total": 81071,
+        "loc_code": 61195,
+        "docs_loc_share_of_code_plus_docs": 0.2435,
+        "language_count": 1,
+        "languages": {
+          "Python": 238
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 4169489,
+        "compressed_bytes_source": 759235,
+        "compression_ratio_source": 0.18209,
+        "raw_bytes_code": 2891574,
+        "compressed_bytes_code": 438064,
+        "compression_ratio_code": 0.1515
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 8.2574,
+        "entropy_normalised": 1.0,
+        "files_changed": 306,
+        "file_changes": 306,
+        "degenerate": true,
+        "degenerate_note": "n/a: history lost - a single (squashed) commit makes every file change exactly once, forcing H_norm to 1.0 by construction",
+        "per_quarter": [
+          {
+            "quarter": "2026-Q2",
+            "entropy_bits": 8.2574,
+            "entropy_normalised": 1.0,
+            "files_changed": 306,
+            "file_changes": 306
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 0.0,
+        "active_months": 1,
+        "first_commit": "2026-05-02",
+        "last_commit": "2026-05-02",
+        "sessions_claude_history": 1,
+        "sessions_copilot": 2,
+        "sessions_claude_code_transcripts": 0,
+        "sessions_total": 3,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 33,
+          "median": 33,
+          "max": 33,
+          "series": [
+            33
+          ]
+        },
+        "decision_records": {
+          "record_files": 2,
+          "record_file_paths": [
+            "docs/DECISIONS.md",
+            "docs/ITERATION_6_DECISION.md"
+          ],
+          "distinct_ids": {
+            "ADR": 15,
+            "OQ": 0,
+            "KB": 0,
+            "DD": 10,
+            "INV": 0
+          },
+          "decision_count": 15,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 23,
+        "maven_direct": 0,
+        "npm_direct": 0,
+        "total_direct": 23,
+        "manifests": [
+          "pyproject.toml"
+        ],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    },
+    "harp": {
+      "project": "harp",
+      "repo_path": "C:\\Users\\olegr\\PycharmProjects\\harp",
+      "size": {
+        "tracked_files_total": 147,
+        "vendored_files_excluded": 1,
+        "source_files": 126,
+        "files_by_tier": {
+          "config": 50,
+          "docs": 7,
+          "code": 69
+        },
+        "loc_by_tier": {
+          "config": 18026,
+          "docs": 2128,
+          "code": 23537
+        },
+        "loc_source_total": 43691,
+        "loc_code": 23537,
+        "docs_loc_share_of_code_plus_docs": 0.0829,
+        "language_count": 1,
+        "languages": {
+          "Python": 69
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 1813501,
+        "compressed_bytes_source": 271914,
+        "compression_ratio_source": 0.14994,
+        "raw_bytes_code": 1135449,
+        "compressed_bytes_code": 181820,
+        "compression_ratio_code": 0.16013
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 6.8647,
+        "entropy_normalised": 0.9839,
+        "files_changed": 126,
+        "file_changes": 138,
+        "degenerate": false,
+        "degenerate_note": null,
+        "per_quarter": [
+          {
+            "quarter": "2026-Q2",
+            "entropy_bits": 6.8647,
+            "entropy_normalised": 0.9839,
+            "files_changed": 126,
+            "file_changes": 138
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 17.5,
+        "active_months": 1,
+        "first_commit": "2026-04-08",
+        "last_commit": "2026-04-26",
+        "sessions_claude_history": 1,
+        "sessions_copilot": 4,
+        "sessions_claude_code_transcripts": 0,
+        "sessions_total": 5,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 14,
+          "median": 14,
+          "max": 14,
+          "series": [
+            14
+          ]
+        },
+        "decision_records": {
+          "record_files": 0,
+          "record_file_paths": [],
+          "distinct_ids": {
+            "ADR": 0,
+            "OQ": 0,
+            "KB": 0,
+            "DD": 0,
+            "INV": 0
+          },
+          "decision_count": 0,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 12,
+        "maven_direct": 0,
+        "npm_direct": 0,
+        "total_direct": 12,
+        "manifests": [
+          "pyproject.toml"
+        ],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    },
+    "seamQ": {
+      "project": "seamQ",
+      "repo_path": "C:\\Users\\olegr\\PycharmProjects\\seamQ",
+      "size": {
+        "tracked_files_total": 17,
+        "vendored_files_excluded": 0,
+        "source_files": 10,
+        "files_by_tier": {
+          "config": 1,
+          "docs": 4,
+          "code": 5
+        },
+        "loc_by_tier": {
+          "config": 20,
+          "docs": 2557,
+          "code": 1259
+        },
+        "loc_source_total": 3836,
+        "loc_code": 1259,
+        "docs_loc_share_of_code_plus_docs": 0.6701,
+        "language_count": 1,
+        "languages": {
+          "Python": 5
+        },
+        "files_missing_from_worktree": 0,
+        "files_skipped_oversize": 0
+      },
+      "ait": {
+        "estimator": "LZMA-compressed size of tracked source files concatenated in sorted-path order; a practical upper bound on K(repo) (Kolmogorov 1965; Li & Vitanyi; the compression-distance tradition of Cilibrasi & Vitanyi 2005)",
+        "compressor": "FORMAT_RAW / FILTER_LZMA2 / preset=9|PRESET_EXTREME",
+        "raw_bytes_source": 190452,
+        "compressed_bytes_source": 49704,
+        "compression_ratio_source": 0.26098,
+        "raw_bytes_code": 58928,
+        "compressed_bytes_code": 14773,
+        "compression_ratio_code": 0.2507
+      },
+      "change_entropy": {
+        "definition": "Hassan (ICSE 2009) change entropy over per-file change counts, normalised by log2(files changed); vendored and non-source paths excluded",
+        "entropy_bits": 7.0202,
+        "entropy_normalised": 0.9876,
+        "files_changed": 138,
+        "file_changes": 271,
+        "degenerate": false,
+        "degenerate_note": null,
+        "per_quarter": [
+          {
+            "quarter": "2026-Q2",
+            "entropy_bits": 7.0202,
+            "entropy_normalised": 0.9876,
+            "files_changed": 138,
+            "file_changes": 271
+          }
+        ]
+      },
+      "coordination_scope": {
+        "duration_days": 1.9,
+        "active_months": 1,
+        "first_commit": "2026-05-16",
+        "last_commit": "2026-05-18",
+        "sessions_claude_history": 4,
+        "sessions_copilot": 0,
+        "sessions_claude_code_transcripts": 0,
+        "sessions_total": 4,
+        "sessions_note": "total = Claude Code global history + Copilot JetBrains store; CC full transcripts are a SUBSET of CC history (retention-trimmed) and are therefore not added again. History log begins 2026-03-03, so any earlier session is invisible - btest's Dec 2025-Feb 2026 era in particular (STATE.md OQ-1).",
+        "distinct_dirs_per_active_month": {
+          "mean": 25,
+          "median": 25,
+          "max": 25,
+          "series": [
+            25
+          ]
+        },
+        "decision_records": {
+          "record_files": 0,
+          "record_file_paths": [],
+          "distinct_ids": {
+            "ADR": 0,
+            "OQ": 0,
+            "KB": 0,
+            "DD": 0,
+            "INV": 0
+          },
+          "decision_count": 0,
+          "note": "decision_count = distinct ADR-<n> identifiers found in tracked docs; 0 means no decision-record instrument exists, which is a finding, not a missing measurement"
+        }
+      },
+      "dependencies": {
+        "python_direct": 0,
+        "maven_direct": 0,
+        "npm_direct": 0,
+        "total_direct": 0,
+        "manifests": [],
+        "note": "direct declared dependencies only; Maven <dependencyManagement> pins and vendored manifests excluded"
+      },
+      "declared_qualitative": {
+        "_instruction": "0-3 each, filled by Oleg, never computed. Narrative placement only - explicitly excluded from Kendall's W and from every number above.",
+        "integration_surface": null,
+        "constraint_tightness": null,
+        "statefulness_concurrency": null,
+        "_criteria": {
+          "integration_surface": "0 none; 1 one file/data source; 2 one external API or broker; 3 multiple live external systems",
+          "constraint_tightness": "0 none; 1 soft correctness; 2 latency or numerical-parity budget; 3 regulatory or money-at-risk parity",
+          "statefulness_concurrency": "0 pure batch; 1 cached state; 2 persistent state across runs; 3 concurrent live state"
+        }
+      }
+    }
+  },
+  "primitive_matrix": {
+    "loc_source_total": {
+      "blive": 36790,
+      "btest": 205078,
+      "b-autobot": 19491,
+      "datacli": 21399,
+      "smim": 81071,
+      "harp": 43691,
+      "seamQ": 3836
+    },
+    "source_files": {
+      "blive": 184,
+      "btest": 398,
+      "b-autobot": 208,
+      "datacli": 117,
+      "smim": 306,
+      "harp": 126,
+      "seamQ": 10
+    },
+    "language_count": {
+      "blive": 1,
+      "btest": 6,
+      "b-autobot": 8,
+      "datacli": 1,
+      "smim": 1,
+      "harp": 1,
+      "seamQ": 1
+    },
+    "ait_compressed_bytes": {
+      "blive": 519197,
+      "btest": 2932155,
+      "b-autobot": 448803,
+      "datacli": 145305,
+      "smim": 759235,
+      "harp": 271914,
+      "seamQ": 49704
+    },
+    "change_entropy_normalised": {
+      "blive": 0.8918,
+      "btest": 0.9563,
+      "b-autobot": 0.9545,
+      "datacli": 0.9369,
+      "smim": 1.0,
+      "harp": 0.9839,
+      "seamQ": 0.9876
+    },
+    "duration_days": {
+      "blive": 40.6,
+      "btest": 212.9,
+      "b-autobot": 6.3,
+      "datacli": 9.9,
+      "smim": 0.0,
+      "harp": 17.5,
+      "seamQ": 1.9
+    },
+    "sessions_total": {
+      "blive": 12,
+      "btest": 111,
+      "b-autobot": 9,
+      "datacli": 2,
+      "smim": 3,
+      "harp": 5,
+      "seamQ": 4
+    },
+    "dirs_per_active_month_mean": {
+      "blive": 25.67,
+      "btest": 35.38,
+      "b-autobot": 84,
+      "datacli": 10,
+      "smim": 33,
+      "harp": 14,
+      "seamQ": 25
+    },
+    "direct_dependencies": {
+      "blive": 18,
+      "btest": 45,
+      "b-autobot": 28,
+      "datacli": 14,
+      "smim": 23,
+      "harp": 12,
+      "seamQ": 0
+    }
+  },
+  "concordance": {
+    "primary": {
+      "label": "all projects, all primitives",
+      "projects": [
+        "blive",
+        "btest",
+        "b-autobot",
+        "datacli",
+        "smim",
+        "harp",
+        "seamQ"
+      ],
+      "primitives_used": [
+        "ait_compressed_bytes",
+        "change_entropy_normalised",
+        "direct_dependencies",
+        "dirs_per_active_month_mean",
+        "duration_days",
+        "language_count",
+        "loc_source_total",
+        "sessions_total",
+        "source_files"
+      ],
+      "primitives_dropped": [],
+      "n_projects": 7,
+      "n_primitives": 9,
+      "kendalls_w": 0.4646,
+      "chi_square": 25.091,
+      "df": 6,
+      "p_value": 0.00033,
+      "p_value_caveat": "the chi-square approximation to W assumes n>7 objects; with n=7 it is indicative only",
+      "rank_sums": {
+        "blive": 35.0,
+        "btest": 14.0,
+        "b-autobot": 30.0,
+        "datacli": 51.0,
+        "smim": 31.0,
+        "harp": 40.0,
+        "seamQ": 51.0
+      },
+      "mean_rank": {
+        "blive": 3.89,
+        "btest": 1.56,
+        "b-autobot": 3.33,
+        "datacli": 5.67,
+        "smim": 3.44,
+        "harp": 4.44,
+        "seamQ": 5.67
+      },
+      "ordering_most_to_least_complex": [
+        "btest",
+        "b-autobot",
+        "smim",
+        "blive",
+        "harp",
+        "datacli",
+        "seamQ"
+      ],
+      "rank_matrix": {
+        "ait_compressed_bytes": {
+          "blive": 3.0,
+          "btest": 1.0,
+          "b-autobot": 4.0,
+          "datacli": 6.0,
+          "smim": 2.0,
+          "harp": 5.0,
+          "seamQ": 7.0
+        },
+        "change_entropy_normalised": {
+          "blive": 7.0,
+          "btest": 4.0,
+          "b-autobot": 5.0,
+          "datacli": 6.0,
+          "smim": 1.0,
+          "harp": 3.0,
+          "seamQ": 2.0
+        },
+        "direct_dependencies": {
+          "blive": 4.0,
+          "btest": 1.0,
+          "b-autobot": 2.0,
+          "datacli": 5.0,
+          "smim": 3.0,
+          "harp": 6.0,
+          "seamQ": 7.0
+        },
+        "dirs_per_active_month_mean": {
+          "blive": 4.0,
+          "btest": 2.0,
+          "b-autobot": 1.0,
+          "datacli": 7.0,
+          "smim": 3.0,
+          "harp": 6.0,
+          "seamQ": 5.0
+        },
+        "duration_days": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 5.0,
+          "datacli": 4.0,
+          "smim": 7.0,
+          "harp": 3.0,
+          "seamQ": 6.0
+        },
+        "language_count": {
+          "blive": 5.0,
+          "btest": 2.0,
+          "b-autobot": 1.0,
+          "datacli": 5.0,
+          "smim": 5.0,
+          "harp": 5.0,
+          "seamQ": 5.0
+        },
+        "loc_source_total": {
+          "blive": 4.0,
+          "btest": 1.0,
+          "b-autobot": 6.0,
+          "datacli": 5.0,
+          "smim": 2.0,
+          "harp": 3.0,
+          "seamQ": 7.0
+        },
+        "sessions_total": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 3.0,
+          "datacli": 7.0,
+          "smim": 6.0,
+          "harp": 4.0,
+          "seamQ": 5.0
+        },
+        "source_files": {
+          "blive": 4.0,
+          "btest": 1.0,
+          "b-autobot": 3.0,
+          "datacli": 6.0,
+          "smim": 2.0,
+          "harp": 5.0,
+          "seamQ": 7.0
+        }
+      }
+    },
+    "sensitivity_no_entropy": {
+      "label": "change entropy dropped (degenerate for squashed histories)",
+      "projects": [
+        "blive",
+        "btest",
+        "b-autobot",
+        "datacli",
+        "smim",
+        "harp",
+        "seamQ"
+      ],
+      "primitives_used": [
+        "ait_compressed_bytes",
+        "direct_dependencies",
+        "dirs_per_active_month_mean",
+        "duration_days",
+        "language_count",
+        "loc_source_total",
+        "sessions_total",
+        "source_files"
+      ],
+      "primitives_dropped": [],
+      "n_projects": 7,
+      "n_primitives": 8,
+      "kendalls_w": 0.6051,
+      "chi_square": 29.047,
+      "df": 6,
+      "p_value": 6e-05,
+      "p_value_caveat": "the chi-square approximation to W assumes n>7 objects; with n=7 it is indicative only",
+      "rank_sums": {
+        "blive": 28.0,
+        "btest": 10.0,
+        "b-autobot": 25.0,
+        "datacli": 45.0,
+        "smim": 30.0,
+        "harp": 37.0,
+        "seamQ": 49.0
+      },
+      "mean_rank": {
+        "blive": 3.5,
+        "btest": 1.25,
+        "b-autobot": 3.12,
+        "datacli": 5.62,
+        "smim": 3.75,
+        "harp": 4.62,
+        "seamQ": 6.12
+      },
+      "ordering_most_to_least_complex": [
+        "btest",
+        "b-autobot",
+        "blive",
+        "smim",
+        "harp",
+        "datacli",
+        "seamQ"
+      ],
+      "rank_matrix": {
+        "ait_compressed_bytes": {
+          "blive": 3.0,
+          "btest": 1.0,
+          "b-autobot": 4.0,
+          "datacli": 6.0,
+          "smim": 2.0,
+          "harp": 5.0,
+          "seamQ": 7.0
+        },
+        "direct_dependencies": {
+          "blive": 4.0,
+          "btest": 1.0,
+          "b-autobot": 2.0,
+          "datacli": 5.0,
+          "smim": 3.0,
+          "harp": 6.0,
+          "seamQ": 7.0
+        },
+        "dirs_per_active_month_mean": {
+          "blive": 4.0,
+          "btest": 2.0,
+          "b-autobot": 1.0,
+          "datacli": 7.0,
+          "smim": 3.0,
+          "harp": 6.0,
+          "seamQ": 5.0
+        },
+        "duration_days": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 5.0,
+          "datacli": 4.0,
+          "smim": 7.0,
+          "harp": 3.0,
+          "seamQ": 6.0
+        },
+        "language_count": {
+          "blive": 5.0,
+          "btest": 2.0,
+          "b-autobot": 1.0,
+          "datacli": 5.0,
+          "smim": 5.0,
+          "harp": 5.0,
+          "seamQ": 5.0
+        },
+        "loc_source_total": {
+          "blive": 4.0,
+          "btest": 1.0,
+          "b-autobot": 6.0,
+          "datacli": 5.0,
+          "smim": 2.0,
+          "harp": 3.0,
+          "seamQ": 7.0
+        },
+        "sessions_total": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 3.0,
+          "datacli": 7.0,
+          "smim": 6.0,
+          "harp": 4.0,
+          "seamQ": 5.0
+        },
+        "source_files": {
+          "blive": 4.0,
+          "btest": 1.0,
+          "b-autobot": 3.0,
+          "datacli": 6.0,
+          "smim": 2.0,
+          "harp": 5.0,
+          "seamQ": 7.0
+        }
+      }
+    },
+    "sensitivity_excl_degenerate": {
+      "label": "excluding smim (single-commit history)",
+      "projects": [
+        "blive",
+        "btest",
+        "b-autobot",
+        "datacli",
+        "harp",
+        "seamQ"
+      ],
+      "primitives_used": [
+        "ait_compressed_bytes",
+        "change_entropy_normalised",
+        "direct_dependencies",
+        "dirs_per_active_month_mean",
+        "duration_days",
+        "language_count",
+        "loc_source_total",
+        "sessions_total",
+        "source_files"
+      ],
+      "primitives_dropped": [],
+      "n_projects": 6,
+      "n_primitives": 9,
+      "kendalls_w": 0.5089,
+      "chi_square": 22.902,
+      "df": 5,
+      "p_value": 0.00035,
+      "p_value_caveat": "the chi-square approximation to W assumes n>7 objects; with n=6 it is indicative only",
+      "rank_sums": {
+        "blive": 28.5,
+        "btest": 13.0,
+        "b-autobot": 26.0,
+        "datacli": 43.5,
+        "harp": 33.5,
+        "seamQ": 44.5
+      },
+      "mean_rank": {
+        "blive": 3.17,
+        "btest": 1.44,
+        "b-autobot": 2.89,
+        "datacli": 4.83,
+        "harp": 3.72,
+        "seamQ": 4.94
+      },
+      "ordering_most_to_least_complex": [
+        "btest",
+        "b-autobot",
+        "blive",
+        "harp",
+        "datacli",
+        "seamQ"
+      ],
+      "rank_matrix": {
+        "ait_compressed_bytes": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 3.0,
+          "datacli": 5.0,
+          "harp": 4.0,
+          "seamQ": 6.0
+        },
+        "change_entropy_normalised": {
+          "blive": 6.0,
+          "btest": 3.0,
+          "b-autobot": 4.0,
+          "datacli": 5.0,
+          "harp": 2.0,
+          "seamQ": 1.0
+        },
+        "direct_dependencies": {
+          "blive": 3.0,
+          "btest": 1.0,
+          "b-autobot": 2.0,
+          "datacli": 4.0,
+          "harp": 5.0,
+          "seamQ": 6.0
+        },
+        "dirs_per_active_month_mean": {
+          "blive": 3.0,
+          "btest": 2.0,
+          "b-autobot": 1.0,
+          "datacli": 6.0,
+          "harp": 5.0,
+          "seamQ": 4.0
+        },
+        "duration_days": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 5.0,
+          "datacli": 4.0,
+          "harp": 3.0,
+          "seamQ": 6.0
+        },
+        "language_count": {
+          "blive": 4.5,
+          "btest": 2.0,
+          "b-autobot": 1.0,
+          "datacli": 4.5,
+          "harp": 4.5,
+          "seamQ": 4.5
+        },
+        "loc_source_total": {
+          "blive": 3.0,
+          "btest": 1.0,
+          "b-autobot": 5.0,
+          "datacli": 4.0,
+          "harp": 2.0,
+          "seamQ": 6.0
+        },
+        "sessions_total": {
+          "blive": 2.0,
+          "btest": 1.0,
+          "b-autobot": 3.0,
+          "datacli": 6.0,
+          "harp": 4.0,
+          "seamQ": 5.0
+        },
+        "source_files": {
+          "blive": 3.0,
+          "btest": 1.0,
+          "b-autobot": 2.0,
+          "datacli": 5.0,
+          "harp": 4.0,
+          "seamQ": 6.0
+        }
+      }
+    }
+  },
+  "ordering_stable_across_all_runs": [
+    "btest",
+    "b-autobot",
+    "blive",
+    "harp",
+    "datacli",
+    "seamQ"
+  ]
+}

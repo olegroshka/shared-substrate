@@ -14,3 +14,13 @@
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Python bytecode from research/eval/scripts/
+__pycache__/
+*.py[cod]
+
+# IDE metadata
+.idea/
+
+# Claude Code runtime state
+.claude/scheduled_tasks.lock

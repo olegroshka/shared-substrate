@@ -1,0 +1,1234 @@
+{
+  "claude_code": {
+    "C--Users-olegr-PycharmProjects-btest": {
+      "sessions": 4,
+      "bytes": 20849139,
+      "user_msgs": 1552,
+      "assistant_msgs": 3155,
+      "tokens_in": 675096,
+      "tokens_out": 5561235,
+      "tokens_cache_read": 1305244080,
+      "first_ts": "2026-07-06T19:53:58.803Z",
+      "last_ts": "2026-07-16T22:03:34.393Z",
+      "per_session": [
+        {
+          "file": "7b39d07a-d19d-44a7-b3a8-dc60236c6eba.jsonl",
+          "bytes": 5029232,
+          "first_ts": "2026-07-14T10:00:18.038Z",
+          "last_ts": "2026-07-14T13:49:05.641Z",
+          "user_msgs": 214,
+          "assistant_msgs": 389,
+          "sidechain_msgs": 0,
+          "tokens_in": 23390,
+          "tokens_out": 903184,
+          "tokens_cache_read": 99775799,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\btest"
+          ],
+          "parse_errors": 0
+        },
+        {
+          "file": "a014aa48-9ade-4214-99f0-dd4d5801d113.jsonl",
+          "bytes": 617246,
+          "first_ts": "2026-07-16T21:26:22.883Z",
+          "last_ts": "2026-07-16T22:03:34.393Z",
+          "user_msgs": 76,
+          "assistant_msgs": 166,
+          "sidechain_msgs": 0,
+          "tokens_in": 4213,
+          "tokens_out": 185263,
+          "tokens_cache_read": 12972699,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\btest"
+          ],
+          "parse_errors": 0
+        },
+        {
+          "file": "dc3c57ea-9046-476f-9883-f7193619ef15.jsonl",
+          "bytes": 15104029,
+          "first_ts": "2026-07-06T20:01:31.305Z",
+          "last_ts": "2026-07-12T14:58:31.410Z",
+          "user_msgs": 1245,
+          "assistant_msgs": 2584,
+          "sidechain_msgs": 0,
+          "tokens_in": 630324,
+          "tokens_out": 4437413,
+          "tokens_cache_read": 1192032021,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\btest",
+            "C:\\Users\\olegr\\PycharmProjects\\btest\\data\\raw\\eodhd"
+          ],
+          "parse_errors": 0
+        },
+        {
+          "file": "e0c5fa93-7520-472b-8144-a011c46f72e6.jsonl",
+          "bytes": 98632,
+          "first_ts": "2026-07-06T19:53:58.803Z",
+          "last_ts": "2026-07-06T20:01:27.531Z",
+          "user_msgs": 17,
+          "assistant_msgs": 16,
+          "sidechain_msgs": 0,
+          "tokens_in": 17169,
+          "tokens_out": 35375,
+          "tokens_cache_read": 463561,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\btest"
+          ],
+          "parse_errors": 0
+        }
+      ]
+    },
+    "C--Users-olegr-PycharmProjects-datacli": {
+      "sessions": 2,
+      "bytes": 319393,
+      "user_msgs": 33,
+      "assistant_msgs": 59,
+      "tokens_in": 14314,
+      "tokens_out": 30484,
+      "tokens_cache_read": 2494237,
+      "first_ts": "2026-07-19T18:37:03.645Z",
+      "last_ts": "2026-07-19T19:35:44.227Z",
+      "per_session": [
+        {
+          "file": "205d4699-18e9-4183-abe5-edeeb53040d4.jsonl",
+          "bytes": 207664,
+          "first_ts": "2026-07-19T18:37:03.645Z",
+          "last_ts": "2026-07-19T19:15:40.122Z",
+          "user_msgs": 23,
+          "assistant_msgs": 41,
+          "sidechain_msgs": 0,
+          "tokens_in": 1830,
+          "tokens_out": 21398,
+          "tokens_cache_read": 1795048,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\datacli"
+          ],
+          "parse_errors": 0
+        },
+        {
+          "file": "ae004c5d-07e3-4170-9823-ddc5c5ac4419.jsonl",
+          "bytes": 111729,
+          "first_ts": "2026-07-19T19:32:41.114Z",
+          "last_ts": "2026-07-19T19:35:44.227Z",
+          "user_msgs": 10,
+          "assistant_msgs": 18,
+          "sidechain_msgs": 0,
+          "tokens_in": 12484,
+          "tokens_out": 9086,
+          "tokens_cache_read": 699189,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\datacli"
+          ],
+          "parse_errors": 0
+        }
+      ]
+    },
+    "C--Users-olegr-PycharmProjects-shared-substrate": {
+      "sessions": 3,
+      "bytes": 1717862,
+      "user_msgs": 103,
+      "assistant_msgs": 197,
+      "tokens_in": 372,
+      "tokens_out": 303119,
+      "tokens_cache_read": 15357365,
+      "first_ts": "2026-07-25T12:13:39.204Z",
+      "last_ts": "2026-07-25T14:28:27.123Z",
+      "per_session": [
+        {
+          "file": "3cd3a1cd-c88a-4b26-8da9-7f4d9eb2717e.jsonl",
+          "bytes": 99413,
+          "first_ts": "2026-07-25T12:52:26.174Z",
+          "last_ts": "2026-07-25T12:55:30.088Z",
+          "user_msgs": 12,
+          "assistant_msgs": 28,
+          "sidechain_msgs": 0,
+          "tokens_in": 53,
+          "tokens_out": 20153,
+          "tokens_cache_read": 1017990,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\shared-substrate"
+          ],
+          "parse_errors": 0
+        },
+        {
+          "file": "6266d8ca-c714-432c-a9aa-bdb9f588b5b9.jsonl",
+          "bytes": 803476,
+          "first_ts": "2026-07-25T12:13:39.204Z",
+          "last_ts": "2026-07-25T12:49:42.572Z",
+          "user_msgs": 19,
+          "assistant_msgs": 42,
+          "sidechain_msgs": 0,
+          "tokens_in": 80,
+          "tokens_out": 43850,
+          "tokens_cache_read": 1937868,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\shared-substrate"
+          ],
+          "parse_errors": 0
+        },
+        {
+          "file": "f930e2a1-00f0-4b85-82e7-0d44089a4a2e.jsonl",
+          "bytes": 814973,
+          "first_ts": "2026-07-25T13:02:10.407Z",
+          "last_ts": "2026-07-25T14:28:27.123Z",
+          "user_msgs": 72,
+          "assistant_msgs": 127,
+          "sidechain_msgs": 0,
+          "tokens_in": 239,
+          "tokens_out": 239116,
+          "tokens_cache_read": 12401507,
+          "cwds": [
+            "C:\\Users\\olegr\\PycharmProjects\\shared-substrate",
+            "C:\\Users\\olegr\\PycharmProjects\\shared-substrate\\research\\eval\\scripts",
+            "C:\\Users\\olegr\\PycharmProjects\\shared-substrate\\talks"
+          ],
+          "parse_errors": 0
+        }
+      ]
+    }
+  },
+  "claude_history": {
+    "btest": {
+      "prompts": 829,
+      "first_ts": "2026-03-03T21:33:24.558000+00:00",
+      "last_ts": "2026-07-16T22:02:53.323000+00:00",
+      "sessions": 63
+    },
+    "b-autobot": {
+      "prompts": 123,
+      "first_ts": "2026-03-03T22:08:06.867000+00:00",
+      "last_ts": "2026-03-11T07:38:55.561000+00:00",
+      "sessions": 9
+    },
+    "blive": {
+      "prompts": 119,
+      "first_ts": "2026-05-02T12:47:19.743000+00:00",
+      "last_ts": "2026-06-06T13:53:49.958000+00:00",
+      "sessions": 10
+    },
+    "smim": {
+      "prompts": 2,
+      "first_ts": "2026-05-12T12:57:45.510000+00:00",
+      "last_ts": "2026-05-12T12:59:45.504000+00:00",
+      "sessions": 1
+    },
+    "seam-reproduction": {
+      "prompts": 30,
+      "first_ts": "2026-05-12T13:03:55.202000+00:00",
+      "last_ts": "2026-05-31T20:38:31.037000+00:00",
+      "sessions": 4
+    },
+    "seamQ": {
+      "prompts": 57,
+      "first_ts": "2026-05-16T16:08:04.578000+00:00",
+      "last_ts": "2026-05-18T14:27:11.019000+00:00",
+      "sessions": 4
+    },
+    "lab": {
+      "prompts": 2,
+      "first_ts": "2026-06-06T14:46:48.608000+00:00",
+      "last_ts": "2026-06-06T14:47:30.119000+00:00",
+      "sessions": 1
+    },
+    "harp": {
+      "prompts": 11,
+      "first_ts": "2026-06-08T18:39:01.263000+00:00",
+      "last_ts": "2026-06-09T07:56:56.901000+00:00",
+      "sessions": 1
+    },
+    "datacli": {
+      "prompts": 6,
+      "first_ts": "2026-07-19T18:37:00.938000+00:00",
+      "last_ts": "2026-07-19T19:34:27.193000+00:00",
+      "sessions": 2
+    },
+    "shared-substrate": {
+      "prompts": 20,
+      "first_ts": "2026-07-25T12:13:39.195000+00:00",
+      "last_ts": "2026-07-25T14:24:44.817000+00:00",
+      "sessions": 3
+    }
+  },
+  "copilot": {
+    "harp": {
+      "sessions": 4,
+      "bytes": 763490,
+      "user_msgs": 4,
+      "assistant_msgs": 38,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "tokens_cache_read": 0,
+      "first_ts": "2026-05-05T20:38:30.352Z",
+      "last_ts": "2026-05-06T11:05:39.767Z",
+      "per_session": [
+        {
+          "session": "035df2ec-0217-4302-ae92-0b6815b2bfa1",
+          "bytes": 280119,
+          "first_ts": "2026-05-06T11:02:37.608Z",
+          "last_ts": "2026-05-06T11:05:39.767Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "harp": 119,
+            "btest": 73,
+            "blive": 52,
+            "smim": 4
+          },
+          "parse_errors": 0,
+          "attributed_project": "harp"
+        },
+        {
+          "session": "ac192e78-206d-4b18-82a4-d42d3b2ee62b",
+          "bytes": 155310,
+          "first_ts": "2026-05-05T20:55:40.490Z",
+          "last_ts": "2026-05-05T20:57:29.007Z",
+          "user_msgs": 1,
+          "assistant_msgs": 11,
+          "project_hits": {
+            "harp": 113,
+            "btest": 88,
+            "smim": 32,
+            "pt-liqadj": 7,
+            "blive": 5
+          },
+          "parse_errors": 0,
+          "attributed_project": "harp"
+        },
+        {
+          "session": "bb6902eb-b1af-46a7-97b1-6a4e8ddcc62d",
+          "bytes": 182554,
+          "first_ts": "2026-05-05T20:38:30.352Z",
+          "last_ts": "2026-05-05T20:40:18.248Z",
+          "user_msgs": 1,
+          "assistant_msgs": 10,
+          "project_hits": {
+            "harp": 169,
+            "blive": 8,
+            "btest": 8,
+            "pt-liqadj": 8,
+            "smim": 8
+          },
+          "parse_errors": 0,
+          "attributed_project": "harp"
+        },
+        {
+          "session": "f36883bb-83b2-4ab4-ad5c-207324e7212b",
+          "bytes": 145507,
+          "first_ts": "2026-05-05T21:57:29.233Z",
+          "last_ts": "2026-05-05T21:58:02.117Z",
+          "user_msgs": 1,
+          "assistant_msgs": 5,
+          "project_hits": {
+            "harp": 52,
+            "btest": 49,
+            "blive": 6
+          },
+          "parse_errors": 0,
+          "attributed_project": "harp"
+        }
+      ]
+    },
+    "btest": {
+      "sessions": 48,
+      "bytes": 21696376,
+      "user_msgs": 222,
+      "assistant_msgs": 1762,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "tokens_cache_read": 0,
+      "first_ts": "2026-03-20T23:01:04.196Z",
+      "last_ts": "2026-05-31T20:29:00.848Z",
+      "per_session": [
+        {
+          "session": "051087c1-a80c-4869-8901-297c9a41d76f",
+          "bytes": 183290,
+          "first_ts": "2026-05-06T13:04:02.775Z",
+          "last_ts": "2026-05-06T13:05:25.391Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "btest": 102,
+            "smim": 31,
+            "harp": 28,
+            "pt-liqadj": 27,
+            "blive": 27,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "0a47d330-6f7a-45a2-80db-a80fa177f9db",
+          "bytes": 1356888,
+          "first_ts": "2026-03-31T22:05:01.835Z",
+          "last_ts": "2026-04-01T20:36:17.840Z",
+          "user_msgs": 3,
+          "assistant_msgs": 3,
+          "project_hits": {
+            "btest": 558
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "1513fd1b-58a0-47aa-9d94-0e91d150e333",
+          "bytes": 200132,
+          "first_ts": "2026-05-07T21:24:31.083Z",
+          "last_ts": "2026-05-07T21:25:59.659Z",
+          "user_msgs": 1,
+          "assistant_msgs": 8,
+          "project_hits": {
+            "btest": 152,
+            "blive": 12,
+            "harp": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "16024a7e-44c5-4d28-9f3e-6020c141dd3f",
+          "bytes": 177119,
+          "first_ts": "2026-05-05T21:09:17.136Z",
+          "last_ts": "2026-05-05T21:10:50.252Z",
+          "user_msgs": 1,
+          "assistant_msgs": 15,
+          "project_hits": {
+            "btest": 130,
+            "harp": 85,
+            "blive": 47,
+            "smim": 39,
+            "pt-liqadj": 34
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "161f29e6-7c09-41cd-92f7-64e373ff4ea4",
+          "bytes": 196458,
+          "first_ts": "2026-05-06T09:05:09.584Z",
+          "last_ts": "2026-05-06T09:07:43.498Z",
+          "user_msgs": 1,
+          "assistant_msgs": 10,
+          "project_hits": {
+            "btest": 226,
+            "harp": 46,
+            "blive": 6,
+            "pt-liqadj": 5,
+            "smim": 4,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "173b87c3-51e6-490b-a213-9160d631ba8f",
+          "bytes": 129374,
+          "first_ts": "2026-05-06T17:42:30.348Z",
+          "last_ts": "2026-05-06T17:43:29.013Z",
+          "user_msgs": 1,
+          "assistant_msgs": 8,
+          "project_hits": {
+            "btest": 93,
+            "harp": 16,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "196560b4-5baa-456b-b97e-0e0055f2fd12",
+          "bytes": 261744,
+          "first_ts": "2026-05-06T17:21:38.784Z",
+          "last_ts": "2026-05-06T17:23:56.474Z",
+          "user_msgs": 1,
+          "assistant_msgs": 10,
+          "project_hits": {
+            "btest": 249,
+            "harp": 118,
+            "blive": 69,
+            "smim": 53,
+            "pt-liqadj": 40
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "1eaca3a8-8050-46b0-9b0d-6f510c276ae4",
+          "bytes": 173548,
+          "first_ts": "2026-05-07T15:16:09.099Z",
+          "last_ts": "2026-05-07T15:18:58.463Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "btest": 127,
+            "harp": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "291f07b4-fec1-48f9-9a84-81c7be00e337",
+          "bytes": 2665415,
+          "first_ts": "2026-05-02T09:43:24.134Z",
+          "last_ts": "2026-05-02T14:31:49.237Z",
+          "user_msgs": 22,
+          "assistant_msgs": 208,
+          "project_hits": {
+            "btest": 2422,
+            "smim": 701,
+            "harp": 36,
+            "blive": 33,
+            "pt-liqadj": 5,
+            "smim.": 3,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "2e254b02-1c03-471c-8b22-f3a3fe5c2387",
+          "bytes": 171340,
+          "first_ts": "2026-05-05T21:37:36.654Z",
+          "last_ts": "2026-05-05T21:39:28.740Z",
+          "user_msgs": 1,
+          "assistant_msgs": 13,
+          "project_hits": {
+            "btest": 68,
+            "harp": 37
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "30258cae-f7c0-4abb-a171-ef80cc69305c",
+          "bytes": 272532,
+          "first_ts": "2026-05-07T20:28:02.481Z",
+          "last_ts": "2026-05-07T20:29:34.977Z",
+          "user_msgs": 1,
+          "assistant_msgs": 13,
+          "project_hits": {
+            "btest": 216,
+            "smim": 104,
+            "blive": 92,
+            "harp": 62,
+            "pt-liqadj": 45
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "3977fcd4-8628-4a50-9198-b3a239631665",
+          "bytes": 194847,
+          "first_ts": "2026-05-06T10:35:58.946Z",
+          "last_ts": "2026-05-06T10:38:08.557Z",
+          "user_msgs": 1,
+          "assistant_msgs": 11,
+          "project_hits": {
+            "btest": 152,
+            "harp": 89,
+            "blive": 57,
+            "smim": 48,
+            "pt-liqadj": 44
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "3c89ef6b-b1c0-4497-8706-8625f48035a9",
+          "bytes": 177947,
+          "first_ts": "2026-05-06T18:14:07.898Z",
+          "last_ts": "2026-05-06T18:15:37.998Z",
+          "user_msgs": 1,
+          "assistant_msgs": 10,
+          "project_hits": {
+            "btest": 213,
+            "blive": 8,
+            "harp": 7,
+            "pt-liqadj": 1,
+            "smim": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "3f765021-d6e3-4792-91f9-40b00782dc39",
+          "bytes": 265507,
+          "first_ts": "2026-05-07T21:14:50.818Z",
+          "last_ts": "2026-05-07T21:17:53.360Z",
+          "user_msgs": 1,
+          "assistant_msgs": 23,
+          "project_hits": {
+            "btest": 192,
+            "blive": 7,
+            "harp": 4
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "4080cd86-312f-409d-bfee-c5a15ee54d37",
+          "bytes": 277473,
+          "first_ts": "2026-05-02T11:21:26.917Z",
+          "last_ts": "2026-05-02T11:22:46.446Z",
+          "user_msgs": 1,
+          "assistant_msgs": 14,
+          "project_hits": {
+            "btest": 623,
+            "blive": 12,
+            "smim": 5,
+            "pt-liqadj": 4,
+            "smim.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "4445a3ce-d206-4abd-a2f4-e4cb9faec98d",
+          "bytes": 215869,
+          "first_ts": "2026-05-02T09:35:18.331Z",
+          "last_ts": "2026-05-02T09:36:28.505Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "btest": 424,
+            "blive": 12,
+            "harp": 2,
+            "pt-liqadj": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "4dcbcf84-273f-441f-a9bc-6736f54debcc",
+          "bytes": 220371,
+          "first_ts": "2026-05-02T20:15:39.328Z",
+          "last_ts": "2026-05-02T20:17:22.817Z",
+          "user_msgs": 1,
+          "assistant_msgs": 18,
+          "project_hits": {
+            "btest": 431,
+            "harp": 44,
+            "pt-liqadj": 42,
+            "blive": 40,
+            "smim": 40
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "526da248-2a96-4e5c-bd0c-7a0e0526956e",
+          "bytes": 485065,
+          "first_ts": "2026-05-05T20:47:09.227Z",
+          "last_ts": "2026-05-05T20:52:20.012Z",
+          "user_msgs": 1,
+          "assistant_msgs": 31,
+          "project_hits": {
+            "btest": 357,
+            "harp": 180,
+            "smim": 68,
+            "blive": 66,
+            "pt-liqadj": 30
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "5a34f32b-9b2b-4bd7-a8c1-33eb92f1e59e",
+          "bytes": 196172,
+          "first_ts": "2026-05-06T18:19:23.264Z",
+          "last_ts": "2026-05-06T18:20:31.987Z",
+          "user_msgs": 1,
+          "assistant_msgs": 9,
+          "project_hits": {
+            "btest": 146,
+            "harp": 23,
+            "blive": 21,
+            "smim": 14,
+            "pt-liqadj": 5
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "610546f8-5818-499a-9235-4a50a709dbdc",
+          "bytes": 195451,
+          "first_ts": "2026-05-06T08:30:24.902Z",
+          "last_ts": "2026-05-06T08:33:08.853Z",
+          "user_msgs": 1,
+          "assistant_msgs": 15,
+          "project_hits": {
+            "btest": 143,
+            "harp": 63,
+            "blive": 13,
+            "pt-liqadj": 10,
+            "smim": 7
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "646c6701-1ba0-4670-b4a9-bca89d7417fb",
+          "bytes": 202543,
+          "first_ts": "2026-05-05T23:29:05.800Z",
+          "last_ts": "2026-05-05T23:31:02.582Z",
+          "user_msgs": 1,
+          "assistant_msgs": 10,
+          "project_hits": {
+            "btest": 127,
+            "harp": 53,
+            "smim": 11,
+            "blive": 9,
+            "pt-liqadj": 4
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "6585fb03-f6e0-4155-8130-4b5b6dceb243",
+          "bytes": 187041,
+          "first_ts": "2026-05-02T11:44:02.731Z",
+          "last_ts": "2026-05-02T11:45:47.438Z",
+          "user_msgs": 1,
+          "assistant_msgs": 9,
+          "project_hits": {
+            "btest": 511,
+            "smim": 4,
+            "smim.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "78f8bdd3-bef9-436b-9915-3c53532ba4a1",
+          "bytes": 101622,
+          "first_ts": "2026-05-06T10:30:25.268Z",
+          "last_ts": "2026-05-06T10:31:44.368Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "btest": 79,
+            "harp": 44,
+            "blive": 27,
+            "smim": 24,
+            "pt-liqadj": 5
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "80c67889-383a-48ef-bc68-1c585647c25c",
+          "bytes": 379921,
+          "first_ts": "2026-05-06T11:10:10.607Z",
+          "last_ts": "2026-05-06T11:13:32.662Z",
+          "user_msgs": 1,
+          "assistant_msgs": 14,
+          "project_hits": {
+            "btest": 440,
+            "harp": 222,
+            "smim": 221,
+            "blive": 149,
+            "pt-liqadj": 81
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "91f1b737-8190-4876-8519-21c074fac948",
+          "bytes": 355562,
+          "first_ts": "2026-05-02T09:35:09.445Z",
+          "last_ts": "2026-05-02T09:37:49.515Z",
+          "user_msgs": 2,
+          "assistant_msgs": 13,
+          "project_hits": {
+            "btest": 335,
+            "blive": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "9f825658-a6e8-495b-b7b4-64205626c6a2",
+          "bytes": 109037,
+          "first_ts": "2026-05-02T12:45:26.009Z",
+          "last_ts": "2026-05-02T12:46:27.800Z",
+          "user_msgs": 1,
+          "assistant_msgs": 6,
+          "project_hits": {
+            "btest": 131,
+            "pt-liqadj": 4,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "aca4f0dd-3ec6-4809-9f2f-968b4f91dad1",
+          "bytes": 213140,
+          "first_ts": "2026-05-06T09:42:32.988Z",
+          "last_ts": "2026-05-06T09:44:21.388Z",
+          "user_msgs": 1,
+          "assistant_msgs": 9,
+          "project_hits": {
+            "btest": 125,
+            "harp": 26,
+            "blive": 17,
+            "smim": 14,
+            "pt-liqadj": 9,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "b3a1e397-ad6f-403b-91ec-5d6d1e3511a9",
+          "bytes": 218701,
+          "first_ts": "2026-05-02T12:48:58.817Z",
+          "last_ts": "2026-05-02T12:50:32.615Z",
+          "user_msgs": 1,
+          "assistant_msgs": 10,
+          "project_hits": {
+            "btest": 229,
+            "smim": 163,
+            "blive": 4,
+            "pt-liqadj": 3,
+            "harp": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "b510f143-975c-4f37-89fb-555de8fff0d5",
+          "bytes": 265581,
+          "first_ts": "2026-05-07T20:36:53.331Z",
+          "last_ts": "2026-05-07T20:39:02.407Z",
+          "user_msgs": 1,
+          "assistant_msgs": 16,
+          "project_hits": {
+            "btest": 227,
+            "blive": 21,
+            "harp": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "b794854d-9933-415d-868e-8b55c94098a1",
+          "bytes": 248953,
+          "first_ts": "2026-05-06T19:20:55.592Z",
+          "last_ts": "2026-05-06T19:22:41.259Z",
+          "user_msgs": 1,
+          "assistant_msgs": 16,
+          "project_hits": {
+            "btest": 349,
+            "blive": 73,
+            "harp": 70,
+            "smim": 61,
+            "pt-liqadj": 56
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "bf8e9279-ac91-43f1-bc3c-269f1a84c4da",
+          "bytes": 263873,
+          "first_ts": "2026-05-02T20:02:58.389Z",
+          "last_ts": "2026-05-02T20:21:41.262Z",
+          "user_msgs": 4,
+          "assistant_msgs": 31,
+          "project_hits": {
+            "btest": 199,
+            "blive": 36,
+            "smim": 33
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "c7bcc869-1e43-404e-b823-0157ce6a4b67",
+          "bytes": 126268,
+          "first_ts": "2026-05-06T16:40:11.740Z",
+          "last_ts": "2026-05-06T16:41:12.497Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "btest": 141,
+            "harp": 4
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "cedcac0a-2f2d-40fb-92ea-efeb7b03f9a4",
+          "bytes": 311705,
+          "first_ts": "2026-05-02T12:18:27.825Z",
+          "last_ts": "2026-05-02T12:20:31.031Z",
+          "user_msgs": 1,
+          "assistant_msgs": 21,
+          "project_hits": {
+            "btest": 204,
+            "harp": 40,
+            "smim": 28,
+            "blive": 13,
+            "pt-liqadj": 5
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "d0050856-c453-4f58-9d17-9ce3973c9bd1",
+          "bytes": 294539,
+          "first_ts": "2026-05-06T10:57:27.416Z",
+          "last_ts": "2026-05-06T10:59:33.136Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "btest": 155,
+            "harp": 94,
+            "blive": 57,
+            "smim": 55,
+            "pt-liqadj": 44
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "d0e128e6-a353-4071-8a46-9d6b7d368c9a",
+          "bytes": 338155,
+          "first_ts": "2026-05-06T19:35:41.184Z",
+          "last_ts": "2026-05-06T19:37:36.814Z",
+          "user_msgs": 1,
+          "assistant_msgs": 9,
+          "project_hits": {
+            "btest": 198,
+            "harp": 40,
+            "blive": 17,
+            "smim": 8,
+            "pt-liqadj": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "d45067fc-f513-4728-b736-d026658eaf86",
+          "bytes": 118903,
+          "first_ts": "2026-05-05T21:54:09.937Z",
+          "last_ts": "2026-05-05T21:55:18.552Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "btest": 60,
+            "harp": 31,
+            "blive": 2,
+            "pt-liqadj": 1,
+            "smim": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "d9440bc2-4215-4bb4-82ac-ed493a8e0f71",
+          "bytes": 289671,
+          "first_ts": "2026-05-02T09:43:34.124Z",
+          "last_ts": "2026-05-02T09:45:33.002Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "btest": 749,
+            "blive": 14
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "dd0256fc-2c75-4a5d-abd8-a42cc1e7c642",
+          "bytes": 223563,
+          "first_ts": "2026-05-06T10:52:52.335Z",
+          "last_ts": "2026-05-06T10:54:58.490Z",
+          "user_msgs": 1,
+          "assistant_msgs": 21,
+          "project_hits": {
+            "btest": 339,
+            "harp": 104,
+            "pt-liqadj": 101,
+            "smim": 69,
+            "blive": 68
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "ddcf510e-17e4-4e44-9a09-cefefc46276e",
+          "bytes": 261186,
+          "first_ts": "2026-05-06T12:59:54.636Z",
+          "last_ts": "2026-05-06T13:03:32.477Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "btest": 183,
+            "harp": 116,
+            "pt-liqadj": 59,
+            "smim": 56,
+            "blive": 52,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "e097a1fe-015b-4547-97c4-113a715499bd",
+          "bytes": 73533,
+          "first_ts": "2026-05-31T20:15:35.712Z",
+          "last_ts": "2026-05-31T20:29:00.848Z",
+          "user_msgs": 2,
+          "assistant_msgs": 32,
+          "project_hits": {
+            "btest": 46
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "e28f09cd-a5df-49d0-b7d1-5e8c31dbbfb8",
+          "bytes": 155453,
+          "first_ts": "2026-05-02T14:25:12.818Z",
+          "last_ts": "2026-05-02T14:26:19.117Z",
+          "user_msgs": 1,
+          "assistant_msgs": 6,
+          "project_hits": {
+            "btest": 184,
+            "smim": 6,
+            "blive": 5,
+            "pt-liqadj": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "e3cc2f09-88bb-4935-be87-5f463ec93427",
+          "bytes": 241062,
+          "first_ts": "2026-05-02T12:23:16.355Z",
+          "last_ts": "2026-05-02T12:24:54.271Z",
+          "user_msgs": 1,
+          "assistant_msgs": 15,
+          "project_hits": {
+            "btest": 218,
+            "smim": 190,
+            "pt-liqadj": 23,
+            "harp": 15,
+            "blive": 8
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "e6931edf-20c3-4524-a531-7025e6ead056",
+          "bytes": 188940,
+          "first_ts": "2026-05-06T08:35:32.391Z",
+          "last_ts": "2026-05-06T08:37:21.574Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "btest": 106,
+            "harp": 73,
+            "smim": 12,
+            "blive": 10,
+            "pt-liqadj": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "eb87d7f4-5221-4b12-84e8-cfb66b7654bf",
+          "bytes": 74117,
+          "first_ts": "2026-03-24T19:43:52.898Z",
+          "last_ts": "2026-03-24T19:45:16.744Z",
+          "user_msgs": 1,
+          "assistant_msgs": 1,
+          "project_hits": {
+            "btest": 112
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "ecc0154a-af6f-4bc0-bb90-ef6f5091561b",
+          "bytes": 48428,
+          "first_ts": "2026-03-20T23:01:04.196Z",
+          "last_ts": "2026-03-20T23:08:11.775Z",
+          "user_msgs": 3,
+          "assistant_msgs": 2,
+          "project_hits": {
+            "btest": 55
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "f421cd65-e64c-42df-8b66-e06bd0e0c580",
+          "bytes": 188554,
+          "first_ts": "2026-05-06T12:20:37.059Z",
+          "last_ts": "2026-05-06T12:22:16.173Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "btest": 69,
+            "harp": 47,
+            "blive": 7,
+            "btest.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "f837b582-07b6-4342-95e2-ddf2f5a64bb7",
+          "bytes": 160175,
+          "first_ts": "2026-05-02T20:03:08.469Z",
+          "last_ts": "2026-05-02T20:04:21.209Z",
+          "user_msgs": 1,
+          "assistant_msgs": 12,
+          "project_hits": {
+            "btest": 107
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        },
+        {
+          "session": "f83d6027-752b-490e-91a1-bc9175af37eb",
+          "bytes": 8039608,
+          "first_ts": "2026-05-05T20:38:24.063Z",
+          "last_ts": "2026-05-07T21:27:33.014Z",
+          "user_msgs": 145,
+          "assistant_msgs": 988,
+          "project_hits": {
+            "btest": 5443,
+            "blive": 244,
+            "harp": 90,
+            "smim": 26,
+            "btest.": 7,
+            "pt-liqadj": 2
+          },
+          "parse_errors": 0,
+          "attributed_project": "btest"
+        }
+      ]
+    },
+    "blive": {
+      "sessions": 2,
+      "bytes": 194298,
+      "user_msgs": 2,
+      "assistant_msgs": 13,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "tokens_cache_read": 0,
+      "first_ts": "2026-05-06T06:56:04.761Z",
+      "last_ts": "2026-05-06T07:38:50.758Z",
+      "per_session": [
+        {
+          "session": "1a13b84e-dfbb-44d6-850f-4e3528312864",
+          "bytes": 44367,
+          "first_ts": "2026-05-06T07:37:55.605Z",
+          "last_ts": "2026-05-06T07:38:50.758Z",
+          "user_msgs": 1,
+          "assistant_msgs": 7,
+          "project_hits": {
+            "blive": 55,
+            "harp": 7,
+            "smim": 7,
+            "btest": 6
+          },
+          "parse_errors": 0,
+          "attributed_project": "blive"
+        },
+        {
+          "session": "c53dbbd8-645d-4533-aa62-df95a5cddf17",
+          "bytes": 149931,
+          "first_ts": "2026-05-06T06:56:04.761Z",
+          "last_ts": "2026-05-06T06:56:46.399Z",
+          "user_msgs": 1,
+          "assistant_msgs": 6,
+          "project_hits": {
+            "blive": 96,
+            "btest": 24,
+            "smim": 9,
+            "pt-liqadj": 7,
+            "harp": 5
+          },
+          "parse_errors": 0,
+          "attributed_project": "blive"
+        }
+      ]
+    },
+    "smim": {
+      "sessions": 2,
+      "bytes": 256562,
+      "user_msgs": 2,
+      "assistant_msgs": 21,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "tokens_cache_read": 0,
+      "first_ts": "2026-05-02T12:31:32.159Z",
+      "last_ts": "2026-05-02T12:56:17.601Z",
+      "per_session": [
+        {
+          "session": "7f80a97f-6890-4dde-8e4a-0481d74e0d77",
+          "bytes": 186609,
+          "first_ts": "2026-05-02T12:54:36.054Z",
+          "last_ts": "2026-05-02T12:56:17.601Z",
+          "user_msgs": 1,
+          "assistant_msgs": 16,
+          "project_hits": {
+            "smim": 88,
+            "btest": 69,
+            "blive": 8,
+            "pt-liqadj": 8,
+            "harp": 8
+          },
+          "parse_errors": 0,
+          "attributed_project": "smim"
+        },
+        {
+          "session": "e8eee6a9-468f-4eb2-a53e-971e2645e856",
+          "bytes": 69953,
+          "first_ts": "2026-05-02T12:31:32.159Z",
+          "last_ts": "2026-05-02T12:32:28.694Z",
+          "user_msgs": 1,
+          "assistant_msgs": 5,
+          "project_hits": {
+            "smim": 37,
+            "harp": 14,
+            "pt-liqadj": 4,
+            "btest": 2,
+            "smim.": 1
+          },
+          "parse_errors": 0,
+          "attributed_project": "smim"
+        }
+      ]
+    },
+    "_unattributed": {
+      "sessions": 1,
+      "bytes": 5493,
+      "user_msgs": 1,
+      "assistant_msgs": 1,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "tokens_cache_read": 0,
+      "first_ts": "2026-03-31T22:04:28.367Z",
+      "last_ts": "2026-03-31T22:04:39.258Z",
+      "per_session": [
+        {
+          "session": "aa464223-e2b8-466e-9da0-f41a09c1d830",
+          "bytes": 5493,
+          "first_ts": "2026-03-31T22:04:28.367Z",
+          "last_ts": "2026-03-31T22:04:39.258Z",
+          "user_msgs": 1,
+          "assistant_msgs": 1,
+          "project_hits": {},
+          "parse_errors": 0,
+          "attributed_project": null
+        }
+      ]
+    }
+  },
+  "gaps": []
+}

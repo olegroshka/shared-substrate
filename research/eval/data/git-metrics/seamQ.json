@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "script": "git_miner.py",
+    "version": "1.0",
+    "generated_utc": "2026-07-25T20:03:27+00:00",
+    "git_version": "git version 2.52.0.windows.1",
+    "project": "seamQ",
+    "repo_path": "C:\\Users\\olegr\\PycharmProjects\\seamQ",
+    "definitions": {
+      "commit_set": "non-merge commits, full history, author dates; merge commits excluded because their numstat double-counts merged-in lines (merge count reported separately)",
+      "excluded_paths": "vendored/generated trees (node_modules, dist, build, target, assets_dist, .venv, __pycache__, lock files, *.min.js, *.map) and any file outside the source-extension allowlist (parquet/png/pdf/csv data files are not source)",
+      "short_horizon_churn": "share of added source lines re-modified within N days, via a per-file LIFO line-age stack over `git log --numstat -M`; blame-free approximation - see the docstring in git_miner.py for its biases",
+      "fix_ratio": "commits whose subject matches a fix/bugfix/hotfix prefix or any fix-family word, over non-merge commits; revert counted separately and takes precedence",
+      "refix_recurrence": "source files appearing in >=3 fix- or revert-classified commits",
+      "gap_recovery": "for every inter-commit gap >=5 days, the first 3 post-gap commits classified by subject; precedence revert>fix>docs>test>feature>chore>other",
+      "root_hygiene": "untracked root entries per `git status --porcelain` (as specified) plus ignored-root and on-disk scratch counts, because .gitignore can hide litter from the specified metric",
+      "test_trajectory": "test-file count at ~10 evenly spaced commits, read with `git ls-tree` (no checkout); test = source file in a test tree or with a test naming convention",
+      "id_timeline": "per-month share of commits carrying a bracketed stable-ID prefix (e.g. '[SMIM] ', '[blive] ') and share referencing a stable ID (ADR-052, KB-7, OQ-032) anywhere in the subject"
+    },
+    "verification": "Hand-verified on seamQ 2026-07-25 before the sweep: (1) fix-classified commits = 2/25 (8.0%), matched by independent grep of git log --pretty=%s over the fix-word list; (2) total_added_lines = 46889, matched exactly by an independent per-extension awk sum over git log --numstat (the check caught and fixed a 37-line undercount from dotfiles such as .gitignore falling through the extension table). Also confirmed: seamQ span 1.9 days so the 14-day churn window covers its whole history (window_exceeds_history_14d=true), test_files=0 correct (no test files tracked), gap_count=0 correct (3-day sprint). Separately verified on btest: bracket_prefix_commits = 293/415, matched by independent 'git log --no-merges --pretty=%s | grep -c \"^\\[\"' (this check caught a regex that required a space-free tag and undercounted 110 vs 293, since btest's real convention is '[SMIM DATA-6]').",
+    "degenerate_history": false,
+    "degenerate_note": null
+  },
+  "history": {
+    "non_merge_commits": 25,
+    "merge_commits": 0,
+    "first_commit": "2026-05-16",
+    "last_commit": "2026-05-18",
+    "span_days": 1.9,
+    "active_months": 1
+  },
+  "commit_classes": {
+    "counts": {
+      "other": 15,
+      "docs": 3,
+      "chore": 3,
+      "feature": 2,
+      "fix": 2
+    },
+    "shares": {
+      "other": 0.6,
+      "docs": 0.12,
+      "chore": 0.12,
+      "feature": 0.08,
+      "fix": 0.08
+    }
+  },
+  "fix_revert": {
+    "fix_prefix_commits": 0,
+    "fix_commits": 2,
+    "revert_commits": 0,
+    "fix_ratio": 0.08,
+    "revert_ratio": 0.0,
+    "fix_or_revert_ratio": 0.08
+  },
+  "short_horizon_churn": {
+    "total_added_lines": 46889,
+    "attributed_deletions": 42641,
+    "unattributed_deletions": 0,
+    "surviving_lines": 4248,
+    "rework_share_any_horizon": 0.9094,
+    "history_span_days": 1.9,
+    "rework_lines_14d": 42641,
+    "churn_share_14d": 0.9094,
+    "window_exceeds_history_14d": true,
+    "rework_lines_30d": 42641,
+    "churn_share_30d": 0.9094,
+    "window_exceeds_history_30d": true
+  },
+  "refix_recurrence": {
+    "threshold": 3,
+    "files_touched_by_fix_commits": 3,
+    "recurrent_fix_files": 0,
+    "recurrent_fix_file_share": 0.0,
+    "top_files": []
+  },
+  "gap_recovery": {
+    "gap_threshold_days": 5,
+    "commits_classified_after_each_gap": 3,
+    "gap_count": 0,
+    "post_gap_class_counts": {},
+    "post_gap_class_shares": {},
+    "baseline_class_shares": {
+      "other": 0.6,
+      "docs": 0.12,
+      "chore": 0.12,
+      "feature": 0.08,
+      "fix": 0.08
+    },
+    "gaps": []
+  },
+  "root_hygiene": {
+    "untracked_root": 0,
+    "untracked_total": 0,
+    "untracked_root_entries": [],
+    "uncommitted_modifications": 0,
+    "ignored_root": 8,
+    "tracked_root_files": 17,
+    "fs_root_entries": 25,
+    "scratch_litter_root": 1,
+    "scratch_litter_examples": [
+      "seamqi.log"
+    ],
+    "note": "untracked_root follows the specified definition; scratch_litter_root counts on-disk scratch files at the root whether tracked, untracked or gitignored"
+  },
+  "test_trajectory": {
+    "sample_count": 10,
+    "test_files_first": 0,
+    "test_files_last": 0,
+    "test_share_first": 0.0,
+    "test_share_last": 0.0,
+    "samples": [
+      {
+        "commit_index": 1,
+        "date": "2026-05-16",
+        "sha": "7178cf9501",
+        "source_files": 22,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 4,
+        "date": "2026-05-16",
+        "sha": "1653651c19",
+        "source_files": 40,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 6,
+        "date": "2026-05-16",
+        "sha": "198c7fad63",
+        "source_files": 46,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 9,
+        "date": "2026-05-17",
+        "sha": "9191db08c2",
+        "source_files": 52,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 12,
+        "date": "2026-05-17",
+        "sha": "860b16b5f8",
+        "source_files": 60,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 14,
+        "date": "2026-05-17",
+        "sha": "55323ec421",
+        "source_files": 64,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 17,
+        "date": "2026-05-17",
+        "sha": "c2c98e667a",
+        "source_files": 63,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 20,
+        "date": "2026-05-17",
+        "sha": "317ecc1550",
+        "source_files": 94,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 22,
+        "date": "2026-05-17",
+        "sha": "97ecd954f0",
+        "source_files": 94,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      },
+      {
+        "commit_index": 25,
+        "date": "2026-05-18",
+        "sha": "1c860805d9",
+        "source_files": 10,
+        "test_files": 0,
+        "test_file_share": 0.0,
+        "vendored_files_excluded": 0
+      }
+    ]
+  },
+  "id_timeline": {
+    "total_commits": 25,
+    "bracket_prefix_commits": 0,
+    "bracket_prefix_share": 0.0,
+    "scoped_tag_commits": 0,
+    "scoped_tag_share": 0.0,
+    "stable_id_commits": 0,
+    "stable_id_share": 0.0,
+    "namespaces": {},
+    "top_tags": {},
+    "last_30_commits_bracket_share": 0.0,
+    "per_month": [
+      {
+        "month": "2026-05",
+        "commits": 25,
+        "bracket_prefix_commits": 0,
+        "bracket_prefix_share": 0.0,
+        "scoped_tag_commits": 0,
+        "scoped_tag_share": 0.0,
+        "stable_id_commits": 0,
+        "stable_id_share": 0.0
+      }
+    ]
+  }
+}

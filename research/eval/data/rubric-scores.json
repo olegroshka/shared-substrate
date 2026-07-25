@@ -1,0 +1,123 @@
+{
+  "version": "1.0-DRAFT",
+  "date": "2026-07-25",
+  "status": "DRAFT — scored by Claude from repo sweeps (see rubric-evidence.md); pending operator review, esp. judgment calls marked in notes",
+  "scale": "0 absent / 1 ad hoc / 2 present-partial / 3 systematic (rubric/RUBRIC.md)",
+  "projects": {
+    "P1_blive": {
+      "total": 22,
+      "axes": {
+        "A1_layers": {"score": 3, "note": "explicit hierarchy + one-way dependency + crossing rules; DESIGN.md gap is declared, not silent"},
+        "A2_gates": {"score": 3, "note": "G0-G4 numbered exit criteria, readiness audits, freezes"},
+        "A3_contracts": {"score": 2, "note": "import-linter contracts + captured budgets; no BDD, budgets not instrumented-asserted, parity stub"},
+        "A4_protocol": {"score": 3, "note": "640-line protocol, SSOT, trivial lane, precedence, anti-pattern list"},
+        "A5_decisions": {"score": 3, "note": "53 append-only ADRs; IDs in commits (437 refs) and code (540 refs)"},
+        "A6_inventories": {"score": 3, "note": "9 inv + 5 dd + 13 kb + glossary; status tags in live use; frontmatter"},
+        "A7_oracles": {"score": 2, "note": "55 test files, mypy strict, local gates; no hosted CI, no property tests, acceptance-vs-live thin"},
+        "A8_observability": {"score": 3, "note": "judgment call: agent-runnable checks + exemplary session protocol (NEXT_PROMPT, retros, warm-up mandate); drift-audit scripts still planned"}
+      }
+    },
+    "P2_btest": {
+      "total": 12,
+      "axes": {
+        "A1_layers": {"score": 1, "note": "code-level layering rule-enforced; no requirements/design doc tier"},
+        "A2_gates": {"score": 1, "note": "gate traces historical (SMIM era) + decision_gate in result configs; nothing current, no freezes"},
+        "A3_contracts": {"score": 2, "note": "engine-parity suite = executable contract on core component; no budgets (benchmarks dir empty)"},
+        "A4_protocol": {"score": 1, "note": "informal CLAUDE.md rules; SSOT only for generated artifacts; no trivial lane"},
+        "A5_decisions": {"score": 1, "note": "280/423 commits carried [SMIM] stable IDs but NO decision records; ID discipline decayed post-extraction (last 30 commits: zero IDs)"},
+        "A6_inventories": {"score": 2, "note": "auto-generated STATUS.md freshness inventory, registries, manifest; no glossary, no status lifecycle"},
+        "A7_oracles": {"score": 2, "note": "146 test files / 278 fns, parity harness, markers; no CI, no property tests"},
+        "A8_observability": {"score": 2, "note": "purpose-built agent runner + 554-line agent API contract; session protocol documented-but-unpractised; AGENTS.md untracked"}
+      }
+    },
+    "P3_b_autobot": {
+      "total": 16,
+      "axes": {
+        "A1_layers": {"score": 1, "note": "single design doc mixing design/impl; stale refs to deleted plan docs"},
+        "A2_gates": {"score": 2, "note": "M0-M14 milestone table with done ticks + 66/66 scenario count; criteria implicit; plans deleted not archived"},
+        "A3_contracts": {"score": 3, "note": "judgment call: 91 BDD scenarios + WireMock incumbent lock-in + budget-commented timeout config (enforced by harness at runtime)"},
+        "A4_protocol": {"score": 2, "note": "mandatory rules + probe procedure; data-SSOT only; no trivial lane"},
+        "A5_decisions": {"score": 1, "note": "M-IDs in 19/57 commits; 4 unnumbered decision entries; no ADRs"},
+        "A6_inventories": {"score": 2, "note": "column/probe/auth/version inventories + HOCON bond catalogue DD; no glossary, no status tags"},
+        "A7_oracles": {"score": 3, "note": "three oracle tiers (JUnit/Jest/Cucumber) + hosted 3-job CI incl. nightly vs mock UAT"},
+        "A8_observability": {"score": 2, "note": "copy-pasteable verification commands, tag taxonomy, env scripts; session protocol absent"}
+      }
+    },
+    "P4_datacli": {
+      "total": 17,
+      "axes": {
+        "A1_layers": {"score": 2, "note": "DESIGN.md with locked-decisions + runtime hierarchy; no requirements tier"},
+        "A2_gates": {"score": 3, "note": "review gate per phase ('nothing merges past a gate without green review') + readiness gate with frozen scope"},
+        "A3_contracts": {"score": 3, "note": "SCENARIOS.md executable spec mechanised by blackbox.py; grounding contract enforced in code; cost ceiling enforced; latency NFR absent"},
+        "A4_protocol": {"score": 1, "note": "per-artifact SSOT declarations + manifest maintenance rule; no protocol doc, no trivial lane"},
+        "A5_decisions": {"score": 2, "note": "locked-decisions table + S1-S5/SCHEMA_VERSION ID schemes; no ADRs, no commit IDs"},
+        "A6_inventories": {"score": 2, "note": "6 status-tagged manifests (1389 L) + schema DD + registries; no glossary"},
+        "A7_oracles": {"score": 2, "note": "214 tests mirroring modules + black-box harness on real data; no CI"},
+        "A8_observability": {"score": 2, "note": "blackbox --check, status/qc/schema-drift verbs, MCP read-only tools; no CLAUDE.md, no session protocol"}
+      }
+    },
+    "P5_smim": {
+      "total": 20,
+      "axes": {
+        "A1_layers": {"score": 2, "note": "3-tier docs (objectives/plan/code-protocols); cascade rules not evidenced"},
+        "A2_gates": {"score": 3, "note": "20 iteration plan/results/decision files; WP/G gate table; explicit kill rules A-E"},
+        "A3_contracts": {"score": 2, "note": "judgment call: blocking acceptance-test doc + standing assumptions; budgets runtime-only, no NFR envelope"},
+        "A4_protocol": {"score": 2, "note": "import boundaries, 5-step pattern, deviations register, migration checklist"},
+        "A5_decisions": {"score": 2, "note": "6 templated ADRs gate-tagged, cited from code; commits uncheckable (n=1 after extraction squash)"},
+        "A6_inventories": {"score": 3, "note": "notation.md = research-native glossary/SSOT (math-to-code-to-shape); gate-tagged data status; status keys"},
+        "A7_oracles": {"score": 3, "note": "76 test files; acceptance suite 4 verification levels; bitwise GPU determinism; statsmodels parity; falsification-as-milestones; no CI"},
+        "A8_observability": {"score": 3, "note": "two CLAUDE.md command manuals + gate-report plugin + NEXT_SESSION_PROMPT handoff with outcome-row protocol"}
+      }
+    },
+    "P6_harp": {
+      "total": 17,
+      "axes": {
+        "A1_layers": {"score": 1, "note": "layers exist but design/plan tier deliberately untracked (outside replication archive)"},
+        "A2_gates": {"score": 3, "note": "Phases 0-11 each with gate + fallback; verdicts recorded (G7: GO)"},
+        "A3_contracts": {"score": 3, "note": "research-native form: pre-registration freezing hypotheses/tests/stop-rules/numeric decision rules before data retrieval; deviations logged"},
+        "A4_protocol": {"score": 1, "note": "'Do not modify' on replication package only"},
+        "A5_decisions": {"score": 2, "note": "~30-row dated decision log; consistent H/G/C/B ID families across artifacts; no ADRs/commit IDs"},
+        "A6_inventories": {"score": 3, "note": "judgment call: 759-line data manifest with schema dictionary, severity-tagged QC, lineage; notation lives in the paper"},
+        "A7_oracles": {"score": 2, "note": "strong research oracles (1000-partition placebo, robustness, metric fixtures, leak tests); unit tests nearly absent; no CI"},
+        "A8_observability": {"score": 2, "note": "status doc as cross-session state incl. explicit conversation-only context-loss ledger; no agent instructions"}
+      }
+    },
+    "P7_seamQ": {
+      "total": 7,
+      "note": "scores the CURRENT stripped tree; pre-strip history (INDEX warm-up doc, weekly gates, adversarial-review pipeline) would score far higher — substrate as deliberately disposable scaffolding",
+      "axes": {
+        "A1_layers": {"score": 0, "note": "absent now; Phase-1..6 doc layering existed pre-strip"},
+        "A2_gates": {"score": 0, "note": "absent now; weekly status gates existed pre-strip"},
+        "A3_contracts": {"score": 2, "note": "README expected-output table pins 12 claims to bit-stable seeded values + runtime budgets; not automated"},
+        "A4_protocol": {"score": 0, "note": "absent; broadest permission allowlist of the corpus"},
+        "A5_decisions": {"score": 1, "note": "phase/claim IDs in commit messages (C5, P1-P6, S2); errata/findings docs deleted"},
+        "A6_inventories": {"score": 1, "note": "README file-role annotations only"},
+        "A7_oracles": {"score": 2, "note": "designed ablation axes + built-in invariant checks + cross-repo replication vs harp; no tests/CI"},
+        "A8_observability": {"score": 1, "note": "README run block + expected-output self-check; warm-up INDEX doc deleted at strip"}
+      }
+    },
+    "P8_work_project": {
+      "total": null,
+      "provisional": true,
+      "note": "PROVISIONAL from the paper's worked example 2 only; blanks require operator input, then refresh inside the org",
+      "axes": {
+        "A1_layers": {"score": 2, "note": "provisional: layer-oracle tower per worked example; exact artifact separation unverified"},
+        "A2_gates": {"score": 3, "note": "provisional: 19 gated increments in 2 weeks"},
+        "A3_contracts": {"score": 3, "note": "provisional: behavioural lock-in of incumbent + memory/latency budgets from runtime instrumentation"},
+        "A4_protocol": {"score": null, "note": "unknown — operator to score"},
+        "A5_decisions": {"score": null, "note": "unknown — operator to score"},
+        "A6_inventories": {"score": null, "note": "unknown — operator to score"},
+        "A7_oracles": {"score": 3, "note": "provisional: incumbent-as-oracle at every layer; parity continuous"},
+        "A8_observability": {"score": null, "note": "unknown — operator to score"}
+      }
+    }
+  },
+  "ranking_current_practice": ["P1_blive 22", "P5_smim 20", "P6_harp 17", "P4_datacli 17", "P3_b_autobot 16", "P2_btest 12", "P7_seamQ 7"],
+  "headline_observations": [
+    "Ordering defies the naive expectation (blive high, btest low, research zero): research projects score mid-high via RESEARCH-NATIVE instruments (pre-registration, notation sheets, kill rules, adversarial review) — the boundary claim refines to 'different artifact types and lifecycle', not 'no substrate'.",
+    "btest at 12 is not flat: commit-ID discipline was real during the SMIM era and measurably decayed after extraction (temporal within-project evidence, stronger than cross-project).",
+    "datacli (16/24 at 117 files) = a-la-carte adoption keeping cheap high-payoff elements, skipping ceremony — consistent with the complexity-threshold claim.",
+    "b-autobot and blive have INVERSE profiles (guardrails+validation vs representation+session) — the four practices are separable in practice, not a package.",
+    "seamQ shows substrate-as-scaffolding: erected during work, deliberately torn down at publication."
+  ]
+}
