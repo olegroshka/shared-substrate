@@ -25,8 +25,8 @@
 | WS5 survival curves | **DONE 2026-07-26** | S6 · Opus 5 | `scripts/survival.py` → `data/survival.json`; hand-audit input `data/survival-audit.json` (10 findings, 21/21 receipts verified). **Zero blive ADRs silently reversed**; the findings are elsewhere. Kernel teaser (WS5b) **not attempted** — see below |
 | **WS0-bis artefact survivorship** | **DONE 2026-07-26** | S6 · Opus 5 | `scripts/artifact_survivorship.py` → `data/artifact-survivorship.json`. **blive 0 of 33 ephemeral; btest >=26; seamQ >=33.** Raised by Oleg, not by an instrument. New **PLAN §7 confound 6**; RUBRIC scope statement; ASSESSMENT §2.6/§3.8 |
 | WS6 archaeology | **DONE 2026-07-26** | S7 · Opus 5 | `report/war-stories.md` — 4 stories with receipts (3 blive, 1 btest), one of them a negative. Hand-audit input `data/survivorship-audit.json`. **Two published exhibits corrected** (WS0-bis count; WS2 tag curve) — findings below |
-| Report assembly | pending | S8 · **Fable 5** | cross-workstream synthesis → `report/` |
-| Deck + dry run | pending | S9 · **Fable 5** | `talks/does-the-substrate-matter/` |
+| Report assembly | **DONE 2026-07-26** | S8 · Fable 5 | `report/REPORT.md` (sections 1:1 to PLAN §9 core arc) + `report/exhibits.md` (the appendix bench, 23 exhibits in 5 groups). No new measurement; findings below |
+| Deck + dry run | **DONE 2026-07-26** | S9 · Fable 5 | `talks/does-the-substrate-matter/`: `slides.md` (core arc 1:1 with REPORT + M-A…M-F) · `handout-rubric.md` · `NOTES.md` (branch-point map + if-challenged lines). Deck-side caption/caveat audit done (1 bench caption fixed); **live rehearsal pending on Oleg**. Requirements-v0 word-count discrepancy reconciled — findings below |
 
 This table is the **source of truth for the session/model schedule**; NEXT_TASK.md carries
 only the next session's prompt.
@@ -868,6 +868,131 @@ the control inside story 3.
   re-runs an instrument; both are hand adjudications with per-item receipts, and both make
   the corpus's numbers smaller.
 
+## S8 findings — report assembly (2026-07-26)
+
+S8 wrote nothing new by design; its findings are assembly decisions, recorded so S9
+inherits them rather than re-deciding.
+
+1. **`report/REPORT.md` maps 1:1 onto PLAN §9's core arc** (five sections: the case cold ·
+   the frame · four practices · the research examined · interactive), so each section
+   lifts into slides without re-deciding placement. Every exhibit in it carries the
+   number, its denominator, the caveat, and its `data/` pointer; war stories appear only
+   as named cross-references after the robust number each stands behind (1→rework ·
+   2→length-banded altitude · 3→the pre-registered null · 4→retransmission tax).
+2. **`report/exhibits.md` is the bench PLAN §9 promised** — 23 exhibits in five groups
+   (A robust leads · B corrected captions · C honest negatives · D fragile texture with n
+   stated · E context), each with a one-line honest caption, source file and the caveat
+   that travels. It opens with the caption rules: ASSESSMENT §5.1's three rules plus the
+   eight never-without-qualifier numbers. It also names what is deliberately absent
+   (P8 instrumented numbers, WS3(c), WS5(b), smim's history metrics).
+3. **Placement decision forced by rule 1 vs NEXT_TASK's phrasing, resolved toward the
+   rule.** NEXT_TASK said to "build the system-representation section on" the Python 3.12
+   pair, but the pair sits in the fragile table (n=1 by construction). §3.3 therefore
+   *leads* with the two robust results (recorded-slot retrieval 28/28 · 28/28 · 24/28,
+   and the survival null S(k)=1.000 with at_risk denominators) and places the pair after
+   them as the labelled case study that shows what differs (addressability). Same logic
+   throughout: no section leads fragile.
+4. **The confounds ledger is written out in REPORT §4.5** — all six PLAN §7 items, with
+   confound 6 in its S7-corrected form (blive 0/33 · btest ≥10 of 94 · seamQ ≥33/89 ·
+   b-autobot 0 · harp 2, plus the two instrument properties). The two S7 downward
+   corrections and the "each adversarial read shrank the numbers" trend are stated in
+   §4.3 as corrections to the evaluation itself, alongside the four honest negatives —
+   listed separately, never aggregated.
+5. **Both S7 corrections are absorbed as instructed:** REPORT cites the corrected
+   survivorship figures and names `data/survivorship-audit.json` as where the correction
+   lives (`artifact-survivorship.json` untouched); the tag-decay exhibit appears only
+   retitled ("a stable-ID convention replaced by a taxonomy"), with the caption rule
+   "never show 0%-in-July as an absence of discipline" attached in both files.
+6. **P8 stays on the strict surface:** REPORT §1 describes the work project only as "a
+   legacy component at a regulated financial institution" with the abstract's stated
+   outcome shape (2 weeks, 19 gated increments, parity, UAT) and the provisional 18/24
+   rubric row; no employer name, no component name, no instrumented numbers. The A5
+   lowest-confidence flag travels with the row.
+7. **No miner was re-run, no output edited, no judgment file touched.** S8 read and wrote
+   markdown only.
+
+Caveats that travel with S8's own output:
+- REPORT.md is synthesis, not measurement — where it and a `data/` file disagree, the
+  data file wins and the disagreement is a bug to fix in REPORT.
+- The exhibit-bench captions are one author's compression of caveats recorded across
+  STATE/ASSESSMENT; S9 must not shorten a caption further without re-checking the
+  underlying caveat.
+- The still-open reconcile-before-talk items are carried in NEXT_TASK.md, not closed
+  here (Requirements v0 word count; survivorship-script future fixes; the audit-session
+  `file:line` hypothesis).
+
+## S9 findings — deck + dry run (2026-07-26)
+
+S9 wrote the talk folder and reconciled one standing discrepancy; no instrument was run,
+no `data/` file was touched.
+
+1. **The three deliverables exist** in `talks/does-the-substrate-matter/`:
+   - **`slides.md`** — Marp deck matching `docs/presentation.md`'s conventions. Core arc
+     (37 slides) mirrors REPORT §§1–5 section for section; expansion modules M-A…M-F sit
+     behind an explicit "everything after this slide is optional" divider. Binding rules
+     applied throughout: every number slide carries its caveat and denominator **on the
+     same slide**; slide titles follow the exhibit bench's honest captions and are not
+     sharpened beyond them; group-D exhibits appear only after the robust number they
+     illustrate, with their n on the slide; each of REPORT §4.3's four honest negatives
+     has its own slide; the S8 §3.3 ordering (robust → robust → null → concession →
+     n=1 case study) is kept.
+   - **`handout-rubric.md`** — the one-page self-score handout: Step-0 complexity check
+     ("stop: flat notes are the right tool"), the eight questions with 0–3 anchors, the
+     /24 reading bands, and the dispatch-vs-continue closing question.
+   - **`NOTES.md`** — the branch-point map (expand/compress triggers per module, with
+     the five never-cut slides named), the thirty-second origin anecdote scripted to
+     thirty seconds, per-slide "if challenged" lines for the null / rework confound /
+     survivorship correction / tag curve / altitude / rubric circularity / P8 row (each
+     pointing at the REPORT/ASSESSMENT answer, concession first), and the dry-run
+     checklist.
+2. **The deck-side dry run was executed as a caption/caveat audit** — every number on
+   every slide checked against `report/exhibits.md` and REPORT. It caught one real
+   defect: **exhibit A1's bench caption said "twice as often"; the data and REPORT §2a
+   say the ephemeral project warms up half as often** (warm-up prefix 0.53 vs 1.00) at
+   4× the cost. The bench caption is corrected with an inline provenance note; REPORT
+   needed no change. Two caption-rule applications were also tightened on the slides:
+   the survival slide names the 4-hour session-proxy threshold (rule: any k-axis names
+   it), and the survivorship table keeps the "firm floor 8" qualifier.
+3. **Reconcile-item 1 (Requirements v0 word count) is CLOSED, and the resolution is more
+   interesting than either side of the discrepancy.** Measured this session: the
+   claude.ai-authored v0 draft (`~/Downloads/ib_algo_engine_requirements_v0.md`,
+   2026-04-26) is **3,375 words** and genuinely flat; the REQUIREMENTS.md actually in
+   blive's first commit (`13f6997`, same day) is **5,757 words** — and is already
+   **v0.2, post-KB pass**, cross-referenced with stable IDs, i.e. no longer flat
+   (unchanged at HEAD). The paper's sentence ("flat, around six thousand words, the
+   practitioner's first pass") conflated the flat first pass with the deposited state,
+   and its later "became substantially shorter" is **unverifiable** — v0.1 was never
+   captured anywhere, itself an instance of the ephemeral-artifact class (confound 6).
+   Fixes applied to the canonical copies in this repo: `paper/shared_substrate.tex`
+   now reads "around three and a half thousand words" and drops the "substantially
+   shorter" claim (keeping the verifiable collapse-into-references description);
+   `docs/presentation.md` field note 1 likewise (~3,400-word first deposit; "narrative
+   sections collapsed into stable-ID references"). The frozen archive copy
+   `paper/archive/cognitive_cartography.tex` is deliberately untouched. **If Oleg's
+   memory says v0.1 was in fact ~6k words and shrank, the "shorter" sentence can be
+   restored with that provenance stated — the current text claims only what a receipt
+   supports.**
+4. **The public-surface rule is applied to the new artifact class:** committed
+   `slides.md`, `NOTES.md` and `handout-rubric.md` describe P8 only as "a legacy
+   component at a regulated financial institution" (2 weeks, 19 gated increments,
+   parity, UAT, 18/24 provisional); NOTES.md marks the two places to **name it
+   verbally** in the room.
+5. **Figures:** the deck reuses the repo's `assets/fig-*.png` (centroid, hierarchy,
+   divergence, loop); no new charts were rendered — numbers are shown as on-slide tables
+   so each caveat sits physically next to its number. `talks/.../assets/` stays empty.
+
+Caveats that travel with S9's output:
+- **The deck is a compression; the bench remains binding.** Where a slide and
+  exhibits.md disagree, exhibits.md wins and the slide is the bug (same rule as
+  REPORT-vs-data).
+- **Slide numbers in NOTES.md refer to the current slide order** — any deck edit must
+  re-check the branch-point map's and if-challenged lines' numbering.
+- **The live branch-point rehearsal is Oleg's and has not happened** — the dry run S9
+  could execute is the caption/caveat audit; the rehearsal checklist is at the end of
+  NOTES.md. OUTLINE.md's last checkbox stays open until it has.
+- The A1 caption fix is a **markdown correction of a bench transcription error**, with
+  the correction noted inline in exhibits.md — no `data/` output was edited.
+
 ## Session log
 
 - **S1 · 2026-07-25:** PLAN.md drafted and iterated (talk reframed to abstract; corp
@@ -1053,3 +1178,45 @@ the control inside story 3.
   independent shell greps reproduced 293 · 165 · 280 · 9 · 9 exactly. Both corrections make
   the corpus's numbers **smaller**. ASSESSMENT §2.5, §2.6, §5.1, §6 and §7 revised
   accordingly. **Nothing is pending on Oleg.** Next: **report assembly (S8, Fable 5)**.
+- **S8 · 2026-07-26 · Fable 5:** Report assembly executed. Warm-up per NEXT_TASK
+  (METHODS v1.1 → ASSESSMENT → STATE → war-stories → PLAN §6/§7/§9), then two files
+  written and nothing re-run: **`report/REPORT.md`** — five sections mapping 1:1 to
+  PLAN §9's core arc, every exhibit with number + denominator + caveat + `data/`
+  pointer, war stories as cross-references only, the confounds ledger written out in
+  full with confound 6 corrected, METHODS §9's cannot-answer list carried in as §6 —
+  and **`report/exhibits.md`** — the appendix bench: 23 exhibits in five groups, each
+  with an honest one-line caption, source and travelling caveat, opening with the three
+  ASSESSMENT §5.1 rules and the eight never-without-qualifier numbers. The one judgment
+  call worth recording: NEXT_TASK's "build §3.3 on the Python 3.12 pair" was resolved
+  in favour of §5.1 rule 1 — the section leads with the robust retrieval and survival
+  numbers and the pair follows as a labelled n=1 case study. Both S7 corrections are
+  absorbed (corrected survivorship figures cited with their audit-file provenance; tag
+  curve appears only retitled). S8 findings above; NEXT_TASK.md rewritten for S9.
+  **Nothing is pending on Oleg.** Next: **deck + dry run (S9, Fable 5)** —
+  `talks/does-the-substrate-matter/`.
+- **S9 · 2026-07-26 · Fable 5:** Deck + dry run executed. Warm-up per NEXT_TASK (REPORT →
+  exhibits → OUTLINE/ABSTRACT → PLAN §9 → war-stories), then the three deliverables
+  written into `talks/does-the-substrate-matter/`: **`slides.md`** (Marp, house
+  conventions; core arc of 37 slides mirroring REPORT §§1–5 in order, modules M-A…M-F
+  behind an explicit optional divider; every number slide carries caveat + denominator
+  on the slide; titles held to the bench's honest captions; the four honest negatives
+  each get their own slide; S8's §3.3 ordering kept), **`handout-rubric.md`** (Step-0
+  complexity check + 8 axes + reading bands + closing question) and **`NOTES.md`**
+  (branch-point map with the five never-cut slides named, the 30-second origin anecdote
+  scripted, per-slide if-challenged lines pointing concession-first at REPORT/ASSESSMENT,
+  dry-run checklist). The dry run S9 could run — a caption/caveat audit of every number
+  slide against the bench — caught **one bench defect: exhibit A1's caption said "twice
+  as often" where the data and REPORT §2a say half as often** (warm-up prefix 0.53 vs
+  1.00); fixed in exhibits.md with inline provenance. **Reconcile-item 1 closed by
+  measurement:** the flat claude.ai v0 draft is 3,375 words, but what blive's first
+  commit actually deposited is v0.2 at **5,757 words, already stable-ID cross-referenced**
+  — the paper conflated the two states, and its "became substantially shorter" is
+  unverifiable because v0.1 was never captured (itself confound-6 material). Canonical
+  fixes applied in-repo (`paper/shared_substrate.tex` → "around three and a half
+  thousand words", "shorter" claim dropped; `docs/presentation.md` field note aligned);
+  the archive tex left frozen. Public-surface rule applied to the whole talk folder
+  (P8 anonymised; NOTES marks "name verbally"). OUTLINE.md checkboxes updated; the one
+  open box is the **live branch-point rehearsal, pending on Oleg** (checklist in
+  NOTES.md). NEXT_TASK.md rewritten as the **post-talk brief** (P8 work-side leg per
+  PLAN §5). Next: **the talk itself (Thu 2026-07-30, no session needed)**, then the
+  in-org round-trip.

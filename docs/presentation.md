@@ -500,11 +500,11 @@ Honest costs of delegating (the paper's limits section): auto-drafted phantom de
 
 Multi-month build of the research-to-broker execution bridge. The substrate **grew with demand**, it was not designed up front:
 
-1. First deposit: a flat 6,000-word requirements doc
+1. First deposit: a flat ~3,400-word requirements doc
 2. Then: a Context Inventory (mostly `MISSING` rows — a map of *what would need to exist*)
 3. Then the protocol itself; then KBs → the first KB raised **10 OQs** → one working session resolved them into the first **ADRs**
 4. Steady state: 13 KBs, 3 INVs, 19 ADRs, 22 OQs, 1 Glossary
-5. The requirements doc got *shorter* — narrative sections collapsed into stable-ID references — and more authoritative
+5. The requirements doc's narrative sections collapsed into stable-ID references — it became more authoritative
 
 **Resumable after weeks away with near-zero reconstruction cost.** That's the drift figure's blue line, lived.
 

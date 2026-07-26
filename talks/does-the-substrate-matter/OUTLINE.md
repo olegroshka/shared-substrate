@@ -27,9 +27,16 @@ slide-level realisation of that shape and evolves independently as the deck is b
 
 ## Status
 
-- [ ] Scaffold created (this commit)
-- [ ] Exhibits delivered from eval workstreams (blocked on WS1–WS6)
-- [ ] slides.md core arc drafted
-- [ ] Expansion-module slides drafted
-- [ ] Handout finalised
-- [ ] Branch-point dry run (Wed)
+- [x] Scaffold created
+- [x] Exhibits delivered from eval workstreams (WS1–WS6 → `research/eval/report/exhibits.md`, 23 exhibits)
+- [x] slides.md core arc drafted (S9 — 37 slides mirroring REPORT §§1–5; caveats on-slide)
+- [x] Expansion-module slides drafted (S9 — M-A…M-F behind an explicit divider)
+- [x] Handout finalised (S9 — `handout-rubric.md`, incl. the Step-0 complexity check)
+- [x] Deck-side dry run: caption/caveat audit of every number slide against the exhibit
+      bench (S9 — one bench caption error found and fixed, see STATE.md S9 findings)
+- [ ] Live branch-point rehearsal (Oleg, before Thu — checklist at the end of `NOTES.md`)
+
+Figures: the deck reuses `assets/fig-*.png` from the repo root (relative paths); no
+talk-specific figure exports were needed, so `assets/` here stays empty. Numbers appear
+as tables with denominators on-slide rather than as rendered charts — the caveat has to
+sit next to the number, and a chart is where caveats get dropped.
