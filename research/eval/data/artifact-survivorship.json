@@ -1,0 +1,6467 @@
+{
+  "_meta": {
+    "workstream": "WS0-bis artefact survivorship",
+    "script": "artifact_survivorship.py",
+    "version": "1.0",
+    "generated_utc": "2026-07-26T15:43:08+00:00",
+    "git_version": "git version 2.52.0.windows.1",
+    "definitions": {
+      "ephemeral_artifact": "a .md artefact at least one channel observed, whose basename no corpus repo has ever added on any ref (`git log --all --diff-filter=A`, so committed-then-deleted counts as SURVIVING)",
+      "lower_bound": "every count is a floor. A file created, used and deleted without ever being typed in a prompt or written by an agent tool call is invisible to all three channels",
+      "attribution_path": "resolved from a full PycharmProjects/IdeaProjects path - exact",
+      "attribution_session_folder": "resolved from the session's project only - WS3 showed this misattributes (a file named in a btest session may belong to harp), so these are counted separately and never merged",
+      "why_WS1_is_not_rescored": "existence is recoverable; content is not. A rubric axis needs an artefact's contents to score. This file measures a confound and never corrects a score",
+      "conservative_by_construction": "the committed pool is the UNION over all corpus repos and matching is on basename only, so any same-named file anywhere rescues an artefact from the ephemeral count"
+    },
+    "verification": "Hand-verified before publication: (1) all 33 observed blive artefacts confirmed present in blive's git by independent enumeration - the zero is real, not an artefact of low observation (channels saw 33 of blive's 50 committed .md files); (2) eodhd_uk_eu_migration_plan.md and data_acquisition_prompts.md confirmed absent from every corpus repo by an independent per-repo shell loop over 'git log --all --diff-filter=A'. Two regex bugs were caught by hand-reading the first output: MD_PATH_RE ran greedily across sentence text and manufactured an artefact named 'btest only, plan a safe doc-reorganization ... eodhd_uk_eu_migration_plan.md', and MD_TOKEN_RE's length floor admitted prose fragments '_v2.md' and '_v3.md' as artefacts. is_plausible_basename() is the fix.",
+    "committed_md_pool_size": 218,
+    "committed_md_per_repo": {
+      "blive": 51,
+      "btest": 74,
+      "b-autobot": 12,
+      "datacli": 11,
+      "smim": 59,
+      "harp": 6,
+      "seamQ": 57,
+      "shared-substrate": 19
+    },
+    "channels": {
+      "A_typed_prompts": {
+        "available": true,
+        "turns_scanned": 1480
+      },
+      "B_local_history": {
+        "available": true,
+        "stores": 10,
+        "bytes": 10863046,
+        "content_store_available": false
+      },
+      "C_agent_transcripts": {
+        "available": true,
+        "files": 14
+      }
+    },
+    "portability_note": "channels B and C are machine-local stores. Inside a corporate environment (PLAN.md 5) they will differ or be absent; each is optional and its absence is reported rather than silently treated as zero"
+  },
+  "per_project": {
+    "blive": {
+      "artifacts_observed": 33,
+      "committed": 33,
+      "ephemeral_lower_bound": 0,
+      "ephemeral_share": 0.0,
+      "ephemeral_path_attributed": 0,
+      "ephemeral_session_attributed_only": 0,
+      "ephemeral_names": [],
+      "ephemeral_detail": []
+    },
+    "btest": {
+      "artifacts_observed": 105,
+      "committed": 66,
+      "ephemeral_lower_bound": 39,
+      "ephemeral_share": 0.3714,
+      "ephemeral_path_attributed": 26,
+      "ephemeral_session_attributed_only": 13,
+      "ephemeral_names": [
+        "acceptane_tests.md",
+        "button_fix_details.md",
+        "data.md",
+        "data_acquisition_prompts.md",
+        "data_remediation_prompts.md",
+        "docs_smim_experiment_objectives.md",
+        "docs_smim_experiment_plan.md",
+        "docs_smim_implementation_plan.md",
+        "docs_smim_proposal_summary.md",
+        "docs_smim_task_registry.md",
+        "eodhd\u0001\u0005eodhd&\u0000\u0006cli.py\u0000\u0000\u0001\u009fe\u00e9nx\u0000\u0000\u0000\treadme.md",
+        "eodhd_uk_eu_migration_plan.md",
+        "feedback_no_physical_test_prints.md",
+        "feedback_recommend_over_poll.md",
+        "fred\u0001\u0004fred\u0001\u0001\u00021d\u0002\u0000\bdata.md",
+        "global\u0001\u0006global\u0001\u0001\u00021d\u0002\u0000\bdata.md",
+        "handoff_to_new_chat_v2.md",
+        "ib_algo_engine_requirements_v0.md",
+        "iteration_5_4_plan.md",
+        "iteration_6_4_plan.md",
+        "iteration_6_4c_rresults.md",
+        "kickoff_prompt_v2.md",
+        "lock.md",
+        "platform_roadmap.md",
+        "practical_applicability.md",
+        "project_blive_paper.md",
+        "project_datacli.md",
+        "project_printer_setup.md",
+        "publication_eval_prompt.md",
+        "query_button_fix_summary.md",
+        "referee_review_and_claude_code_plan.md",
+        "reference_github_cli.md",
+        "reports\u0001\u0007reports\u0001\u0000\u0011data_readiness.md",
+        "research_summary.md",
+        "smim_data_acquisition_prompts.md",
+        "ui_fix_summary.md",
+        "uk_eu_extension_status.md",
+        "uk_eu_panel_plan.md",
+        "work-project-anonymization.md"
+      ],
+      "ephemeral_detail": [
+        {
+          "basename": "uk_eu_panel_plan.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 4
+        },
+        {
+          "basename": "eodhd_uk_eu_migration_plan.md",
+          "channels": [
+            "A_typed_prompts",
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 3
+        },
+        {
+          "basename": "uk_eu_extension_status.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 3
+        },
+        {
+          "basename": "practical_applicability.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 2
+        },
+        {
+          "basename": "acceptane_tests.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "data_acquisition_prompts.md",
+          "channels": [
+            "A_typed_prompts",
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        },
+        {
+          "basename": "handoff_to_new_chat_v2.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "ib_algo_engine_requirements_v0.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "iteration_5_4_plan.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "iteration_6_4_plan.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "iteration_6_4c_rresults.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "kickoff_prompt_v2.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "publication_eval_prompt.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "referee_review_and_claude_code_plan.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "research_summary.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "button_fix_details.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "data.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "data_remediation_prompts.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "docs_smim_experiment_objectives.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "docs_smim_experiment_plan.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "docs_smim_implementation_plan.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "docs_smim_proposal_summary.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "docs_smim_task_registry.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "eodhd\u0001\u0005eodhd&\u0000\u0006cli.py\u0000\u0000\u0001\u009fe\u00e9nx\u0000\u0000\u0000\treadme.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "feedback_no_physical_test_prints.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "feedback_recommend_over_poll.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "fred\u0001\u0004fred\u0001\u0001\u00021d\u0002\u0000\bdata.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "global\u0001\u0006global\u0001\u0001\u00021d\u0002\u0000\bdata.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "lock.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "platform_roadmap.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "project_blive_paper.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "project_datacli.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "project_printer_setup.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "query_button_fix_summary.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "reference_github_cli.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "reports\u0001\u0007reports\u0001\u0000\u0011data_readiness.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "smim_data_acquisition_prompts.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "ui_fix_summary.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "work-project-anonymization.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        }
+      ]
+    },
+    "b-autobot": {
+      "artifacts_observed": 10,
+      "committed": 6,
+      "ephemeral_lower_bound": 4,
+      "ephemeral_share": 0.4,
+      "ephemeral_path_attributed": 3,
+      "ephemeral_session_attributed_only": 1,
+      "ephemeral_names": [
+        "calude.md",
+        "dejavufonts.md",
+        "jquery.md",
+        "jqueryui.md"
+      ],
+      "ephemeral_detail": [
+        {
+          "basename": "calude.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "session_folder",
+          "mentions": 1
+        },
+        {
+          "basename": "dejavufonts.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "jquery.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "jqueryui.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        }
+      ]
+    },
+    "datacli": {
+      "artifacts_observed": 3,
+      "committed": 2,
+      "ephemeral_lower_bound": 1,
+      "ephemeral_share": 0.3333,
+      "ephemeral_path_attributed": 1,
+      "ephemeral_session_attributed_only": 0,
+      "ephemeral_names": [
+        "blackbox_20260711-220120.md"
+      ],
+      "ephemeral_detail": [
+        {
+          "basename": "blackbox_20260711-220120.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        }
+      ]
+    },
+    "harp": {
+      "artifacts_observed": 4,
+      "committed": 2,
+      "ephemeral_lower_bound": 2,
+      "ephemeral_share": 0.5,
+      "ephemeral_path_attributed": 2,
+      "ephemeral_session_attributed_only": 0,
+      "ephemeral_names": [
+        "journal_options.md",
+        "linkedin_article.md"
+      ],
+      "ephemeral_detail": [
+        {
+          "basename": "journal_options.md",
+          "channels": [
+            "A_typed_prompts"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        },
+        {
+          "basename": "linkedin_article.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        }
+      ]
+    },
+    "seamQ": {
+      "artifacts_observed": 89,
+      "committed": 56,
+      "ephemeral_lower_bound": 33,
+      "ephemeral_share": 0.3708,
+      "ephemeral_path_attributed": 33,
+      "ephemeral_session_attributed_only": 0,
+      "ephemeral_names": [
+        "1a quantum reformulation of forecast variance differentials.md",
+        "1b branch b1b and gaussian quantum markov chains.md",
+        "1d quantum-inspired algorithms research.md",
+        "4a adversarial review of b1.md",
+        "4b adversarial review of b5.md",
+        "4c adversarial review of phase 0.md",
+        "adversarial_referee_report.md",
+        "applied_empirical_referee_report_role2.md",
+        "formal_theoretical_referee_review.md",
+        "formal_theoretical_referee_review_v2.md",
+        "handoff.md",
+        "hostile referee report.md",
+        "hostile_referee_report_v2.md",
+        "methodology.md",
+        "orchestrator_handoff.md",
+        "r1_quantum_info_review_round2.md",
+        "r3_matrix_convex_review_round2_kl.md",
+        "referee-1-theoretical.md",
+        "referee-2-applied-round2.md",
+        "referee-2-applied.md",
+        "referee-3-adversarial-report.md",
+        "referee-3-adversarial.md",
+        "seam_applied_referee_review.md",
+        "seam_applied_referee_review_v2.md",
+        "seam_referee1_theory.md",
+        "seamqi_execution_plan_s2_s6.md",
+        "seamqi_outline.md",
+        "synthesis.md",
+        "synthesis_pass2.md",
+        "synthesis_pass3.md",
+        "theoretical_referee_round2_v6_2_report.md",
+        "var_p_evidence_synthesis.md",
+        "warmup.md"
+      ],
+      "ephemeral_detail": [
+        {
+          "basename": "formal_theoretical_referee_review_v2.md",
+          "channels": [
+            "A_typed_prompts",
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        },
+        {
+          "basename": "handoff.md",
+          "channels": [
+            "A_typed_prompts",
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        },
+        {
+          "basename": "hostile_referee_report_v2.md",
+          "channels": [
+            "A_typed_prompts",
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        },
+        {
+          "basename": "seam_applied_referee_review_v2.md",
+          "channels": [
+            "A_typed_prompts",
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 1
+        },
+        {
+          "basename": "1a quantum reformulation of forecast variance differentials.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "1b branch b1b and gaussian quantum markov chains.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "1d quantum-inspired algorithms research.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "4a adversarial review of b1.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "4b adversarial review of b5.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "4c adversarial review of phase 0.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "adversarial_referee_report.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "applied_empirical_referee_report_role2.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "formal_theoretical_referee_review.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "hostile referee report.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "methodology.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "orchestrator_handoff.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "r1_quantum_info_review_round2.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "r3_matrix_convex_review_round2_kl.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "referee-1-theoretical.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "referee-2-applied-round2.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "referee-2-applied.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "referee-3-adversarial-report.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "referee-3-adversarial.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "seam_applied_referee_review.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "seam_referee1_theory.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "seamqi_execution_plan_s2_s6.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "seamqi_outline.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "synthesis.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "synthesis_pass2.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "synthesis_pass3.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "theoretical_referee_round2_v6_2_report.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "var_p_evidence_synthesis.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "warmup.md",
+          "channels": [
+            "B_local_history"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        }
+      ]
+    },
+    "shared-substrate": {
+      "artifacts_observed": 20,
+      "committed": 17,
+      "ephemeral_lower_bound": 3,
+      "ephemeral_share": 0.15,
+      "ephemeral_path_attributed": 3,
+      "ephemeral_session_attributed_only": 0,
+      "ephemeral_names": [
+        "methods.md",
+        "sc8-review.md",
+        "user-dev-environment.md"
+      ],
+      "ephemeral_detail": [
+        {
+          "basename": "methods.md",
+          "channels": [
+            "B_local_history",
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "sc8-review.md",
+          "channels": [
+            "B_local_history",
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        },
+        {
+          "basename": "user-dev-environment.md",
+          "channels": [
+            "C_agent_transcripts"
+          ],
+          "attribution": "path",
+          "mentions": 0
+        }
+      ]
+    }
+  },
+  "channel_detail": {
+    "B_local_history": {
+      "stores": [
+        {
+          "path": "~/AppData/Local/JetBrains/IntelliJIdea2025.3/LocalHistory/changes.storageData",
+          "bytes": 277734
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/IntelliJIdea2025.3/LocalHistory/changes.storageRecordIndex",
+          "bytes": 20160
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2025.2/LocalHistory/changes.storageData",
+          "bytes": 1767104
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2025.2/LocalHistory/changes.storageRecordIndex",
+          "bytes": 19808
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2025.3/LocalHistory/changes.storageData",
+          "bytes": 5789115
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2025.3/LocalHistory/changes.storageRecordIndex",
+          "bytes": 93888
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2026.1/LocalHistory/changes.storageData",
+          "bytes": 2683523
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2026.1/LocalHistory/changes.storageRecordIndex",
+          "bytes": 66848
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2026.2/LocalHistory/changes.storageData",
+          "bytes": 128514
+        },
+        {
+          "path": "~/AppData/Local/JetBrains/PyCharm2026.2/LocalHistory/changes.storageRecordIndex",
+          "bytes": 16352
+        }
+      ],
+      "store_count": 10,
+      "total_bytes": 10863046,
+      "content_store_available": false,
+      "content_note": "change records only - paths and timestamps, no file contents. Artefact EXISTENCE is recoverable here; what the artefact SAID is not."
+    },
+    "C_agent_transcripts": {
+      "transcript_files": 14,
+      "coverage_caveat": "only sessions surviving Claude Code retention are present (WS0 finding 1). Silence about a project is evidence about the log, not about the project."
+    }
+  },
+  "artifacts": [
+    {
+      "basename": "blotter_design.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 6
+      },
+      "session_attribution": {
+        "b-autobot": 1
+      }
+    },
+    {
+      "basename": "implementation_plan.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "IntelliJIdea2025.3",
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 20,
+        "btest": 4
+      },
+      "session_attribution": {
+        "b-autobot": 1,
+        "btest": 1
+      }
+    },
+    {
+      "basename": "industrialisation_plan.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "modularisation_design.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 24
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "plan-testdatanormalisation.prompt.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "sso_auth_plan.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 6
+      },
+      "session_attribution": {
+        "b-autobot": 1
+      }
+    },
+    {
+      "basename": "calude.md",
+      "project": "b-autobot",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "b-autobot": 1
+      }
+    },
+    {
+      "basename": "dejavufonts.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "jquery.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "jqueryui.md",
+      "project": "b-autobot",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "IntelliJIdea2025.3"
+      ],
+      "path_attribution": {
+        "b-autobot": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "alerts.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "amendments_log.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "config_schemas.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "context_inventory.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 166
+      },
+      "session_attribution": {
+        "blive": 1
+      }
+    },
+    {
+      "basename": "context_protocol.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 2
+      },
+      "session_attribution": {
+        "blive": 1
+      }
+    },
+    {
+      "basename": "decisions.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 3,
+        "blive": 92
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "domain_events.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 5
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "domain_objects.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "event_schemas.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "failure_modes.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "human-ai-centroid-research.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 4,
+        "shared-substrate": 3
+      },
+      "session_attribution": {
+        "blive": 2
+      }
+    },
+    {
+      "basename": "ib_capability_matrix.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ib_error_codes.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 34
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ib_pacing_spec.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ig_capability_matrix.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ig_instrument_dictionary.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ig_pacing_spec.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "instrument_dictionary.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 17
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "m2-ig_retrospective.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "m3-context_inventory.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "m3_retrospective.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "metrics.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "next_prompt.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 12,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 26,
+        "seamQ": 1,
+        "lab": 2
+      },
+      "session_attribution": {
+        "btest": 1,
+        "blive": 9,
+        "seamQ": 1,
+        "lab": 1
+      }
+    },
+    {
+      "basename": "open_questions.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 25,
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "operational_events.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "parity_methodology.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "phase_2_readiness.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 28
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ports_adapters.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 12
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "risk_checks.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "strategies.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "strategy_taxonomy.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "task_registry.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 4,
+        "blive": 88
+      },
+      "session_attribution": {
+        "blive": 1
+      }
+    },
+    {
+      "basename": "uk_regulatory.md",
+      "project": "blive",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "blive": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "acceptance_test_review.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "acceptance_tests.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 8,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 54
+      },
+      "session_attribution": {
+        "btest": 8
+      }
+    },
+    {
+      "basename": "actor_taxonomy.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "adapter_guide.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "agent_dsl_reference.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "backtest.agent.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "benchmark_specs.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "claude.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": true,
+      "mentions_in_prompts": 4,
+      "ide_installs": [
+        "IntelliJIdea2025.3",
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "b-autobot": 3,
+        "btest": 21,
+        "blive": 4
+      },
+      "session_attribution": {
+        "b-autobot": 1,
+        "btest": 3
+      }
+    },
+    {
+      "basename": "claude_code_workflow_guide.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data_acquisition.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 14,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 47
+      },
+      "session_attribution": {
+        "btest": 14
+      }
+    },
+    {
+      "basename": "data_audit.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 5,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 30
+      },
+      "session_attribution": {
+        "btest": 5
+      }
+    },
+    {
+      "basename": "data_readiness.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 5,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 32
+      },
+      "session_attribution": {
+        "btest": 5
+      }
+    },
+    {
+      "basename": "data_remediation_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data_remediation_plan_2.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data_remediation_prompts_2.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data_source_audit.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "data_status.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "drilldown_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd_index_ref_data_manifest.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd_uk_eu_data_manifest.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 22
+      },
+      "session_attribution": {
+        "btest": 3
+      }
+    },
+    {
+      "basename": "eodhd_uk_eu_etf_data_manifest.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 8
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd_uk_eu_index_ref_data_manifest.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd_us_common_stock_data_manifest.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd_us_etf_data_manifest.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 9
+      },
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "experiment_objectives.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "experiment_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 11
+      },
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "experiment_results.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 25
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "experiment_session_prompts.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 36
+      },
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "experiments.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 3
+      }
+    },
+    {
+      "basename": "fabricator.chatmode.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "fundamentals_refresh_design.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "gpu_acceleration_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 19
+      },
+      "session_attribution": {
+        "btest": 3
+      }
+    },
+    {
+      "basename": "gpu_acceleration_targets.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "import-audit.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "intensity_methodology_correlation.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 4,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {
+        "btest": 4
+      }
+    },
+    {
+      "basename": "iteration_3_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 3
+      }
+    },
+    {
+      "basename": "iteration_4_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "iteration_5_1_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_5_2_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "iteration_6_1_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_1_results.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_2_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_2_results.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_3_results.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_4_plan_revised.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_4b_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_4b_results.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_4c_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "license.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": true,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.2"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "m2-ib_retrospective.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "methodology_robustness_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "migration-checklist.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "model_comparison.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "module-classification.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "next_session_prompt.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 7,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {
+        "btest": 7
+      }
+    },
+    {
+      "basename": "notation.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "packaging-recommendations.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "paper_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "plan-platformuirefactor.prompt.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 9
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "proposal_summary.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "readme.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": true,
+      "mentions_in_prompts": 16,
+      "ide_installs": [
+        "IntelliJIdea2025.3",
+        "PyCharm2025.2",
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "b-autobot": 22,
+        "btest": 72,
+        "pt-liqadj": 1,
+        "blive": 18,
+        "seamQ": 8,
+        "lab": 5,
+        "shared-substrate": 21,
+        "datacli": 41
+      },
+      "session_attribution": {
+        "b-autobot": 1,
+        "btest": 13,
+        "seamQ": 2
+      }
+    },
+    {
+      "basename": "replication_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "research_plan_for_paper_iteration_gemini.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "review_prompt.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 10,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 10
+      }
+    },
+    {
+      "basename": "risk-register.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "scope_selection.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "signal_processing_approach.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "standalone-extraction-report.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "status.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 9
+      },
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "acceptane_tests.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "agents.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": true,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "button_fix_details.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 5
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 16
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data_acquisition_prompts.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "data_remediation_prompts.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 14
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "docs_smim_experiment_objectives.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "docs_smim_experiment_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "docs_smim_implementation_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "docs_smim_proposal_summary.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "docs_smim_task_registry.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd\u0001\u0005eodhd&\u0000\u0006cli.py\u0000\u0000\u0001\u009fe\u00e9nx\u0000\u0000\u0000\treadme.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "eodhd_uk_eu_migration_plan.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 16
+      },
+      "session_attribution": {
+        "btest": 3
+      }
+    },
+    {
+      "basename": "feedback_no_physical_test_prints.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "feedback_recommend_over_poll.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "fred\u0001\u0004fred\u0001\u0001\u00021d\u0002\u0000\bdata.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "global\u0001\u0006global\u0001\u0001\u00021d\u0002\u0000\bdata.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "handoff_to_new_chat_v2.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "ib_algo_engine_requirements_v0.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_5_4_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_4_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "iteration_6_4c_rresults.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "kickoff_prompt_v2.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "lock.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3",
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "btest": 16
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "memory.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": true,
+      "mentions_in_prompts": 2,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 10,
+        "shared-substrate": 2
+      },
+      "session_attribution": {
+        "b-autobot": 1,
+        "btest": 1
+      }
+    },
+    {
+      "basename": "platform_roadmap.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "practical_applicability.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 2
+      }
+    },
+    {
+      "basename": "project_blive_paper.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 8
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "project_datacli.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "project_printer_setup.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "publication_eval_prompt.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "query_button_fix_summary.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee_review_and_claude_code_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "reference_github_cli.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "reports\u0001\u0007reports\u0001\u0000\u0011data_readiness.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "research_summary.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "smim_data_acquisition_prompts.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "ui_fix_summary.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2025.3"
+      ],
+      "path_attribution": {
+        "btest": 5
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "uk_eu_extension_status.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 3
+      }
+    },
+    {
+      "basename": "uk_eu_panel_plan.md",
+      "project": "btest",
+      "attribution": "session_folder",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 4,
+      "ide_installs": [],
+      "path_attribution": {},
+      "session_attribution": {
+        "btest": 4
+      }
+    },
+    {
+      "basename": "work-project-anonymization.md",
+      "project": "btest",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 1,
+        "shared-substrate": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "design.md",
+      "project": "datacli",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "datacli": 15
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "scenarios.md",
+      "project": "datacli",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "datacli": 5
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "blackbox_20260711-220120.md",
+      "project": "datacli",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {
+        "datacli": 1
+      },
+      "session_attribution": {
+        "datacli": 1
+      }
+    },
+    {
+      "basename": "data_manifest.md",
+      "project": "harp",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 3,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "harp": 2
+      },
+      "session_attribution": {
+        "btest": 2,
+        "harp": 1
+      }
+    },
+    {
+      "basename": "linkedin_article_v1.md",
+      "project": "harp",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "harp": 10
+      },
+      "session_attribution": {
+        "harp": 1
+      }
+    },
+    {
+      "basename": "journal_options.md",
+      "project": "harp",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [],
+      "path_attribution": {
+        "harp": 1
+      },
+      "session_attribution": {
+        "harp": 1
+      }
+    },
+    {
+      "basename": "linkedin_article.md",
+      "project": "harp",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "harp": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "skill.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 4,
+        "datacli": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "btest_dsl_requirements.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "cogitator.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "data_feasibility.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "docs\u0001\u0004docs\u0002\u0000\u0014strategy_metadata.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "execution\u0001\texecution\u0002\u0000\tfills.csv\u0000\u0000\u0001\u009e\u0098\u0082dc\u0000\u0000\u0000\treadme.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "fabricator.agent.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "fabricator.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "generated\u0001\tgenerated\u0001\u0000\treadme.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "patterns.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "research_ideas_1x.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "research_index.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "result.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "rotation_logic.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "strategy_metadata.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "testing_results_2026-05-18.md",
+      "project": "lab",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "lab": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1a_gaussian_qi_literature.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1b_quantum_markov_chains_literature.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1c_ttn_timeseries_literature.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1d_qi_classical_algorithms_literature.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "2_b1_symbolic_verification_seed1001.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "3_frame_incompatibility_diagnostic.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "4a_adversarial_review_b1.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "4b_adversarial_review_b5.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "4c_adversarial_review_phase0_diagnostic.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "findings.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "index.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 20
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "p5_lami_haw_prior_art_audit.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "p6_bregman_info_geometry_audit.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "paper1_execution_plan_s2_s6.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "paper1_petz_forecasting_outline.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "paper2_frame_incompatibility_diagnostic_outline.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "prep_iteration.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "quantum_framing.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r1_quantum_info_review.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r1_quantum_info_review_r2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r1_quantum_info_review_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r1_quantum_info_review_v3.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r1_quantum_info_review_v5.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "r2 stats econometrics review report.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r2_stats_econometrics_review.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r2_stats_econometrics_review_2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r2_stats_econometrics_review_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r2_stats_econometrics_review_v3.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r2_stats_econometrics_v5.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "r3_matrix_convex_review.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r3_matrix_convex_review_2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r3_matrix_convex_review_2_kl.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r3_matrix_convex_review_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r3_matrix_convex_review_v3.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r3_matrix_convex_review_v5.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "referee_r1_quantum_info.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee_r2_stats_econometrics.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee_r3_matrix_convex.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 5
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "response.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 33
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "response_agent_prompt.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 2
+      }
+    },
+    {
+      "basename": "review_agent_report.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "review_methodology.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "round_1_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "round_2_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 5
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "round_3_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 34
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "seam_harp_quantum_brainstorm_seed_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 2
+      }
+    },
+    {
+      "basename": "seam_harp_quantum_executable_protocol.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 2,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {
+        "seamQ": 2
+      }
+    },
+    {
+      "basename": "seed_errata.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "self_review_pre_round2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "submission_guide.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "week1_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "week2_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "week3_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "week4_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "week5_status.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 11
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "where_the_asymmetry_lives.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1a quantum reformulation of forecast variance differentials.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1b branch b1b and gaussian quantum markov chains.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "1d quantum-inspired algorithms research.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "4a adversarial review of b1.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "4b adversarial review of b5.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "4c adversarial review of phase 0.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "adversarial_referee_report.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "applied_empirical_referee_report_role2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "formal_theoretical_referee_review.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "formal_theoretical_referee_review_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "handoff.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "hostile referee report.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "hostile_referee_report_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "methodology.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "orchestrator_handoff.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r1_quantum_info_review_round2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "r3_matrix_convex_review_round2_kl.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee-1-theoretical.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee-2-applied-round2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee-2-applied.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee-3-adversarial-report.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "referee-3-adversarial.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 6
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "seam_applied_referee_review.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "seam_applied_referee_review_v2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {
+        "seamQ": 1
+      }
+    },
+    {
+      "basename": "seam_referee1_theory.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "seamqi_execution_plan_s2_s6.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "seamqi_outline.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "synthesis.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "synthesis_pass2.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "synthesis_pass3.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "theoretical_referee_round2_v6_2_report.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "var_p_evidence_synthesis.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "warmup.md",
+      "project": "seamQ",
+      "attribution": "path",
+      "channels": [
+        "B_local_history"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "seamQ": 1
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "abstract.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "altitude.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 7
+      },
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "amendments-log.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "shared-substrate": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "assessment.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 19
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "field-manual.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "shared-substrate": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "management-brief.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "shared-substrate": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "next_task.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 5,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 40
+      },
+      "session_attribution": {
+        "shared-substrate": 2,
+        "btest": 3
+      }
+    },
+    {
+      "basename": "outline.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "plan.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 1,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 61
+      },
+      "session_attribution": {
+        "btest": 1
+      }
+    },
+    {
+      "basename": "presentation.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.1"
+      ],
+      "path_attribution": {
+        "shared-substrate": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "protocol.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 7
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "questions-p1.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "questions-p2.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "questions-p3.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 3
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "rubric-evidence.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 11
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "rubric.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 13
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "state.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "A_typed_prompts",
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 3,
+      "committed_somewhere_in_corpus": true,
+      "non_substrate": false,
+      "mentions_in_prompts": 4,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 80
+      },
+      "session_attribution": {
+        "btest": 4
+      }
+    },
+    {
+      "basename": "methods.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 4
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "sc8-review.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "B_local_history",
+        "C_agent_transcripts"
+      ],
+      "channel_count": 2,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [
+        "PyCharm2026.2"
+      ],
+      "path_attribution": {
+        "shared-substrate": 2
+      },
+      "session_attribution": {}
+    },
+    {
+      "basename": "user-dev-environment.md",
+      "project": "shared-substrate",
+      "attribution": "path",
+      "channels": [
+        "C_agent_transcripts"
+      ],
+      "channel_count": 1,
+      "committed_somewhere_in_corpus": false,
+      "non_substrate": false,
+      "mentions_in_prompts": 0,
+      "ide_installs": [],
+      "path_attribution": {
+        "btest": 1,
+        "shared-substrate": 2
+      },
+      "session_attribution": {}
+    }
+  ]
+}
