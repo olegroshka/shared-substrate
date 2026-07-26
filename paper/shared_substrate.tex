@@ -323,7 +323,7 @@ The motivating phenomena are not theoretical. They are what one comes
 to see when collaborating with a large language model on any
 sufficiently complex task without substrate discipline. The names
 below are ours; the phenomena are widely reported across the
-practitioner community and increasingly studied formally
+engineering community and increasingly studied formally
 \citep{liu2024lostmiddle, park2023generativeagents, packer2024memgpt}.
 Each is described from the inside --- what one sees, what one feels,
 what fails.
@@ -445,7 +445,7 @@ codebase, and the experience of the operator.
 
 We read this record as the strongest available motivation for
 substrate discipline, for two reasons. First, the calibration
-failure in \citet{becker2025metr} --- practitioners who are slowed
+failure in \citet{becker2025metr} --- developers who are slowed
 down while confidently believing they are sped up --- means felt
 productivity cannot be trusted as the measure of a human--AI
 coupling; only externalised, inspectable state can be
@@ -473,7 +473,7 @@ motivation and a small but growing apparatus.
 
 \subsection{Cognitive science}
 
-What Shared Substrate asks of a practitioner is not foreign to
+What Shared Substrate asks of an operator is not foreign to
 humans --- it is what humans do when they think well at scale, made
 explicit and applied to a new collaborator.
 
@@ -627,15 +627,15 @@ The MemGPT analogue of working memory and long-term memory mirrors
 the cognitive-science distinction between internal and external
 representations \citep{scaife1996external}. Shared Substrate's
 session warm-up is a coarse version of MemGPT-style paging,
-performed by a human practitioner at the start of work rather than
+performed by a human operator at the start of work rather than
 continuously by the model.
 
 \citet{park2023generativeagents} demonstrated that long-running
 simulated agents required explicit memory and reflection machinery
 to behave coherently across simulated days. They combined a flat
 memory store with retrieval and reflective summarisation. The
-simulated agents' need for these mechanisms is the same need a
-practitioner has when collaborating with an LLM over many sessions,
+simulated agents' need for these mechanisms is the same need an
+operator has when collaborating with an LLM over many sessions,
 and the same set of solutions emerges in different idioms.
 
 \citet{shinn2023reflexion} showed that agents which reflect verbally
@@ -649,8 +649,8 @@ changes are made. Reflection is not optional; it is the protocol.
 small set of explicit rules the agent self-applies during
 generation. The constitution sits outside any single response and
 governs all of them. Shared Substrate's edit protocol is a
-constitution at the methodological level --- explicit rules a
-practitioner self-applies whenever touching the substrate.
+constitution at the methodological level --- explicit rules an
+operator self-applies whenever touching the substrate.
 
 The convergence has since become structural. Agentic-memory
 systems now organise an agent's persistent state as networks of
@@ -661,7 +661,7 @@ in system design, the artefact-graph shape this paper specifies as
 practice. The convergence extends to the tooling vendors: by
 2025--26, nearly every commercially shipping AI coding harness had
 independently adopted a small auto-loaded project-root instruction
-file as its session entry point. Practitioners cultivating a
+file as its session entry point. Operators cultivating a
 discipline, researchers designing memory systems, and vendors
 shipping harnesses arrived at structurally similar substrate
 solutions without coordinating --- the same convergence argument
@@ -673,7 +673,7 @@ The agentic-AI literature is converging from many directions on a
 common conclusion: long-horizon AI work requires explicit external
 state, retrieval and pre-fetch, reflection, and rules. Shared
 Substrate offers no new component over this literature; it offers
-a methodology that integrates them at the level the practitioner
+a methodology that integrates them at the level the operator
 inhabits --- and, in \S\ref{sec:governance}, a governance schema
 for progressively delegating substrate execution to these very
 systems.
@@ -693,7 +693,7 @@ the leverage comes from their combination
 
 A note on execution before the specification. What follows
 describes the discipline in its fully-manual baseline form ---
-every step performed by the practitioner. \S\ref{sec:governance}
+every step performed by the operator. \S\ref{sec:governance}
 specifies how execution is progressively delegated to agents;
 delegation changes \emph{who performs} each step, never what the
 step is or who is accountable for it.
@@ -848,7 +848,7 @@ knowledge belongs to exactly one of the six. The categories also
 have characteristic update cadences --- KBs change rarely,
 Inventories change with each new feature, ADRs are append-only, OQs
 accumulate and resolve, the Glossary grows and stabilises. The
-differential cadence is itself useful; it tells the practitioner
+differential cadence is itself useful; it tells the operator
 what kind of artefact they are looking at without reading the
 content.
 
@@ -875,7 +875,7 @@ Every artefact also lists the artefacts it depends on
 (\texttt{depends\_on}) and the artefacts that reference it
 (\texttt{referenced\_by}). Together these turn the substrate into a
 navigable graph. The graph supports impact analysis: before editing
-KB-3, the practitioner walks \texttt{KB-3.referenced\_by} and
+KB-3, the operator walks \texttt{KB-3.referenced\_by} and
 reviews each downstream artefact. The graph supports orphan
 detection: an artefact whose \texttt{referenced\_by} stays empty
 for more than one milestone is a candidate for retirement. The
@@ -943,11 +943,11 @@ fast-moving project is not stable; it is stale, and should be
 labelled accordingly.
 
 The status field, combined with the cadence rules from \S4.1, gives
-the practitioner a quick estimate of the substrate's overall
+the operator a quick estimate of the substrate's overall
 health. A substrate with most artefacts in \textsc{stable} or
 \textsc{draft} and few in \textsc{stale} is in good shape. A
 substrate with many \textsc{stale} or \textsc{missing} artefacts is
-signalling that the practitioner has out-grown the substrate or
+signalling that the operator has out-grown the substrate or
 under-tended it.
 
 \subsection{The edit protocol}
@@ -1478,7 +1478,7 @@ proxy while production was the scarce step. In a coupled
 environment it fails twice over: volume is precisely what the
 amplifier inflates, and it inflates divergence as willingly as
 progress; and perceived productivity tracks volume, which is why
-practitioners in the measured slowdown regime sincerely felt
+developers in the measured slowdown regime sincerely felt
 faster. The frames of this section supply the replacement. The
 scarce inputs of a coupling are three: the human's creative kernel
 (the non-derivable bits), the human's oracle capacity (review and
@@ -1570,7 +1570,7 @@ The discipline's \emph{content} --- six artefact categories,
 stable identifiers, the status lifecycle, the edit protocol,
 propagation rules, anti-patterns --- is fixed by
 \S\ref{sec:discipline}. Its \emph{execution model} is not. As
-specified, every step is performed by the practitioner; left
+specified, every step is performed by the operator; left
 there, the discipline would carry a manual burden that does not
 scale with project complexity, and would invite the objection
 that autonomous memory systems will make it obsolete. The
@@ -1783,7 +1783,7 @@ Shared Substrate from \S\ref{sec:discipline} maps to a
 cognitive principle from \S\ref{sec:foundations} that grounds it,
 to a failure mode from \S\ref{sec:failures} that it mitigates, and
 to the adoption-stack layer (\S\ref{sec:governance}) that can
-execute it on the practitioner's behalf.
+execute it on the operator's behalf.
 Table~\ref{tab:synthesis} lays out the mapping.
 
 % --- F6 Mapping Synthesis (table, full-width) ---
@@ -1847,11 +1847,11 @@ The point is the substrate trajectory.
 The first project was a live algorithmic-execution engine bridging
 a research backtesting framework to a regulated broker.
 
-The project began as a chat. A practitioner described the
+The project began as a chat. The author described the
 problem: a backtesting framework that produces strategies, a broker
 API to send them to live, the gap between the two. The first
 artefact deposited to the substrate was a Requirements document ---
-flat, around three and a half thousand words, the practitioner's
+flat, around three and a half thousand words, the author's
 first pass at what would be built and why.
 
 The second artefact was a Context Inventory, listing the categories
@@ -1868,7 +1868,7 @@ the content would be added.
 
 From there the substrate grew. The first Knowledge Base captured
 the strategy taxonomy --- the archetypes the project would support.
-That KB raised ten Open Questions about scope. The practitioner
+That KB raised ten Open Questions about scope. The author
 made decisions on those OQs in a single working session; the
 decisions became the project's first set of Architectural Decision
 Records. The KB updated to mark the OQs as
@@ -1900,7 +1900,7 @@ substrate (a Requirements document) and grew the substrate as the
 work demanded it, with the discipline ensuring that every growth
 step left the artefact graph coherent. By the time implementation
 began, the substrate was sufficient to absorb a session's worth of
-work without drift, and the practitioner could resume after a break
+work without drift, and the author could resume after a break
 of weeks without reconstruction cost.
 
 The metrics --- thirteen KBs, nineteen ADRs, twenty-two OQs ---
@@ -1951,14 +1951,14 @@ verification as the critical path, generation as the cheap step
 the field.
 
 Neither example proves the discipline works; each shows what it
-looks like in flight. Both are single-practitioner accounts,
+looks like in flight. Both are single-operator accounts,
 reported for their shape rather than their effect sizes --- a
 published case study of an AI-augmented one-person squad
 rebuilding inside a brownfield enterprise
 \citep{vilasboas2026onedeveloper} suggests the shape generalises,
 but the controlled evidence of \S2 is the standard the claim must
 eventually meet. And neither example separates the contribution of
-the discipline from the contribution of the practitioner applying
+the discipline from the contribution of the operator applying
 it --- the hidden expertise requirement named in
 \S\ref{sec:limits}.
 
@@ -1968,14 +1968,14 @@ it --- the hidden expertise requirement named in
 % =====================================================================
 
 Shared Substrate is not free. The discipline costs effort,
-and the effort is borne by the practitioner. This section names
+and the effort is borne by the operator. This section names
 those costs honestly.
 
 The protocol's heaviest cost is at the start. The first
 substrate-disciplined session on a new project takes longer than
 the same session run as flat chat, because the inventory is
 \textsc{missing} and must be created, the protocol must be set up,
-and the practitioner is doing two things at once: working on the
+and the operator is doing two things at once: working on the
 project, and building the substrate the project will live in.
 This investment pays back roughly from session three or four,
 when the substrate begins to absorb context that flat chat would
@@ -1990,7 +1990,7 @@ the rest is amortised across the changes the discipline saves
 elsewhere.
 
 There is also a hidden requirement: someone must hold the substrate
-in mind even while distributing it. The practitioner who maintains
+in mind even while distributing it. The operator who maintains
 a substrate at the level of discipline this paper specifies has
 spent years building that capability across many projects, in
 domains both AI-related and not. The discipline articulated here is
@@ -2066,7 +2066,7 @@ crosses into elaboration.
 benefit is a discipline that gets ignored or performatively
 followed. The trivial-fix lane is built specifically to keep this
 risk manageable, but the lane only works if it is generously sized.
-A practitioner who narrows the trivial lane until every change
+An operator who narrows the trivial lane until every change
 requires the full sequence will find their team --- or their agent
 collaborator --- quietly bypassing the discipline. The discipline
 must scale down or it scales out of relevance.
@@ -2075,8 +2075,8 @@ must scale down or it scales out of relevance.
 substrate is no better than the discipline of its author. The
 discipline articulated in this paper looks straightforward on the
 page; in practice it requires judgement honed across many projects.
-A practitioner attempting Shared Substrate for the first time
-will produce a worse substrate than the same practitioner three
+An operator attempting Shared Substrate for the first time
+will produce a worse substrate than the same operator three
 projects later. We have no way to shortcut this: the discipline is
 teachable, but the judgement is practised.
 
@@ -2102,10 +2102,10 @@ resolve it. Every layer of the stack changes who executes ---
 none changes who is accountable.
 
 \textbf{The discipline is not a thinking aid.} Shared
-Substrate helps a practitioner who has something to say organise
+Substrate helps an operator who has something to say organise
 and sustain it. It does not generate ideas, evaluate alternatives,
 or verify correctness. A well-organised wrong project is still
-wrong. The discipline preserves the practitioner's reasoning; it
+wrong. The discipline preserves the operator's reasoning; it
 does not produce it.
 
 \textbf{Model capability still matters.} We have argued that
@@ -2206,10 +2206,10 @@ discipline it articulates was not.
 \appendix
 % =====================================================================
 
-\section{The Practitioner's Compact Field Manual}
+\section{The Compact Field Manual}
 \label{app:manual}
 
-This appendix collects the discipline in a form a practitioner can
+This appendix collects the discipline in a form an operator can
 print and pin. Repetition is by design: the protocol's steps are
 short enough that the appendix should be readable on its own.
 

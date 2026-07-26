@@ -115,7 +115,7 @@ Two nested feedback loops drive the work. The **fast loop** runs within a sessio
 
 ## How it is grounded
 
-The discipline offers no new component; it integrates, at the level the practitioner inhabits, results from four traditions that converged independently on the same shape — which is itself evidence the shape is a recurrent solution:
+The discipline offers no new component; it integrates, at the level the operator inhabits, results from four traditions that converged independently on the same shape — which is itself evidence the shape is a recurrent solution:
 
 | Discipline element | Grounding | Failure mode addressed | Executed by |
 |---|---|---|---|
@@ -143,7 +143,7 @@ The empirical record on AI-assisted work is genuinely contested — and the disc
 
 The moderators that reconcile these — task abstraction level, project maturity, operator experience — are precisely substrate-adjacent variables. **The discipline is an intervention on those moderators, and the claim is falsifiable:** if practised substrate discipline does not move experienced operators on mature projects out of the slowdown regime, the thesis fails.
 
-The paper also draws the consequence for measurement: in a coupled environment, productivity is not generated volume — the amplifier inflates volume regardless of sign, which is why slowed-down practitioners sincerely felt faster — but **validated intent made durable** per unit of scarce human input (creative kernel, oracle capacity, loop time). Unverified volume is not output; it is rework not yet scheduled.
+The paper also draws the consequence for measurement: in a coupled environment, productivity is not generated volume — the amplifier inflates volume regardless of sign, which is why slowed-down developers sincerely felt faster — but **validated intent made durable** per unit of scarce human input (creative kernel, oracle capacity, loop time). Unverified volume is not output; it is rework not yet scheduled.
 
 Concretely, the paper sketches the accounting. The **creative kernel** of a deposit $x$ is its conditional description length given the prior substrate $S$ and pipeline $d$, estimated by a strong model's code length:
 
@@ -192,7 +192,7 @@ shared-substrate/
 │   ├── references.bib           # bibliography (entries verified against arXiv)
 │   └── archive/                 # v0.1 draft (Cognitive Cartography), frozen
 ├── method/
-│   ├── field-manual.md          # the practitioner's compact field manual
+│   ├── field-manual.md          # the compact field manual
 │   └── amendments-log.md        # historical amendment record from the origin project
 ├── docs/
 │   ├── presentation.md          # slide walkthrough (Marp-compatible) with worked examples

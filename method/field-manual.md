@@ -1,4 +1,4 @@
-# The Practitioner's Compact Field Manual
+# The Compact Field Manual
 
 The Shared Substrate discipline in a form you can print and pin. This is the
 paper's Appendix A as a standalone reference; see
