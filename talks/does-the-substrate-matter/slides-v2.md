@@ -531,17 +531,19 @@ Which is the strongest reason this talk presents the *reframe*, not the original
 
 ---
 
-## A third correction happened while building this deck
+## The miss that reframed this deck: context pulls intent off course
 
-Three days before this talk, the agent that built these slides — holding the **entire evaluation report** in context — produced a deck perfectly faithful to it and **illegible to anyone without it**. It passed every check it had. Every one of those checks compared the slides to sources the agent was *holding*; none asked what a reader **without** them would see.
+Days before this talk, the agent that built these slides — holding the **entire evaluation report** in context — produced a deck perfectly faithful to that report and **illegible to anyone without it**. It passed every check it had. Every one of those checks compared the slides to sources the agent was *holding*; none asked what a reader **without** them would see.
 
 It was caught by the operator, applying a rule written down nowhere: *a presentation must be self-sufficient.*
 
-The same shape appears across this corpus *(n = 1 each — a shape, not a rate)*:
+**The mechanism deserves a name: the weight of everything the agent held pulled its reading of the task toward what it knew.** It optimised for faithfulness to its own context, when the intent was legibility to yours.
+
+The same shape appears elsewhere in this evidence *(each seen once — a recurring shape, not a statistic)*:
 
 - a record that cited the very row refuting it — it read the pointer's **status**, never its **content**;
-- an option list that silently dropped the only intent-preserving path;
-- these slides — every fact correct, the implied reader missing.
+- an option list that silently dropped the one option that would have kept the original goal;
+- these slides — every fact correct, the intended reader missing.
 
 **In each case the agent satisfied every explicit requirement and missed the intent those requirements implied.** The check that would catch this — putting the artifact in front of a reader who holds none of the author's context — is this evaluation's own probe method, pointed at deliverables instead of repositories. Until that check exists, making the catch is the human's job. **This is the inversion from section 2, demonstrated live: supplying the judgment the model cannot is now the operator's core responsibility.**
 
@@ -594,9 +596,11 @@ The spectrum to place yourself on:
 
 ## The closing question
 
-The attention-level exhibit earned this question:
+None of this is new with AI. A surgeon can say *"scalpel"* — one word, carrying a complete instruction — only because an entire structure already exists around it: instruments laid out in a known order, roles assigned, a shared protocol. That structure is not free. The operating room pays to maintain it, deliberately, because it converts long explanations into short commands that cannot be misheard.
 
-> ### When you type a short message to your AI assistant — is it delegating prepared work, or just telling it to keep going?
+**Every well-run team has always made this trade: maintaining shared structure costs effort, and it pays for itself in the shortness and safety of every instruction that follows.** The substrate is the same trade, made with a collaborator that reads.
+
+> ### So — when you type a short message to your AI assistant, is it delegating prepared work, or just telling it to keep going?
 
 ---
 
