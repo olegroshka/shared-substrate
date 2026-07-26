@@ -1242,7 +1242,9 @@ Caveats that travel with S9's output:
   with information**), creative-input-vs-cognitive-load, the responsibility inversion
   (what the human is genuinely better at becomes the whole job), and AI-assist
   perceived as each operator growing a **personal, evolving substrate** ("scar tissue
-  with an index", grown not rolled out). §4 gains the deck-building miss as the
+  with an index", grown not rolled out — arriving as continuous mass implementation
+  closed by each operator's self-reflection loop, not as committee output). §4 gains
+  the deck-building miss as the
   evaluation's **third self-correction** (surface pattern-matching vs implied intent;
   n=1, a shape with two in-corpus siblings, never a rate). Close carries the era
   framing. NOTES.md gains the v2 delta map, updated never-cut set, and if-challenged

@@ -129,6 +129,7 @@ How should AI assistance be perceived, then? Not as a tool you adopt — as a **
 - Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. A substrate is **scar tissue with an index**, not a template.
 - The same author runs different substrates on different projects, scaled to their complexity — you will see a small CLI that keeps gates and contracts and skips the rest, correctly.
 - So an organisation cannot roll a substrate out. It can only make **growing one cheap** — and teach people what belongs in theirs.
+- And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous mass implementation**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, deposit the lesson, work differently tomorrow. A skill is refined the way skills always are: **by reps with feedback, not by rollout.**
 
 *Your substrate will not look like mine. The evidence tonight is about whether growing one matters at all.*
 
