@@ -14,7 +14,7 @@
 | WS2 git miners | **DONE 2026-07-25** | S2 · Opus 5 | `scripts/git_miner.py` (+ `scripts/corpus_common.py`) → `data/git-metrics/*.json` |
 | WS3 session-log analysis | **DONE 2026-07-25** | S3 · Opus 5 | `scripts/log_miner.py` + `sample_turns.py` + `altitude_classify.py` + `session_yield.py` → `data/session-metrics/*.json`; instrument `rubric/ALTITUDE.md` v1.0; hand labels `data/altitude-labels.json`; **(a) survives only length-controlled, (b) is the clean positive, (c) inconclusive** |
 | WS4a probe pre-registration | **DONE 2026-07-25** | S4 · Fable 5 | frozen at commit `ab9c62d` **before any run**: `probes/PROTOCOL.md` + 60 questions (20 x 3, one fixed slot template); subject `claude-sonnet-5`; 2 runs/project |
-| WS4b probe runs + scoring | pending | S5 · **Sonnet 5** | execute the frozen protocol exactly; instrument may not change (void + report, never improvise); → `data/probe-results.json` |
+| WS4b probe runs + scoring | **DONE 2026-07-26** | S5 · Opus 5 | 6 sessions, 120 answers, `data/probe-results.json`; driver `scripts/probe_driver.py` + `scripts/probe_guard.py`; verdicts `data/probes/scores.json`. **H-1 is NULL (p=1.0)** — findings below. **Pending on Oleg: SC8 review of 4 CONFABULATED verdicts** (`data/probes/local/SC8-REVIEW.md`) |
 | WS5 survival curves | pending | S6 · **Sonnet 5** | kernel teaser only if time — if attempted, bump to Opus |
 | WS6 archaeology | pending | S7 · **Opus 5** | narrative judgment; see memory-folder lead below |
 | Report assembly | pending | S8 · **Fable 5** | cross-workstream synthesis → `report/` |
@@ -353,6 +353,90 @@ is solid — so the exhibit is built on high/low.**
    b-autobot gridbot-name rejection `b64900916546`; btest SMIM-extraction rationale
    `e66460c50699`/`3a39b4ff5c61`.
 
+## WS4b findings (2026-07-26)
+
+Six sessions (2 runs × 3 projects, b-autobot → blive → btest each run), subject
+`claude-sonnet-5`, 120 answers, every one carrying an `ANSWER:` line. Full counts,
+both SC9 readings, per-session orientation cost and every scored pair are in
+`data/probe-results.json`; the verdicts and their one-line reasons are in
+`data/probes/scores.json`, kept as a script *input* so no re-run can overwrite them.
+
+| project | n | correct | abstained | confabulated | SC9 confab | subtypes |
+|---------|---|---------|-----------|--------------|-----------|----------|
+| blive | 38 (2 voided) | 37 | 0 | **1** | 1 | invented |
+| btest | 40 | 39 | 0 | **1** | 1 | invented |
+| b-autobot | 40 | 36 | 2 | **2** | 0 | false_absence ×2 |
+
+1. **H-1, the pre-registered test, is NULL.** blive 1/38 confabulated vs btest 1/40 —
+   Fisher's exact two-sided **p = 1.0**, and identical under the SC9 sensitivity
+   reading. The talk's one controlled number does not separate the projects. It is
+   published as it came out (PROTOCOL §8).
+2. **H-2 is null too.** Correct rate blive 37/38 = 0.974, btest 39/40 = 0.975.
+3. **H-3 does not separate them either, and blive's own variance swamps the
+   contrast.** Orientation tokens through the accepted statement: blive **118,735 and
+   447,000** — the corpus's cheapest *and* its most expensive — against btest 173,737
+   / 188,681 and b-autobot 258,292 / 330,836. Output tokens are nearly flat across all
+   six sessions (3,465–5,138). A 3.8× within-project spread over a 2-run n supports no
+   claim; H-3 is reported inconclusive, not directional.
+4. **The one stable orientation difference is completeness, not cost.** blive stated
+   **4 of 4** orientation key facts in both runs, never needing a nudge. b-autobot and
+   btest stated **3 of 4** in both runs, and each missed the *same* fact twice —
+   b-autobot the sprint shape, btest how its tests are run. Reproducing the same
+   omission across independent runs is the cleanest signal the probe produced.
+5. **H-4 is not supported: b-autobot does not sit between.** It carries the most
+   confabulations (2/40, both `false_absence`, both on the same question) and the only
+   abstentions. But the predicted mechanism — stale in-tree references *inducing*
+   confabulation — did **not** fire: on both questions built around b-autobot's
+   doc/tree divergence the subject counted the tree and was right (91 scenarios, not
+   the docs' 66; CI disabled, not the README badge's live nightly).
+6. **Every failure sits in one of three cells, and two of them are the same failure.**
+   Recorded slots are near-perfect everywhere — blive 28/28, btest 28/28, b-autobot
+   24/28. blive's single confabulation is on `reason-unrecorded` (invented a rationale
+   for the sfera/EODHD sourcing decision); btest's is on `conversation-only` (inferred
+   a skip *policy* from the `manual` pytest marker). Both are the identical shape: the
+   agent supplies a plausible **why** where the substrate recorded the decision but not
+   its reason. That, not retrieval, is where the substrate boundary showed up.
+7. **A treatment-arm confound PLAN §2 understated.** btest's `CLAUDE.md` is a 212-line
+   agent-instruction file, not an absence of substrate: six of btest's twenty run-1
+   answers were correct with **zero tool calls**, straight out of it. The "flat" arm is
+   flat in *decision records*, not in agent instructions — so the probe's contrast is
+   much weaker than the design assumed, and that alone can account for a null.
+8. **One question was voided, in both blive runs: P1-Q07** (git branching policy). Its
+   frozen absence check claims branch-policy language greps to zero, but
+   `CONTEXT_PROTOCOL.md:456` (§8.4) prescribes "Each session takes a unique branch
+   (`session/<date>-<purpose>`)". Both runs found it; run 2 said so and would have been
+   marked wrong by the key. Voided and reported, never replaced (H9 / §10); the key was
+   not edited. Every other N-slot absence check (17 of 18) was re-verified at probe time
+   and held.
+9. **Answers were scored on content, not method (SC2), and method was sometimes
+   startling.** b-autobot-run1 P3-Q16 gave both recorded reasons for rejecting FINOS VUU
+   in one turn with zero tool calls — without ever opening the git-history-only receipt
+   that holds them. Recorded as an observation, not a scoring adjustment.
+10. **Harness integrity.** Two access attempts, both btest, both `uv run pytest` (outside
+    H1's read-only grant). The sharpest H2 evidence is blive-run2's F1: the subject
+    *attempted to list its own persistent-memory directory* and the guard denied it —
+    isolation demonstrated rather than assumed. The scratch memory store was
+    independently verified empty.
+
+Caveats that must travel with these numbers:
+- n is tiny where it matters: the headline rests on **1, 1 and 2** confabulations.
+  A single re-scored verdict moves every rate. Counts are shown with denominators.
+- **One scorer, and Oleg's SC8 review of all four CONFABULATED verdicts is still
+  pending** — `data/probes/local/SC8-REVIEW.md`. Two ABSTAINED verdicts also rest on
+  SC7's conservative tie-break (b-autobot P3-Q05, both runs); read as commitments they
+  would take b-autobot from 2 to 4.
+- Three harness deviations are declared in `data/probes/scores.json`: `--setting-sources
+  project` (the repos' own `.claude/settings.local.json` sets `bypassPermissions` and
+  grants `Read` across all sibling repos — loading it would have voided H1); turn caps
+  scored rather than enforced (CLI 2.1.220 has no `--max-turns`); and the CLI's dynamic
+  system-prompt section, which puts `git status` and recent commit subjects in front of
+  every F1.
+- One session was voided and restarted under H7 (driver bug: F5's frozen placeholder is
+  `<question text>`, not `<question>`, so the first b-autobot run 1 sent bare templates
+  and the subject answered nothing). Preserved in full, unscored. One surplus F3 nudge
+  was sent to btest-run1 by operator misjudgment; the orientation cost is reported
+  through the accepted statement with the surplus published separately.
+
 ## Session log
 
 - **S1 · 2026-07-25:** PLAN.md drafted and iterated (talk reframed to abstract; corp
@@ -421,3 +505,24 @@ is solid — so the exhibit is built on high/low.**
   files; no probe question has been put to any agent.** Findings above; WS6 receives the
   conversation-only decision list. Next: **WS4b probe runs + scoring (S5, Sonnet 5)** —
   execute the frozen protocol, then score, then `data/probe-results.json`.
+- **S5 · 2026-07-26 · Opus 5:** WS4b executed. Wrote the H5 driver
+  (`scripts/probe_driver.py`) and its H1 enforcement hook (`scripts/probe_guard.py`);
+  both extract F1–F6 and all 60 questions **from the frozen files at run time**, so no
+  probe text was ever retyped and the keys never entered a session. H9 verification
+  first: all three repos sat at their pinned HEADs, 15 commit receipts plus the
+  history-only P3-Q16 receipt re-resolved by hand, and blive's dirty tree (paper drafts
+  under `docs/method/paper/`) grepped for all 13 P1 answer tokens — zero hits, nothing
+  voided at that stage. H8 shakeout on datacli passed all three checks. Then six
+  sessions in the pre-registered order, config reset to the pristine snapshot before
+  every one. Findings above; the headline is a **null on H-1**. Three things went wrong
+  and are published rather than patched: a driver bug voided the first b-autobot run 1
+  (H7 restart, session preserved), a surplus F3 nudge was sent to btest-run1 after the
+  operator applied a stricter orientation standard to btest than to the other two (rule
+  **R-O3** now states the standard; the error is disclosed and its cost excluded from
+  H-3), and **P1-Q07's frozen absence check turned out to be false** at the pinned HEAD,
+  voiding that question in both blive runs. The most useful outputs are not the null
+  itself but finding 6 (both non-b-autobot failures are the same "invent the *why*"
+  shape) and finding 7 (btest's 212-line CLAUDE.md means the "flat" arm is not flat —
+  a confound large enough to explain the null on its own). **Pending on Oleg: the SC8
+  review of all four CONFABULATED verdicts** (`data/probes/local/SC8-REVIEW.md`) before
+  `probe-results.json` is treated as final. Next: **WS5 survival curves (S6, Sonnet 5)**.

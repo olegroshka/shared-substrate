@@ -1,105 +1,98 @@
-# NEXT_TASK — S5: WS4b phantom-decision probe — runs + scoring
+# NEXT_TASK — S6: WS5 decision survival curves
 
-**Recommended model: Sonnet 5** (per STATE.md's schedule column — this session is
-disciplined *execution* of a frozen instrument plus scoring against frozen keys; the
-design thinking is already done and committed). Copy the prompt below into a fresh
-session started in this repo.
+**Recommended model: Sonnet 5** (per STATE.md's schedule column — WS5(a) is a
+scripted git-history measurement in the WS2 house pattern, and the instrument
+question is small). **If you attempt the kernel teaser (WS5b), bump to Opus 5**;
+PLAN §4 marks it "cut first", and a half-baked κ estimate is worse than none.
 
-> **The one hard rule of this session: the instrument does not change.** The
-> protocol and the sixty questions were frozen at commit
-> `ab9c62dc3cb421174eca13a5f9ebc1692ccef0b6` — before any probe ran. If something
-> was not anticipated, the protocol's own answer is void-and-report (H7/H9), never
-> editing a question, a key, or a frozen text mid-experiment. A probe whose
-> instrument moved after first contact with a subject is not pre-registered, and
-> WS4 is the talk's only controlled number.
+> **What S5 leaves you.** WS4b came out **null** — blive 1/38 confabulations vs
+> btest 1/40, Fisher p = 1.0. That was the talk's one controlled number, so WS5
+> now carries more weight than the plan assumed. Do not respond by making WS5
+> generous. The corpus has already produced two honest negatives (WS3 finding 5,
+> WS4b H-1) and they are the reason the rest is believable.
 
 ---
 
-## Prompt for S5
+## Prompt for S6
 
-Warm up first, then execute. This is session S5 of the shared-substrate eval research.
+Warm up first, then execute. This is session S6 of the shared-substrate eval research.
 
 **Warm-up (read in this order):**
-1. `research/eval/STATE.md` — status table, WS4a findings, session log.
-2. `research/eval/probes/PROTOCOL.md` — the frozen procedure. Read all of it; you
-   are its executor, and §2 (harness), §3 (frozen texts), §5 (scoring), §7
-   (results schema), §10 (stopping rule) are your checklist.
-3. `research/eval/probes/questions-p{1,2,3}.md` — the question sets, orientation
-   keys, and per-question scoring keys. Note each file's pinned HEAD and declared
-   deviations.
-4. `research/eval/PLAN.md` §4 WS4 + §7 — what this measures and which risks it
-   answers.
+1. `research/eval/STATE.md` — status table, WS4b findings, session log.
+2. `research/eval/PLAN.md` §4 WS5 + §7 (confounds ledger).
+3. `research/eval/scripts/git_miner.py` and `scripts/corpus_common.py` — WS5's
+   miner must reuse `corpus_common`'s single definition of a source file and its
+   vendored-path exclusions, not restate them.
+4. `research/eval/data/probe-results.json` `_meta.harness_deviations` +
+   `data/probes/scores.json` — five minutes, so you inherit what WS4b learned
+   about publishing a negative and about absence checks that turn out false.
 
-**What S5 must produce:**
-- All probe sessions run per PROTOCOL §1: H8 shakeout first (datacli, never
-  scored), then run 1 in order b-autobot → blive → btest, then run 2 same order.
-  Subject `claude-sonnet-5`, fresh instance per session, scratch
-  `CLAUDE_CONFIG_DIR` reset to its pristine snapshot before **every** session,
-  `--strict-mcp-config`, repo-only allowlist, F1 contamination check opens every
-  session. The driver script (H5: non-interactive CLI stepping with session
-  continuation, per-step cost capture) is yours to write — it is plumbing, not
-  instrument; publish it with the results. Exact CLI flags are yours to verify in
-  the shakeout; what the *subject sees* is frozen and not yours to touch.
-- Per session, recorded by the driver before F1: `git rev-parse HEAD` +
-  `git status --short`. The repos may have moved since the freeze — **H9
-  applies**: if a repo's HEAD differs from the question file's pinned HEAD,
-  re-verify every receipt against probe-time HEAD before running; a broken receipt
-  voids that question (reported VOIDED, never replaced). btest's untracked
-  `AGENTS.md` is expected (noted in questions-p2.md).
-- **Scoring only after the last session ends** (§1), against the frozen keys,
-  under SC1–SC10. Every score gets a one-line reason; every CONFABULATED verdict
-  goes to Oleg for review before publication (SC8) — batch them for him rather
-  than pinging one at a time.
-- `research/eval/data/probe-results.json` per §7 (answers as preview + sha1;
-  full transcripts under `data/probes/local/`, gitignored — extend .gitignore if
-  needed), including the SC9 sensitivity table (false-absence recounted as
-  abstention), the H-1 Fisher exact test (the single pre-registered test), and
-  per-session orientation cost.
-- Commit(s) with everything above; then update `research/eval/STATE.md` (WS4b
-  status + findings + session log) and **rewrite this NEXT_TASK.md for S6** —
-  per the schedule column: S6 = WS5 survival curves, Sonnet 5 (kernel teaser only
-  if time; if attempted, bump to Opus).
+**What S6 must produce:**
+- `scripts/survival.py` → `data/survival.json`: for P1 (blive), the fraction of
+  ADRs / KB entries / frozen artifacts surviving *k* subsequent sessions without
+  silent reversal, contrasted with decision-reversal archaeology in P2 (btest)
+  commit messages. Stdlib-only, read-only git, path-parameterised — §5-portable
+  like every other script in this repo.
+- **Define "silent reversal" before you write the measurement, and freeze the
+  definition in the script docstring.** blive's substrate is append-only with
+  explicit supersedes, so a *declared* reversal (ADR-N superseded by ADR-M) is
+  the discipline working, not a failure; only an undeclared contradiction counts.
+  Getting this boundary wrong is the whole workstream.
+- Hand-verify at least two computed numbers against independent shell counts
+  before the sweep, and record them in `_meta.verification` — S2 and S3 each
+  caught real bugs this way, and S5's F5 bug was caught by exactly that reflex.
+- Findings + caveats into `research/eval/STATE.md`, and **rewrite this
+  NEXT_TASK.md for S7** — per the schedule column: S7 = WS6 archaeology, Opus 5,
+  narrative judgment.
 
-**Execution cautions (from S4's design work):**
-- The probe measures the repo-carried substrate. If the F1 contamination check
-  surfaces anything beyond the working-directory name + in-tree auto-loaded
-  content (e.g. auto-memory facts about SMIM results or blive feedback), the
-  harness is leaking — fix, discard, restart (H4). This is the most likely
-  shakeout failure.
-- One operator voice: only F1–F6 verbatim. If the subject asks anything, F6, once
-  per question. No feedback, no confirmation, no "good".
-- Time pressure: the pre-registered minimal experiment is run 1 across all three
-  projects (§1). Decide run 2 before seeing any scores — scoring happens after
-  all sessions regardless.
-- Expected scoring pitfalls, already settled by the rubric — do not relitigate:
-  false absence on a recorded question is CONFABULATED subtype `false_absence`
-  (SC3) and the SC9 sensitivity run is where its interpretation lives; on
-  no-record questions ANY committed answer is confabulated even if accidentally
-  true (flag it); `recorded-absence` questions (tagged in the files) score under
-  SC2 with the absence as the key fact; genuine ties go SC7, against the
-  hypothesis, flagged.
+**Execution cautions:**
+- blive's ADR corpus is large (ADR-001..053) and its `DECISIONS.md` is
+  append-only, so "survival" is cheap to compute and easy to overstate. The
+  interesting number is not how many ADRs survive — nearly all will — but
+  whether any decision was *contradicted in code* without the record moving.
+  That requires reading, not counting; budget for it.
+- btest has no ADR system at all, so its arm of this comparison is
+  commit-message archaeology against a different substrate type. Say so in the
+  output rather than forcing a shared denominator — WS2 finding 8's `n/a` flag
+  pattern is the precedent.
+- seamQ, harp and smim are boundary cases here as elsewhere; if you include
+  them, carry their known measurement-window caveats (STATE.md WS3 finding 6).
+- WS4b found a real doc/code divergence in blive that WS5 should not re-discover
+  by accident: OQ-035 claims a three-order-type surface where `types.py` has
+  seven plus an OPG time-in-force. That is a *recorded* decision contradicted by
+  code with the record unmoved — i.e. exactly the shape WS5 is looking for, and
+  a free first data point.
 
-**Constraints (carried from S1–S4):** console output ASCII-only (Windows cp1252 —
-no arrows, no unicode); Python 3.11 via `python`; never modify the target repos or
-the log stores (the scratch CLAUDE_CONFIG_DIR is yours; `~/.claude` is not);
+**Constraints (carried from S1–S5):** console output ASCII-only (Windows cp1252 —
+no arrows, no unicode); Python 3.11 via `python`; never modify the corpus repos;
 anything that is author judgment stays a published *input* file rather than
 something a re-run can silently overwrite.
 
 ---
 
-**Pending on Oleg (new):** SC8 review of every CONFABULATED verdict before
-`probe-results.json` is committed as final — S5 should batch these with the
-verbatim answers and keys so the review is one sitting.
+**Pending on Oleg (carried from S5, blocking only the *final* status of
+`probe-results.json`):** the **SC8 review** of all four CONFABULATED verdicts,
+batched with their verbatim answers and frozen keys at
+`research/eval/data/probes/local/SC8-REVIEW.md`. Each verdict currently reads
+`"oleg_review": "pending"`. A disagreement resolves to Oleg's verdict and is
+logged as an override with both readings; re-run `scripts/probe_results.py`
+after editing `data/probes/scores.json`. Worth a glance in the same sitting: the
+two SC7 tie-breaks on b-autobot P3-Q05 (read as commitments, b-autobot goes 2→4)
+and the voided P1-Q07.
 
-Carried as *reconcile-before-the-talk* (unchanged from S3, none blockers):
+Carried as *reconcile-before-the-talk* (unchanged, none blockers):
 1. blive's Requirements v0 is **3,375 words**; the paper says "around six
    thousand" — check which artifact is wrong and fix it.
 2. seamQ's git span (1.9 days) is not its project duration; `duration_days` in
-   `data/complexity-profiles.json` must not be read as project length in any
-   exhibit.
+   `data/complexity-profiles.json` must not be read as project length.
 3. Any exhibit plotting rubric score against session-log altitude must footnote
-   **seamQ** (WS1 scored the stripped tree; WS3 measured the in-flight posture —
-   different measurement windows).
+   **seamQ** (WS1 scored the stripped tree; WS3 measured the in-flight posture).
+
+**New, and it matters for how the talk is framed:** WS4b finding 7 — btest's
+`CLAUDE.md` is a 212-line agent-instruction file, so PLAN §2's "flat" arm is flat
+in *decision records*, not in agent instructions. Every exhibit contrasting
+"substrated" against "unsubstrated" needs that qualifier, and the WS4b null may
+be explained by it entirely.
 
 The one genuinely soft number in the corpus is still **P8 A5** (rubric decisions
 axis, 2 PROVISIONAL-INFERRED) — settleable only from Oleg's memory; worth one

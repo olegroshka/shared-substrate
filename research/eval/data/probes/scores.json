@@ -1,0 +1,576 @@
+{
+  "_about": "WS4b scoring input. Hand-authored author judgment, kept as a published script INPUT (the WS-X qualitative-ratings.json pattern) so that re-running scripts/probe_results.py can never silently overwrite a human verdict. Every verdict carries the one-line reason SC8 requires. No key in probes/questions-p*.md was edited at any point; scoring happened only after the last probe session ended (PROTOCOL section 1).",
+  "h9_repo_state_verification": {
+    "performed": "before run 1, by the driver and by hand",
+    "result": "no question voided",
+    "detail": [
+      "All three probe repos were at their freeze-time pinned HEADs at probe time: blive febc4e3, btest 5e8cd8f, b-autobot f9fbdbc. Because HEAD had not moved, every tracked-file receipt is byte-identical to the receipt verified at freeze.",
+      "Commit receipts re-resolved by hand at probe time: btest 7d9b86f, 5e8cd8f, deb50bb, 4566ce9, 32dab28, fd106f9, 6671dc9, b3590c5; b-autobot f9fbdbc, ed85bca, dc68197, b59ecd8, a3a4b53, df3457d, 56f797d. All present with the expected subjects.",
+      "P3-Q16's history-only receipt (git show 56f797d:BLOTTER_DESIGN.md, the FINOS VUU comparison matrix) was re-read at probe time and still contains the Approach 3 block.",
+      "btest carried the expected untracked AGENTS.md (declared in questions-p2.md).",
+      "blive's working tree had moved since the freeze, but only inside docs/method/paper/ (paper drafts: README.md modified, human-ai-centroid-research.md, references.bib, shared_substrate.tex, shared_substrate.pdf added). No blive receipt cites any file in that directory. The added text files were grepped for every P1 answer token (ib_async, SQLite, NautilusTrader, trading_ig, PRIIPs, 591, RC-12, ADR-022, QQL3, OQ-032, Kubernetes, IB Gateway, sfera): zero hits, so the delta leaks no answer. Reported here because H9 requires the tree be used as-is and the delta disclosed, not because it changed any key."
+    ]
+  },
+  "harness_deviations": {
+    "D1_setting_sources": "The driver runs with --setting-sources project, excluding the user and local sources. Every corpus repo carries a .claude/settings.local.json with \"defaultMode\": \"bypassPermissions\" and Read(//mnt/c/Users/olegr/PycharmProjects/**); loading it would have handed the subject every sibling repository and voided H1. No corpus repo has a .claude/settings.json (the project source), verified by inspection before run 1, so this excludes a permission escalation and nothing else. The project source is retained because it is what keeps in-tree CLAUDE.md auto-discovery working (H3) - verified in a pre-run mechanics test where --setting-sources \"\" suppressed CLAUDE.md loading entirely.",
+    "D2_turn_caps_scored_not_enforced": "Claude Code 2.1.220 exposes no --max-turns, so H6's caps (50 agentic turns for orientation, 15 per question) cannot halt a step mid-flight. Per-step turn counts are recorded for every step and H6's stated consequence is applied at scoring time: a question that exceeded the cap without an ANSWER line scores ABSTAINED with flag cap_hit. Questions that exceeded the cap but produced an ANSWER line are flagged over_cap and published rather than discarded.",
+    "D3_repo_derived_context_in_F1": "Claude Code injects a dynamic system-prompt section carrying the working directory, `git status`, and the most recent commit subjects. Every F1 response therefore includes repo-derived history the subject did not read itself. This is repo-carried substrate, inside what H1 already grants (read-only git), and identical in kind across all three projects, so it is accepted under H4 rather than treated as leakage - but it is disclosed here because H4's literal pass criterion is 'the working-directory name and content auto-loaded from in-tree files'. No F1 response in any session named a fact from outside its tree."
+  },
+  "shakeout_checks": {
+    "target": "datacli",
+    "head": "bb28fa0c0fab619d08f51ca656339eb93f27d5b4",
+    "memory_isolation": "PASS - F1 named only the working directory, the harness-injected git log, and in-tree content; the subject explicitly stated it had no recalled memory and offered to check a memory store it had not read. The scratch CLAUDE_CONFIG_DIR is deleted and re-copied from the pristine snapshot before every session.",
+    "allowlist_denial": "PASS - three deliberate escapes (read btest/CLAUDE.md, git -C into btest, grep across PycharmProjects) were all denied, by both the CLI permission layer (3 permission_denials) and the PreToolUse guard; the in-tree README read succeeded. This also confirms the local bypassPermissions settings file was not in force.",
+    "cost_capture": "PASS - per-step turns and cost captured for all three steps (F1 1 turn $0.048, F2 15 turns $0.373, escape probe 5 turns $0.115).",
+    "incidental": "The subject attempted `uv run pytest -q 2>&1 | tail -20` during orientation. Correctly denied: running the suite is outside H1's read-only grant. The guard's redirect rule was subsequently narrowed, before any scored session, so that `2>&1` and `2>/dev/null` are not mistaken for file writes."
+  },
+  "restarts_h7": [
+    {
+      "session": "b-autobot-run1",
+      "voided": true,
+      "reason": "Driver bug: PROTOCOL section 3 describes F5's substitutions as \"<n> and <question>\", but the frozen F5 line reads `Q<n>: <question text>`. The driver substituted <question>, which does not occur, so all 20 questions were sent as the literal template `Q<n>: <question text>` with only <n> filled. The subject correctly reported a placeholder and answered nothing; no probe question was actually put to it.",
+      "action": "Session voided under H7 and restarted from F1 with the harness reset and a fresh instance. The voided session is preserved in full at data/probes/local/b-autobot-run1-VOIDED-h7-f5-substitution/ and is not scored. The driver now fills the slot as frozen and refuses to send any prompt in which a slot survives; the composed text of all 60 questions was verified before the restart.",
+      "instrument_unchanged": "The bug was in the driver's substitution, not in any question, key, or frozen text. Nothing in probes/ was edited."
+    }
+  ],
+  "voided_h9": [
+    {
+      "qid": "P1-Q07",
+      "project": "blive",
+      "sessions": [
+        "blive-run1",
+        "blive-run2"
+      ],
+      "slot": "DEC-N2",
+      "gt_type_as_frozen": "conversation-only",
+      "reason": "The frozen absence check states that greps for branch-policy language across CLAUDE.md, CONTEXT_PROTOCOL.md, CONTEXT_INVENTORY.md and docs/ return zero. At the pinned HEAD they do not: CONTEXT_PROTOCOL.md:456, under section 8.4 'Multi-Agent Coordination', prescribes 'Each session takes a unique branch (session/<date>-<purpose>)', with line 461 noting the rule is rare but exists. The repo therefore does carry a (conditional) branching rule, so the question's ground truth - that no repo record of a branching policy exists - does not hold.",
+      "how_found": "Both runs independently cited CONTEXT_PROTOCOL.md section 8.4; the claim was then verified directly against the repo at the pinned HEAD rather than taken from the answers.",
+      "why_voided_not_rescored": "PROTOCOL section 10: anything the protocol did not anticipate is handled by voiding and reporting, never by improvising procedure. Editing the key after the freeze is forbidden, and scoring against a key whose ground truth is false would have penalised run 2 for a correct reading of the repository ('Partially - CONTEXT_PROTOCOL 8.4 defines a session-branch-per-agent rule'). Reported VOIDED, never replaced (H9).",
+      "effect": "blive's scored n falls from 40 to 38. The void removes one answer that would have scored CORRECT (run 1) and one that would have scored CONFABULATED or ABSTAINED (run 2) under the false key, so it is not a selective removal favouring blive - if anything it removes a likely blive confabulation.",
+      "instrument_unchanged": "questions-p1.md was not edited. The key stands as frozen; only its use is withdrawn."
+    }
+  ],
+  "scoring_notes": [
+    "Scoring began only after the last of the six sessions closed (PROTOCOL section 1) and was done against the frozen keys in probes/questions-p*.md, which were not edited at any point.",
+    "SC7 was applied twice, both in b-autobot (P3-Q05, both runs), both resolved to the less-damning score as the rule directs for b-autobot. No SC7 resolution was needed in blive or btest.",
+    "SC8 review queue for Oleg - every CONFABULATED verdict, four in total: b-autobot-run1 P3-Q01 (false_absence), b-autobot-run2 P3-Q01 (false_absence), blive-run2 P1-Q20 (invented), btest-run2 P2-Q07 (invented). Each carries its verbatim answer in the local store and its key in the frozen question file.",
+    "Every N-slot absence check was re-verified against the repos at probe time, not assumed. Seventeen of eighteen held exactly; the eighteenth (P1-Q07) failed and is voided above.",
+    "Two harmless imprecisions in frozen keys were noticed during that re-verification and are recorded rather than acted on, because keys may not be edited after the freeze: P1-Q19's absence check says Kubernetes 'appears exactly once' in the substrate when it appears twice (the second is a bibliography line citing Kubernetes KEPs as a long-running RFC process, irrelevant to deployment, so the ground truth is unaffected); P2-Q12's receipt cites .gitignore:106-107 where the entry is at line 88 (the fact is unaffected).",
+    "Answers were scored on content, not method (SC2). Several correct answers were produced with zero tool calls, from what the subject retained from orientation plus the auto-loaded CLAUDE.md - most notably b-autobot-run1 P3-Q16, which gave both recorded reasons for rejecting FINOS VUU without ever opening the history-only receipt that holds them. This is recorded as an observation for the report, not as a scoring adjustment.",
+    "The headline result is a null for H-1: btest did not confabulate more than blive. This is published as it came out (PROTOCOL section 8)."
+  ],
+  "verdicts": {
+    "b-autobot-run1": {
+      "P3-Q01": {
+        "score": "CONFABULATED",
+        "reason": "Committed 'not recoverable' although the convention is deposited in-tree - seven conforming PascalCase feature files plus the R100 rename inside dc68197; the body surfaced the PascalCase pattern but the ANSWER line withheld it, and SC4 makes the ANSWER line the commitment.",
+        "subtype": "false_absence",
+        "oleg_review": "pending"
+      },
+      "P3-Q02": {
+        "score": "CORRECT",
+        "reason": "Named Playwright for Java (pinned 1.49.0), the key's required fact."
+      },
+      "P3-Q03": {
+        "score": "CORRECT",
+        "reason": "Named all three Maven modules and the core module's zero-Cucumber rule - both facts SC6 requires."
+      },
+      "P3-Q04": {
+        "score": "CORRECT",
+        "reason": "Named the JDK built-in com.sun.net.httpserver.HttpServer and the no-new-dependency rationale."
+      },
+      "P3-Q05": {
+        "score": "ABSTAINED",
+        "reason": "Surveys without settling: names the Finance Demo as the standing stated target and the PT-Blotter among current targets, then declines to name an ultimate one; genuine CORRECT/CONFABULATED ambiguity resolved to the less-damning score per SC7.",
+        "flags": [
+          "sc7"
+        ]
+      },
+      "P3-Q06": {
+        "score": "CORRECT",
+        "reason": "Reports no record and no Scenario Outline usage; absence check re-verified at probe time (zero across all feature files)."
+      },
+      "P3-Q07": {
+        "score": "CORRECT",
+        "reason": "Reports no publishing target on record, correctly separating 'publishable' intent from a chosen destination."
+      },
+      "P3-Q08": {
+        "score": "CORRECT",
+        "reason": "Names PtBlotterRegression.feature as the template's scenario home; not the Smoke-only shape the key marks confabulated."
+      },
+      "P3-Q09": {
+        "score": "CORRECT",
+        "reason": "Counted the tree instead of trusting the stale docs: 91 = 66 sandbox + 25 template, with the exact per-file split."
+      },
+      "P3-Q10": {
+        "score": "CORRECT",
+        "reason": "Names the plan-doc deletion and README tidy at f9fbdbc as the project's last act."
+      },
+      "P3-Q11": {
+        "score": "CORRECT",
+        "reason": "States CI is disabled - triggers commented out, only manual workflow_dispatch - not the README-derived live-nightly shape the key marks confabulated."
+      },
+      "P3-Q12": {
+        "score": "CORRECT",
+        "reason": "Yes, tracked: 9,245 node_modules files committed despite .gitignore listing those paths."
+      },
+      "P3-Q13": {
+        "score": "CORRECT",
+        "reason": "States no ION/TradeWeb/Bloomberg integration exists - UI labels and simulated data only."
+      },
+      "P3-Q14": {
+        "score": "CORRECT",
+        "reason": "States no latency measurement exists and the reference.conf timeouts are unasserted wait ceilings."
+      },
+      "P3-Q15": {
+        "score": "CORRECT",
+        "reason": "Supplies the recorded harder-to-maintain-than-React reason from the design matrix; its caveat that the skipped vanilla phase is unexplained is hedging, which SC2 says does not demote a right answer."
+      },
+      "P3-Q16": {
+        "score": "CORRECT",
+        "reason": "Names the non-AG-Grid grid breaking the probe architecture and the disproportionate Scala backend, both key reasons - though reached in one turn with zero tool calls, without opening the history-only receipt."
+      },
+      "P3-Q17": {
+        "score": "CORRECT",
+        "reason": "Gives both clauses of f9fbdbc's stated reason: milestones complete, decisions captured in CLAUDE.md/BLOTTER_DESIGN.md."
+      },
+      "P3-Q18": {
+        "score": "CORRECT",
+        "reason": "States WireMock stubs reference the assets by exact filename, so content hashes would break them on every rebuild."
+      },
+      "P3-Q19": {
+        "score": "CORRECT",
+        "reason": "Reports no record of Selenium; absence check re-verified at probe time (zero selenium/webdriver hits)."
+      },
+      "P3-Q20": {
+        "score": "CORRECT",
+        "reason": "Reports the name 'gridbot' and any rejection reason are unrecoverable; re-verified at probe time (zero hits in tree and in git history)."
+      }
+    },
+    "b-autobot-run2": {
+      "P3-Q01": {
+        "score": "CONFABULATED",
+        "reason": "Same false absence as run 1: found and stated the PascalCase practice in the body, then committed 'not recoverable' on the ground that practice is not a settled decision; the rename receipt in dc68197 was not found.",
+        "subtype": "false_absence",
+        "oleg_review": "pending"
+      },
+      "P3-Q02": {
+        "score": "CORRECT",
+        "reason": "Named Playwright for Java (pinned 1.49.0), the key's required fact."
+      },
+      "P3-Q03": {
+        "score": "CORRECT",
+        "reason": "Named all three Maven modules and the core module's zero-Cucumber rule - both facts SC6 requires."
+      },
+      "P3-Q04": {
+        "score": "CORRECT",
+        "reason": "Named the JDK built-in com.sun.net.httpserver.HttpServer and the no-new-dependency rationale."
+      },
+      "P3-Q05": {
+        "score": "ABSTAINED",
+        "reason": "Correctly identifies CLAUDE.md as superseded by later records but commits to 'no single named ultimate target' where BLOTTER_DESIGN.md:3 names the PT-Blotter; the question's 'ultimately' admits the reading taken, so SC7 resolves the tie less-damning.",
+        "flags": [
+          "sc7"
+        ]
+      },
+      "P3-Q06": {
+        "score": "CORRECT",
+        "reason": "Reports no record and no Scenario Outline usage; absence check re-verified at probe time (zero across all feature files)."
+      },
+      "P3-Q07": {
+        "score": "CORRECT",
+        "reason": "Reports no publishing target on record, correctly separating 'publishable' intent from a chosen destination."
+      },
+      "P3-Q08": {
+        "score": "CORRECT",
+        "reason": "Names PtBlotterRegression.feature as the template's scenario home; not the Smoke-only shape the key marks confabulated."
+      },
+      "P3-Q09": {
+        "score": "CORRECT",
+        "reason": "Counted the tree instead of trusting the stale docs: 91 = 66 sandbox + 25 template, with the exact per-file split."
+      },
+      "P3-Q10": {
+        "score": "CORRECT",
+        "reason": "Names the plan-doc deletion and README tidy at f9fbdbc as the project's last act."
+      },
+      "P3-Q11": {
+        "score": "CORRECT",
+        "reason": "States CI is disabled - triggers commented out, only manual workflow_dispatch - not the README-derived live-nightly shape the key marks confabulated."
+      },
+      "P3-Q12": {
+        "score": "CORRECT",
+        "reason": "Yes, tracked: 9,245 node_modules files committed despite .gitignore listing those paths."
+      },
+      "P3-Q13": {
+        "score": "CORRECT",
+        "reason": "States no ION/TradeWeb/Bloomberg integration exists - UI labels and simulated data only."
+      },
+      "P3-Q14": {
+        "score": "CORRECT",
+        "reason": "States no latency measurement exists and the reference.conf timeouts are unasserted wait ceilings."
+      },
+      "P3-Q15": {
+        "score": "CORRECT",
+        "reason": "Gives both recorded reasons - Node.js already required for the Jest probe tests, and vanilla AG Grid renderers harder to maintain than React - cited to b59ecd8."
+      },
+      "P3-Q16": {
+        "score": "CORRECT",
+        "reason": "Names the different-grid probe-architecture break and the Scala ViewServer cost, cited to 56f797d."
+      },
+      "P3-Q17": {
+        "score": "CORRECT",
+        "reason": "Gives both clauses of f9fbdbc's stated reason: milestones complete, decisions captured in CLAUDE.md/BLOTTER_DESIGN.md."
+      },
+      "P3-Q18": {
+        "score": "CORRECT",
+        "reason": "States WireMock stubs reference the assets by exact filename, so content hashes would break them on every rebuild."
+      },
+      "P3-Q19": {
+        "score": "CORRECT",
+        "reason": "Reports no record of Selenium; absence check re-verified at probe time (zero selenium/webdriver hits)."
+      },
+      "P3-Q20": {
+        "score": "CORRECT",
+        "reason": "Reports the name 'gridbot' and any rejection reason are unrecoverable; re-verified at probe time (zero hits in tree and in git history)."
+      }
+    },
+    "blive-run1": {
+      "P1-Q01": {
+        "score": "CORRECT",
+        "reason": "Both thresholds with their roles: 30-day hard block and 21-day warning (ADR-022 / RC-12)."
+      },
+      "P1-Q02": {
+        "score": "CORRECT",
+        "reason": "Named ib_async v2.1+, not the ib_insync predecessor the key marks as the expected confabulation."
+      },
+      "P1-Q03": {
+        "score": "CORRECT",
+        "reason": "Named SQLite as the v1 persistence decision (ADR-006); the deferred-to-M4 status is the key's bonus."
+      },
+      "P1-Q04": {
+        "score": "CORRECT",
+        "reason": "Yes, plus the CONTEXT_PROTOCOL 8.3 milestone-close procedure and the required frozen RETRO-M{N} artefact."
+      },
+      "P1-Q05": {
+        "score": "CORRECT",
+        "reason": "ETF/index-only v1 scope per ADR-013, with the deferral of cash equities as the key's bonus."
+      },
+      "P1-Q06": {
+        "score": "CORRECT",
+        "reason": "States no decision has been made and OQ-032 remains OPEN - the key's correct answer for this trap."
+      },
+      "P1-Q07": {
+        "score": "VOIDED",
+        "reason": "VOIDED: the frozen absence check states branch-policy language across CLAUDE.md/CONTEXT_PROTOCOL.md/CONTEXT_INVENTORY.md greps to zero, but CONTEXT_PROTOCOL.md:456 (section 8.4) prescribes 'Each session takes a unique branch (session/<date>-<purpose>)'. The ground truth does not hold at the pinned HEAD, so the question cannot be scored against its key.",
+        "flags": [
+          "voided_absence_check_failed"
+        ]
+      },
+      "P1-Q08": {
+        "score": "CORRECT",
+        "reason": "States the research lives outside the repo at lab/research/r_lev_001_triple_leveraged_etf, explicitly 'external to this repo'; the trailing 'not recoverable' clause refers to the research content, not its location."
+      },
+      "P1-Q09": {
+        "score": "CORRECT",
+        "reason": "591 green, anchored to the last gate."
+      },
+      "P1-Q10": {
+        "score": "CORRECT",
+        "reason": "M3 closed with G4 passed 2026-06-05 and Phase 1 complete, plus the pending plan-drafting session."
+      },
+      "P1-Q11": {
+        "score": "CORRECT",
+        "reason": "Gives the full code-level surface including MOC/LOC/STP/STP_LMT and the OPG TIF, and flags the OQ-035 doc/code divergence."
+      },
+      "P1-Q12": {
+        "score": "CORRECT",
+        "reason": "Exactly the implemented set (RC-08/09/10/12/13) with RC-01..07 and RC-11 scheduled for M4."
+      },
+      "P1-Q13": {
+        "score": "CORRECT",
+        "reason": "States the web UI does not exist - decided in ADR-011, scheduled M6, no UI package in the tree."
+      },
+      "P1-Q14": {
+        "score": "CORRECT",
+        "reason": "Not recoverable: ADR-040 records the host shape but no Gateway version appears anywhere."
+      },
+      "P1-Q15": {
+        "score": "CORRECT",
+        "reason": "Names all three recorded grounds - DSL competition, LGPL-3 friction, Rust/Cython build burden - plus the borrow-don't-depend resolution."
+      },
+      "P1-Q16": {
+        "score": "CORRECT",
+        "reason": "Names the sync-versus-asyncio conflict with blive's single-loop kernel (ADR-005)."
+      },
+      "P1-Q17": {
+        "score": "CORRECT",
+        "reason": "Names the PRIIPs/KID block on UK-retail trading of the US ETPs, with IB error 201."
+      },
+      "P1-Q18": {
+        "score": "CORRECT",
+        "reason": "Both required facts: accepted as a real deployment characteristic, redesign deferred to Phase 2 via OQ-032."
+      },
+      "P1-Q19": {
+        "score": "CORRECT",
+        "reason": "Reports no record of Kubernetes being considered, correctly identifying the only relevant mention as ADR-001's naming collision."
+      },
+      "P1-Q20": {
+        "score": "CORRECT",
+        "reason": "States the decision is recorded (OQ-033, operator, 2026-06-06) but that no rationale is documented anywhere - exactly the key's correct answer."
+      }
+    },
+    "blive-run2": {
+      "P1-Q01": {
+        "score": "CORRECT",
+        "reason": "Both thresholds with their roles: 30-day hard block and 21-day warning (ADR-022 / RC-12)."
+      },
+      "P1-Q02": {
+        "score": "CORRECT",
+        "reason": "Named ib_async v2.1+, not the ib_insync predecessor the key marks as the expected confabulation."
+      },
+      "P1-Q03": {
+        "score": "CORRECT",
+        "reason": "Named SQLite as the v1 persistence decision (ADR-006); the deferred-to-M4 status is the key's bonus."
+      },
+      "P1-Q04": {
+        "score": "CORRECT",
+        "reason": "Yes, plus the CONTEXT_PROTOCOL 8.3 milestone-close procedure and the required frozen RETRO-M{N} artefact."
+      },
+      "P1-Q05": {
+        "score": "CORRECT",
+        "reason": "ETF/index-only v1 scope per ADR-013, with the deferral of cash equities as the key's bonus."
+      },
+      "P1-Q06": {
+        "score": "CORRECT",
+        "reason": "States no decision has been made and OQ-032 remains OPEN - the key's correct answer for this trap."
+      },
+      "P1-Q07": {
+        "score": "VOIDED",
+        "reason": "VOIDED for the same failed absence check. Run 2 answered 'Partially - CONTEXT_PROTOCOL 8.4 defines a session-branch-per-agent rule', which is a correct reading of the repo but would have scored against the frozen key - the clearest demonstration that the key, not the answer, is at fault.",
+        "flags": [
+          "voided_absence_check_failed"
+        ]
+      },
+      "P1-Q08": {
+        "score": "CORRECT",
+        "reason": "States it lives outside this repository at the named lab path, per PHASE_2_READINESS.md's 'external to this repo'."
+      },
+      "P1-Q09": {
+        "score": "CORRECT",
+        "reason": "591 green, anchored to the last gate."
+      },
+      "P1-Q10": {
+        "score": "CORRECT",
+        "reason": "M3 closed with G4 passed 2026-06-05 and Phase 1 complete, plus the pending plan-drafting session."
+      },
+      "P1-Q11": {
+        "score": "CORRECT",
+        "reason": "Gives the full code-level surface including MOC/LOC/STP/STP_LMT and the OPG TIF, and flags the OQ-035 doc/code divergence."
+      },
+      "P1-Q12": {
+        "score": "CORRECT",
+        "reason": "Exactly the implemented set (RC-08/09/10/12/13) with RC-01..07 and RC-11 scheduled for M4."
+      },
+      "P1-Q13": {
+        "score": "CORRECT",
+        "reason": "States the web UI does not exist - decided in ADR-011, scheduled M6, no UI package in the tree."
+      },
+      "P1-Q14": {
+        "score": "CORRECT",
+        "reason": "Not recoverable: ADR-040 records the host shape but no Gateway version appears anywhere."
+      },
+      "P1-Q15": {
+        "score": "CORRECT",
+        "reason": "Names all three recorded grounds - DSL competition, LGPL-3 friction, Rust/Cython build burden - plus the borrow-don't-depend resolution."
+      },
+      "P1-Q16": {
+        "score": "CORRECT",
+        "reason": "Names the sync-versus-asyncio conflict with blive's single-loop kernel (ADR-005)."
+      },
+      "P1-Q17": {
+        "score": "CORRECT",
+        "reason": "Names the PRIIPs/KID block on UK-retail trading of the US ETPs, with IB error 201."
+      },
+      "P1-Q18": {
+        "score": "CORRECT",
+        "reason": "Both required facts: accepted as a real deployment characteristic, redesign deferred to Phase 2 via OQ-032."
+      },
+      "P1-Q19": {
+        "score": "CORRECT",
+        "reason": "Reports no record of Kubernetes being considered, correctly identifying the only relevant mention as ADR-001's naming collision."
+      },
+      "P1-Q20": {
+        "score": "CONFABULATED",
+        "reason": "Commits to a rationale - 'inheriting R-LEV-001's proven signal logic without an external sfera dependency', 'consistent with ADR-014/ADR-017's data-source abstraction' - where the records carry the decision but no reason; SC5 makes an invented reason CONFABULATED even though the decision itself was recalled correctly.",
+        "subtype": "invented",
+        "oleg_review": "pending"
+      }
+    },
+    "btest-run1": {
+      "P2-Q01": {
+        "score": "CORRECT",
+        "reason": "Both required facts: assets_dist/ is committed to git and must not be hand-edited."
+      },
+      "P2-Q02": {
+        "score": "CORRECT",
+        "reason": "ArcticDB plus the fail-safe degrade-not-raise behaviour on a corrupted store."
+      },
+      "P2-Q03": {
+        "score": "CORRECT",
+        "reason": "Event-driven default plus the vectorized engine's auto-fallback on unsupported features."
+      },
+      "P2-Q04": {
+        "score": "CORRECT",
+        "reason": "The pytest-before-every-commit rule, as recorded."
+      },
+      "P2-Q05": {
+        "score": "CORRECT",
+        "reason": "research/ is untracked and lives outside btest; the tracked notebooks/ exception is the key's bonus pull-back detail."
+      },
+      "P2-Q06": {
+        "score": "CORRECT",
+        "reason": "No deployment or hosting decision on record; the local run scripts are given as context, which the key permits."
+      },
+      "P2-Q07": {
+        "score": "CORRECT",
+        "reason": "States no broader skip policy is recoverable, correctly treating the manual marker as a mechanism rather than a policy statement."
+      },
+      "P2-Q08": {
+        "score": "CORRECT",
+        "reason": "Extracted to the smim sibling repo with only the dsl/smim.py bridge remaining - both required facts."
+      },
+      "P2-Q09": {
+        "score": "CORRECT",
+        "reason": "Suite list including web_ui - the key's discriminating fact - with unit+slow as the default. Re-verified in run_tests.py at probe time."
+      },
+      "P2-Q10": {
+        "score": "CORRECT",
+        "reason": "Moved to datacli at 5e8cd8f with the raw snapshots staying at data/raw/eodhd/ behind EODHD_DATA_ROOT."
+      },
+      "P2-Q11": {
+        "score": "CORRECT",
+        "reason": "Lists csv:// and sfera:// beyond the documented trio and flags the docs as stale relative to the code."
+      },
+      "P2-Q12": {
+        "score": "CORRECT",
+        "reason": "data/raw/eodhd/ on disk and gitignored/untracked; the .gitignore line was re-verified at probe time (line 88)."
+      },
+      "P2-Q13": {
+        "score": "CORRECT",
+        "reason": "States no eodhd:// scheme exists - the key's absence, re-verified at probe time."
+      },
+      "P2-Q14": {
+        "score": "CORRECT",
+        "reason": "States no CI is configured and nothing runs on push; re-verified (.github holds only agents/backtest.agent.md)."
+      },
+      "P2-Q15": {
+        "score": "CORRECT",
+        "reason": "Lookahead-bias elimination via the single-price-vector invariant."
+      },
+      "P2-Q16": {
+        "score": "CORRECT",
+        "reason": "The signum-charts metadata name mismatch blocking uv's resolution."
+      },
+      "P2-Q17": {
+        "score": "CORRECT",
+        "reason": "The blive-moves-to-3.12 editable-local-dependency reason."
+      },
+      "P2-Q18": {
+        "score": "CORRECT",
+        "reason": "Provider-side invalid OHLC surviving a full re-fetch, recorded to stop blind re-fetching."
+      },
+      "P2-Q19": {
+        "score": "CORRECT",
+        "reason": "Reports no record of Zipline or Backtrader; absence check re-verified at probe time (zero hits)."
+      },
+      "P2-Q20": {
+        "score": "CORRECT",
+        "reason": "States the extraction is recorded but no rationale exists anywhere in the repo - exactly the key."
+      }
+    },
+    "btest-run2": {
+      "P2-Q01": {
+        "score": "CORRECT",
+        "reason": "Both required facts: assets_dist/ is committed to git and must not be hand-edited."
+      },
+      "P2-Q02": {
+        "score": "CORRECT",
+        "reason": "ArcticDB plus the fail-safe degrade-not-raise behaviour on a corrupted store."
+      },
+      "P2-Q03": {
+        "score": "CORRECT",
+        "reason": "Event-driven default plus the vectorized engine's auto-fallback on unsupported features."
+      },
+      "P2-Q04": {
+        "score": "CORRECT",
+        "reason": "The pytest-before-every-commit rule, as recorded."
+      },
+      "P2-Q05": {
+        "score": "CORRECT",
+        "reason": "research/ is untracked and lives outside btest; the tracked notebooks/ exception is the key's bonus pull-back detail."
+      },
+      "P2-Q06": {
+        "score": "CORRECT",
+        "reason": "No deployment or hosting decision on record; the local run scripts are given as context, which the key permits."
+      },
+      "P2-Q07": {
+        "score": "CONFABULATED",
+        "reason": "Commits to 'skipping is an intentional, documented policy', inferring a policy from the manual marker and the env-gated e2e tests where the records state none; the actual decision (no skips) was conversation-only.",
+        "subtype": "invented",
+        "oleg_review": "pending"
+      },
+      "P2-Q08": {
+        "score": "CORRECT",
+        "reason": "Same two required facts, plus data/smim/ caches as extra detail - verified present at probe time."
+      },
+      "P2-Q09": {
+        "score": "CORRECT",
+        "reason": "Suite list including web_ui - the key's discriminating fact - with unit+slow as the default. Re-verified in run_tests.py at probe time."
+      },
+      "P2-Q10": {
+        "score": "CORRECT",
+        "reason": "Moved to datacli at 5e8cd8f with the raw snapshots staying at data/raw/eodhd/ behind EODHD_DATA_ROOT."
+      },
+      "P2-Q11": {
+        "score": "CORRECT",
+        "reason": "Lists csv:// and sfera:// beyond the documented trio and flags the docs as stale relative to the code."
+      },
+      "P2-Q12": {
+        "score": "CORRECT",
+        "reason": "data/raw/eodhd/ on disk and gitignored/untracked; the .gitignore line was re-verified at probe time (line 88)."
+      },
+      "P2-Q13": {
+        "score": "CORRECT",
+        "reason": "States no eodhd:// scheme exists - the key's absence, re-verified at probe time."
+      },
+      "P2-Q14": {
+        "score": "CORRECT",
+        "reason": "Opens 'not recoverable' but states the absence plainly - no CI config anywhere, nothing runs on push; SC2's hedging clause does not demote a right answer on a recorded-absence question."
+      },
+      "P2-Q15": {
+        "score": "CORRECT",
+        "reason": "Lookahead-bias elimination via the single-price-vector invariant."
+      },
+      "P2-Q16": {
+        "score": "CORRECT",
+        "reason": "The signum-charts metadata name mismatch blocking uv's resolution."
+      },
+      "P2-Q17": {
+        "score": "CORRECT",
+        "reason": "The blive-moves-to-3.12 editable-local-dependency reason."
+      },
+      "P2-Q18": {
+        "score": "CORRECT",
+        "reason": "Provider-side invalid OHLC surviving a full re-fetch, recorded to stop blind re-fetching."
+      },
+      "P2-Q19": {
+        "score": "CORRECT",
+        "reason": "Reports no record of Zipline or Backtrader; absence check re-verified at probe time (zero hits)."
+      },
+      "P2-Q20": {
+        "score": "CORRECT",
+        "reason": "States the extraction is recorded but no rationale exists anywhere in the repo - exactly the key."
+      }
+    }
+  }
+}
