@@ -337,6 +337,8 @@ The baseline has moved. *"Your agent will invent decisions if you don't keep rec
 
 The confound is part of the story: the "undisciplined" arm was never truly without records — it had a real, substantial agent-instruction file. That alone may explain the null.
 
+**And a franker retrospective, offered before anyone offers it for me: the original claim was too strong as formulated.** Whether a model invents an answer depends on the model and on what it can read — not simply on whether a discipline is in place. What the experiment actually located is the narrower exposure that survives: where no readable ground truth exists *anywhere* — a reason that was never written down — any model, in any posture, may fill the gap. The corpus's one confabulation was exactly that case.
+
 **btest is ephemeral, not flat** — no exhibit in this talk compares "substrate" against "nothing". The comparison is between records that are durable and citable, and working files that were transient and never referenced.
 
 ---
@@ -444,7 +446,7 @@ The practice's frontier, offered as a hypothesis with a receipt (n=1): require e
 | claim | verdict |
 |---|---|
 | 1 · Attention migrates up; substrate enables it | **Partial** — survives only length-controlled |
-| 2 · Failure modes follow absent substrate | **Split** — restart cost yes; phantom decisions **null** |
+| 2 · Failure modes follow absent substrate | **Split** — the human-side half (restart cost) is supported; the model-side half (invented decisions) is **null**, and was too strong as formulated (§3.3) |
 | 3 · Same author, same domain, with/without | **Weak** — the "without" arm is ephemeral, not without |
 | 4 · Exploratory research is out of scope | **Supported, and refined** — research work carries *its own* substrate instruments (pre-registration is a frozen intent contract) |
 

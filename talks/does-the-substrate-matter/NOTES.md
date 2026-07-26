@@ -174,6 +174,10 @@ Then the two facts that size it: the "flat" arm carries a 212-line agent-instruc
 file — enough to explain the null on its own — and the reversed direction rests on one
 confabulation; the null survives any single re-scoring. The claim I am defending tonight
 is the reframe (human's side of the loop), which does not rest on this experiment.
+The v2 deck itself now concedes, on the slide after the null, that the original
+formulation was too strong: whether a model invents an answer depends on the model and
+what it can read, not merely on discipline — the surviving exposure is claims with no
+readable ground truth anywhere.
 → REPORT §3.3; exhibits C1; pre-reg commit `ab9c62d`.
 
 **Slide 18 · "the floor has risen".**
