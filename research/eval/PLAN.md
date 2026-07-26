@@ -280,7 +280,11 @@ Constraints that make the round-trip possible:
 
 ```
 research/eval/
-├── PLAN.md                  # this document
+├── PLAN.md                  # this document — scope, workstream design, confounds
+├── METHODS.md               # how it was actually done: instruments, definitions,
+│                            #   governing rules, limits. The clean read.
+├── STATE.md                 # status + findings per workstream + session log
+├── ASSESSMENT.md            # what the evidence argues, incl. the fragility ledger
 ├── rubric/RUBRIC.md         # WS1 instrument + audience handout section
 ├── probes/                  # WS4: protocol + frozen question sets
 ├── scripts/                 # WS2/WS3/WS5 miners — stdlib-only, portable
@@ -318,6 +322,31 @@ crosses into the org.
 4. **Instrument circularity:** the rubric operationalises the author's own method (WS1 risk).
 5. **Log coverage:** uneven transcripts (P1 gap; P5–P7 none found locally) — reported, not
    patched over.
+6. **Artifact survivorship (added 2026-07-26, after S6).** *The most serious confound in
+   the eval, because it is correlated with the treatment rather than random.* The operator
+   routinely created working artifacts — plans, roadmaps, review prompts, iteration notes,
+   research summaries — that were **not committed and were often deleted**. Every
+   artifact-based measurement therefore sees a *surviving* subset, not the substrate as
+   practised. blive's CONTEXT_PROTOCOL requires the substrate to be committed; btest had
+   no such rule, so the direction of the bias runs *with* the hypothesis.
+   **Measured, not asserted** (`scripts/artifact_survivorship.py` →
+   `data/artifact-survivorship.json`): three independent channels — typed prompts across
+   the 1,480-turn WS3 corpus, JetBrains LocalHistory change records, and Claude Code
+   tool-call `file_path`s — against every basename any corpus repo ever added on any ref.
+   **blive 0 of 33 observed artifacts ephemeral; btest at least 26; seamQ at least 33;
+   b-autobot 4; harp 2.** All counts are **lower bounds** — a file never typed and never
+   tool-written is invisible to all three channels.
+   Consequences, binding on the report:
+   - **WS1 is *not* re-scored.** Existence is recoverable; content is not (LocalHistory
+     here has no content store; CC transcripts cover only the surviving retention window).
+     A rubric axis needs an artifact's contents — a filename cannot distinguish a real
+     decision log from an empty stub. The scores stand as a measurement of **durable**
+     substrate, and RUBRIC.md now says so in its scope statement.
+   - **The framing changes from "flat" to "ephemeral" everywhere.** btest was not working
+     without artifacts; it was working with artifacts that did not survive. That is closer
+     to what this document argues in §1 than the original framing was.
+   - WS2 (commit-derived), WS3 (turn-derived) and WS4 (measures what a fresh agent can
+     recover *today*, for which deleted files are correctly invisible) are **unaffected**.
 
 The METR result (experienced devs 19% slower while feeling 20% faster) is the standing
 reminder that felt productivity is untrustworthy — including the author's own. This ledger is

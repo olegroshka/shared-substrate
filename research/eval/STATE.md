@@ -1,7 +1,11 @@
 # Eval research — session state (warm-up / handoff file)
 
 > Read this first in every eval session; deposit status + next step before ending.
-> Source of truth for scope and method: [PLAN.md](./PLAN.md). One session per workstream.
+> **How the evaluation was done, in one clean read: [METHODS.md](./METHODS.md)** —
+> corpus, evidence channels, instruments, measurements, the eleven rules that govern
+> them, and what the study cannot answer. Start there if you are judging or replicating
+> the work rather than continuing it.
+> Source of truth for scope and plan: [PLAN.md](./PLAN.md). One session per workstream.
 > The next session's ready-to-paste prompt + model schedule: [NEXT_TASK.md](./NEXT_TASK.md).
 > **Where the argument actually stands** — what the evidence supports, what it does
 > not, and the recommended reframe: [ASSESSMENT.md](./ASSESSMENT.md) (mid-eval, written
@@ -18,7 +22,8 @@
 | WS3 session-log analysis | **DONE 2026-07-25** | S3 · Opus 5 | `scripts/log_miner.py` + `sample_turns.py` + `altitude_classify.py` + `session_yield.py` → `data/session-metrics/*.json`; instrument `rubric/ALTITUDE.md` v1.0; hand labels `data/altitude-labels.json`; **(a) survives only length-controlled, (b) is the clean positive, (c) inconclusive** |
 | WS4a probe pre-registration | **DONE 2026-07-25** | S4 · Fable 5 | frozen at commit `ab9c62d` **before any run**: `probes/PROTOCOL.md` + 60 questions (20 x 3, one fixed slot template); subject `claude-sonnet-5`; 2 runs/project |
 | WS4b probe runs + scoring | **DONE (REVIEWED) 2026-07-26** | S5 · Opus 5 | 6 sessions, 120 answers, `data/probe-results.json`; driver `scripts/probe_driver.py` + `scripts/probe_guard.py`; verdicts `data/probes/scores.json`. **H-1 is NULL (p=1.0)**; SC8 review done — 3 of 20 slots voided, **one confabulation left in the whole corpus** — findings below |
-| WS5 survival curves | pending | S6 · **Sonnet 5** | kernel teaser only if time — if attempted, bump to Opus |
+| WS5 survival curves | **DONE 2026-07-26** | S6 · Opus 5 | `scripts/survival.py` → `data/survival.json`; hand-audit input `data/survival-audit.json` (10 findings, 21/21 receipts verified). **Zero blive ADRs silently reversed**; the findings are elsewhere. Kernel teaser (WS5b) **not attempted** — see below |
+| **WS0-bis artefact survivorship** | **DONE 2026-07-26** | S6 · Opus 5 | `scripts/artifact_survivorship.py` → `data/artifact-survivorship.json`. **blive 0 of 33 ephemeral; btest >=26; seamQ >=33.** Raised by Oleg, not by an instrument. New **PLAN §7 confound 6**; RUBRIC scope statement; ASSESSMENT §2.6/§3.8 |
 | WS6 archaeology | pending | S7 · **Opus 5** | narrative judgment; see memory-folder lead below |
 | Report assembly | pending | S8 · **Fable 5** | cross-workstream synthesis → `report/` |
 | Deck + dry run | pending | S9 · **Fable 5** | `talks/does-the-substrate-matter/` |
@@ -476,6 +481,264 @@ Caveats that must travel with these numbers:
   to btest-run1 by operator misjudgment; orientation cost is reported through the accepted
   statement with the surplus published separately.
 
+## WS5 findings (2026-07-26)
+
+Instrument: `scripts/survival.py`, stdlib-only, read-only git, path-parameterised
+(§5-portable), reusing `corpus_common`'s single definition of a source file. **The
+definition of "silent reversal" was frozen in the script docstring before the
+measurement was written**, and the boundary it draws is the whole workstream:
+
+> A **declared** reversal — the record's status moves to `SUPERSEDED-BY-*`/`DEPRECATED`,
+> or a later record carries `supersedes:` pointing at it, or the body is edited to
+> state the change — is the discipline **working**, and is never counted as a failure.
+> Only an **undeclared** contradiction counts. Refinement-with-a-pointer, an
+> unimplemented decision, and an artefact the inventory registers as MISSING are all
+> explicitly not failures.
+
+Three divergence classes are counted, never pooled: **SR-1** decision reversed ·
+**SR-2** record-fact drift · **SR-3** index/body incoherence. One inverse failure,
+**MD-0** manufactured decision, is reported apart from every reversal count. SR-3 is
+machine-checked with the session at which each divergence opened; SR-1 and SR-2 are
+supplied from `data/survival-audit.json`, a hand-authored, published **input** (the
+`qualitative-ratings.json` / `probes/scores.json` pattern) so no re-run can overwrite
+author judgment or invent it.
+
+Sessions are git-derived — a maximal run of commits with successive gaps ≤ 4h — because
+WS3's log-derived sessions start 2026-05-02 and miss 41 of blive's 53 ADRs. **blive 13
+sessions** (19 / 13 / 12 at 2h / 4h / 8h), **btest 83** (96 / 83 / 72).
+
+| | blive | btest |
+|---|---|---|
+| decision records | 53 ADRs · 35 OQs · 38 frontmatter artefacts | **n/a — no decision-record system** |
+| declared reversals | **1** (ADR-021 → ADR-043), declared on both ends | n/a |
+| **silent reversals of decision records** | **0** | n/a |
+| SR-2 record-fact drift (hand) | 1 | 2 |
+| SR-3 index incoherence | 4 | n/a |
+| broken anchors | 26 occurrences / **7 distinct targets** / 900 checked | 0 of 0 (no cross-references exist) |
+| dangling ID references | **1** (`ADR-054`, a reserved next-free id) | n/a |
+| reversal-announcing commits | 8 / 67 = 11.9 per 100 (**8/8 genuine on hand-read**) | 4 / 415 = 0.96 per 100 (**1/4 genuine**) |
+| mean commit prose | 362.5 words | 62.7 words |
+| instruction rules at HEAD / ever / removed | 25 / 26 / 1 | 46 / 74 / 28 |
+
+1. **The headline is a null, and it is the cheap number PLAN §4 predicted.** No blive
+   ADR was found silently reversed: S(k) = 1.000 at every k from 0 to 12. The declared
+   curve falls to 0.962 at k=12 on its single supersession. **Read every point with its
+   `at_risk` denominator** — k=12 rests on 26 records, not 53. Reporting "97% of ADRs
+   survive 12 sessions" without that denominator would be the workstream's easiest lie.
+2. **The interesting failures are not reversals — they are records that were wrong on
+   the day they were written.** Both projects produced exactly one such defect and
+   neither is drift:
+   - **blive OQ-035** (2026-06-06, still OPEN, never edited) states "blive's order-type
+     surface is `MKT` / `LMT` / `ADAPTIVE_MKT` only … no `OPG`-class order type or
+     opening-auction TIF." `types.py` has **seven** `OrderType` members and an `OPG`
+     TIF, and `MOC`/`LOC`/`STP`/`STP_LMT`/`OPG` have been there **since the first
+     commit**, 41 days earlier, unchanged. *The partial rescue, stated because it is
+     real:* the IB adapter's **submit** path builds five order types; MOC/LOC and the
+     OPG TIF appear only in the **inbound parse** maps, so "no submit-side OPG wiring"
+     is defensible. "Three only" is not, on either reading.
+   - **btest CLAUDE.md:102** says `backtest_runner.py (main orchestrator ~2600 LOC)`.
+     The file was **1,519 lines the day that was written** and its maximum across all
+     18 commits that have ever touched it is **1,618**. The claim has never been true.
+   **Neither substrate posture has an instrument that checks a factual claim at the
+   moment it is deposited.** That is the sharpest thing WS5 found and it cuts against
+   both arms.
+3. **The cleanest control in the entire corpus, and it reframes the thesis.** On
+   **2026-06-05** the Python floor moved to 3.12 in both repos — same operator, same
+   day, same decision, same model era, one repo importing the other. blive recorded
+   **ADR-053** (4,902 chars: status/decider/companion, context, five-clause decision,
+   alternatives, consequences, cross-refs). btest recorded **commit `fd106f9`** (1,025
+   chars) — and it is a *good* record: the reason, the validation (317 tests on 3.12,
+   numba/vectorbt/arcticdb wheels confirmed), the exact edits, and a flagged follow-up.
+   **The naive story is false: the flat project did write down why.** What differs is
+   **addressability** — ADR-053 is cited from **five** artifacts including the one an
+   agent auto-loads; btest's reasoning is cited from **zero**, and is reachable only by
+   knowing the sha. And ADR-053's `companion:` field names `fd106f9` explicitly: **the
+   record for btest's decision lives in blive's substrate, not in btest's.** This is
+   consistent with WS4b (recorded facts retrieved near-perfectly in *both* arms; the
+   boundary sat at the *why*) and it is the exhibit to build the talk's
+   system-representation section on.
+4. **Third honest negative: btest's instruction file does not decay silently.** 28 of
+   74 rules have been withdrawn, and **zero are unexplained** — 25 in one commit whose
+   subject states the scope change (the SMIM extraction), 2 same-commit rewordings, 1
+   announced in its subject. The hypothesis going in was the opposite. Rule matching is
+   normalised for case and punctuation, so rewording counts as removal + addition,
+   biasing the removal count **up** — the negative is conservative, not generous.
+   Symmetric detail: blive's CLAUDE.md removed exactly one rule ever, the **same**
+   Python-3.11 rule, on the same day, also announced.
+5. **The substrate's own index is the thing that goes stale, not its records.** Four
+   SR-3 defects, all in `DECISIONS.md`'s index table: ADR-031's row says PROPOSED (body
+   ACCEPTED since session 4), ADR-032's says PROPOSED (body ACCEPTED since session 5),
+   and **ADR-040 and ADR-041 have no index row at all** — the table carries 51 of 53.
+   The sharp part: **blive keeps two ADR status registers and the outer one is right.**
+   `CONTEXT_INVENTORY.md`'s KB-10 row reads "ADR-001..053 ACCEPTED, except ADR-021
+   SUPERSEDED-BY-ADR-043" — correct. The index *inside* the artefact is the stale one.
+   An append-only body is *supposed* to freeze; a Status column is not.
+6. **Append-only preserves errors with the same fidelity it preserves decisions.** 26
+   broken anchors over **7 distinct targets** — two malformed anchors account for 20 of
+   the 26, because a wrong cross-reference is copied forward by every later record that
+   cites the same target. One is a genuinely wrong pointer (ADR-039 links `FinancingCost`
+   to `cost_margin_dictionary.md#5-financingcost`; FinancingCost is §3, §5 is
+   MarginConfig). The slug rule is an approximation of GitHub's unpublished algorithm;
+   all seven were re-read by hand against the actual headings first.
+7. **Supersession propagates forward, never backward to citations — and this is NOT
+   counted as a reversal.** ADR-039 (ACCEPTED, never amended) asserts twice that
+   "ADR-021 status: PAUSED (not SUPERSEDED)" and "no decision is reversed"; ADR-021 was
+   superseded five days later. Under blive's own CONTEXT_PROTOCOL §5 an ADR is
+   append-only and point-in-time, so that statement was true when written and counting
+   it as drift would score the discipline as defective for behaving exactly as
+   specified. It is published as a **named mechanism**, not a defect count: a reader
+   arriving at ADR-039 gets no signal, which is precisely why blive needs the
+   CONTEXT_INVENTORY register layered on top of the ADR file.
+8. **btest's reversal vocabulary is essentially absent, and the confound must travel
+   with the number.** Hand-adjudicated: blive **8/8** automated hits are genuine
+   reversal or supersession narration; btest **1/4** (two are statistical "mean-reverting
+   ranks" / "revert fast in absolute level", one is about an external FRED tag).
+   Adjudicated rates: **blive 11.9 vs btest 0.24 per 100 commits (~50×)**. But blive
+   writes 362.5 words of commit prose per commit against btest's 62.7 — normalised per
+   10k prose words the *automated* rates are 3.29 vs 1.54, a 2.1× gap. Publish both.
+   The number this sits against is WS2's: btest reverses **82.2%** of every line it ever
+   added (32.6% within 14 days) against blive's 5.2% / 3.9%, and narrates a reversal
+   once in 415 commits. The reversals are not hidden — nothing records them.
+9. **blive's declared absences are receipts, and treating them as gaps was a measurement
+   bug.** `CONTEXT_INVENTORY` registers INV-2, INV-3, INV-7, INV-12, DD-4, DD-5, DD-6 as
+   **MISSING** with a stated future milestone, and INV-11 as DRAFT-inline-in-REQUIREMENTS.
+   Scoring those as dangling would have made blive's honesty about its own holes read as
+   drift. Counted apart, blive's genuine dangling-reference count over 171 files and 144
+   distinct IDs is **1** — `ADR-054`, which `NEXT_PROMPT.md` reserves as the next free id.
+10. **Coverage, stated so the null is not over-read.** **18 of blive's 53 ADRs were read
+    against the tree** (002, 004, 006, 007, 021, 022, 027, 031, 032, 035, 037, 039, 040,
+    041, 043, 044, 049, 053) plus both audited OQs, the MISSING register and the
+    supersession graph. The other 35 are either process/scope/deferred-milestone
+    decisions with no code surface to contradict them at HEAD, or have a surface that
+    was not read this session — **neither group is counted as having survived a test it
+    was never given**, and the selection (mechanical checkability + the never-edited
+    flag) is disclosed rather than presented as exhaustive.
+    29 of 53 ADRs (54.7%) have never been edited after introduction — that is the
+    candidate list a silent reversal would hide in, and it is published as candidates,
+    not as findings. Checks that HELD are published too (`checks_that_held`, 17 entries)
+    so the finding list is not mistaken for the whole audit.
+
+**Hand-verification before the sweeps** (in `_meta.verification`): seven independent
+shell counts held exactly — blive ADR headings 53, index rows 51, sessions-at-4h 13
+(awk over `%at`), SUPERSEDED statuses 1; btest sessions-at-4h 83, CLAUDE.md rules at
+HEAD 46 (independent normaliser), blive strict-reversal commits 8 (independent shell
+pipeline). **Four real bugs were caught by that reflex before anything was published**
+and are recorded in `_meta.bugs_caught_by_verification`: the declared-MISSING register
+scanned whole lines instead of the first table cell (registering KB-2, KB-3, DD-7 and
+ADR-034 as missing when all four exist); `STABLE_ID_RE` had no trailing boundary, so
+`RETRO-M2-IB` also matched a non-existent `RETRO-M2` — **71 phantom dangling
+references**; `gh_slug` collapsed whitespace runs before substituting where GitHub
+substitutes each space, calling **758 of 900** anchors broken against a true 26; and
+`parse_oqs` read only the first id of blive's combined `### OQ-015 / OQ-018` heading,
+making OQ-018 look dangling with 10 citations. An eighth check corrected a number
+before it was written: ADR-053's section is 4,902 chars, not the 27,393 an awk-to-EOF
+gave, because a Changelog section follows it.
+
+**Caveats that must travel with these numbers:**
+- **The survival curve has one arm.** blive is the only corpus project with decision
+  records. btest's arm is a *different substrate type* (agent instructions + commit
+  prose) reported as such, not a zero on a shared denominator (the WS2 finding-8 `n/a`
+  pattern). No shared denominator was forced.
+- b-autobot, datacli, smim, harp and seamQ have neither decision records nor an
+  inventory register and were **not swept** — including them would have meant carrying
+  seamQ's WS3 finding-6 measurement-window caveat and harp/smim's WS0 log-coverage
+  caveat for zero decision records.
+- **Findings F1 and F5 are the same commit** (`febc4e3`, the 2026-06-06 Phase-2
+  readiness audit) and F5 (OQ-033, the manufactured decision) is **carried from WS4b
+  finding 7, not independently found**. The three newest records blive ever wrote
+  produced two of its five defects — that is one session, n=1, and must be said so.
+- The audit is **one reader, once**. No second rater, no agreement number — as with
+  WS3's altitude instrument. What is published instead is the receipt trail: 21 of 21
+  mechanically checkable receipts are re-verified on every run and report FAILED rather
+  than being dropped or corrected.
+- Session boundaries are a **git proxy**, not observed sessions. The gap threshold moves
+  blive between 12 and 19 sessions and btest between 72 and 96; no finding above depends
+  on which threshold is used, but any k-axis exhibit must name the threshold.
+
+**WS5(b), the kernel teaser, was not attempted.** PLAN §4 marks it "cut first" and §8
+puts it first in the cut order; a half-baked κ estimate is worse than none, and the
+survival arm turned out to need the whole session's reading budget (finding 10). It
+remains available as expansion module M-F material if the research continues.
+
+## WS0-bis findings — artefact survivorship (2026-07-26)
+
+**Raised by Oleg, not by an instrument**, at the end of S6: he routinely created
+working artefacts — plans, roadmaps, review prompts, iteration notes, research
+summaries — that were **not committed and were often deleted**. Every artefact-based
+measurement in this eval therefore sees a *surviving* subset. The bias is not noise:
+blive's CONTEXT_PROTOCOL requires the substrate to be committed and btest had no such
+rule, so **the survivorship correlates with the treatment**.
+
+Measured rather than asserted (`scripts/artifact_survivorship.py`), three independent
+channels — typed prompts over the 1,480-turn WS3 corpus · JetBrains LocalHistory change
+records · Claude Code tool-call `file_path`s — against every `.md` basename any corpus
+repo ever added on any ref (`git log --all --diff-filter=A`, so committed-then-deleted
+counts as **surviving**).
+
+| project | observed | committed | **ephemeral (lower bound)** | share |
+|---|---|---|---|---|
+| **blive** | 33 | 33 | **0** | 0.0% |
+| btest | 105 | 66 | **>=26** path-attributed (+13 session-only) | 24.8% path-only · 37.1% incl. session-attributed |
+| seamQ | 89 | 56 | **>=33** | 37.1% |
+| b-autobot | 10 | 6 | 4 | 40.0% |
+| harp | 4 | 2 | 2 | 50.0% |
+| datacli | 3 | 2 | 1 | 33.3% |
+| shared-substrate | 19 | 17 | 2 | 10.5% |
+
+1. **blive is the only zero, and it is a real zero.** All 33 observed blive artefacts
+   are in blive's git, verified by independent enumeration. It is not an artefact of
+   low observation — the channels saw 33 of blive's 50 committed `.md` files.
+2. **btest's defensible number is 26, not 39.** 13 of the 39 are attributed only by
+   session folder, and WS0's OQ-2 already showed several belong elsewhere
+   (`ib_algo_engine_requirements_v0.md` is blive's; `handoff_to_new_chat_v2.md` and
+   `kickoff_prompt_v2.md` are seamQ's; the `uk_eu_*` files are harp's). Path-attributed
+   and session-attributed counts are reported separately and never merged.
+3. **seamQ's 33 corroborate WS1 finding 5 through a new channel.** Its adversarial-review
+   pipeline (`4a adversarial review of b1.md`, `adversarial_referee_report.md`,
+   `hostile_referee_report_v2.md` …) shows up in LocalHistory and was **never committed
+   at all** — distinct from the publication-time strip at `e9d951e`, which removed files
+   that *had* been committed.
+4. **Content is not recoverable; existence is.** PyCharm's LocalHistory on this machine
+   holds change records with **no content store**, and the CC transcripts cover only the
+   surviving retention window. The March–May working artefacts are gone as text.
+5. **Therefore WS1 is NOT re-scored, and that is a decision, not an omission.** A rubric
+   axis needs an artefact's contents; a filename cannot distinguish a maintained decision
+   log from an empty stub. Any "corrected" score would be invention. The scores stand as
+   a measurement of **durable** substrate and `rubric/RUBRIC.md` now carries a scope
+   statement saying so.
+6. **The framing changes corpus-wide: "flat" → "ephemeral".** btest was not working
+   without artefacts; it was working with artefacts that did not survive. That is nearer
+   to what the paper argues, since the claim is that the substrate carries state
+   *between* sessions — and an artefact deleted at session end carries nothing.
+7. **What is unaffected:** WS2 (commit-derived), WS3 (turn-derived) and WS4 (asks what a
+   fresh agent can recover *today*, for which deleted files are correctly invisible —
+   that is the question, not a flaw). **What is narrowed:** WS5 finding 4 holds for the
+   *committed* instruction file only. **What is strengthened:** ASSESSMENT §3.2 — the
+   "unsubstrated" arm is even less unsubstrated than the 212-line CLAUDE.md showed.
+
+**Every count is a lower bound and must be published as "at least N".** A file created,
+used and deleted without ever being typed in a prompt or written by an agent tool call
+is invisible to all three channels. The instrument is conservative in three further
+ways, all of which shrink the finding: the committed pool is the **union** over all
+corpus repos (so a file that moved btest → smim resolves as committed), matching is on
+basename only, and channels A and C see only what was named or tool-written.
+
+**Hand-verification** (in `_meta.verification`): all 33 blive artefacts independently
+confirmed present in git; `eodhd_uk_eu_migration_plan.md` and
+`data_acquisition_prompts.md` confirmed absent from every corpus repo by a per-repo
+shell loop. **Two regex bugs were caught by hand-reading the first output** — a path
+pattern that ran greedily across sentence text and manufactured an artefact called
+*"btest only, plan a safe doc-reorganization … eodhd_uk_eu_migration_plan.md"*, and a
+token floor that admitted the prose fragments `_v2.md` and `_v3.md`.
+
+**A fragility ledger was added to ASSESSMENT §5.1** in the same session, answering the
+standing worry that the corpus derives too much from single events. It is true of about
+seven findings and false of about five, and the split is structural: **every robust
+finding measures the operator's behaviour repeated over hundreds of sessions; every
+fragile one measures an agent's behaviour on one question.** §4's reframe is carried
+entirely by the robust half. Two rules now bind S8/S9: nothing fragile leads a section,
+and no two fragile findings are aggregated to imply a rate.
+
 ## Session log
 
 - **S1 · 2026-07-25:** PLAN.md drafted and iterated (talk reframed to abstract; corp
@@ -577,3 +840,51 @@ Caveats that must travel with these numbers:
   (blive's OQ-033 formalised a standing default into a dated "Operator decision", a
   substrate failure mode for WS6). **Nothing is now pending on Oleg.** Next: **WS5
   survival curves (S6, Sonnet 5)**.
+- **S6 · 2026-07-26 · Opus 5:** WS5(a) executed. Wrote `scripts/survival.py` (sessions,
+  record inventory + first-appearance mining, right-censored survival curves,
+  index/body coherence, supersession-graph backlinks, reference + anchor integrity,
+  freshness clock, commit-message reversal archaeology, instruction-rule survival) and
+  the hand-audit input `data/survival-audit.json` → `data/survival.json`. **The
+  definition of "silent reversal" was frozen in the script docstring before the
+  measurement was written**, and the declared-vs-silent boundary is what the whole
+  result turns on: blive's append-only substrate makes a *declared* supersession the
+  discipline working, so counting it would have measured the opposite of the subject.
+  Seven independent shell counts held exactly before the sweep; **four real bugs were
+  caught by that reflex first** — a register that scanned lines instead of table cells,
+  an ID regex that manufactured 71 phantom dangling refs out of `RETRO-M2-IB`, a slug
+  rule that called 758 of 900 anchors broken against a true 26, and a heading parser
+  that missed blive's combined `OQ-015 / OQ-018` question. An eighth check killed a
+  27,393-char figure that was really 4,902.
+  **The headline is a null: zero blive ADRs silently reversed, S(k)=1.000 at every k.**
+  Three results matter more than the null. (1) Both projects' only real fact-drift
+  defects were **wrong on the day they were written** — blive's OQ-035 about code
+  unchanged since commit 1, btest's "~2600 LOC" about a file that has never exceeded
+  1,618 — so neither posture checks a claim at deposit time. (2) The **Python 3.12
+  pair** (2026-06-05, same operator, same day, both repos) is the cleanest control in
+  the corpus and it **reframes the thesis**: btest *did* record why, well, in a
+  1,025-char commit body; what it lacks is **addressability** — ADR-053 is cited from
+  five artifacts including the auto-loaded one, btest's reasoning from zero, and
+  ADR-053's `companion:` field means the record for btest's decision lives in blive's
+  repo. (3) A **third honest negative**: btest's instruction file does *not* decay
+  silently — 28 rule removals, zero unexplained. The one class that did fail in blive
+  is its **own index table** (2 stale statuses, 2 missing rows) while the outer
+  CONTEXT_INVENTORY register is correct, plus 7 distinct broken anchors propagated by
+  copying. ADR-039's stale citation of ADR-021 was deliberately **not** counted as a
+  reversal and is published as a named mechanism instead. **WS5(b) kernel teaser not
+  attempted** (PLAN §8 cut order; the audit reading consumed the budget).
+  **Then Oleg raised the eval's most serious methodological problem** — that he
+  routinely created working artefacts and never committed them, often deleting them —
+  which makes every artefact-based measurement a survivorship sample whose bias runs
+  *with* the hypothesis. Rather than re-run WS2–WS5 (deterministic on unchanged git;
+  identical output), S6 added **WS0-bis**: `scripts/artifact_survivorship.py` measures
+  the gap across three independent channels → **blive 0 of 33, btest >=26, seamQ >=33**,
+  all lower bounds. Recovery of *content* was probed and is not possible (LocalHistory
+  has no content store; CC transcripts cover only the retention window), so **WS1 is
+  deliberately not re-scored** — a filename cannot distinguish a decision log from a
+  stub. Instead: PLAN §7 gains **confound 6**, RUBRIC.md gains a **scope statement**,
+  ASSESSMENT gains **§2.6 / §3.8** and the corpus-wide framing changes from *flat* to
+  **ephemeral**. Oleg's second concern — that too much rests on single events — became
+  **ASSESSMENT §5.1, a fragility ledger**: ~5 robust findings vs ~7 single-event ones,
+  split structurally along human-side-repeated vs model-side-one-shot, with §4's reframe
+  shown to rest entirely on the robust half. **Nothing is pending on Oleg.** Next:
+  **WS6 archaeology (S7, Opus 5)**.

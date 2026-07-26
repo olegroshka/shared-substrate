@@ -22,6 +22,36 @@ practice*, not a deficiency.
 Score from artifacts and history, not from intention or memory. Cite evidence per axis
 (file paths, commit examples); an axis with no citable evidence scores at most 1.
 
+### Scope statement — what this instrument can and cannot see (added 2026-07-26)
+
+**This rubric scores DURABLE substrate: artifacts that survive in the repository.**
+Artifacts that were created, used and then deleted without being committed are invisible
+to it *by construction*, and that is a deliberate scoping choice rather than an oversight.
+
+It matters because the corpus turned out to contain a lot of them. Measured across three
+independent channels (`scripts/artifact_survivorship.py`): **blive 0 of 33 observed
+artifacts were ephemeral; btest at least 26; seamQ at least 33** — plans, roadmaps, review
+prompts, iteration notes, research summaries, none of which ever reached git. All figures
+are lower bounds.
+
+Two consequences for anyone reading or re-running this instrument:
+
+1. **A low score means "little substrate survived", not "little substrate was made."**
+   The distinction is real and it changes the story: the flat arm of this corpus was not
+   working without artifacts, it was working with artifacts that did not persist. Say
+   **ephemeral**, not *flat*.
+2. **Do not attempt to correct a score from recovered filenames.** Existence is often
+   recoverable; content generally is not, and an axis such as A5 (decision records)
+   cannot be scored from a filename — a name cannot distinguish a maintained decision log
+   from an empty stub. Publish the survivorship gap alongside the score instead.
+
+Whether this is the *right* scope depends on the claim being made. For the substrate
+thesis it is: the paper's claim is that the substrate carries state **between sessions,
+tools and minds**, and an artifact deleted at the end of a session carries nothing
+forward. Durability is not incidental to the practice — it is the practice. But a reader
+using this rubric to assess a *team's working style* rather than its durable state should
+know it will systematically under-score anyone who works in scratch files.
+
 ## 2. The eight axes
 
 ### Practice I — Structural decomposition
