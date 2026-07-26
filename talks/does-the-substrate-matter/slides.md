@@ -37,7 +37,7 @@ Over two weeks, a legacy component at a regulated financial institution was re-e
 
 <!-- name the component and employer verbally; they are in the circulated abstract, not in this committed deck -->
 
-That is the whole claim this talk makes about the work project up front. No instrumented numbers — its git history and session logs live inside the org, and measuring them is the follow-up leg this evaluation was built to survive.
+That is the whole claim this talk makes about the work project up front. No instrumented numbers — its git history and session logs live inside the org; measuring them properly is a planned follow-up there.
 
 The question to hold for the next 30 minutes:
 
@@ -73,13 +73,33 @@ That was the claim going in. Seven projects and six workstreams later, the evide
 >
 > The substrate is not what makes you write things down. It is what makes what you wrote down **still be there, and still be findable, three sessions later.**
 
-Three exhibits carry this. All three measure **operator behaviour repeated across hundreds of turns** — the robust half of the corpus.
+Three exhibits carry this. All three measure **operator behaviour repeated across hundreds of turns** — the robust half of the evidence.
+
+---
+
+## The evidence base — seven of my own projects
+
+The answer to the "it's one project" objection: same author, same era, **instrumented rather than remembered**.
+
+| project | what it is | substrate posture |
+|---|---|---|
+| **blive** | live algo-execution engine (trading) | **full discipline**: decision records, inventories, protocols |
+| **btest** | backtesting platform, same domain | **ephemeral**: a 212-line agent-instruction file, no decision records; working files often never reached git |
+| b-autobot | 6-day Java sprint — the March rehearsal | partial |
+| datacli | small data-ops CLI | light, à la carte |
+| smim · harp · seamQ | research projects | research-native instruments (more later) |
+
+**blive vs btest is the central pair** — same author, same trading domain, opposite postures. Evidence: 1,480 session-log turns across three log stores, 600+ commits, every extraction script published. Nothing tonight is from memory.
+
+*Caveat that governs everything: this is a case comparison, not an experiment — the full confounds ledger comes at the end, out loud.*
 
 ---
 
 ## Exhibit 1 · The retransmission tax
 
 **Re-entry costs 4× as much, is paid half as often, and moves the wrong way in the ephemeral project.**
+
+A *warm-up turn* is what you type at session start to rebuild context before new work begins.
 
 | | warm-up frequency | cost per warm-up | over project life |
 |---|---|---|---|
@@ -104,7 +124,7 @@ Among turns under 40 characters — dispatch-by-reference (*"read `NEXT_PROMPT.m
 
 btest also has the *most* short turns: 147 — 19% of everything its operator typed.
 
-*Fragile numerator, stated per the rules: btest's ratio rests on **3** dispatches against 29 "continue"s — two more found dispatches would move it.*
+*These are the four projects with enough surviving session logs to measure. Fragile numerator, stated per the rules: btest's ratio rests on **3** dispatches against 29 "continue"s — two more found dispatches would move it.*
 
 ---
 
@@ -170,6 +190,8 @@ Kendall's W 0.465–0.605, p < 0.001 — so no cross-project comparison in this 
 
 ## What the probe added here — an honest negative
 
+*(The probe — a pre-registered experiment, told in full two slides on: fresh AI-agent instances quizzed against each repo, with checkable ground truth.)*
+
 The predicted mechanism *"stale in-tree references induce confabulation"* **did not fire**.
 
 On both questions built around b-autobot's doc/tree divergence, a fresh agent counted the tree and was right: **91 scenarios, not the docs' 66; CI disabled, not the README badge's live nightly**.
@@ -186,20 +208,23 @@ A 2026-era agent checks the code against the doc. What it cannot check is a clai
 
 The practice the evaluation **changed the most**. Two robust results first — one positive, one null — then the case studies.
 
-**Robust result 1: recorded facts come back near-perfectly in *both* arms.**
-Fresh-agent retrieval of recorded slots: blive **28/28** · btest **28/28** · b-autobot **24/28**.
+**The probe, in one line:** 20 questions per project with checkable ground truth — *did we decide X? what is the state of Y? why was Z rejected?* — put to fresh AI-agent instances with repo-only access, two independent runs each. Questions and scoring frozen by commit **before any run**.
+
+**Robust result 1: facts that are written down come back near-perfectly in *both* arms** (substrated and ephemeral alike). On the questions whose answers are recorded in the repo: blive **28/28** · btest **28/28** · b-autobot **24/28**.
 Retrieval of deposited facts is **not** where the substrate boundary sits.
 
-*Denominator: 84 recorded slots across 3 projects, 2 runs each.*
+*Denominator: 84 recorded-answer questions across 3 projects, 2 runs each.*
 
 ---
 
 ## Robust result 2 · Zero silent reversals
 
+blive keeps its decisions as **53 append-only Architecture Decision Records (ADRs)** — dated, reasoned, citable by stable ID. The question: do later sessions silently contradict them?
+
 **No blive decision record was silently reversed in 12 sessions of exposure — the failures live elsewhere.**
 
-- S(k) = **1.000** at every k from 0 to 12 sessions.
-- The *declared* curve falls only to 0.962 — one supersession, declared on both ends. A declared supersession is the discipline **working**.
+- Survival S(k) — the share of records still standing un-contradicted k sessions after they were written — is **1.000** at every k from 0 to 12.
+- The *declared* curve falls only to 0.962 — one record replaced by a successor that says so, on both ends. A declared supersession is the discipline **working**.
 
 *Every point carries its `at_risk` denominator: at k=12 the curve rests on **26 of the 53** records, not 53. "Sessions" here are a git proxy (maximal commit runs, 4-hour gap threshold). Coverage disclosed: 18 of 53 ADRs were read against the tree; the rest are not counted as having survived a test they were never given. And this curve has **one arm** — btest has no decision records; its column is `n/a` (a different substrate type: instruction rules + commit prose), never a zero on a shared denominator.*
 
@@ -208,6 +233,8 @@ Retrieval of deposited facts is **not** where the substrate boundary sits.
 ## The pre-registered experiment, told straight
 
 **My own pre-registered experiment failed to show the substrate reduces confabulation — and the one confabulation belongs to the full-substrate project.**
+
+*(Confabulation: an invented answer presented as recorded fact.)*
 
 - Questions and scoring frozen by commit **before any run**. Fisher's exact **p = 1.0**.
 - btest 38/38 correct, zero confabulations · blive 37/38, the corpus's **only** confabulation · b-autobot 36/38.
@@ -219,7 +246,7 @@ Retrieval of deposited facts is **not** where the substrate boundary sits.
 
 ## Why the null is evidence *for* the reframe
 
-**A 212-line CLAUDE.md plus git history plus a 2026-era model was enough for a perfect retrieval score.**
+**A 212-line CLAUDE.md — the project-root instruction file AI coding agents load automatically — plus git history plus a 2026-era model was enough for a perfect retrieval score.**
 
 The floor has risen. *"Your agent will invent decisions without a substrate"* is no longer true of a fresh agent doing retrieval — and I would rather concede that from up here than have it raised from the floor.
 
@@ -247,7 +274,7 @@ The confound is part of the story: the "flat" arm is **not flat** — it is *eph
 
 **btest's commit-convention history, retitled after correction:** a stable-ID convention was replaced by a taxonomy.
 
-- 293 of 415 commits carry a bracketed tag — but **280 of 293 are `[SMIM]`, and SMIM left the repository** in May.
+- 293 of 415 commits carry a bracketed tag — but **280 of 293 are `[SMIM]`** — a research subproject that lived inside btest — **and SMIM left the repository** in May, extracted to its own repo.
 - Scoped stable ids (`[SMIM DATA-6]`): 163 in March · **2 in April** · 0 after.
 - July is *differently* tagged: 9 of 10 commits carry a conventional-commit prefix. On "any structured prefix" the curve reads 0 → 96 → 97 → 64 → 100 *(n=5)* → 90%.
 
@@ -260,6 +287,8 @@ The confound is part of the story: the "flat" arm is **not flat** — it is *eph
 ## And the substrate carries state only if artifacts survive
 
 **Everything blive's sessions produced reached git; at least one in nine of btest's working artifacts never did.**
+
+Observed through three independent channels — typed prompts, IDE local-history records, agent tool-call paths — matched against everything ever committed:
 
 | blive | btest | seamQ | b-autobot | harp |
 |---|---|---|---|---|
@@ -275,7 +304,7 @@ All lower bounds — a file never typed and never tool-written is invisible to e
 
 Stated so this section is not advocacy. In the 22/24 project:
 
-- The in-file ADR index went stale — 2 wrong statuses, 2 missing rows of 53 — while the *outer* register stayed correct. **What goes stale is the index, not the records.**
+- The index table *inside* the ADR file went stale — 2 wrong statuses, 2 missing rows of 53 — while the project-level artifact inventory stayed correct. **What goes stale is the index, not the records.**
 - Two malformed anchors were copied forward into 20 of its 26 broken cross-references. Append-only preserves errors with the fidelity it preserves decisions.
 - One open question records an **"Operator decision" for an option that was never on the table** — append-only records can manufacture history as well as preserve it. *(n = 1; operator recollection.)*
 
@@ -359,6 +388,8 @@ p = 1.0 — and its nominal direction *reversed*: the corpus's only confabulatio
 
 ### Altitude does not track discipline inside btest.
 
+*(Altitude: every turn the operator types, classified by the level it works at — declaring intent, making decisions, shaping design = **high**; pasting errors, steering line-fixes, re-explaining context = **low**. The full exhibit comes in a moment.)*
+
 **The month with the least artifact discipline had the second-highest altitude.**
 
 Monthly high-altitude share: 0.256 · 0.251 · 0.192 · 0.400 *(n=5)* · 0.303 — against a tag curve of 91 → 96 → 50 → 40 → 0%.
@@ -402,7 +433,7 @@ Which is the strongest reason this talk presents the *reframe*, not the original
 
 **Controlled for turn length, the ephemeral project's operator sits lowest in every band.**
 
-High-altitude share of operator turns, blive vs btest per typed-length band:
+Every one of 1,061 operator turns classified by what it does: intent, decisions, design (**high altitude**) vs mechanical steering — *paste this error, fix that line* (**low**). High-altitude share, blive vs btest, per typed-length band:
 
 | 0–39 chars | 40–119 | 120–399 | 400+ |
 |---|---|---|---|
@@ -523,7 +554,7 @@ The boundary claim refines: exploratory work has *different substrate artifact t
 
 Four incidents, each **behind the robust number it illustrates** — n = 1 each, never aggregated:
 
-1. **The hole named forty days before anything fell into it** *(behind the rework contrast)* — a chaos drill filled KB-7, which the inventory had registered MISSING, with an owner and a content contract, at the repo's **first commit**. A typed absence is a work item.
+1. **The hole named forty days before anything fell into it** *(behind the rework contrast)* — a chaos drill filled the failure-modes knowledge base (KB-7), which the project's artifact inventory had registered as MISSING — with an owner and a content contract — at the repo's **first commit**. A typed absence is a work item.
 2. **The option that was not on the list** *(behind the altitude exhibit)* — an agent-drafted option set silently dropped the only intent-preserving path; the operator caught it. An option list steers by omission.
 3. **One session, two defects, in the 22/24 project** *(behind the null)* — a substrate-only audit session manufactured a decision **and** deposited a claim that was never true — while citing the row that refutes it. The cheap testable fix (n=1, a proposal, not a finding): audit records carry the `file:line` each claim was read from.
 4. **104,959 lines, and the reasoning is in a chat log** *(behind the retransmission tax)* — the corpus's largest deletion has a 1-byte commit body; the rationale survives only in a retained-by-accident session store. The rules were captured; the *reason* has no address.

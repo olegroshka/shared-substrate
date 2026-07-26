@@ -928,7 +928,7 @@ no `data/` file was touched.
 
 1. **The three deliverables exist** in `talks/does-the-substrate-matter/`:
    - **`slides.md`** — Marp deck matching `docs/presentation.md`'s conventions. Core arc
-     (37 slides) mirrors REPORT §§1–5 section for section; expansion modules M-A…M-F sit
+     (38 slides) mirrors REPORT §§1–5 section for section; expansion modules M-A…M-F sit
      behind an explicit "everything after this slide is optional" divider. Binding rules
      applied throughout: every number slide carries its caveat and denominator **on the
      same slide**; slide titles follow the exhibit bench's honest captions and are not
@@ -1197,7 +1197,7 @@ Caveats that travel with S9's output:
 - **S9 · 2026-07-26 · Fable 5:** Deck + dry run executed. Warm-up per NEXT_TASK (REPORT →
   exhibits → OUTLINE/ABSTRACT → PLAN §9 → war-stories), then the three deliverables
   written into `talks/does-the-substrate-matter/`: **`slides.md`** (Marp, house
-  conventions; core arc of 37 slides mirroring REPORT §§1–5 in order, modules M-A…M-F
+  conventions; core arc of 38 slides mirroring REPORT §§1–5 in order, modules M-A…M-F
   behind an explicit optional divider; every number slide carries caveat + denominator
   on the slide; titles held to the bench's honest captions; the four honest negatives
   each get their own slide; S8's §3.3 ordering kept), **`handout-rubric.md`** (Step-0

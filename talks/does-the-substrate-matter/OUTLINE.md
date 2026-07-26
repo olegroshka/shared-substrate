@@ -29,7 +29,8 @@ slide-level realisation of that shape and evolves independently as the deck is b
 
 - [x] Scaffold created
 - [x] Exhibits delivered from eval workstreams (WS1–WS6 → `research/eval/report/exhibits.md`, 23 exhibits)
-- [x] slides.md core arc drafted (S9 — 37 slides mirroring REPORT §§1–5; caveats on-slide)
+- [x] slides.md core arc drafted (S9 — 38 slides mirroring REPORT §§1–5; caveats on-slide;
+      self-sufficiency pass: corpus intro slide + every term glossed at first use)
 - [x] Expansion-module slides drafted (S9 — M-A…M-F behind an explicit divider)
 - [x] Handout finalised (S9 — `handout-rubric.md`, incl. the Step-0 complexity check)
 - [x] Deck-side dry run: caption/caveat audit of every number slide against the exhibit
