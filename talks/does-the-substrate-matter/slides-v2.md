@@ -37,7 +37,7 @@ may name it, NOTES.md says "name verbally".
 
 **Two weeks, one legacy component — and seven personal projects instrumented to answer the obvious objection: that one case proves nothing**
 
-*This is not a lecture, and it makes no strong claims. It is one practitioner sharing what happened — with the evidence, and its limits, shown in full.*
+*This is not a lecture, and it makes no strong claims. It is one person sharing what happened — with the evidence, and its limits, shown in full.*
 
 Oleg Roshka · internal talk · 2026-07-30
 Evidence & instruments: [github.com/olegroshka/shared-substrate](https://github.com/olegroshka/shared-substrate) `research/eval/`
