@@ -355,17 +355,22 @@ The confound is part of the story: the "undisciplined" arm was never truly witho
 
 ---
 
-## A classification is not a citable address
+## Labelling work is not the same as making it citable
 
-**btest's commit-convention history, retitled after correction:** a convention of stable, citable identifiers was replaced by one that only classifies.
+btest's change-log conventions tell a story that is easy to misread. At first glance the discipline collapsed: structured tags on 96% of changes in April, none by July. The honest reading, after breaking the history down by hand:
 
-- 293 of 415 commits carry a bracketed tag — but **280 of 293 are `[SMIM]`** — a research subproject that lived inside btest — **and SMIM left the repository** in May, extracted to its own repo.
-- Scoped stable ids (`[SMIM DATA-6]`): 163 in March · **2 in April** · 0 after.
-- July is *differently* tagged: 9 of 10 commits carry a conventional-commit prefix. On "any structured prefix" the curve reads 0 → 96 → 97 → 64 → 100 *(n=5)* → 90%.
+- Most of the tags belonged to **one research subproject** — when it moved to its own repository in May, its tags left with it. The apparent collapse is mostly the tagged work moving out.
+- What actually decayed came earlier: tags carrying a **citable identifier** (`[SMIM DATA-6]`) gave way to bare labels — 163 identifier-tags in March, **2** in April, none after.
+- And July is not undisciplined — 9 of its 10 changes use the industry-standard `feat:` / `fix:` labelling.
 
-`feat(costs):` tells you a commit's **kind**; `[SMIM DATA-6]` tells you what it is **about** and lets a later record cite it — the same distinction the Python 3.12 pair turns on.
+The distinction that matters:
 
-*Caption rule honoured here: never show "0% in July" as an absence of discipline.*
+| `feat(costs):` | `[SMIM DATA-6]` |
+|---|---|
+| says what **kind** of change this is | says **which piece of work** it belongs to |
+| cannot be referenced by later records | a later record can **cite it** |
+
+**The project kept classifying its work; it stopped making it citable. That is the same distinction the Python 3.12 pair just showed — and it is what "addressability" means in practice.** *(Full monthly breakdown in the appendix bench.)*
 
 ---
 
