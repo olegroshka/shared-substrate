@@ -15,27 +15,43 @@ slide, in the handout, or in these notes carries the name.
 
 ## If presenting v2 (`slides-v2.md`) — the Thursday candidate
 
-V2 = v1 plus six slides; everything below this section is written against **v1**
+V2 = v1 plus seven slides; everything below this section is written against **v1**
 numbering, so use this delta map. What v2 adds:
 
-- **§2 opens with the paper's frame before any evidence** (new slides 4–8): the era
+- **§2 opens with the paper's frame before any evidence** (new slides 4–9): the era
   claim engaging Google's *New SDLC* quote (4) · "separate creative input from cognitive
   load" (5) · the offload test — "how surprised would a strong model be?" (6) · the
-  responsibility inversion (7) · the personal-evolving-substrate reading of AI-assist
-  (8). The old frame slide follows as "The frame in one picture" (9).
-- **§4 gains the deck-building miss** (new slide 38, right after the corrections slide):
-  the agent's surface-perfect/illegible deck, told as the evaluation's third
+  responsibility inversion (7) · the calculators/Jacquard-loom precedents (8) · the
+  personal-evolving-substrate reading of AI-assist (9). The old frame slide follows as
+  "The frame in one picture" (10).
+- **§4 gains the deck-building miss** (new slide 39, right after the corrections slide):
+  the agent's surface-perfect/illegible deck, retitled "The miss that reframed this
+  deck: context pulls intent off course", told as the evaluation's third
   self-correction and as the §2 inversion demonstrated live.
 - The close carries the era + personal-substrate lines.
 
-**V2 numbering:** slides 1–3 unchanged; v1 slide n ≥ 4 → v2 n+5 up to the corrections
-slide (v1 32 → v2 37); after it, +6 (altitude v1 33 → v2 39, ledger 34 → 40, spectrum
-35 → 41, close 38 → 44). Core arc 44 slides, ~35 min — the talk/discussion split still
-flexes, but the §2 block costs ~6 extra minutes; if pressed, deliver slides 5–6 as one
-breath (the table carries both) and never cut 4 or 8.
+**V2 numbering:** slides 1–3 unchanged; v1 slide n ≥ 4 → v2 n+6 up to the corrections
+slide (v1 32 → v2 38); after it, +7 (altitude v1 33 → v2 40, ledger 34 → 41, spectrum
+35 → 42, close 38 → 45). Core arc 45 slides, ~36 min — the talk/discussion split still
+flexes, but the §2 block costs ~7 extra minutes; if pressed, deliver slides 5–6 as one
+breath (the table carries both), speak slide 8's precedents over slide 9 rather than
+cutting them, and never cut 4 or 9.
 
-**V2 never-cut set:** 4 (era), 8 (personal substrate), 10 (reframe), 11 (corpus),
-12 (A1), 22 (null), 37 (corrections), 38 (the miss), 40 (ledger).
+**V2 never-cut set:** 4 (era), 9 (personal substrate), 11 (reframe), 12 (corpus),
+13 (A1), 23 (null), 38 (corrections), 39 (the miss), 41 (ledger).
+
+**Slide 8 (v2) · the historical precedents — verify before Thursday, and the honest
+version if challenged.** The calculator resistance is documented (1970s–80s US
+curriculum debates; the professional bodies later endorsed calculator use; curricula
+moved up). The loom case as remembered ("violent protests in France") needs the
+correction the slide already carries: the canonical violent machine-breakers were the
+**English Luddites** (1811–1816); the **French** case is **Lyon silk weavers
+destroying early Jacquard looms** (c. 1801–1806, with ~11,000 Jacquard looms in
+France by 1812 — the commonly cited figure; the machine-smashing accounts are partly
+traditional retellings). If challenged on either: concede the detail, keep the
+pattern — and the honest clause is already on the slide (the transition was hard on
+those who could not move). The punch-cards-to-computing lineage (Jacquard → Babbage →
+Hollerith) is solid and is the reason the French case is the one told.
 
 **V2 style (S9, per Oleg):** guided interpretation for a general professional
 audience — every exhibit's interpretation walks the viewer through what the number
@@ -58,7 +74,7 @@ attention altitude are information behaviours, not coding behaviours.
 "The New SDLC: From Vibe Coding to Agentic Engineering", 2026, Osmani et al.; S9
 confirmed it via secondary sources only.)*
 
-**Slide 38 (v2) · the deck-building miss.**
+**Slide 39 (v2) · the deck-building miss.**
 *Challenge: "your own agent failed — doesn't that undermine the whole approach?"*
 The opposite, and say it plainly: the framework predicted the failure class (every
 check either arm owns runs at retrieval — that is already on the honest-split slide),

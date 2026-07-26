@@ -125,7 +125,13 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 ---
 
-## There is no generic substrate
+## This transition has run before
+
+**When calculators entered the classroom, many maths teachers fought them** — the fear was that students would stop being able to think. What actually happened: arithmetic stopped being the ceiling. Curricula moved up, and teachers now take students further — into statistics, algebra, calculus — than the pre-calculator classroom ever reached.
+
+**When Jacquard's automated loom arrived in Lyon, silk weavers smashed the machines** — the fear was the end of the trade. Within a decade, France ran on the order of ten thousand Jacquard looms — operated by weavers — and the loom's punch cards went on to become an ancestor of the computer.
+
+**The pattern: the tool absorbs the mechanical layer, and the human's job moves up a level — for those who move with it.** That last clause is the honest part. The transition rewarded the weavers who became operators of the new looms, and it was hard on those who could not or would not move. Which is exactly why the *skill* — the personal substrate, next slide — is what matters.
 
 How should AI assistance be perceived, then? Not as a tool you adopt — as a **coupling you grow**. And what grows on your side is a **personal substrate: individual, evolving, yours**.
 
