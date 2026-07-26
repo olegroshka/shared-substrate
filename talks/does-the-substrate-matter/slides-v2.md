@@ -603,17 +603,18 @@ The spectrum to place yourself on:
 
 ## The practical takeaway — adopt one piece, where it hurts
 
-Nothing tonight argues for adopting a methodology wholesale. Each element pays back on its own; the honest move is to pick the one that targets what already hurts:
+Nothing tonight argues for adopting the methodology wholesale. **This menu is the four practices from section 3, unbundled** — each element is one piece of project state made durable and readable by the assistant, which is what "substrate" means in practice. The honest move is to pick the row that targets what already hurts:
 
-| if this is what hurts | one element to adopt *(and its cost)* | seen in tonight's evidence |
-|---|---|---|
-| every session starts with re-explaining the project | a pointer file the AI assistant loads automatically, plus a one-page project inventory *(an hour, once)* | session openers: ~106 characters and falling with one; ~417 and rising without |
-| "did we decide this, and why?" lives in memory and chat history | an append-only decision log with citable identifiers *(minutes per decision)* | the same decision recorded twice on the same day — only the citable copy was ever cited again |
-| one component everyone is afraid to touch | its current behaviour locked in as executable tests *before* changing anything *(about a day)* | 91 scenarios locking in the incumbent before replacement began |
-| performance regressions surface at review time | hard limits copied from the running system's production numbers, checkable by the assistant mid-work *(about a day)* | the work project's final week was spent almost entirely inside those limits |
-| the same fact maintained in several documents, drifting apart | one authoritative home per fact; everything else points to it *(a habit, not a tool)* | two copied cross-references propagated one error into 20 broken links — while the single-source register stayed correct |
+| practice | if this is what hurts | one element to adopt *(and its cost)* | seen in tonight's evidence |
+|---|---|---|---|
+| Decomposition | a big change delivered as one risky leap | the work cut into gated increments with explicit exit criteria *(a planning session)* | 19 increments, each behind a gate — parity held at every step |
+| Guardrails | one component everyone is afraid to touch | its current behaviour locked in as executable tests *before* changing anything *(about a day)* | 91 scenarios locking in the incumbent before replacement began |
+| Guardrails | performance regressions surface at review time | hard limits copied from the running system's production numbers, checkable by the assistant mid-work *(about a day)* | the work project's final week was spent almost entirely inside those limits |
+| Representation | "did we decide this, and why?" lives in memory and chat history | an append-only decision log with citable identifiers *(minutes per decision)* | the same decision recorded twice on the same day — only the citable copy was ever cited again |
+| Representation | the same fact maintained in several documents, drifting apart | one authoritative home per fact; everything else points to it *(a habit, not a tool)* | one copied error propagated into 20 broken links — while the single-source register stayed correct |
+| Validation | every session starts with re-explaining the project | a pointer file the AI assistant loads automatically, plus a one-page project inventory *(an hour, once)* | session openers: ~106 characters and falling with one; ~417 and rising without |
 
-Each element pays back independently; together they compound. And the one near-universal prerequisite is free: **stable, citable identifiers** — they cost nothing, and they underwrite everything else.
+Each element pays back independently; together they compound — **the full discipline is just the limit of the compounding.** And the one near-universal prerequisite is free: **stable, citable identifiers** — the same addressability that section 3.3 showed deciding which reasons stay findable.
 
 ---
 
