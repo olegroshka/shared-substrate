@@ -259,7 +259,9 @@ Kendall's W 0.465–0.605, p < 0.001 — so no cross-project comparison in this 
 
 **Work project:** behavioural lock-in of the incumbent; budgets taken from the live system.
 
-> *"Gain is indifferent to sign."* — an AI assistant amplifies whatever you give it: it multiplies your intent into volume, and it multiplies a misunderstanding at exactly the same rate. That is why the intended behaviour has to be locked down *before* generation starts.
+> *"Gain is indifferent to sign."* — an AI assistant amplifies whatever signal the operator sends, and it cannot tell a right signal from a wrong one. A clear instruction and a subtle misunderstanding are both multiplied into volume with the same fidelity — and work keeps getting built on top of a wrong signal, compounding its cost, until something checks it.
+
+**Which is why guardrails pay back out of proportion to what they cost: anything that helps the operator avoid sending a wrong signal — behaviour locked in executable form, budgets taken from the measured system — improves the entire trajectory to the goal, not just one step of it.**
 
 <p align="center"><img src="../../assets/fig-divergence.png" width="480" alt="Open vs closed loop divergence"></p>
 
