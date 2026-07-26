@@ -1257,4 +1257,9 @@ Caveats that travel with S9's output:
   interpretation for a general professional audience: interpretation lines walk the
   viewer from number to meaning in full sentences, aphoristic fragments removed,
   practice aphorisms kept as quotes with plain-language glosses; claim strength stays
-  pinned to the bench captions).
+  pinned to the bench captions). The first style pass was incomplete — Oleg flagged
+  residual compressed slides — and a second, corpus-wide sweep finished it: every
+  mid-dot number chain became a sentence or a table, every insider phrase ("cuts
+  against the thesis", "n=1", "at_risk", "born wrong", "one-rater stability") was
+  replaced or glossed in plain language, and "altitude" became "attention level" on
+  the audience-facing slides.

@@ -214,9 +214,9 @@ btest's operator also typed the *most* short messages: 147 — 19% of everything
 - btest took **16** gaps of ≥5 days across its 213-day history; blive took **1**; datacli **1**.
 - After btest's gaps, fix-commits run at 20.8% against an 18.3% baseline — so a single re-entry is **not obviously costlier than normal work**. The difference is frequency: btest paid the re-entry cost sixteen times where the substrated projects paid it once.
 
-And the tool-era baseline underneath it all: the same repo, pre-methodology (Dec 2025 – Feb 2026, AI-assisted, no substrate, no recoverable log): mean commit message **49 characters** (n=78). Methodology era: **585** (n=337).
+There is also a baseline hiding in the same repository. Before the methodology existed (December 2025 to February 2026), btest was already AI-assisted — but with no substrate and no surviving logs. In that era its average change description was **49 characters** long (78 changes). After the methodology arrived, it was **585** (337 changes).
 
-*Caveats: gap counts, not rates — small n everywhere but btest. The 49 → 585 jump sits at a tool boundary too: tool change and methodology adoption co-occur, so this separates eras, not causes.*
+*Caveats: the gap counts are small everywhere except btest, so they are reported as counts, not rates. And the 49-to-585 jump coincides with a change of tools as well as of method — it separates two eras; it cannot separate the two causes.*
 
 ---
 
@@ -235,29 +235,29 @@ Each told the same way:
 
 ## 3.1 · Structural decomposition
 
-**Work project:** 19 gated increments; layers as the shortest description first.
+**Work project:** the work was cut into 19 increments, each behind a gate with explicit exit criteria — and the system was described layer by layer, starting from the shortest description that captures the intent, adding detail only where the layer below needed it.
 
 <p align="center"><img src="../../assets/fig-hierarchy.png" width="360" alt="Hierarchy of layers"></p>
 
-**Corpus:** blive ran gated milestones M0→M3 with exit criteria recorded per gate and a readiness freeze before each phase. And adoption is à-la-carte, scaling with complexity: **datacli** — a 117-file CLI — kept gates, executable contracts and status-tagged manifests while *skipping* ADRs, glossary and session protocol. Exactly what the complexity-threshold claim predicts for a small project.
+**Corpus:** blive ran the same pattern — four gated milestones, exit criteria recorded at each gate, a readiness freeze before each phase. And the discipline is adopted piecemeal, scaling with project complexity: **datacli**, a small 117-file command-line tool, kept the gates, the executable contracts and the status-tagged manifests, and skipped the decision records, the glossary and the session protocol. That is exactly what the complexity-threshold claim predicts for a small project.
 
 ---
 
-## The moderator behind every cross-project claim
+## Reading every comparison against project complexity
 
-Complexity ordering, stable under every measured primitive:
+The corpus projects differ enormously in complexity, so the evaluation measured it — size, change history, dependencies, information content — and the **same ordering came out under every measure tried**:
 
 > **btest > b-autobot > blive > harp > datacli > seamQ**
 
-Kendall's W 0.465–0.605, p < 0.001 — so no cross-project comparison in this talk is read without it.
+(Agreement across measures: Kendall's W 0.47–0.61, p < 0.001.) No cross-project comparison in this talk is read without this ordering in mind.
 
-*Caveats: chi-square approximation indicative at n=7; smim's rank is unstable by construction (1 squashed commit — `n/a: history lost`, never zero); `duration_days` is a **git span**, not project length — seamQ's real span is ~3 weeks, not the 1.9 days its git reports.*
+*Caveats: seven projects is a small set, so the significance figure is indicative only; smim cannot be ranked at all — its history was lost, and that is recorded as "not available", never as zero; and "project duration" in the data is the span of the git history, which understates seamQ's real life (about three weeks, not the two days its history shows).*
 
 ---
 
 ## 3.2 · Explicit guardrails
 
-**Work project:** behavioural lock-in of the incumbent; budgets taken from the live system.
+**Work project:** the old system's behaviour was locked in as executable tests before replacement began, and its real production performance numbers became the new system's hard limits.
 
 > *"Gain is indifferent to sign."* — an AI assistant amplifies whatever signal the operator sends, and it cannot tell a right signal from a wrong one. A clear instruction and a subtle misunderstanding are both multiplied into volume with the same fidelity — and work keeps getting built on top of a wrong signal, compounding its cost, until something checks it.
 
@@ -265,9 +265,9 @@ Kendall's W 0.465–0.605, p < 0.001 — so no cross-project comparison in this 
 
 <p align="center"><img src="../../assets/fig-divergence.png" width="480" alt="Open vs closed loop divergence"></p>
 
-**Corpus:** b-autobot is the March rehearsal — a BDD regression suite locking in a simulated incumbent, **91 executable scenarios** on the critical surface.
+**Corpus:** b-autobot is the March rehearsal of the same idea — a regression-test suite that locked in a simulated incumbent's behaviour as **91 executable scenarios** covering its critical surface.
 
-*Honesty note that travels with it: its guardrails score was adjudicated **down** (3→2) in review — its latency budgets are comments in a config file, not asserted values. The same deficiency held the top-scoring project to 2.*
+*An honesty note travels with this exhibit: in review, its guardrails score was moved **down** (from 3 to 2), because its performance limits exist only as comments in a configuration file — nothing ever checks them. The top-scoring project was held to 2 for the same weakness.*
 
 ---
 
@@ -281,7 +281,7 @@ On both questions built around b-autobot's doc/tree divergence, a fresh agent co
 
 A 2026-era agent checks the code against the doc. What it cannot check is a claim about a **conversation** — which is where the next practice picks up.
 
-*Fragility note: b-autobot's zero-confabulation sheet rests on two abstentions held by a conservative tie-break; read as commitments they become 2 confabulations.*
+*A fragility note: b-autobot's clean sheet depends on two answers where the agent said it could not tell — the scoring deliberately counted those in the project's favour. Counted the other way, they would be two invented answers.*
 
 ---
 
@@ -293,10 +293,10 @@ The practice the evaluation **changed the most**. Two robust results first — o
 
 **The probe, in one line:** 20 questions per project with checkable ground truth — *did we decide X? what is the state of Y? why was Z rejected?* — put to fresh AI-agent instances with repo-only access, two independent runs each. Questions and scoring frozen by commit **before any run**.
 
-**Robust result 1: facts that are written down come back near-perfectly in *both* arms** (substrated and ephemeral alike). On the questions whose answers are recorded in the repo: blive **28/28** · btest **28/28** · b-autobot **24/28**.
+**Robust result 1: facts that are written down come back near-perfectly in *both* arms** (substrated and ephemeral alike). On the questions whose answers are recorded in the repository, blive answered **28 of 28** correctly, btest **28 of 28**, and b-autobot **24 of 28**.
 Reading back what was written is **not** where the substrate boundary sits.
 
-*Denominator: 84 recorded-answer questions across 3 projects, 2 runs each.*
+*Denominator: 84 recorded-answer questions across three projects, two runs each.*
 
 ---
 
@@ -311,7 +311,7 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 
 **This is the discipline's core promise, tested and kept: the record never quietly rewrote its own history — every change to a recorded decision announced itself.** Two bounds keep that honest. It demonstrates the record's *integrity*, not its downstream effect; and it has no comparison arm, because only one project has decision records at all. The failures the evaluation did find are different in kind — records wrong on the day they were written (section 3.4).
 
-*Every point carries its `at_risk` denominator: at k=12 the curve rests on **26 of the 53** records, not 53. "Sessions" here are a git proxy (maximal commit runs, 4-hour gap threshold). Coverage disclosed: 18 of 53 ADRs were read against the tree; the rest are not counted as having survived a test they were never given. And this curve has **one arm** — btest has no decision records; its column is `n/a` (a different substrate type: instruction rules + commit prose), never a zero on a shared denominator.*
+*Honesty notes: by twelve sessions of exposure, only **26 of the 53** records had existed long enough to be tested that far — the curve rests on those. "Sessions" are approximated from commit timing (a gap of four hours starts a new one). 18 of the 53 records were checked directly against the code; the rest are not counted as having passed a test they were never given. And there is no comparison column, because btest keeps no decision records — its entry is "not applicable", never zero.*
 
 ---
 
@@ -321,11 +321,11 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 
 *(Confabulation: an invented answer presented as recorded fact.)*
 
-- Questions and scoring frozen by commit **before any run**. Fisher's exact **p = 1.0**.
-- btest 38/38 correct, zero confabulations · blive 37/38, the corpus's **only** confabulation · b-autobot 36/38.
-- The one invented answer invented a **why** — a rationale for a deliberation that never happened.
+- Questions and scoring were frozen by commit **before any run**. The result: no measurable difference between the projects (Fisher's exact test, p = 1.0).
+- btest answered 38 of 38 correctly with no invented answers; blive 37 of 38, with the corpus's **only** invented answer; b-autobot 36 of 38.
+- And the one invented answer invented a **why** — a rationale for a deliberation that never happened.
 
-*Caveats: the reversed direction rests on **one** confabulation (fragile); the null survives any single re-scoring. 3 of 20 question slots were voided on ground-truth failure — 15% of the instrument — every void ran against the hypothesis.*
+*Caveats: the "wrong direction" rests on a single invented answer, so it is weak evidence either way — though the no-difference result would survive any one answer being re-scored. Three of the twenty questions had to be discarded because their answer keys turned out to be wrong — 15% of the instrument — and every one of those discards worked against my hypothesis, not for it.*
 
 ---
 
@@ -345,13 +345,13 @@ The confound is part of the story: the "undisciplined" arm was never truly witho
 
 ## What actually separates the arms: addressability
 
-**Both repos recorded the same decision the same day; one record is cited from five artifacts, the other from zero.** *(n = 1 by construction — a case study, not a rate.)*
+**Both repos recorded the same decision the same day; one record is cited from five artifacts, the other from zero.** *(A single paired case — a case study, not a statistic.)*
 
-2026-06-05, the Python floor moves to 3.12 in both repos. Same operator, same day, same decision:
+On 5 June 2026, both repositories made the same decision on the same day — raising their minimum Python version. Same person, same reasoning, recorded twice:
 
-- blive writes **ADR-053** (4,902 chars) — cited from **five** artifacts, including the one an agent auto-loads.
-- btest writes commit `fd106f9` (1,025 chars) — and it is a **good** record: reason, validation, exact edits, flagged follow-up. Cited from **zero** artifacts; reachable only by knowing the sha.
-- ADR-053's `companion:` field even names `fd106f9`: the addressable record of btest's decision lives **in blive's repo**.
+- blive wrote **ADR-053**, a 4,902-character decision record — cited from **five** other artifacts, including the one an AI agent loads automatically.
+- btest wrote a 1,025-character change description — and it is a **good** record: the reason, the validation, the exact edits, a flagged follow-up. It is cited from **zero** artifacts, and findable only if you already know that specific change's identifier.
+- The blive record even names its btest counterpart in a cross-reference field: the citable record of btest's decision lives **in the other project's repository**.
 
 **The naive story — "the less disciplined project didn't write down why" — is false.** The reasons were recorded in both projects. What differs is whether other records can point to them — and whether anything ever does.
 
@@ -388,19 +388,19 @@ Observed through three independent channels — typed prompts, IDE local-history
 
 All lower bounds — a file never typed and never tool-written is invisible to every channel we have.
 
-*These are the **hand-corrected** figures (the instrument's first run said ≥26 for btest; adjudication removed 16 false positives). Two instrument properties travel with any use: every false-positive class inflates an ephemeral count and blive's zero is unlowerable — the noise is one-directional and runs **with** my hypothesis; and the agent-side channel reaches only projects whose transcripts survived retention — blive's own ten agent-memory files were structurally unobservable.*
+*These are the **hand-corrected** figures — the instrument's first run said "at least 26" for btest, and checking every name by hand removed 16 false positives. Two properties of the measurement travel with it: every kind of error it can make **inflates** a count (and blive's zero cannot be lowered), so the measurement noise favours my own hypothesis — which is why the hand-check that shrank it mattered; and one of the three channels can only see projects whose session logs still exist, so blive's own ten agent-memory files were invisible to it.*
 
 ---
 
-## The discipline's own failure surface
+## Where the discipline itself failed
 
-Stated so this section is not advocacy. In the 22/24 project:
+For balance — the same audit's findings *against* the discipline, in the project that scores 22 of 24:
 
-- The index table *inside* the ADR file went stale — 2 wrong statuses, 2 missing rows of 53 — while the project-level artifact inventory stayed correct. **What goes stale is the index, not the records.**
-- Two malformed anchors were copied forward into 20 of its 26 broken cross-references. Append-only preserves errors with the fidelity it preserves decisions.
-- One open question records an **"Operator decision" for an option that was never on the table** — append-only records can manufacture history as well as preserve it. *(n = 1; operator recollection.)*
+- The summary table *inside* the decision log went stale — two wrong statuses, two missing rows out of 53 — while the project-level inventory stayed correct. **What goes stale is the index, not the records.**
+- Two mistyped cross-reference links were copied forward into 20 of the project's 26 broken links — because people cite by copying. An append-only record preserves errors with the same fidelity it preserves decisions.
+- One record documents an **"operator decision" for an option that was never actually on the table** — a record system can manufacture history as well as preserve it. *(A single case, resting on the operator's recollection.)*
 
-And the slot built to catch "a decision that lived only in conversation" failed to find one in three attempts (**0 for 3**) — which cuts *for* writing everything down, but rests on negative constructions: **"we could not find one," never "they do not exist."**
+And the probe question designed to catch a decision that lived *only* in conversation — made verbally, never written anywhere — failed to find one in three independent attempts. That supports writing everything down; but proving an absence is hard, so it is stated as **"we could not find one," never "they do not exist."**
 
 ---
 
@@ -425,19 +425,26 @@ And the slot built to catch "a decision that lived only in conversation" failed 
 
 **The confound is stated wherever this number appears:** btest's history is **5× longer** (213 vs 41 days), giving its lines more time in which to be deleted, and the projects differ in nature. **This is supporting texture, not a controlled result.**
 
-*Denominators: tens of thousands of added lines per repo; churn is a blame-free LIFO approximation with documented biases; the 14-day column is comparable only across blive/btest/harp.*
+*Denominators: tens of thousands of added lines per repository. The line-matching method is approximate, and its known biases are documented alongside the data; the 14-day column is only comparable for the three projects whose histories are long enough to support it.*
 
 ---
 
-## The honest split — and the shared defect
+## Two honest findings that cut against my own case
 
-**Tests follow project nature, not substrate posture.** b-autobot 0.79→0.72 test-file share (a BDD suite *is* tests) · btest 0.13→0.35 · blive 0.22→0.30 · harp 1 test file · seamQ 0. The research projects' checks simply live elsewhere: pre-registration, adversarial review.
+**First: how much a project tests has more to do with what the project *is* than with how disciplined it is.**
 
-**And the cross-arm statement, said plainly because it cuts against the thesis:** neither posture checks a factual claim **at write time**. One record in each arm was wrong *on the day it was written* — in projects scoring 22/24 and 12/24. Every check either project owns runs at *read time*.
+| project | share of files that are tests, early → late |
+|---|---|
+| b-autobot *(a regression-test suite by design)* | 0.79 → 0.72 |
+| btest | 0.13 → 0.35 |
+| blive | 0.22 → 0.30 |
+| harp · seamQ *(research)* | one test file · none |
 
-The practice's frontier, offered as a hypothesis with a receipt (n=1): require every factual claim in an audit-produced record to carry the `file:line` it was read from.
+The research projects are not unchecked — their checks simply take a different form: pre-registered hypotheses, adversarial review of drafts.
 
-*(One defect per project — a pair of anecdotes whose symmetry is the point, not a rate.)*
+**Second: both the most and the least disciplined project produced a record that was factually wrong on the day it was written — and neither had any mechanism that could have caught it.** Every check either project owns — indexes, status fields, cross-references, warm-up files — verifies records when they are *read later*, never when they are *written*.
+
+That gap suggests a simple, testable improvement — seen working only once, so nothing more is claimed for it: any factual claim written during a review should name the exact file and line it was read from, so it can be verified at the moment of writing.
 
 ---
 
@@ -445,9 +452,9 @@ The practice's frontier, offered as a hypothesis with a receipt (n=1): require e
 
 | claim | verdict |
 |---|---|
-| 1 · Attention migrates up; substrate enables it | **Partial** — survives only length-controlled |
-| 2 · Failure modes follow absent substrate | **Split** — the human-side half (restart cost) is supported; the model-side half (invented decisions) is **null**, and was too strong as formulated (§3.3) |
-| 3 · Same author, same domain, with/without | **Weak** — the "without" arm is ephemeral, not without |
+| 1 · Attention migrates up; substrate enables it | **Partial** — visible only after controlling for message length (closing exhibit) |
+| 2 · Failure modes follow absent substrate | **Split** — the human-side half (restart cost) is supported; the model-side half (invented decisions) showed **no effect**, and was too strong as formulated (§3.3) |
+| 3 · Same author, same domain, with/without | **Weak** — the comparison project was never truly "without" records (§3.3) |
 | 4 · Exploratory research is out of scope | **Supported, and refined** — research work carries *its own* substrate instruments (pre-registration is a frozen intent contract) |
 
 ---
@@ -468,27 +475,30 @@ This ledger is what separates the talk from advocacy.
 
 ## What the experiment failed to show — 1 of 4
 
-### The pre-registered experiment came back null.
+### The pre-registered experiment found no effect.
 
-p = 1.0 — and its nominal direction *reversed*: the corpus's only confabulation belongs to the full-substrate project.
+No measurable difference between the projects (p = 1.0) — and such direction as there was pointed the wrong way: the corpus's only invented answer belongs to the full-substrate project.
 
-*(Told in full in §3.3. Stated separately from the other three negatives — four negatives, never a "trend of four".)*
+*(Told in full in section 3.3. The four negatives are listed one by one, deliberately — four separate findings, not a pattern.)*
 
 ---
 
 ## What the experiment failed to show — 2 of 4
 
-### Altitude does not track discipline inside btest.
+### The operator's attention level does not track discipline inside btest.
 
-*(Altitude: every turn the operator types, classified by the level it works at — declaring intent, making decisions, shaping design = **high**; pasting errors, steering line-fixes, re-explaining context = **low**. The full exhibit comes in a moment.)*
+*(Attention level: every message the operator types, classified by the level it works at — declaring intent, making decisions, shaping design = **high**; pasting errors, steering line-fixes, re-explaining context = **low**. The full exhibit comes in a moment.)*
 
-**The month with the least artifact discipline had the second-highest altitude.**
+**The month with the least record-keeping discipline had the second-highest attention level.**
 
-Monthly high-altitude share: 0.256 · 0.251 · 0.192 · 0.400 *(n=5)* · 0.303 — against a tag curve of 91 → 96 → 50 → 40 → 0%.
+| btest, by month | Mar | Apr | May | Jun | Jul |
+|---|---|---|---|---|---|
+| share of high-level operator messages | 0.256 | 0.251 | 0.192 | 0.400 | 0.303 |
+| share of tagged commits | 91% | 96% | 50% | 40% | 0% |
 
-The hoped-for within-project migration is **not supported**.
+If discipline and attention level moved together, these two rows should rise and fall together. They do not — so the hoped-for within-project migration is **not supported**.
 
-*Caveats: June is 5 turns; and the tag curve itself is largely a composition change (§3.3).*
+*Caveats: June rests on only five messages; and as the earlier slide showed, the tag row is largely the story of one subproject leaving — which weakens this comparison even further.*
 
 ---
 
@@ -496,9 +506,9 @@ The hoped-for within-project migration is **not supported**.
 
 ### btest's instruction file does not decay silently.
 
-**28 of 74 rules were withdrawn — zero unexplained** (25 in one scope-change commit). The hypothesis going in was the opposite.
+**Of the 74 rules the file has ever held, 28 were withdrawn — and every single withdrawal was explained** (25 of them in one commit that announced a scope change). The hypothesis going in was the opposite: that rules would quietly disappear.
 
-*Conservative: rewording counts as removal + addition, biasing the removal count up. Committed file only — the ephemeral class is unobserved.*
+*The method errs against this finding: rewording a rule counts as removing one and adding one, so if anything the withdrawal count is inflated. And this covers the committed file only — rules in working files that never reached the repository are unobserved.*
 
 ---
 
@@ -506,7 +516,7 @@ The hoped-for within-project migration is **not supported**.
 
 ### Zero blive ADRs were silently reversed.
 
-The drift the discipline exists to prevent **was not found in the discipline's own record**. The real failures were records **born wrong** — one per arm, at write time, where neither posture has a check.
+The drift the discipline exists to prevent **was not found in the discipline's own record**. The real failures were records that were **wrong on the day they were written** — one in each project, at the moment of writing, where neither project has a check.
 
 ---
 
@@ -539,17 +549,17 @@ The same shape appears across this corpus *(n = 1 each — a shape, not a rate)*
 
 ## Closing exhibit · Where the human's attention actually went
 
-**Controlled for turn length, the ephemeral project's operator sits lowest in every band.**
+**Comparing messages of similar length, the ephemeral project's operator worked at the lowest level in every length group.**
 
-Every one of 1,061 operator turns classified by what it does: intent, decisions, design (**high altitude**) vs mechanical steering — *paste this error, fix that line* (**low**). High-altitude share, blive vs btest, per typed-length band:
+Every one of 1,061 operator messages was classified by what it does: declaring intent, making decisions, shaping design (**high level**) versus mechanical steering — *paste this error, fix that line* (**low**). The share of high-level messages, blive vs btest, grouped by message length:
 
-| 0–39 chars | 40–119 | 120–399 | 400+ |
+| under 40 chars | 40–119 | 120–399 | 400+ |
 |---|---|---|---|
 | **0.19** vs 0.08 | **0.26** vs 0.15 | **0.42** vs 0.35 | **0.80** vs 0.65 |
 
-btest is lowest of the four measurable projects in **all four bands**.
+btest is lowest of the four measurable projects in **all four groups**.
 
-***Never publish altitude without its band:** the raw ordering is a verbosity artifact that puts the least substrated build on top. Denominator: 1,061 turns; held-out agreement κ = 0.902 is one-rater stability, not inter-rater reliability; seamQ was scored on its stripped tree but measured in-flight.*
+*Why the length grouping matters: without it, the comparison mostly measures how long each message is — and the least substrated project comes out on top. So no attention-level number in this talk is shown without its length group. Method notes: the automated classifier agreed with the author's hand labels on 95% of a held-out sample (κ = 0.902) — but there was only one labeller, so that shows consistency, not independent agreement.*
 
 ---
 
@@ -578,13 +588,13 @@ The spectrum to place yourself on:
 |---|---|---|---|---|---|---|---|
 | 22 | 20 | 18 *(provisional)* | 17 | 16 | 15 | 12 | 7 |
 
-*Caveats on the slide, not the appendix: the rubric scores **durable** substrate only; seamQ's 7 scores a deliberately stripped publication tree, not its in-flight posture; the instrument operationalises the author's own method — which is why it never appears without the outcome evidence you just saw.*
+*Caveats, on the slide rather than in an appendix: the rubric can only score what survived in each repository — working files that were deleted before being committed are invisible to it; seamQ's 7 scores the deliberately stripped tree it published, not the fuller workspace it worked in; and the rubric was written by the person whose method it measures — which is why its scores are never shown without the outcome evidence you just saw.*
 
 ---
 
 ## The closing question
 
-The altitude exhibit earned this:
+The attention-level exhibit earned this question:
 
 > ### When you type a short message to your AI assistant — is it delegating prepared work, or just telling it to keep going?
 
