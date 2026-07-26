@@ -336,6 +336,17 @@ crosses into the org.
    **blive 0 of 33 observed artifacts ephemeral; btest at least 26; seamQ at least 33;
    b-autobot 4; harp 2.** All counts are **lower bounds** — a file never typed and never
    tool-written is invisible to all three channels.
+   **Corrected in S7 (WS6 finding 5)** by hand-adjudicating every name against the disk and
+   the committed pool (`data/survivorship-audit.json`): 16 of btest's 26 path-attributed
+   names are false positives — Claude Code auto-memory files (durable, not deposits),
+   slash-flattened duplicates of `docs/smim/*.md` files that *are* committed, and basenames
+   spliced out of LocalHistory's binary store. Corrected: **blive 0 of 33 · btest ≥10 of 94
+   · seamQ ≥33 of 89 · b-autobot 0 · harp 2.** Two instrument properties now travel with
+   the confound: every false-positive class *inflates* an ephemeral count and blive's is
+   zero, so the noise runs **with** the hypothesis; and channel C reaches only projects
+   whose Claude Code transcripts survived retention (btest 10 files, shared-substrate 3,
+   datacli 2, **blive 0, b-autobot 0**), so blive's own ten agent-memory files were
+   structurally unobservable.
    Consequences, binding on the report:
    - **WS1 is *not* re-scored.** Existence is recoverable; content is not (LocalHistory
      here has no content store; CC transcripts cover only the surviving retention window).

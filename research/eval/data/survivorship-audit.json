@@ -1,0 +1,136 @@
+{
+  "_about": "S7 (WS6) hand-adjudication of scripts/artifact_survivorship.py's ephemeral lists. Author judgment, kept as a published INPUT (the qualitative-ratings.json / probes/scores.json / survival-audit.json pattern). data/artifact-survivorship.json is NOT edited and artifact_survivorship.py is NOT re-run: per METHODS rule 2 a re-run must never silently overwrite or invent a judgment call, and per rule 8 the published measurement stands with its correction stated beside it rather than being retroactively patched.",
+  "_provoked_by": "ASSESSMENT section 5.1 lists the survivorship finding in the ROBUST half with the note 'individual names are spot-checkable'. S7 spot-checked them. Sixteen of btest's twenty-six path-attributed names did not survive.",
+  "_generated": "2026-07-26 (S7)",
+  "_reader": "one reader, once - no second rater, as with WS3's altitude labels and WS5's audit. Every adjudication below is individually checkable from the receipt given.",
+
+  "direction_of_the_bias": {
+    "statement": "Every false-positive class INFLATES an ephemeral count. blive's count is 0 and cannot be inflated. The instrument's noise is therefore one-directional and runs WITH the hypothesis.",
+    "channel_asymmetry": "The auto-memory false-positive class can only reach a project whose Claude Code transcripts survived retention (channel C). Transcript files enumerated 2026-07-26: btest 10, shared-substrate 3, datacli 2, blive 0, b-autobot 0, seamQ 0, lab 0. All six btest auto-memory files that were counted carry mtimes 2026-07-11..2026-07-25 - exactly the surviving window - while the eight btest memory files with March/April mtimes are absent from the list. blive has ten memory .md files of its own (incl. feedback_warmup_discipline.md, feedback_surface_full_option_space.md, feedback_work_on_main.md); the instrument was structurally incapable of observing any of them. The headline pair was in part comparing a project whose agent-side artefacts were visible against one whose were not."
+  },
+
+  "corrected_counts": {
+    "_note": "Denominators move too: reclassified-as-committed names stay in `observed`; not-an-artefact names leave it.",
+    "blive":            {"published_ephemeral": 0,  "corrected_ephemeral": 0,  "published_observed": 33,  "corrected_observed": 33, "change": "none - a floor, unlowerable"},
+    "btest":            {"published_ephemeral": 26, "corrected_ephemeral": 10, "published_observed": 105, "corrected_observed": 94, "firm_floor": 8, "change": "16 false positives; 2 of the surviving 10 are marginal"},
+    "seamQ":            {"published_ephemeral": 33, "corrected_ephemeral": 33, "published_observed": 89,  "corrected_observed": 89, "change": "none - list is clean on hand-read"},
+    "b-autobot":        {"published_ephemeral": 4,  "corrected_ephemeral": 0,  "published_observed": 10,  "corrected_observed": 6,  "change": "3 build-output licence files + 1 typo of an excluded basename"},
+    "harp":             {"published_ephemeral": 2,  "corrected_ephemeral": 2,  "published_observed": 4,   "corrected_observed": 4,  "change": "none"},
+    "datacli":          {"published_ephemeral": 1,  "corrected_ephemeral": 1,  "published_observed": 3,   "corrected_observed": 3,  "change": "none"},
+    "shared-substrate": {"published_ephemeral": 3,  "corrected_ephemeral": 1,  "published_observed": 20,  "corrected_observed": 18, "change": "1 auto-memory + 1 run-order artefact"}
+  },
+
+  "headline_restatement": {
+    "published": "blive 0 of 33 (0.0%) - btest at least 26 of 105 (24.8% path-only) - seamQ at least 33 of 89 (37.1%)",
+    "corrected": "blive 0 of 33 (0.0%) - btest at least 10 of 94 (10.6%) - seamQ at least 33 of 89 (37.1%)",
+    "what_is_unchanged": "The finding is narrowed, not withdrawn. Its primary evidence is the operator's own disclosure (S6) that he routinely created working artefacts and did not commit them, often deleting them; the count was always published as a lower bound; and blive's zero is independently verified against blive's git.",
+    "what_must_change_downstream": "ASSESSMENT section 2.6's phrase 'the strongest single number in the corpus' no longer holds, and section 5.1's robust-table row for it must carry the corrected number and the channel asymmetry."
+  },
+
+  "btest_adjudication": {
+    "_scope": "the 26 path-attributed names only. The 13 session-attributed-only names were already excluded from the defensible number in S6 (WS0-bis finding 2) and are not re-adjudicated here.",
+
+    "class_A_auto_memory_files": {
+      "n": 7,
+      "verdict": "NOT AN EPHEMERAL WORKING ARTEFACT",
+      "reason": "Claude Code auto-memory files. They are durable on disk under ~/.claude/projects/<slug>/memory/ - the opposite of evaporation - and are agent state rather than a deposit to the project substrate. artifact_survivorship.py:113 states this intent in its own comment ('memory.md and the auto-memory files are agent state, not deposits'), but NON_SUBSTRATE excludes only the literal basename 'memory.md' (the index), so the individual files pass the filter. Stated intent and implementation disagree; the implementation is the bug.",
+      "names": [
+        {"basename": "feedback_no_physical_test_prints.md", "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-btest/memory/", "mtime": "2026-07-16"},
+        {"basename": "feedback_recommend_over_poll.md",     "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-btest/memory/", "mtime": "2026-07-25"},
+        {"basename": "project_blive_paper.md",              "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-btest/memory/", "mtime": "2026-07-14"},
+        {"basename": "project_datacli.md",                  "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-btest/memory/", "mtime": "2026-07-11"},
+        {"basename": "project_printer_setup.md",            "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-btest/memory/", "mtime": "2026-07-16"},
+        {"basename": "reference_github_cli.md",             "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-btest/memory/", "mtime": "2026-07-11"},
+        {"basename": "work-project-anonymization.md",       "on_disk": "~/.claude/projects/C--Users-olegr-PycharmProjects-shared-substrate/memory/", "mtime": null, "extra_defect": "belongs to shared-substrate; attributed to btest"}
+      ],
+      "corroborating_check": "The eight btest memory files with March/April mtimes (feedback_smim_approach, project_harp_paper, project_smim_known_issues, project_smim_status, project_smim_test_infra, reference_arxiv_endorsers, user_profile, plus MEMORY.md which NON_SUBSTRATE does catch) are absent from the ephemeral list. Only files written inside the surviving-transcript window were observed at all, which is the mechanism, demonstrated."
+    },
+
+    "class_B_flattened_duplicates_of_committed_files": {
+      "n": 5,
+      "verdict": "FALSE POSITIVE - the file IS committed",
+      "reason": "Path separators mangled into underscores, so the basename never matched the committed pool. Each corresponds to a real docs/smim/*.md file. Verified committed in btest by `git log --all --diff-filter=A -- docs/smim/<F>.md` (exactly one adding commit each) AND present in the smim repo after extraction.",
+      "names": [
+        {"basename": "docs_smim_experiment_objectives.md", "real_path_btest": "docs/smim/EXPERIMENT_OBJECTIVES.md", "also_in_smim_repo": "docs/EXPERIMENT_OBJECTIVES.md"},
+        {"basename": "docs_smim_experiment_plan.md",       "real_path_btest": "docs/smim/EXPERIMENT_PLAN.md",       "also_in_smim_repo": "docs/EXPERIMENT_PLAN.md"},
+        {"basename": "docs_smim_implementation_plan.md",   "real_path_btest": "docs/smim/IMPLEMENTATION_PLAN.md",   "also_in_smim_repo": "docs/archive/IMPLEMENTATION_PLAN.md"},
+        {"basename": "docs_smim_proposal_summary.md",      "real_path_btest": "docs/smim/PROPOSAL_SUMMARY.md",      "also_in_smim_repo": "docs/archive/PROPOSAL_SUMMARY.md"},
+        {"basename": "docs_smim_task_registry.md",         "real_path_btest": "docs/smim/TASK_REGISTRY.md",         "also_in_smim_repo": "docs/archive/TASK_REGISTRY.md"}
+      ],
+      "effect_on_denominator": "These five move from `ephemeral` to `committed`; they remain in `observed`."
+    },
+
+    "class_C_basenames_spliced_out_of_a_binary_store": {
+      "n": 4,
+      "verdict": "NOT AN ARTEFACT",
+      "reason": "Adjacent strings joined by regex over JetBrains LocalHistory `changes.storageData`, which is a binary record store with no separators between path strings. is_plausible_basename() bounds length and token count but cannot detect a splice. This is the same class as the two regex defects S6 caught by hand-reading its first output (WS0-bis hand-verification); these four survived that pass.",
+      "names": [
+        "fredfred1d data.md",
+        "globalglobal1d data.md",
+        "reportsreports data_readiness.md",
+        "eodhdeodhd& cli.py  <2 non-ascii bytes>   \\treadme.md"
+      ],
+      "note_on_the_fourth": "It ends in 'readme.md', which NON_SUBSTRATE would have excluded had basename() resolved it - the string contains no '/' so the whole splice became the basename.",
+      "effect_on_denominator": "These four leave `observed` entirely."
+    },
+
+    "surviving_10": {
+      "verdict": "DEFENSIBLE ephemeral working artefacts",
+      "firm": [
+        {"basename": "eodhd_uk_eu_migration_plan.md", "note": "S6 hand-verified absent from every corpus repo by a per-repo shell loop"},
+        {"basename": "data_acquisition_prompts.md",   "note": "S6 hand-verified absent from every corpus repo"},
+        {"basename": "smim_data_acquisition_prompts.md"},
+        {"basename": "platform_roadmap.md"},
+        {"basename": "button_fix_details.md"},
+        {"basename": "query_button_fix_summary.md"},
+        {"basename": "ui_fix_summary.md"},
+        {"basename": "data_remediation_prompts.md"}
+      ],
+      "marginal": [
+        {"basename": "data.md", "why_marginal": "single generic word, LocalHistory-only, zero prompt mentions - cannot be distinguished from a splice remnant by hand"},
+        {"basename": "lock.md", "why_marginal": "same"}
+      ],
+      "firm_floor": 8,
+      "reported_floor": 10
+    }
+  },
+
+  "other_projects_adjudication": {
+    "b-autobot": {
+      "published": 4,
+      "corrected": 0,
+      "items": [
+        {"basename": "dejavufonts.md", "verdict": "NOT AN ARTEFACT", "reason": "Maven-generated third-party licence file at b-bot-core/target/reports/apidocs/legal/dejavufonts.md - build output, never authored, correctly never committed"},
+        {"basename": "jquery.md",      "verdict": "NOT AN ARTEFACT", "reason": "same, .../legal/jquery.md"},
+        {"basename": "jqueryui.md",    "verdict": "NOT AN ARTEFACT", "reason": "same, .../legal/jqueryUI.md"},
+        {"basename": "calude.md",      "verdict": "NOT AN ARTEFACT", "reason": "typo of 'claude.md' in a typed prompt; NON_SUBSTRATE excludes the correct spelling"}
+      ],
+      "connection_to_WS2_finding_5": "The three licence files sit in the same vendored/build tree as the 9,248 committed node_modules files. That tree has now produced a metric artefact in two separate workstreams."
+    },
+    "shared-substrate": {
+      "published": 3,
+      "corrected": 1,
+      "items": [
+        {"basename": "methods.md",             "verdict": "FALSE POSITIVE - run-order artefact", "reason": "research/eval/METHODS.md was committed at 931f06b on 2026-07-26; the survivorship sweep ran in the same session, before that commit"},
+        {"basename": "user-dev-environment.md", "verdict": "NOT AN EPHEMERAL WORKING ARTEFACT", "reason": "auto-memory file at ~/.claude/projects/C--Users-olegr-PycharmProjects-shared-substrate/memory/ (class A)"},
+        {"basename": "sc8-review.md",           "verdict": "DEFENSIBLE", "reason": "not found on disk or in any corpus repo"}
+      ]
+    },
+    "seamQ": {
+      "published": 33,
+      "corrected": 33,
+      "verdict": "CLEAN on hand-read - no memory files, no build output, no splices. All 33 are plausible authored working artefacts of the adversarial-review pipeline (e.g. '4a adversarial review of b1.md', 'hostile_referee_report_v2.md', 'synthesis_pass3.md', 'orchestrator_handoff.md', 'warmup.md'). Corroborates WS1 finding 5 through a third channel, as S6 stated."
+    },
+    "harp":    {"published": 2, "corrected": 2, "verdict": "journal_options.md and linkedin_article.md are both plausible authored artefacts"},
+    "datacli": {"published": 1, "corrected": 1, "verdict": "blackbox_20260711-220120.md is a plausible timestamped session artefact"},
+    "blive":   {"published": 0, "corrected": 0, "verdict": "unchanged. All 33 observed blive artefacts were independently confirmed present in blive's git in S6. A zero is a floor: false positives can only raise an ephemeral count, so no adjudication in this file can lower it."}
+  },
+
+  "recommended_fixes_for_any_future_run": [
+    "Exclude any path under a Claude Code projects/*/memory/ directory from channel C, matching the comment already at artifact_survivorship.py:113 - not just the literal basename 'memory.md'.",
+    "Normalise separators before taking a basename, or reject basenames containing a token that also names a committed directory (this alone kills class B).",
+    "Reject basenames containing a repeated leading token (fredfred, globalglobal, reportsreports) or any non-ASCII byte - a cheap splice detector for class C.",
+    "Exclude vendored and build-output trees using corpus_common's existing vendored-path classification, which git_miner already applies and this script does not.",
+    "Publish, alongside every per-project count, the number of surviving Claude Code transcript files for that project, so a reader can see which projects channel C could reach at all."
+  ]
+}

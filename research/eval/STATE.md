@@ -24,7 +24,7 @@
 | WS4b probe runs + scoring | **DONE (REVIEWED) 2026-07-26** | S5 · Opus 5 | 6 sessions, 120 answers, `data/probe-results.json`; driver `scripts/probe_driver.py` + `scripts/probe_guard.py`; verdicts `data/probes/scores.json`. **H-1 is NULL (p=1.0)**; SC8 review done — 3 of 20 slots voided, **one confabulation left in the whole corpus** — findings below |
 | WS5 survival curves | **DONE 2026-07-26** | S6 · Opus 5 | `scripts/survival.py` → `data/survival.json`; hand-audit input `data/survival-audit.json` (10 findings, 21/21 receipts verified). **Zero blive ADRs silently reversed**; the findings are elsewhere. Kernel teaser (WS5b) **not attempted** — see below |
 | **WS0-bis artefact survivorship** | **DONE 2026-07-26** | S6 · Opus 5 | `scripts/artifact_survivorship.py` → `data/artifact-survivorship.json`. **blive 0 of 33 ephemeral; btest >=26; seamQ >=33.** Raised by Oleg, not by an instrument. New **PLAN §7 confound 6**; RUBRIC scope statement; ASSESSMENT §2.6/§3.8 |
-| WS6 archaeology | pending | S7 · **Opus 5** | narrative judgment; see memory-folder lead below |
+| WS6 archaeology | **DONE 2026-07-26** | S7 · Opus 5 | `report/war-stories.md` — 4 stories with receipts (3 blive, 1 btest), one of them a negative. Hand-audit input `data/survivorship-audit.json`. **Two published exhibits corrected** (WS0-bis count; WS2 tag curve) — findings below |
 | Report assembly | pending | S8 · **Fable 5** | cross-workstream synthesis → `report/` |
 | Deck + dry run | pending | S9 · **Fable 5** | `talks/does-the-substrate-matter/` |
 
@@ -739,6 +739,135 @@ fragile one measures an agent's behaviour on one question.** §4's reframe is ca
 entirely by the robust half. Two rules now bind S8/S9: nothing fragile leads a section,
 and no two fragile findings are aggregated to imply a rate.
 
+## WS6 findings — drift archaeology (2026-07-26)
+
+Output: **[`report/war-stories.md`](./report/war-stories.md)** — four stories, each with
+the same four beats (incident with a receipt → what it cost → the discipline element that
+exists because of it, or the absence where none was created → what it generalises to), a
+receipts index of 23 lines, and an explicit limits section. No script; narrative judgment
+over evidence the prior six sessions instrumented. Every story is placed as colour behind a
+named robust number, per ASSESSMENT §5.1.
+
+**The four stories.**
+
+1. **KB-7 — the hole named forty days before anything fell into it.** The M3.5 chaos drill
+   (`a2c78f5`, 2026-06-05) found `IBBroker.is_connected` stale-`True` on an unexpected
+   drop, recovery needing an explicit `disconnect()+connect()`, and IB error 10141 on
+   restart. It filled `KB-7 failure_modes`, MISSING → DRAFT v0.1. **The substrate point is
+   the registration, not the drill:** KB-7 was registered MISSING in `CONTEXT_INVENTORY.md`
+   at `13f6997`, blive's *first* commit, with a content contract and an owner. An inventory
+   that can hold a **typed absence** turns "what don't we know about our failure modes"
+   into a dated work item. Same mechanism as WS5 finding 9.
+2. **The option that was not on the list.** At M3.3 the agent's OQ-031 option set —
+   accept / Pro-Client / de-lever / mean-revert — omitted the *leverage-preserving* path,
+   and the operator caught it (`M3_retrospective.md:63`). The scope was reframed as the
+   trilemma that now spines OQ-032; ADR-052 introduced the `refined-by:` backref. **The
+   twist is where the general lesson went:** the retro routes it explicitly to
+   *agent memory* — "Captured in agent memory; not ADR-worthy on its own"
+   (`M3_retrospective.md:113`) — and the file exists, quoting the operator verbatim
+   (`~/.claude/projects/…-blive/memory/feedback_surface_full_option_space.md`). The fix for
+   the incident is the least durable artefact in the story: not in git, not versioned, not
+   portable across harnesses, and invisible to this eval's own instrument (finding 5).
+3. **One session, two defects, in the project that scores 22/24** — the negative, and the
+   best story in the file. `febc4e3` (2026-06-06) is a substrate-only session by its own
+   commit body ("single-mode, no code … Tests unchanged (591)"), and it produced both
+   OQ-033's manufactured decision (WS4b finding 7) and OQ-035's false order-type claim
+   (WS5 finding 2). **New detail found this session: OQ-035 cites the record that refutes
+   it.** It says "INV-2 (order types) and INV-3 (TIFs) are MISSING per CONTEXT_INVENTORY
+   §3"; the INV-2 row (`CONTEXT_INVENTORY.md:99`) lists "MKT, LMT, MOC, LOC, STP, STP_LMT,
+   **OPG**, IOC, FOK" and, verified by `git log -S`, **has never been edited since
+   `13f6997`**. The record read the pointer's *status* and never its *content*. Paired with
+   btest's `CLAUDE.md:102` "~2600 LOC", the cross-arm statement is: **neither posture has
+   an instrument that checks a factual claim at deposit time; every check either project
+   has runs at retrieval.** Kept fair by a control from the same substrate one day earlier —
+   M3.4's `AccountSnapshot.equity` bug was logged "Bug-fix, **no ADR** (DD-1 already
+   specified equity = total NAV)". The substrate correctly declined to manufacture a record
+   on 06-05 and manufactured one on 06-06.
+4. **104,959 lines, and the reasoning is in a chat log** — the btest mirror. On 2026-05-02
+   the operator typed the extraction rationale at 09:35 (748 chars, sha1 `e66460c50699`),
+   pasted back a 6,806-char engineered prompt at 09:43 whose first instruction is *"make
+   sure you first create a plan and other context md files"* (sha1 `3a39b4ff5c61`), and at
+   13:27 committed `7d9b86f`: **387 files, +292/−104,959, commit body empty (1 byte)**.
+   **Not an absence of capture:** the same commit added four Architecture Rules to
+   `CLAUDE.md` (`:173-174`, `:184`) that are still at HEAD and still true. *The capture
+   mechanism you have determines the shape of what survives* — an instruction file captures
+   **rules** (imperative, undated, no alternatives) and structurally cannot capture a
+   **decision** (dated, with a decider and losing options and a citable id). The plan files
+   the operator asked for are in the ephemeral class; the reasoning survives only because a
+   Copilot store covering 2026-03-20 → 05-31 was retained.
+
+**Two published exhibits were corrected by the archaeology. Both corrections run *against*
+the hypothesis and are the substance of this session.**
+
+5. **WS0-bis is over-counted: btest's ephemeral floor is ≥10, not ≥26.** ASSESSMENT §5.1
+   listed the survivorship finding as robust with the note "individual names are
+   spot-checkable". They were spot-checked, and **16 of btest's 26 path-attributed names
+   are false positives** in three classes: **7 Claude Code auto-memory files** (durable on
+   disk under `~/.claude/projects/*/memory/`; `artifact_survivorship.py:113` states in its
+   own comment that these are "agent state, not deposits" but `NON_SUBSTRATE` excludes only
+   the literal `memory.md` index — one of the seven is shared-substrate's, mis-attributed);
+   **5 slash-flattened duplicates** of `docs/smim/*.md` files verified committed in *both*
+   btest and smim; and **4 basenames spliced** out of LocalHistory's binary
+   `changes.storageData`. Corrected: **blive 0 of 33 · btest ≥10 of 94 (firm floor 8) ·
+   seamQ ≥33 of 89** — b-autobot **4 → 0** (three are Maven-generated licence files under
+   `target/reports/apidocs/legal/`, the same vendored tree as WS2 finding 5), shared-
+   substrate **3 → 1**; **seamQ's 33 and blive's 0 are unchanged** and seamQ's list is clean
+   on hand-read. Two structural points: **every false-positive class inflates an ephemeral
+   count and blive's is 0, so the instrument's noise is one-directional and runs with the
+   hypothesis**; and the auto-memory class can only reach a project with surviving
+   transcripts — **btest 10 `.jsonl`, shared-substrate 3, datacli 2, blive 0, b-autobot 0**
+   — so blive's ten memory `.md` files were structurally unobservable. Itemised, with
+   receipts, in `data/survivorship-audit.json` (a published **input**;
+   `artifact-survivorship.json` is not edited and the script is not re-run, per METHODS
+   rules 2 and 8). **The finding is narrowed, not withdrawn** — its primary evidence is
+   Oleg's own disclosure, and every count was published as a lower bound.
+6. **WS2's tag-decay curve is largely a composition change, and its "peak" is the month the
+   ids disappeared.** Every published number reproduces (293 bracket-tagged of 415, and the
+   monthly shares 0 → 91 → 96 → 50 → 40 → 0%); what they mean does not survive the
+   breakdown. **(a)** 280 of the 293 are `[SMIM]`, and SMIM left the repo on 2026-05-02 in
+   `7d9b86f` — the 96% → 50% fall is mostly tagged work moving to another repository.
+   btest's own `[btest]` convention ran for exactly **9 commits**, so the residual decay
+   claim rests on 29 commits, not 415. **(b)** Of the 293, only **165 carry a scoped stable
+   id** inside the bracket (`[SMIM DATA-6]`, `[SMIM M4.5-T1]`): **163 in March, 2 in April,
+   0 after**. April — the published "peak" — is 88 commits tagged `[SMIM]` with no id at
+   all. **(c)** July is not untagged, it is *differently* tagged: **9 of 10 July commits
+   carry a conventional-commit prefix**, and on "any structured subject prefix" the curve
+   reads 0 · 96.3 · 96.7 · 64.3 · 100 (n=5) · 90% — adoption in March, sustained.
+   All five counts reproduced exactly by independent shell greps (293 · 165 · 280 · 9 · 9).
+   **The defensible claim is narrower and better:** btest adopted a stable-ID convention in
+   March, stopped scoping it to ids in April, and lost it when the subproject that owned it
+   was extracted; what replaced it is a **taxonomy, not an address**. `feat(costs):` tells
+   you a commit's kind; `[SMIM DATA-6]` tells you what it is about and lets a later record
+   cite it. The published phrasing invites "btest stopped being disciplined", which the
+   evidence does not support.
+
+**What was cut, and named in the file rather than dropped:** b-autobot's 9,248 committed
+`node_modules` files (fails beat three — a missing `.gitignore` line is not a substrate
+property). **Demoted rather than cut:** the `AccountSnapshot.equity` bug → DD-1 v0.3, one
+of PLAN §4's three named spine items — as its own story its third beat is a doc version
+bump plus a regression test, which any tested project produces; it is far more useful as
+the control inside story 3.
+
+**Caveats that must travel with WS6:**
+- **Every story is n = 1**, by construction. None leads a section, none is aggregated with
+  another (ASSESSMENT §5.1 rules 1 and 2), and each names the robust number it stands
+  behind: story 1 → §3.4 rework; story 2 → §3.5 length-banded altitude; story 3 → §3.1 the
+  pre-registered null; story 4 → §2.1 the retransmission tax.
+- **Three of the four stories are blive's**, because blive is the only corpus project with
+  a retro series and an amendments log to read incidents out of. That is a selection
+  property of the evidence, not a finding about the projects.
+- **One reader, once** — no second rater, as with WS3's labels and WS5's audit. The
+  mitigation is the receipts index, not an agreement number.
+- **Story 3's "audit sessions have no execution feedback loop" is a mechanism observed in
+  one session**, stated with its n and offered as a cheap-to-test hypothesis (require every
+  factual claim in an audit record to carry the file:line it was read from). It is not a
+  rate and not evidence that audit sessions are generally unsafe.
+- **Story 4's central receipt survives by retention accident** — the JetBrains Copilot
+  store covers 2026-03-20 → 05-31 only.
+- Findings 5 and 6 are **corrections to published exhibits, not new measurements**. Neither
+  re-runs an instrument; both are hand adjudications with per-item receipts, and both make
+  the corpus's numbers smaller.
+
 ## Session log
 
 - **S1 · 2026-07-25:** PLAN.md drafted and iterated (talk reframed to abstract; corp
@@ -888,3 +1017,39 @@ and no two fragile findings are aggregated to imply a rate.
   split structurally along human-side-repeated vs model-side-one-shot, with §4's reframe
   shown to rest entirely on the robust half. **Nothing is pending on Oleg.** Next:
   **WS6 archaeology (S7, Opus 5)**.
+- **S7 · 2026-07-26 · Opus 5:** WS6 executed. Created `report/` and wrote
+  **`report/war-stories.md`** — four stories with receipts, each on the same four beats,
+  plus a 23-line receipts index and a limits section. Spine per PLAN §4: blive's retro
+  series read against the incidents that forced each discipline element (chaos drill →
+  KB-7; the OQ-031 option-set omission → OQ-032's trilemma + `refined-by:` + an
+  agent-memory rule), then the btest mirror (the SMIM extraction). The negative NEXT_TASK
+  asked for is story 3 and it got sharper: **OQ-035 cites the very row that refutes it** —
+  `CONTEXT_INVENTORY.md:99`'s INV-2 description lists OPG and has never been edited since
+  the initial commit, so the record consulted the pointer's status and never its content.
+  Story 3 is kept fair by a control from the same substrate one day earlier (M3.4's
+  "Bug-fix, **no ADR**"), which is also why PLAN §4's `AccountSnapshot.equity` spine item
+  was **demoted rather than cut**. Two stories were rejected and are named in the file.
+  **Then the archaeology turned on the eval's own numbers, and that is the session's
+  substance.** ASSESSMENT §5.1 had listed the survivorship finding as robust with the note
+  "individual names are spot-checkable"; spot-checking them showed **16 of btest's 26
+  path-attributed names are false positives** in three classes — 7 Claude Code auto-memory
+  files (durable on disk; the script's own comment at line 113 says these should be
+  excluded, but `NON_SUBSTRATE` catches only the `memory.md` index), 5 slash-flattened
+  duplicates of `docs/smim/*.md` files verified committed in both btest and smim, and 4
+  basenames spliced out of LocalHistory's binary store. **btest ≥26 → ≥10 of 94; b-autobot
+  4 → 0; shared-substrate 3 → 1; seamQ 33 and blive 0 unchanged.** Two structural points
+  came with it: every false-positive class *inflates* an ephemeral count and blive's is 0,
+  so the noise is one-directional and runs **with** the hypothesis; and the auto-memory
+  class can only reach a project whose transcripts survived — btest 10 `.jsonl`,
+  shared-substrate 3, datacli 2, **blive 0, b-autobot 0** — so blive's ten memory files
+  were structurally unobservable. Published as the hand-audit input
+  `data/survivorship-audit.json`; `artifact-survivorship.json` was **not** edited and
+  `artifact_survivorship.py` was **not** re-run (METHODS rules 2 and 8), with five concrete
+  fixes recorded for any future run. Separately, the WS2 tag-decay curve was broken down:
+  every published number reproduces, but **280 of 293 tags are `[SMIM]` and SMIM left the
+  repo**, only **165 of 293 carry a scoped stable id (163 Mar, 2 Apr, 0 after)**, and
+  **9 of 10 July commits carry a conventional-commit prefix** — so the "96% April peak" is
+  the month the ids vanished and "0% July" is a convention change, not an absence. Five
+  independent shell greps reproduced 293 · 165 · 280 · 9 · 9 exactly. Both corrections make
+  the corpus's numbers **smaller**. ASSESSMENT §2.5, §2.6, §5.1, §6 and §7 revised
+  accordingly. **Nothing is pending on Oleg.** Next: **report assembly (S8, Fable 5)**.

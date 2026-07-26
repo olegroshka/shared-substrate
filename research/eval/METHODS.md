@@ -1,6 +1,7 @@
 # Methods — how this evaluation was done, and what it may be trusted for
 
-**Status:** v1.0 — 2026-07-26, after S6 (WS0–WS5 + the survivorship audit complete).
+**Status:** v1.1 — 2026-07-26, after S7 (WS0–WS6 complete). v1.1 adds §5.9 and records S7's
+two downward corrections in §5.8 and §7.
 **Scope:** method only. *Findings* live in [STATE.md](./STATE.md); *what the evidence
 argues* lives in [ASSESSMENT.md](./ASSESSMENT.md); *the plan and its confounds ledger*
 live in [PLAN.md](./PLAN.md). This file is the one to read first if you want to judge
@@ -41,9 +42,9 @@ cases expected **not** to show the effect.
 P1-vs-P2 is the central pair: same author, same domain, same model era. P5–P7 are the
 boundary cases. P8 is the talk's focal case and is measured only inside the org.
 
-**"Ephemeral", not "flat".** P2's substrate was not absent — at least 26 working
-artifacts existed and never reached git (§5.8). Every comparison in this eval uses that
-word.
+**"Ephemeral", not "flat".** P2's substrate was not absent — at least 10 working
+artifacts existed and never reached git (§5.8; S6 measured 26, S7 hand-adjudicated the
+names down to 10). Every comparison in this eval uses that word.
 
 ---
 
@@ -147,6 +148,24 @@ uncommitted and deleted. Three independent channels — typed prompts, JetBrains
 LocalHistory change records, agent tool-call paths — against every `.md` basename any
 corpus repo ever added on any ref. Measures the **gap**; does not close it. Existence is
 recoverable, content is not, so **WS1 is not re-scored** (§6, rule 8).
+**Corrected in S7 by hand-adjudicating every name** (`data/survivorship-audit.json`, a
+published input; the JSON output is not edited and the script is not re-run): 16 of btest's
+26 path-attributed names were false positives — auto-memory files, slash-flattened
+duplicates of committed files, and basenames spliced out of a binary store — giving
+**blive 0 of 33 · btest ≥10 of 94 · seamQ ≥33 of 89**. Two properties of the instrument
+follow and must be published with any use of it: every false-positive class *inflates* an
+ephemeral count and blive's is zero, so its noise is one-directional and runs with the
+hypothesis; and channel C can only reach a project whose Claude Code transcripts survived
+retention (btest 10 files, blive **0**), so agent-side artifacts are observable for some
+projects and structurally invisible for others.
+
+**5.9 · WS6 drift archaeology** — no script; narrative judgment → `report/war-stories.md`.
+Four incidents paired with the discipline element each produced (or the absence where none
+was created), every claim carrying a commit, a `file:line` or a session-log sha1. It is the
+one workstream whose evidence is *chosen* rather than measured, so the file states its own
+selection rule, names what was cut and why, and places every story behind the robust number
+it illustrates. It also produced the two corrections above (§5.8) and to WS2's tag curve —
+both by reading individual items behind a count, and both shrinking the finding.
 
 ---
 
@@ -213,6 +232,10 @@ a single event. The split is structural — the robust ones measure operator beh
 repeated across sessions, the fragile ones measure agent behaviour on one question.
 [ASSESSMENT §5.1](./ASSESSMENT.md) is the ledger, and it binds the report: nothing
 fragile leads a section, and no two fragile findings are aggregated into a rate.
+**S7 added a third category and a third rule**: two findings whose *counts* are robust
+carried an *interpretation* that was not (the survivorship names, the tag-decay curve). A
+robust count does not license the sentence built on top of it — before a number is
+published, name the reading it invites and test that reading separately.
 
 ---
 
