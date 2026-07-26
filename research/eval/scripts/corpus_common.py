@@ -279,6 +279,22 @@ def count_merges(repo):
         return 0
 
 
+def redact_path(p):
+    """Home directory -> '~' in any path that reaches a PUBLISHED file.
+
+    research/eval/ is pushed to a public repo and is the kit that crosses into a
+    corporate environment (PLAN.md 5). An absolute path carrying the operator's
+    username is both a small privacy leak and noise for anyone re-running this
+    elsewhere. Applied at emit time only; nothing internal depends on it.
+    """
+    import os
+    s = str(p).replace("\\", "/")
+    home = os.path.expanduser("~").replace("\\", "/")
+    if home and s.lower().startswith(home.lower()):
+        s = "~" + s[len(home):]
+    return s
+
+
 def eprint(*a):
     """ASCII-only stderr (Windows console is cp1252 - no arrows, no unicode)."""
     print(*a, file=sys.stderr)

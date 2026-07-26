@@ -1,0 +1,196 @@
+{
+  "_about": "WS5(a) hand-audit input. Author judgment, kept as a published script INPUT (the WS-X qualitative-ratings.json / WS4b probes/scores.json pattern) so that re-running scripts/survival.py can never silently overwrite it and never silently invent it. Every finding carries file:line receipts; scripts/survival.py re-checks the mechanically checkable ones on every run and reports FAILED rather than dropping or correcting them (the S5 void-and-report rule).",
+  "_method": "The machine pass (survival.py) produced the candidate list: 29 blive ADRs never edited after introduction, the index-coherence defects, the anchor-integrity list, and btest's instruction-rule removals. Each candidate was then read against the code it governs. EIGHTEEN blive ADRs were read against the tree - 002, 004, 006, 007, 021, 022, 027, 031, 032, 035, 037, 039, 040, 041, 043, 044, 049, 053 - plus OQ-033 and OQ-035, the CONTEXT_INVENTORY MISSING register, and the supersession graph. The checks that HELD are recorded in `checks_that_held` so the finding list is not mistaken for the whole audit.",
+  "_definition_boundary": "Per the frozen definition in survival.py: a DECLARED reversal (status moved to SUPERSEDED-BY-*, or a later record carries `supersedes:`) is the discipline WORKING and is never counted as a failure. Only an undeclared contradiction is a silent reversal. Refinement-with-a-pointer, non-implementation, and a declared MISSING artefact are all explicitly not failures.",
+
+  "findings": [
+    {
+      "id": "F1",
+      "project": "blive",
+      "class": "SR-2",
+      "records": ["OQ-035"],
+      "opened_session": 13,
+      "title": "OQ-035 states an order-type surface the code has never had",
+      "detail": "OQ-035 ('Phase-2 order-type & TIF surface: MOO / OPG for Market-On-Open execution', opened 2026-06-06, status OPEN) asserts: 'blive's order-type surface is MKT / LMT / ADAPTIVE_MKT only ...; it has no OPG-class order type or opening-auction TIF.' At the same commit, src/blive/domain/types.py defines OrderType with SEVEN members (MKT, LMT, MOC, LOC, STP, STP_LMT, ADAPTIVE_MKT) and TimeInForce with FIVE including OPG.",
+      "why_it_is_SR2_not_SR1": "The decision OQ-035 is opening (whether to scope MOO for Phase 2) is not itself reversed - the question is still open. What is contradicted is the record's factual premise about the current system.",
+      "the_reading_that_partially_rescues_it": "The IB adapter's SUBMIT path (adapters/ib/broker.py:1421-1454) builds five order types - MKT, ADAPTIVE_MKT, LMT, STP, STP_LMT. MOC and LOC appear only in the INBOUND parse map (broker.py:1369-1375) and OPG only in the inbound TIF map (broker.py:1387-1391). So 'no submit-side OPG wiring' is defensible. 'The order-type surface is MKT / LMT / ADAPTIVE_MKT only' is not defensible on either reading: seven by enum, five by submit path, three claimed.",
+      "this_is_a_birth_defect_not_drift": "MOC, LOC, STP, STP_LMT and OPG have been in types.py since the FIRST commit (13f6997, 2026-04-26, M0 close), verified with `git log -S`. OQ-035 was written 41 days later about code that had not changed. The record was wrong on the day it was written; there was no interval during which it was true.",
+      "record_movement": "none - OQ-035 has never been edited (it is the newest record in the repo).",
+      "provenance": "This is the divergence WS4a built blive's doc-vs-code trap question on and WS4b re-verified; it is carried into WS5 as a first data point rather than rediscovered.",
+      "receipts": [
+        {"path": "docs/decisions/OPEN_QUESTIONS.md", "contains": "blive's order-type surface is `MKT` / `LMT` / `ADAPTIVE_MKT` only"},
+        {"path": "src/blive/domain/types.py", "contains": "STP_LMT = \"STP_LMT\""},
+        {"path": "src/blive/domain/types.py", "contains": "OPG = \"OPG\""},
+        {"path": "src/blive/adapters/ib/broker.py", "contains": "\"OPG\": TimeInForce.OPG"}
+      ]
+    },
+    {
+      "id": "F2",
+      "project": "blive",
+      "class": "SR-3",
+      "records": ["ADR-031", "ADR-032", "ADR-040", "ADR-041"],
+      "opened_session": 4,
+      "title": "DECISIONS.md's own index disagrees with its own bodies, and with the outer register",
+      "detail": "Four defects in one navigation surface, all machine-found and hand-confirmed. (a) The index row for ADR-031 says PROPOSED; the body has said ACCEPTED since session 4 (2026-04-28, commit dd056e57e8, 'M2-IB.2'). (b) The index row for ADR-032 says PROPOSED; the body has said ACCEPTED since session 5 (2026-05-01, commit 3090da22b1, 'M2-IB.3a-resolved: ADR-032+041 ACCEPTED'). (c) ADR-040 and ADR-041 have bodies but NO index row at all - the index jumps 039 to 042. The index carries 51 of 53 records.",
+      "why_this_is_a_failure_when_a_frozen_ADR_body_is_not": "An ADR body is append-only by blive's own CONTEXT_PROTOCOL section 5 and is a point-in-time record; it is SUPPOSED to freeze. The index table is not - it is the artefact's live navigation surface and it carries a Status column. A status column that is stale is the record failing at exactly the job it exists for.",
+      "the_sharp_part": "blive maintains TWO status registers for its ADRs. CONTEXT_INVENTORY.md's KB-10 row reads 'ADR-001..053 ACCEPTED, except ADR-021 SUPERSEDED-BY-ADR-043' - which is CORRECT. The index INSIDE DECISIONS.md is the one that is wrong. The outer register was maintained; the inner one was not.",
+      "record_movement": "none for the index rows; the bodies moved without them, and both commits that flipped the bodies name the flip in their subject.",
+      "receipts": [
+        {"path": "docs/decisions/DECISIONS.md", "contains": "| Token-bucket rate limiter shape for IB adapters | PROPOSED |"},
+        {"path": "docs/decisions/DECISIONS.md", "contains": "## ADR-040 — Phase 1 deployment target: Windows host with native IB Gateway"},
+        {"path": "CONTEXT_INVENTORY.md", "contains": "**ADR-001..053 ACCEPTED**, except **ADR-021 SUPERSEDED-BY-ADR-043**"}
+      ]
+    },
+    {
+      "id": "F3",
+      "project": "blive",
+      "class": "SR-3",
+      "records": [],
+      "opened_session": null,
+      "title": "Link rot inside the substrate, propagated by copying",
+      "detail": "26 of 900 markdown anchors (2.9%) do not resolve, but they are only SEVEN distinct broken targets: two malformed anchors account for 20 of the 26. `#adr-049--...-routing-empirical-pma-cap-finding` (14 occurrences) is missing a hyphen, because the ADR title contains a '+' which GitHub's slugger deletes and leaves a doubled space; `#3-venue-mic--ib-exchange` (6 occurrences) is a truncated prefix of the real DD-7 section-3 slug. The remaining five are one-offs, including a genuinely wrong pointer: ADR-039 links `FinancingCost` to `docs/kb/cost_margin_dictionary.md#5-financingcost`, but FinancingCost is section 3 of that file and section 5 is MarginConfig.",
+      "why_it_matters": "This is the substrate's failure mode, not the agent's: a cross-reference written once wrong is copied forward by every later record that cites the same target, because citing is done by copy. Append-only preserves errors with the same fidelity it preserves decisions.",
+      "caveat": "The slug rule in survival.py is an approximation of GitHub's unpublished algorithm. All seven distinct targets were re-read by hand against the actual headings before this finding was written; the 14-occurrence one rests entirely on the '+ deletes to a doubled space' behaviour of github-slugger.",
+      "receipts": [
+        {"path": "docs/kb/cost_margin_dictionary.md", "contains": "## 3. FinancingCost"},
+        {"path": "docs/kb/cost_margin_dictionary.md", "contains": "## 5. MarginConfig"},
+        {"path": "docs/kb/ib_pacing_spec.md", "contains": "## 8. Error Codes at the Pacing Boundary"}
+      ]
+    },
+    {
+      "id": "F4",
+      "project": "blive",
+      "class": "NOT-A-REVERSAL",
+      "records": ["ADR-039"],
+      "opened_session": 6,
+      "title": "Supersession propagates forward to the superseding record, never backward to records that cite the superseded one",
+      "detail": "ADR-039 (2026-04-27, ACCEPTED, never amended) asserts twice that ADR-021 is alive: clause 2 reads 'ADR-021 status: PAUSED (not SUPERSEDED). The CAC.PA ETF path resumes when IB returns'; its Consequences read 'ADR-021 stays valid for IB return; no decision is reversed'. ADR-021 became SUPERSEDED-BY-ADR-043 five days later, at session 6.",
+      "why_this_is_explicitly_NOT_counted_as_a_silent_reversal": "Under blive's own CONTEXT_PROTOCOL section 5 an ADR is append-only and point-in-time: ADR-039's statement was true when written and is a historical record, not a live claim. Counting it as drift would score the append-only discipline as a defect for behaving exactly as specified - the boundary error this workstream was warned about. ADR-021's supersession WAS declared, on both ends: ADR-021 carries `superseded by: ADR-043`, ADR-043 carries `supersedes: ADR-021`, and survival.py confirms the backlink.",
+      "what_it_IS": "A named mechanism rather than a defect count: an append-only record graph propagates a supersession to the superseding record and to the superseded record, but not to the N other records that assert something about it. A reader arriving at ADR-039 gets no signal. That is a navigability property of append-only substrates, and it is the reason blive needs the CONTEXT_INVENTORY register on top of the ADR file at all.",
+      "receipts": [
+        {"path": "docs/decisions/DECISIONS.md", "contains": "ADR-021 stays valid for IB return; no decision is reversed"},
+        {"path": "docs/decisions/DECISIONS.md", "contains": "- **status:** SUPERSEDED-BY-ADR-043"}
+      ]
+    },
+    {
+      "id": "F5",
+      "project": "blive",
+      "class": "MD-0",
+      "records": ["OQ-033"],
+      "opened_session": 13,
+      "title": "OQ-033 records an operator decision against an option never considered (carried from WS4b finding 7)",
+      "detail": "OQ-033 records 'Operator decision (2026-06-06): source from EODHD - not from sfera'. The operator confirms sfera was never on the table as a blive data source; the standing plan was always EODHD + IB. The Phase-2 readiness audit formalised a standing default into a dated decision.",
+      "carried_not_rederived": "This is WS4b finding 7, restated here because it belongs to the same commit as F1 (febc4e3, the 2026-06-06 readiness-audit refresh) and to the same failure family. It is NOT independent evidence and must not be counted twice.",
+      "class_note": "MD-0 is the inverse of a reversal: the record does not fail to track a decision, it manufactures one. Reported apart from every reversal count.",
+      "receipts": [
+        {"path": "docs/decisions/OPEN_QUESTIONS.md", "contains": "OQ-033"}
+      ]
+    },
+    {
+      "id": "F6",
+      "project": "btest",
+      "class": "SR-2",
+      "records": ["CLAUDE.md:127-130"],
+      "opened_session": 48,
+      "title": "CLAUDE.md's data-source list has been two schemes short for 119 days across four edits of the same file",
+      "detail": "CLAUDE.md lines 127-130 state 'URL scheme dispatched by data/sources/registry.py:' and list three: parquet://, yf://, fred://. The tree carries six distinct URL prefixes: parquet:// (sources/parquet.py:86, sources/cache.py:168), yf:// (sources/yahoo.py:17), fred:// (sources/fred.py:17), csv:// (sources/csv_source.py:94), sfera:// and sfera-bars:// (sources/sfera.py:88-89).",
+      "dating": "The three-scheme list was written 2026-03-15 (c29db97, session 30). sfera:// + sfera-bars:// landed 2026-03-24 (6cecf48, session 48) - nine days later. csv:// landed 2026-03-29 (8fdf1f4, session 50) - fourteen days later. CLAUDE.md was then edited on 2026-04-03 (s55), 2026-05-02 (s69), 2026-06-05 (s76) and 2026-07-09 (s83) without the list moving: 119 days and four edits of the same file.",
+      "why_this_is_the_right_btest_comparison": "btest has no decision records, so its arm is not a zero on blive's denominator - it is the same measurement on the record type btest actually has (WS4b finding 10: a 212-line agent-instruction file). The failure is identical in shape to F1: a record asserting a fact the code contradicts, unmoved.",
+      "corroborates": "WS4a finding 3 built btest's doc-vs-code trap on this same divergence and counted six schemes; the count reproduces exactly.",
+      "receipts": [
+        {"path": "CLAUDE.md", "contains": "- `fred://SERIES_ID` → FRED economic data"},
+        {"path": "src/quantdsl_backtest/data/sources/sfera.py", "contains": "SFERA_BARS_PREFIX = \"sfera-bars://\""},
+        {"path": "src/quantdsl_backtest/data/sources/csv_source.py", "contains": "startswith(\"csv://\")"}
+      ]
+    },
+    {
+      "id": "F7",
+      "project": "btest",
+      "class": "SR-2",
+      "records": ["CLAUDE.md:102"],
+      "opened_session": 30,
+      "title": "CLAUDE.md's '~2600 LOC' orchestrator claim has never been true, at any commit",
+      "detail": "CLAUDE.md line 102 reads 'engine/backtest_runner.py (main orchestrator ~2600 LOC)'. The file was 1519 lines on 2026-03-15, the day the claim was written (c29db97). Across all 18 commits that have ever touched it, its maximum length is 1618 lines (2c95145, 2026-06-25), which is also its length at HEAD. The claim overstates by 71 percent on the day of writing and by 61 percent at HEAD.",
+      "this_is_a_birth_defect_not_drift": "There is no interval in the file's history during which the claim was true. Like F1 in blive, the record was wrong on arrival - which means neither substrate posture has an instrument that checks a factual claim at the moment it is deposited. Both projects' only surviving fact-drift findings are of this kind.",
+      "record_movement": "none for this line; CLAUDE.md was edited five times after the claim was written (2026-03-16, 03-21, 04-03, 05-02, 06-05, 07-09) and the number never moved.",
+      "receipts": [
+        {"path": "CLAUDE.md", "contains": "(main orchestrator ~2600 LOC)"}
+      ]
+    },
+    {
+      "id": "F8",
+      "project": "btest",
+      "class": "ADJUDICATION",
+      "records": [],
+      "opened_session": null,
+      "title": "Three of btest's four automated strict-reversal hits are not decision reversals; one is",
+      "detail": "The commit-message lexicon in survival.py returns four strict hits for btest across 415 commits. Read by hand: 44a3619 and 5f4d896 are STATISTICAL uses of 'revert' ('mean-reverting ranks make t-1 informative', 'revert fast in absolute level') - false positives. 2303568 uses 'superseded' about an external FRED tag returning zero rows - a fact about a data provider, not a project decision. 743d1ff IS genuine: 'The workaround note (threshold 0.95, wrong normalisation) is obsolete now that the implementation uses the correct formula. Restore the original spec criterion.' That is a workaround reverted and the original spec restored, announced.",
+      "adjudicated_result": "btest announces ONE decision reversal in 415 commits (0.24 per 100). blive's eight strict hits were read the same way and all EIGHT are genuine reversal or supersession narration (11.94 per 100). A ~50x difference in how often a reversal is narrated.",
+      "the_confound_that_must_travel_with_it": "blive writes 362.5 words of commit prose per commit; btest writes 62.7. Normalised per 10,000 words of commit prose the automated rates are blive 3.29 vs btest 1.54, a 2.1x gap rather than 12x. The adjudicated per-commit gap is the headline only because the adjudication removed three quarters of btest's hits and none of blive's - state both.",
+      "the_number_this_sits_against": "WS2 measured btest at 82.2 percent rework at any horizon and 32.6 percent within 14 days, against blive's 5.2 and 3.9. btest reverses code constantly and narrates it once in 415 commits. The reversals are not hidden - there is simply nothing that records them.",
+      "receipts": [
+        {"path": "CLAUDE.md", "contains": "quantdsl-backtest"}
+      ]
+    },
+    {
+      "id": "F9",
+      "project": "blive",
+      "class": "PAIRED-CASE",
+      "records": ["ADR-053"],
+      "opened_session": null,
+      "title": "The same decision, the same day, the same operator, both projects - and the difference is addressability, not whether the reason was written down",
+      "detail": "On 2026-06-05 the Python floor was moved to 3.12 in both repos, because blive's Phase-2 strategy needed it and blive imports btest editable. blive recorded it as ADR-053: 4,902 characters, 46 lines, with status / date / decider / supersedes / companion, a context section, a five-clause decision, alternatives considered, consequences, and cross-references. btest recorded it as the body of commit fd106f9: 1,025 characters giving the reason (blive needs 3.12), the validation (317 unit tests on 3.12, numba/vectorbt/arcticdb wheels confirmed), the exact edits, and a flagged follow-up (the signum metadata mismatch, fixed separately at 32dab28).",
+      "the_finding_is_not_what_it_first_looks_like": "btest's record is GOOD. It is 4.8x shorter than the ADR, but it contains the reason, the evidence and the scope. The naive story - 'the unsubstrated project did not write down why' - is false here, and stating it would be the same error WS4b already caught: retrieval of recorded facts was near-perfect in btest too.",
+      "what_actually_differs": "Addressability. ADR-053 has a stable id and is cited from FIVE artifacts (CLAUDE.md, CONTEXT_INVENTORY.md, DECISIONS.md, PHASE_2_READINESS.md, NEXT_PROMPT.md), including the file an agent auto-loads on entry. btest's reasoning is cited from ZERO: its CLAUDE.md line 9 states the new fact ('Requires Python 3.11.x or 3.12.x') with no pointer to why, and the reasoning is reachable only by knowing that fd106f9 is the commit that holds it. Same content class, same author, same day; one is addressed, one must be excavated.",
+      "the_detail_that_makes_it": "ADR-053's `companion:` field names btest's fd106f9 and 32dab28 explicitly. btest's change is registered in blive's substrate and nowhere in btest's - the record for a btest decision lives in the sibling repository.",
+      "why_it_belongs_in_WS5": "It is the cleanest available control in the whole corpus: nature, domain, author, model era, calendar day and the decision itself are all held fixed, and only the recording discipline varies. Every other cross-project comparison in this eval carries the PLAN section 7 confound stack.",
+      "receipts": [
+        {"path": "docs/decisions/DECISIONS.md", "contains": "**companion:** btest `fd106f9` (requires-python relax)"},
+        {"path": "CLAUDE.md", "contains": "see [ADR-053](docs/decisions/DECISIONS.md#adr-053--upgrade-to-python-312)"}
+      ]
+    },
+    {
+      "id": "F10",
+      "project": "btest",
+      "class": "NEGATIVE",
+      "records": ["CLAUDE.md"],
+      "opened_session": null,
+      "title": "btest's instruction file does not decay silently - the expected finding did not appear",
+      "detail": "btest's CLAUDE.md has stated 74 distinct rules across 7 versions and carries 46 at HEAD; 28 rules have been removed. Read individually: 25 went in one commit (7d9b86f, 'refactor: extract SMIM into standalone repo') whose subject states the scope change that withdraws them; 2 more are the same-commit rewording/replacement at ac77460 (the ruff -> black/isort/mypy swap, where the record was edited in place to state the new choice - a declared change under D3); and 1 is the Python-3.11-strict rule removed at fd106f9, announced in the commit subject. ZERO rule removals are unexplained.",
+      "why_it_is_published": "The hypothesis going in was that the flat project's instruction file would shed rules quietly. It does not. This is the corpus's third honest negative, alongside WS3 finding 5 and WS4b H-1, and it constrains the claim WS5 is allowed to make: btest's substrate failure is not that its records vanish without trace, it is that its records are not addressable (F9) and are not checked against the code they describe (F6, F7).",
+      "the_symmetric_number": "blive's own CLAUDE.md: 26 rules ever stated, 25 at HEAD, 1 removed - and that one is the same Python-3.11 rule, removed at ADR-053, announced. Both projects removed the same instruction on the same day and both said so.",
+      "measurement_caveat": "Rules are matched on a case- and punctuation-normalised form, so a reworded rule registers as removal plus addition. That biases the removal count UP and is not corrected for, which makes this negative conservative rather than generous.",
+      "receipts": [
+        {"path": "CLAUDE.md", "contains": "Python 3.11 / 3.12 strict"}
+      ]
+    }
+  ],
+
+  "checks_that_held": [
+    {"project": "blive", "record": "ADR-002", "claim": "ib_async v2.1+ as the wire-level IB driver", "verified": "pyproject.toml pins ib_async>=2.1,<2.2; import-linter contract confines it to adapters/ib/*", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-004", "claim": "hexagonal ports/adapters with import-linter enforcement", "verified": "[tool.importlinter] present in pyproject.toml with layered contracts", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-006", "claim": "SQLite for persistence in v1", "verified": "not implemented - the only PersistencePort adapter is in-memory, and BOTH adapters/memory/persistence.py:4 and adapters/memory/__init__.py:3 carry 'SQLite arrives at M4 per ADR-006'. Non-implementation with an explicit pointer is not a reversal", "verdict": "HOLDS (deferred, declared)"},
+    {"project": "blive", "record": "ADR-007", "claim": "in-process event bus for v1", "verified": "adapters/memory/bus.py InMemoryEventBus behind domain/ports.py EventBusPort", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-022", "claim": "TKAN artefact freshness 30d hard / 21d warning", "verified": "domain/events.py ArtefactFreshnessWarning with warning_threshold_days; RC_12 defined", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-027", "claim": "integer shares, truncate toward zero", "verified": "sizing/sizer.py quantize_share_qty uses ROUND_DOWN with sign-preserving negation", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-035", "claim": "credentials at ~/.blive/secrets/{broker}.env, repo secrets/ holds only .example files", "verified": "secrets/ contains exactly ib.env.example, ig.env.example, eodhd.env.example - the third is an ADDITION consistent with the rule, not a departure", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-037", "claim": "Instrument.tradability field (spot / cfd / spread_bet)", "verified": "domain/types.py:134 tradability with _TRADABILITY_VALUES validation", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-049", "claim": "OrderType.ADAPTIVE_MKT for IBALGO Adaptive routing", "verified": "domain/types.py ADAPTIVE_MKT present; adapters/ib/broker.py:1423 builds the Adaptive algo order", "verdict": "HOLDS"},
+    {"project": "blive", "record": "ADR-053", "claim": "requires-python = '>=3.11' in blive and btest (allow both through the transition)", "verified": "blive pyproject.toml:10 requires-python = '>=3.11'. The ADR's own clause 1 specifies >=3.11, NOT >=3.12 - reading the title alone would have produced a false finding here", "verdict": "HOLDS"},
+    {"project": "blive", "record": "CONTEXT_INVENTORY MISSING register", "claim": "INV-2, INV-3, INV-7, INV-12, DD-4, DD-5, DD-6 are registered MISSING", "verified": "all seven registered with a status of MISSING and a stated future milestone; INV-11 registered DRAFT-inline-in-REQUIREMENTS. Referenced-but-unwritten is a receipt, not a dangling pointer", "verdict": "HOLDS - and is the reason blive's dangling-reference count is 1, not 8"},
+    {"project": "blive", "record": "supersession graph", "claim": "ADR-021 SUPERSEDED-BY-ADR-043", "verified": "bidirectional - ADR-021 carries 'superseded by: ADR-043', ADR-043 carries 'supersedes: ADR-021'. The one declared reversal in the corpus is declared on both ends", "verdict": "HOLDS"},
+    {"project": "btest", "record": "CLAUDE.md testpaths", "claim": "Default testpaths in pytest is tests/unit", "verified": "pyproject.toml:99-101 testpaths = ['tests/unit']", "verdict": "HOLDS"},
+    {"project": "btest", "record": "CLAUDE.md scripts", "claim": "seven named helper scripts", "verified": "all seven exist at the stated paths", "verdict": "HOLDS"},
+    {"project": "btest", "record": "CLAUDE.md assets_dist", "claim": "built artifacts committed at src/quantdsl_backtest/platform_ui/assets_dist/", "verified": "5 files tracked there", "verdict": "HOLDS"},
+    {"project": "btest", "record": "CLAUDE.md ruff -> black/isort", "claim": "n/a - the record MOVED", "verified": "'ruff for formatting and linting' (c29db97, 2026-03-15) was replaced by 'black for formatting, isort for import ordering, mypy for type-checking' the next day (ac77460). The record was edited to state the new choice, which is D3 - a DECLARED change, uninformatively narrated ('claude update docs') but not silent. Explicitly NOT counted", "verdict": "NOT A FINDING"},
+    {"project": "btest", "record": "CLAUDE.md package table", "claim": "eight package directories listed", "verified": "src/quantdsl_backtest/ also contains runners/, which the table omits. Judged too minor to publish as a finding and recorded here instead", "verdict": "MINOR OMISSION, not published"}
+  ],
+
+  "coverage_and_limits": [
+    "Eighteen of blive's 53 ADRs were read against the tree (listed in _method). The remaining 35 are either process, scope or deferred-milestone decisions with no code surface to contradict them at HEAD (naming, phase priorities, NAV slices, artefact types, future-milestone commitments), or decisions whose code surface exists but was not read this session. NEITHER group is counted as having survived a test it was never given. The 18 were selected by mechanical checkability plus the machine pass's never-edited-after-introduction flag, which is where a silent reversal would hide; that selection is disclosed rather than presented as exhaustive.",
+    "Only blive has decision records at all, so the survival curve proper has exactly one arm. btest's arm is instruction-rule survival plus commit-message archaeology, a different substrate type reported as such (the WS2 finding-8 n/a pattern), not a zero on a shared denominator.",
+    "b-autobot, datacli, smim, harp and seamQ have neither decision records nor an inventory register; they were not swept. seamQ additionally carries the WS3 finding-6 measurement-window caveat (its substrate was stripped at publication) and harp/smim the WS0 log-coverage caveat, so including them would have required carrying three caveats for zero decision records.",
+    "F1 and F5 are the same commit (febc4e3, the 2026-06-06 Phase-2 readiness audit) and F5 is carried from WS4b rather than independently found. The three newest records blive ever wrote produced two of its five findings; that is one session, n=1, and must be stated as such.",
+    "The audit is one reader, once. There is no second rater and no inter-rater number, exactly as WS3's altitude instrument had none - what is published is the receipt trail, so a disagreeing reader can check every claim against the same lines."
+  ]
+}

@@ -1,0 +1,4052 @@
+{
+  "_meta": {
+    "workstream": "WS5(a) decision survival",
+    "script": "survival.py",
+    "version": "1.0",
+    "generated_utc": "2026-07-26T15:42:43+00:00",
+    "git_version": "git version 2.52.0.windows.1",
+    "session_gap_hours": 4,
+    "definitions": {
+      "session": "maximal run of consecutive non-merge commits (author-date order) whose successive gaps are all <= G hours, G=4 by default; sensitivity at G in {2,4,8} published. Git-derived because WS3's log-derived sessions start 2026-05-02 and miss 41 of blive's 53 ADRs",
+      "declared_reversal": "record moved: status became SUPERSEDED-BY-*/DEPRECATED, or a later record carries `supersedes:` pointing at it. The discipline working - never counted as a failure",
+      "silent_reversal": "record did NOT move while the repository asserts the contrary. The only failure event in the survival curve. Supplied from the hand-audit input, never inferred",
+      "SR-1": "decision reversed - the recorded choice is not the choice in force",
+      "SR-2": "record-fact drift - the record's factual assertions (counts, enumerations, paths, versions) are contradicted by the tree",
+      "SR-3": "index/body incoherence - the substrate's navigation surface disagrees with its own content; fully machine-checked here",
+      "MD-0": "manufactured decision - a record states a decision never taken; the inverse failure, reported apart from every reversal count",
+      "survival_curve": "S(k) over records with at least k subsequent sessions; at_risk is published at every k because a record born in the last session cannot be observed for k>0",
+      "declared_missing": "an ID the project's own inventory registers as MISSING - a receipt for a known gap, never counted as a dangling reference",
+      "instruction_rules": "markdown bullets of >=16 informative characters in an agent-instruction file, normalised for case and punctuation; rewording counts as removal + addition, which biases survival DOWN and is not corrected for",
+      "reversal_archaeology": "commits whose subject or body announces undoing an earlier choice; strict lexicon (revert/rollback/back out/supersede/abandon/change-of-mind) reported apart from the loose replace/instead-of forms, which fire on ordinary refactors"
+    },
+    "audit_input": "..\\data\\survival-audit.json",
+    "audit_input_is_published_author_judgment": true,
+    "verification": "Seven independent shell counts held exactly before the sweep: blive ADR body headings 53 (grep -c), blive index rows 51, blive sessions at 4h 13 (awk over %at), blive SUPERSEDED statuses 1, btest sessions at 4h 83, btest CLAUDE.md rules at HEAD 46 (independent normaliser), blive strict-reversal commits 8 (independent shell pipeline over full messages). Four real bugs were caught earlier by the same reflex - see _meta.bugs_caught_by_verification. An eighth check corrected a number before it was written: ADR-053's section is 4,902 chars, not the 27,393 an awk-to-EOF gave, because a Changelog section follows it.",
+    "bugs_caught_by_verification": [
+      "The declared-MISSING register scanned each inventory LINE for stable ids instead of the row's first CELL, so every id merely named beside a MISSING one was registered as missing too - KB-2, KB-3, DD-7 and ADR-034 all exist. Caught by reading the register against `ls docs/`.",
+      "STABLE_ID_RE had no trailing boundary, so `RETRO-M2-IB` also matched as a reference to a non-existent `RETRO-M2` - 71 phantom dangling references, the single largest number in the first draft of this output.",
+      "gh_slug collapsed whitespace RUNS to one hyphen before substituting, but GitHub's slugger substitutes EACH space. Every `## ADR-NNN - Title` heading produces a double hyphen, so the first anchor pass called 758 of 900 links broken. The true count is 26 occurrences over 7 distinct targets.",
+      "parse_oqs read only the first id of a heading, so blive's combined `### OQ-015 / OQ-018 - ...` question made OQ-018 look like a dangling reference with 10 citations. It is a deliberate shared resolution."
+    ],
+    "receipt_verification": {
+      "checked": 21,
+      "held": 21,
+      "failed": [],
+      "detail": [
+        {
+          "finding": "F1",
+          "path": "docs/decisions/OPEN_QUESTIONS.md",
+          "contains": "blive's order-type surface is `MKT` / `LMT` / `ADAPTIVE_MKT` only",
+          "holds": true
+        },
+        {
+          "finding": "F1",
+          "path": "src/blive/domain/types.py",
+          "contains": "STP_LMT = \"STP_LMT\"",
+          "holds": true
+        },
+        {
+          "finding": "F1",
+          "path": "src/blive/domain/types.py",
+          "contains": "OPG = \"OPG\"",
+          "holds": true
+        },
+        {
+          "finding": "F1",
+          "path": "src/blive/adapters/ib/broker.py",
+          "contains": "\"OPG\": TimeInForce.OPG",
+          "holds": true
+        },
+        {
+          "finding": "F2",
+          "path": "docs/decisions/DECISIONS.md",
+          "contains": "| Token-bucket rate limiter shape for IB adapters | PROPOSED |",
+          "holds": true
+        },
+        {
+          "finding": "F2",
+          "path": "docs/decisions/DECISIONS.md",
+          "contains": "## ADR-040 \u2014 Phase 1 deployment target: Windows host with native IB Ga",
+          "holds": true
+        },
+        {
+          "finding": "F2",
+          "path": "CONTEXT_INVENTORY.md",
+          "contains": "**ADR-001..053 ACCEPTED**, except **ADR-021 SUPERSEDED-BY-ADR-043**",
+          "holds": true
+        },
+        {
+          "finding": "F3",
+          "path": "docs/kb/cost_margin_dictionary.md",
+          "contains": "## 3. FinancingCost",
+          "holds": true
+        },
+        {
+          "finding": "F3",
+          "path": "docs/kb/cost_margin_dictionary.md",
+          "contains": "## 5. MarginConfig",
+          "holds": true
+        },
+        {
+          "finding": "F3",
+          "path": "docs/kb/ib_pacing_spec.md",
+          "contains": "## 8. Error Codes at the Pacing Boundary",
+          "holds": true
+        },
+        {
+          "finding": "F4",
+          "path": "docs/decisions/DECISIONS.md",
+          "contains": "ADR-021 stays valid for IB return; no decision is reversed",
+          "holds": true
+        },
+        {
+          "finding": "F4",
+          "path": "docs/decisions/DECISIONS.md",
+          "contains": "- **status:** SUPERSEDED-BY-ADR-043",
+          "holds": true
+        },
+        {
+          "finding": "F5",
+          "path": "docs/decisions/OPEN_QUESTIONS.md",
+          "contains": "OQ-033",
+          "holds": true
+        },
+        {
+          "finding": "F6",
+          "path": "CLAUDE.md",
+          "contains": "- `fred://SERIES_ID` \u2192 FRED economic data",
+          "holds": true
+        },
+        {
+          "finding": "F6",
+          "path": "src/quantdsl_backtest/data/sources/sfera.py",
+          "contains": "SFERA_BARS_PREFIX = \"sfera-bars://\"",
+          "holds": true
+        },
+        {
+          "finding": "F6",
+          "path": "src/quantdsl_backtest/data/sources/csv_source.py",
+          "contains": "startswith(\"csv://\")",
+          "holds": true
+        },
+        {
+          "finding": "F7",
+          "path": "CLAUDE.md",
+          "contains": "(main orchestrator ~2600 LOC)",
+          "holds": true
+        },
+        {
+          "finding": "F8",
+          "path": "CLAUDE.md",
+          "contains": "quantdsl-backtest",
+          "holds": true
+        },
+        {
+          "finding": "F9",
+          "path": "docs/decisions/DECISIONS.md",
+          "contains": "**companion:** btest `fd106f9` (requires-python relax)",
+          "holds": true
+        },
+        {
+          "finding": "F9",
+          "path": "CLAUDE.md",
+          "contains": "see [ADR-053](docs/decisions/DECISIONS.md#adr-053--upgrade-to-python-3",
+          "holds": true
+        },
+        {
+          "finding": "F10",
+          "path": "CLAUDE.md",
+          "contains": "Python 3.11 / 3.12 strict",
+          "holds": true
+        }
+      ]
+    }
+  },
+  "projects": {
+    "blive": {
+      "sessions": {
+        "definition": "maximal run of consecutive non-merge commits whose successive gaps are all <= 4 hours",
+        "gap_hours": 4,
+        "session_count": 13,
+        "sensitivity_session_counts": {
+          "gap_2h": 19,
+          "gap_4h": 13,
+          "gap_8h": 12
+        },
+        "first": "2026-04-26T22:59",
+        "last": "2026-06-06T13:51",
+        "commits": 67,
+        "sessions": [
+          {
+            "index": 1,
+            "start": "2026-04-26T22:59",
+            "end": "2026-04-26T22:59",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 2,
+            "start": "2026-04-27T09:35",
+            "end": "2026-04-27T09:35",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 3,
+            "start": "2026-04-27T22:23",
+            "end": "2026-04-27T23:41",
+            "commits": 9,
+            "span_hours": 1.29
+          },
+          {
+            "index": 4,
+            "start": "2026-04-28T08:09",
+            "end": "2026-04-28T22:31",
+            "commits": 12,
+            "span_hours": 14.37
+          },
+          {
+            "index": 5,
+            "start": "2026-05-01T19:47",
+            "end": "2026-05-01T22:17",
+            "commits": 6,
+            "span_hours": 2.5
+          },
+          {
+            "index": 6,
+            "start": "2026-05-02T16:17",
+            "end": "2026-05-02T23:05",
+            "commits": 19,
+            "span_hours": 6.81
+          },
+          {
+            "index": 7,
+            "start": "2026-05-03T10:10",
+            "end": "2026-05-03T12:13",
+            "commits": 3,
+            "span_hours": 2.05
+          },
+          {
+            "index": 8,
+            "start": "2026-05-04T17:39",
+            "end": "2026-05-04T17:39",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 9,
+            "start": "2026-05-06T12:11",
+            "end": "2026-05-06T14:11",
+            "commits": 3,
+            "span_hours": 1.99
+          },
+          {
+            "index": 10,
+            "start": "2026-05-06T20:19",
+            "end": "2026-05-06T20:19",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 11,
+            "start": "2026-05-07T17:56",
+            "end": "2026-05-07T17:56",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 12,
+            "start": "2026-06-05T11:55",
+            "end": "2026-06-05T23:16",
+            "commits": 9,
+            "span_hours": 11.34
+          },
+          {
+            "index": 13,
+            "start": "2026-06-06T13:51",
+            "end": "2026-06-06T13:51",
+            "commits": 1,
+            "span_hours": 0.0
+          }
+        ]
+      },
+      "decision_records": {
+        "file": "docs/decisions/DECISIONS.md",
+        "file_versions": 18,
+        "records": 53,
+        "status_counts": {
+          "ACCEPTED": 52,
+          "SUPERSEDED-BY-ADR-043": 1
+        },
+        "declared_reversals": [
+          {
+            "id": "ADR-021",
+            "status": "SUPERSEDED-BY-ADR-043 (was ACCEPTED 2026-04-26 \u2192 2026-05-02)",
+            "session": 6
+          }
+        ],
+        "declared_reversal_count": 1,
+        "silent_reversal_count": 0,
+        "never_edited_after_introduction": {
+          "count": 29,
+          "share": 0.5472,
+          "ids": [
+            "ADR-001",
+            "ADR-002",
+            "ADR-003",
+            "ADR-004",
+            "ADR-005",
+            "ADR-006",
+            "ADR-007",
+            "ADR-008",
+            "ADR-009",
+            "ADR-010",
+            "ADR-011",
+            "ADR-012",
+            "ADR-013",
+            "ADR-014",
+            "ADR-015",
+            "ADR-016",
+            "ADR-017",
+            "ADR-018",
+            "ADR-019",
+            "ADR-020",
+            "ADR-022",
+            "ADR-023",
+            "ADR-024",
+            "ADR-025",
+            "ADR-027",
+            "ADR-028",
+            "ADR-044",
+            "ADR-045",
+            "ADR-048"
+          ],
+          "note": "candidates for hand audit, not findings: a record never revisited is where a silent reversal would hide. Only >=3 sessions of exposure are listed."
+        },
+        "survival_silent": [
+          {
+            "k": 0,
+            "at_risk": 53,
+            "alive": 53,
+            "survival": 1.0
+          },
+          {
+            "k": 1,
+            "at_risk": 53,
+            "alive": 53,
+            "survival": 1.0
+          },
+          {
+            "k": 2,
+            "at_risk": 50,
+            "alive": 50,
+            "survival": 1.0
+          },
+          {
+            "k": 3,
+            "at_risk": 49,
+            "alive": 49,
+            "survival": 1.0
+          },
+          {
+            "k": 4,
+            "at_risk": 49,
+            "alive": 49,
+            "survival": 1.0
+          },
+          {
+            "k": 5,
+            "at_risk": 47,
+            "alive": 47,
+            "survival": 1.0
+          },
+          {
+            "k": 6,
+            "at_risk": 47,
+            "alive": 47,
+            "survival": 1.0
+          },
+          {
+            "k": 7,
+            "at_risk": 46,
+            "alive": 46,
+            "survival": 1.0
+          },
+          {
+            "k": 8,
+            "at_risk": 41,
+            "alive": 41,
+            "survival": 1.0
+          },
+          {
+            "k": 9,
+            "at_risk": 40,
+            "alive": 40,
+            "survival": 1.0
+          },
+          {
+            "k": 10,
+            "at_risk": 39,
+            "alive": 39,
+            "survival": 1.0
+          },
+          {
+            "k": 11,
+            "at_risk": 29,
+            "alive": 29,
+            "survival": 1.0
+          },
+          {
+            "k": 12,
+            "at_risk": 26,
+            "alive": 26,
+            "survival": 1.0
+          }
+        ],
+        "survival_declared": [
+          {
+            "k": 0,
+            "at_risk": 53,
+            "alive": 53,
+            "survival": 1.0
+          },
+          {
+            "k": 1,
+            "at_risk": 53,
+            "alive": 53,
+            "survival": 1.0
+          },
+          {
+            "k": 2,
+            "at_risk": 50,
+            "alive": 50,
+            "survival": 1.0
+          },
+          {
+            "k": 3,
+            "at_risk": 49,
+            "alive": 49,
+            "survival": 1.0
+          },
+          {
+            "k": 4,
+            "at_risk": 49,
+            "alive": 49,
+            "survival": 1.0
+          },
+          {
+            "k": 5,
+            "at_risk": 47,
+            "alive": 46,
+            "survival": 0.9787
+          },
+          {
+            "k": 6,
+            "at_risk": 47,
+            "alive": 46,
+            "survival": 0.9787
+          },
+          {
+            "k": 7,
+            "at_risk": 46,
+            "alive": 45,
+            "survival": 0.9783
+          },
+          {
+            "k": 8,
+            "at_risk": 41,
+            "alive": 40,
+            "survival": 0.9756
+          },
+          {
+            "k": 9,
+            "at_risk": 40,
+            "alive": 39,
+            "survival": 0.975
+          },
+          {
+            "k": 10,
+            "at_risk": 39,
+            "alive": 38,
+            "survival": 0.9744
+          },
+          {
+            "k": 11,
+            "at_risk": 29,
+            "alive": 28,
+            "survival": 0.9655
+          },
+          {
+            "k": 12,
+            "at_risk": 26,
+            "alive": 25,
+            "survival": 0.9615
+          }
+        ],
+        "per_record": [
+          {
+            "id": "ADR-001",
+            "title": "Adopt project name `blive`",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-002",
+            "title": "Adopt `ib_async` v2.1+ as wire-level IB driver",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-003",
+            "title": "Borrow NautilusTrader architecture, do not depend",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-004",
+            "title": "Hexagonal ports/adapters with import-linter enforcement",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-005",
+            "title": "Single-process, single-asyncio-loop kernel for v1",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-006",
+            "title": "SQLite for persistence in v1",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-007",
+            "title": "In-process event bus for v1",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-008",
+            "title": "RiskEngine no-bypass enforced architecturally",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-009",
+            "title": "Crash-only design",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-010",
+            "title": "Reuse btest's Factor / Signal / Portfolio engines by import",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-011",
+            "title": "3-page minimal web UI; mobile and OAuth deferred",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-012",
+            "title": "Parity diagnostic mandatory daily; degraded mode if broken",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-013",
+            "title": "v1 scope: ETF and index strategies only",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-014",
+            "title": "Data sources via clean API abstraction",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-015",
+            "title": "ML training: live-trained eventually, static artefacts in v1",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-016",
+            "title": "Leverage: support both margin-financed and leveraged-ETF instruments",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-017",
+            "title": "Live data: hybrid EODHD + IB streaming, per-instrument routing",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-018",
+            "title": "UK equity strategies deferred to post-M8",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-019",
+            "title": "A3 archetype generalises to other leveraged-ETF pairs",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-020",
+            "title": "Phase 1 NAV slice: 5\u201310% of total, cap 10%",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-021",
+            "title": "CAC ETF proxy: `CAC.PA` (Lyxor CAC 40 UCITS ETF)",
+            "status": "SUPERSEDED-BY-ADR-043 (was ACCEPTED 2026-04-26 \u2192 2026-05-02)",
+            "status_head": "SUPERSEDED-BY-ADR-043",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": 6,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-022",
+            "title": "TKAN artefact freshness window: 30d hard, 21d warning",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-023",
+            "title": "TKAN artefact path and refresh ownership",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-024",
+            "title": "Add session-retrospective artefact type",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-025",
+            "title": "Amend CONTEXT_PROTOCOL \u00a78.3 with milestone-close and phase-boundary rules",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-026",
+            "title": "Adopt agentic-execution layer; reduce human action surface",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 1,
+            "first_sha": "13f699773d",
+            "sessions_exposed": 12,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-027",
+            "title": "Sizer rounding policy: integer shares, truncate toward zero",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 2,
+            "first_sha": "874ef138d0",
+            "sessions_exposed": 11,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-028",
+            "title": "Strategy config shape: Python `build_strategy()` + blive YAML overrides",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 2,
+            "first_sha": "874ef138d0",
+            "sessions_exposed": 11,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-029",
+            "title": "`PaperMarketData` as `MarketDataPort` adapter, fixture-backed parquet",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 2,
+            "first_sha": "874ef138d0",
+            "sessions_exposed": 11,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-030",
+            "title": "Per-archetype btest interpreter dispatch (amends ADR-010)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "4d923ef838",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-031",
+            "title": "Token-bucket rate limiter shape for IB adapters",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "4d923ef838",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-032",
+            "title": "Instrument resolution policy: blive Instrument \u2194 IB Contract",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "4d923ef838",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-033",
+            "title": "`AccountUpdate` event shape and sampling cadence",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "4d923ef838",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 2,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-034",
+            "title": "Multi-broker registry pattern (extends ADR-004)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "b9c82f9989",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-035",
+            "title": "Secrets handling discipline (`~/.blive/secrets/`)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "b9c82f9989",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 2,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-036",
+            "title": "IG wire-level driver: roll-our-own httpx + asyncio Lightstreamer",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "c2ac407ea5",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-037",
+            "title": "`Instrument.tradability` field (spot / cfd / spread_bet)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "c2ac407ea5",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-038",
+            "title": "IG rate-limit defaults (parameterise ADR-031)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "c2ac407ea5",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-039",
+            "title": "Phase 1 strategy under IG bridge: CAC 40 CFD",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 3,
+            "first_sha": "c2ac407ea5",
+            "sessions_exposed": 10,
+            "edits_after_introduction": 3,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-040",
+            "title": "Phase 1 deployment target: Windows host with native IB Gateway",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 4,
+            "first_sha": "177170d4bb",
+            "sessions_exposed": 9,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-041",
+            "title": "Yahoo-suffix translation in IB instrument resolver",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 5,
+            "first_sha": "3090da22b1",
+            "sessions_exposed": 8,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-042",
+            "title": "Session-bootstrap files: agent-agnostic pattern for L0 warm-up entry point",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 6,
+            "first_sha": "35f77320b8",
+            "sessions_exposed": 7,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-043",
+            "title": "Phase 1 strategy switch: `triple_lev_sma_filter_dsl` (A3) replaces `tkan_v4_momentum_timin",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 6,
+            "first_sha": "0ce781f9ba",
+            "sessions_exposed": 7,
+            "edits_after_introduction": 2,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-044",
+            "title": "Multi-instrument pipeline support (companion to ADR-043)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 6,
+            "first_sha": "8acd9eef18",
+            "sessions_exposed": 7,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-045",
+            "title": "LongShortPortfolio btest dispatch (extends ADR-030)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 6,
+            "first_sha": "8acd9eef18",
+            "sessions_exposed": 7,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-046",
+            "title": "IB resolver SMART routing for US equities (refines ADR-032)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 6,
+            "first_sha": "8acd9eef18",
+            "sessions_exposed": 7,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-047",
+            "title": "PRIIPs-compliant universe for Phase 1 A3 strategy (refines ADR-043)",
+            "status": "ACCEPTED",
+            "status_head": "ACCEPTED",
+            "first_session": 7,
+            "first_sha": "836171f2d8",
+            "sessions_exposed": 6,
+            "edits_after_introduction": 2,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-048",
+            "title": "LSE-ETF SMART routing discriminator (refines ADR-046)",
+            "status": "ACCEPTED (PROPOSED 2026-05-03 \u2192 ACCEPTED 2026-05-06 at M2-IB.6 close a",
+            "status_head": "ACCEPTED",
+            "first_session": 9,
+            "first_sha": "d6bb506cc4",
+            "sessions_exposed": 4,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-049",
+            "title": "`OrderType.ADAPTIVE_MKT` for IBALGO Adaptive routing + empirical PMA-cap finding",
+            "status": "ACCEPTED (PROPOSED \u2192 ACCEPTED same-day 2026-05-06 at M2-IB.6 close per",
+            "status_head": "ACCEPTED",
+            "first_session": 9,
+            "first_sha": "d6bb506cc4",
+            "sessions_exposed": 4,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-050",
+            "title": "EODHD-vs-IB unit-of-quote conversion at sizing time (Hybrid: B-now / A-later free-MD-only)",
+            "status": "ACCEPTED (drafted 2026-05-06 at M3.1 entry PROPOSED; flipped ACCEPTED ",
+            "status_head": "ACCEPTED",
+            "first_session": 11,
+            "first_sha": "a0787ffd67",
+            "sessions_exposed": 2,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-051",
+            "title": "Normalize IB order prices to the contract tick grid at submit time",
+            "status": "ACCEPTED (drafted 2026-06-05 at M3.1b PROPOSED; flipped ACCEPTED 2026-",
+            "status_head": "ACCEPTED",
+            "first_session": 12,
+            "first_sha": "00d0049252",
+            "sessions_exposed": 1,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-052",
+            "title": "Phase 1 accepts the PMA-bound leveraged-leg non-fill (OQ-031 Option 1)",
+            "status": "ACCEPTED (drafted 2026-06-05 at M3.3 PROPOSED; flipped ACCEPTED same-s",
+            "status_head": "ACCEPTED",
+            "first_session": 12,
+            "first_sha": "d4f7bfd310",
+            "sessions_exposed": 1,
+            "edits_after_introduction": 1,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          },
+          {
+            "id": "ADR-053",
+            "title": "Upgrade to Python 3.12",
+            "status": "ACCEPTED (operator-authorised 2026-06-05; `.venv` recreated on 3.12.12",
+            "status_head": "ACCEPTED",
+            "first_session": 12,
+            "first_sha": "601b1a299f",
+            "sessions_exposed": 1,
+            "edits_after_introduction": 0,
+            "declared_reversal_session": null,
+            "silent_reversal_session": null
+          }
+        ]
+      },
+      "index_coherence": {
+        "records_in_body": 53,
+        "records_in_index": 51,
+        "missing_from_index": [
+          "ADR-040",
+          "ADR-041"
+        ],
+        "in_index_but_no_body": [],
+        "status_mismatches": [
+          {
+            "id": "ADR-031",
+            "index_says": "PROPOSED",
+            "body_says": "ACCEPTED",
+            "divergence_opened": {
+              "session": 4,
+              "sha": "dd056e57e8"
+            },
+            "still_open_at_head": true
+          },
+          {
+            "id": "ADR-032",
+            "index_says": "PROPOSED",
+            "body_says": "ACCEPTED",
+            "divergence_opened": {
+              "session": 5,
+              "sha": "3090da22b1"
+            },
+            "still_open_at_head": true
+          }
+        ],
+        "supersession_edges": [
+          {
+            "from": "ADR-021",
+            "to": "ADR-043",
+            "backlink_present": true
+          }
+        ],
+        "supersession_edges_without_backlink": []
+      },
+      "open_questions": {
+        "file": "docs/decisions/OPEN_QUESTIONS.md",
+        "records": 35,
+        "status_counts": {
+          "OPEN": 8,
+          "RESOLVED-BY-ADR-015": 2,
+          "IN_DISCUSSION (DEFAULT: SINGLE PROCESS F": 1,
+          "IN_DISCUSSION (DEFAULT: IN-PROCESS; REDI": 1,
+          "IN_DISCUSSION (DEFAULT: SQLITE V1)": 1,
+          "IN_DISCUSSION (DEFAULT: PIN MINOR `>=2.1": 1,
+          "IN_DISCUSSION (DEFAULT: ONE PROCESS FOR": 1,
+          "IN_DISCUSSION (DEFAULT: REBALANCE + EMER": 1,
+          "IN_DISCUSSION (DEFAULT: REALISED FX P&L": 1,
+          "IN_DISCUSSION (DEFAULT: SHARED SECRET +": 1,
+          "IN_DISCUSSION (DEFAULT: IMPORT; FORK ONL": 1,
+          "IN_DISCUSSION (DEFAULT: EXPLICIT SLICE T": 1,
+          "IN_DISCUSSION (DEFAULT: YES FROM M6, PAR": 1,
+          "RESOLVED-BY-ADR-013": 1,
+          "RESOLVED-BY-ADR-014": 1,
+          "RESOLVED-BY-ADR-016": 1,
+          "RESOLVED": 1,
+          "RESOLVED-BY-ADR-017": 1,
+          "IN_DISCUSSION (REQUIREMENTS \u00a75.4 HAS WOR": 1,
+          "RESOLVED-BY-ADR-018": 1,
+          "RESOLVED-BY-ADR-019": 1,
+          "RESOLVED-BY-ADR-020": 1,
+          "RESOLVED-BY-ADR-021": 1,
+          "RESOLVED-BY-ADR-022": 1,
+          "RESOLVED-BY-ADR-023": 1,
+          "RESOLVED-BY-ADR-030": 1,
+          "RESOLVED-BY-ADR-052": 1
+        },
+        "per_record": [
+          {
+            "id": "OQ-001",
+            "title": "Single process or split (engine + UI)?",
+            "status": "IN_DISCUSSION (default: single process f",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-002",
+            "title": "Event bus: in-process vs Redis Streams from M1?",
+            "status": "IN_DISCUSSION (default: in-process; Redi",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-003",
+            "title": "Persistence: SQLite vs Postgres vs DuckDB?",
+            "status": "IN_DISCUSSION (default: SQLite v1)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-004",
+            "title": "`ib_async` dependency strategy?",
+            "status": "IN_DISCUSSION (default: pin minor `>=2.1",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-005",
+            "title": "Strategy isolation: one process per strategy or one process for all?",
+            "status": "IN_DISCUSSION (default: one process for ",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-006",
+            "title": "Intra-bar trading richness?",
+            "status": "IN_DISCUSSION (default: rebalance + emer",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-007",
+            "title": "FX: real-time conversion vs daily close?",
+            "status": "IN_DISCUSSION (default: realised FX P&L ",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-008",
+            "title": "UI auth: shared secret vs local-only vs OAuth?",
+            "status": "IN_DISCUSSION (default: shared secret + ",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-009",
+            "title": "`btest` engine reuse: import as library or fork relevant modules?",
+            "status": "IN_DISCUSSION (default: import; fork onl",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-010",
+            "title": "Capital allocation: explicit per-strategy NAV slice or shared account?",
+            "status": "IN_DISCUSSION (default: explicit slice t",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-011",
+            "title": "CLI alongside web UI?",
+            "status": "IN_DISCUSSION (default: yes from M6, par",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-012",
+            "title": "Parity tolerance bands: are \u00a78 numbers right?",
+            "status": "OPEN (calibrate from real fills in M7)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-013",
+            "title": "Which strategies are funded for v1, and what NAV slice?",
+            "status": "RESOLVED-BY-ADR-013 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-014",
+            "title": "Data source switch from `sfera://` (Bloomberg) to live equivalent?",
+            "status": "RESOLVED-BY-ADR-014 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-015",
+            "title": "ML model training in-process or static artefacts? Artefact lifecycle?",
+            "status": "RESOLVED-BY-ADR-015 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-016",
+            "title": "Synthetic leverage via margin or only via leveraged-ETF instruments?",
+            "status": "RESOLVED-BY-ADR-016 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-017",
+            "title": "Triple Leveraged ETF instrument set?",
+            "status": "RESOLVED (2026-04-26, by inspection of `",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-018",
+            "title": "ML model training in-process or static artefacts? Artefact lifecycle?",
+            "status": "RESOLVED-BY-ADR-015 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-019",
+            "title": "Live data: EODHD real-time vs IB streaming vs hybrid?",
+            "status": "RESOLVED-BY-ADR-017 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-020",
+            "title": "Multi-currency P&L: real-time vs daily reval?",
+            "status": "IN_DISCUSSION (REQUIREMENTS \u00a75.4 has wor",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-021",
+            "title": "UK equity strategies in scope post-M8?",
+            "status": "RESOLVED-BY-ADR-018 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-022",
+            "title": "Generalise A3 to other leveraged-ETF pairs?",
+            "status": "RESOLVED-BY-ADR-019 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-023",
+            "title": "ForgeFolio read-only integration with blive event log?",
+            "status": "OPEN",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-024",
+            "title": "NAV slice for the Phase 1 strategy?",
+            "status": "RESOLVED-BY-ADR-020 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-025",
+            "title": "Which CAC ETF proxy for the Phase 1 strategy?",
+            "status": "RESOLVED-BY-ADR-021 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-026",
+            "title": "TKAN artefact freshness window default?",
+            "status": "RESOLVED-BY-ADR-022 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-027",
+            "title": "TKAN artefact prod location and retraining ownership?",
+            "status": "RESOLVED-BY-ADR-023 (2026-04-26)",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-028",
+            "title": "Which agentic memory framework / tooling for L0+L1?",
+            "status": "OPEN (default proposed below; revisit at",
+            "first_session": 1,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-029",
+            "title": "When to implement L0+L1?",
+            "status": "OPEN (default proposed below; revisit at",
+            "first_session": 1,
+            "edits_after_introduction": 1
+          },
+          {
+            "id": "OQ-030",
+            "title": "Which btest interpreter does blive call for `TimingPortfolio` (and other non-Lon",
+            "status": "RESOLVED-BY-ADR-030 (2026-04-27)",
+            "first_session": 2,
+            "edits_after_introduction": 2
+          },
+          {
+            "id": "OQ-031",
+            "title": "Phase 1 deployment under PMA-bound retail account",
+            "status": "RESOLVED-BY-ADR-052 (2026-06-05)",
+            "first_session": 9,
+            "edits_after_introduction": 1
+          },
+          {
+            "id": "OQ-032",
+            "title": "Phase 2 A3 leveraged-leg redesign: how (or whether) to restore leveraged equity ",
+            "status": "OPEN",
+            "first_session": 12,
+            "edits_after_introduction": 1
+          },
+          {
+            "id": "OQ-033",
+            "title": "Phase-2 VIX strategy: UX1 / UX6 VIX-futures term-structure data sourcing",
+            "status": "OPEN",
+            "first_session": 13,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-034",
+            "title": "Phase-2 VIX strategy: UK-retail tradability of the TQQQ / VXX / IEF universe",
+            "status": "OPEN",
+            "first_session": 13,
+            "edits_after_introduction": 0
+          },
+          {
+            "id": "OQ-035",
+            "title": "Phase-2 order-type & TIF surface: MOO / OPG for Market-On-Open execution",
+            "status": "OPEN",
+            "first_session": 13,
+            "edits_after_introduction": 0
+          }
+        ]
+      },
+      "artifacts": {
+        "count": 38,
+        "status_counts": {
+          "DRAFT": 25,
+          "STABLE": 13
+        },
+        "freshness": {
+          "artifacts_with_last_reviewed": 37,
+          "stale_marker_count": 3,
+          "stale_markers": [
+            {
+              "path": "docs/kb/strategy_taxonomy.md",
+              "id": "KB-5",
+              "last_reviewed": "2026-04-26",
+              "last_commit": "2026-05-02",
+              "lag_days": 6
+            },
+            {
+              "path": "docs/kb/parity_methodology.md",
+              "id": "KB-15",
+              "last_reviewed": "2026-05-06",
+              "last_commit": "2026-05-07",
+              "lag_days": 1
+            },
+            {
+              "path": "docs/inv/risk_checks.md",
+              "id": "INV-4",
+              "last_reviewed": "2026-05-06",
+              "last_commit": "2026-05-07",
+              "lag_days": 1
+            }
+          ]
+        },
+        "per_artifact": [
+          {
+            "path": "docs/GLOSSARY.md",
+            "id": "KB-12",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/PHASE_1_READINESS.md",
+            "id": "PHASE_1_READINESS",
+            "status": "STABLE",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/PHASE_2_READINESS.md",
+            "id": "PHASE_2_READINESS",
+            "status": "DRAFT",
+            "version": "0.2",
+            "last_reviewed": "2026-06-06"
+          },
+          {
+            "path": "docs/dd/config_schemas.md",
+            "id": "DD-3",
+            "status": "DRAFT",
+            "version": "0.2",
+            "last_reviewed": "2026-04-27"
+          },
+          {
+            "path": "docs/dd/domain_objects.md",
+            "id": "DD-1",
+            "status": "STABLE",
+            "version": "0.3",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/dd/event_schemas.md",
+            "id": "DD-2",
+            "status": "DRAFT",
+            "version": "0.2",
+            "last_reviewed": "2026-05-01"
+          },
+          {
+            "path": "docs/dd/ig_instrument_dictionary.md",
+            "id": "DD-8",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-27"
+          },
+          {
+            "path": "docs/dd/instrument_dictionary.md",
+            "id": "DD-7",
+            "status": "STABLE",
+            "version": "1.5",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/decisions/DECISIONS.md",
+            "id": "KB-10",
+            "status": "DRAFT",
+            "version": "0.24",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/decisions/OPEN_QUESTIONS.md",
+            "id": "KB-11",
+            "status": "DRAFT",
+            "version": "0.6",
+            "last_reviewed": "2026-06-06"
+          },
+          {
+            "path": "docs/inv/alerts.md",
+            "id": "INV-9",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/inv/asset_classes.md",
+            "id": "INV-10",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/inv/domain_events.md",
+            "id": "INV-5",
+            "status": "STABLE",
+            "version": "0.3.1",
+            "last_reviewed": "2026-05-01"
+          },
+          {
+            "path": "docs/inv/ib_error_codes.md",
+            "id": "INV-14",
+            "status": "DRAFT",
+            "version": "0.10",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/inv/metrics.md",
+            "id": "INV-8",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/inv/order_state_transitions.md",
+            "id": "INV-13",
+            "status": "STABLE",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/inv/ports_adapters.md",
+            "id": "INV-6",
+            "status": "STABLE",
+            "version": "0.3.1",
+            "last_reviewed": "2026-04-28"
+          },
+          {
+            "path": "docs/inv/risk_checks.md",
+            "id": "INV-4",
+            "status": "DRAFT",
+            "version": "0.2",
+            "last_reviewed": "2026-05-06"
+          },
+          {
+            "path": "docs/inv/strategies.md",
+            "id": "INV-1",
+            "status": "DRAFT",
+            "version": "0.3",
+            "last_reviewed": "2026-05-03"
+          },
+          {
+            "path": "docs/kb/btest_dsl_inventory.md",
+            "id": "KB-1",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/kb/companion_projects.md",
+            "id": "KB-13",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/kb/cost_margin_dictionary.md",
+            "id": "KB-6",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/kb/failure_modes.md",
+            "id": "KB-7",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/kb/frameworks_survey.md",
+            "id": "KB-4",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/kb/ib_capability_matrix.md",
+            "id": "KB-2",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/kb/ib_pacing_spec.md",
+            "id": "KB-3",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/kb/ig_capability_matrix.md",
+            "id": "KB-16",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-27"
+          },
+          {
+            "path": "docs/kb/ig_pacing_spec.md",
+            "id": "KB-17",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-27"
+          },
+          {
+            "path": "docs/kb/operational_events.md",
+            "id": "KB-8",
+            "status": "DRAFT",
+            "version": "0.2",
+            "last_reviewed": "2026-04-27"
+          },
+          {
+            "path": "docs/kb/parity_methodology.md",
+            "id": "KB-15",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-05-06"
+          },
+          {
+            "path": "docs/kb/strategy_taxonomy.md",
+            "id": "KB-5",
+            "status": "DRAFT",
+            "version": "0.1",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/kb/uk_regulatory.md",
+            "id": "KB-9",
+            "status": "DRAFT",
+            "version": "0.2",
+            "last_reviewed": "2026-05-03"
+          },
+          {
+            "path": "docs/retros/M0_retrospective.md",
+            "id": "RETRO-M0",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-04-26"
+          },
+          {
+            "path": "docs/retros/M1_retrospective.md",
+            "id": "RETRO-M1",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-04-27"
+          },
+          {
+            "path": "docs/retros/M2-IB_retrospective.md",
+            "id": "RETRO-M2-IB",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-05-06"
+          },
+          {
+            "path": "docs/retros/M2-IG_retrospective.md",
+            "id": "RETRO-M2-IG",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-04-28"
+          },
+          {
+            "path": "docs/retros/M3_retrospective.md",
+            "id": "RETRO-M3",
+            "status": "STABLE",
+            "version": "1.0",
+            "last_reviewed": "2026-06-05"
+          },
+          {
+            "path": "docs/retros/_template.md",
+            "id": "RETRO-M{N}",
+            "status": "DRAFT",
+            "version": "1.0",
+            "last_reviewed": "YYYY-MM-DD"
+          }
+        ]
+      },
+      "reference_integrity": {
+        "files_scanned": 171,
+        "files_excluded_from_scan": [
+          "docs/method/"
+        ],
+        "distinct_ids_referenced": 143,
+        "resolvable": 121,
+        "registered_but_unwritten_referenced": [
+          "DD-4",
+          "DD-5",
+          "DD-6",
+          "INV-11",
+          "INV-12",
+          "INV-2",
+          "INV-3",
+          "INV-7"
+        ],
+        "dangling": {
+          "ADR-054": 1
+        },
+        "dangling_count": 1,
+        "dangling_locations": {
+          "ADR-054": [
+            "NEXT_PROMPT.md"
+          ]
+        },
+        "unreferenced_records": [],
+        "inventory_registered_ids": 39,
+        "declared_missing_register": [
+          "DD-4",
+          "DD-5",
+          "DD-6",
+          "INV-12",
+          "INV-2",
+          "INV-3",
+          "INV-7"
+        ],
+        "declared_missing_count": 7,
+        "note": "an ID the project's own inventory registers - whether MISSING or planned-elsewhere - is a receipt for a known gap, counted apart from dangling references"
+      },
+      "anchor_integrity": {
+        "anchors_checked": 900,
+        "broken_count": 26,
+        "broken_share": 0.0289,
+        "distinct_broken_targets": 7,
+        "distinct_broken": [
+          {
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p",
+            "occurrences": 15
+          },
+          {
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange",
+            "occurrences": 6
+          },
+          {
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-033--accountupdate-emission-timer-30s-diff-suppress",
+            "occurrences": 1
+          },
+          {
+            "target": "docs/kb/ib_pacing_spec.md",
+            "anchor": "8-error-code-mapping-at-pacing-boundary",
+            "occurrences": 1
+          },
+          {
+            "target": "docs/decisions/OPEN_QUESTIONS.md",
+            "anchor": "oq-015--ml-model-training-in-process-or-static-artefacts",
+            "occurrences": 1
+          },
+          {
+            "target": "docs/kb/cost_margin_dictionary.md",
+            "anchor": "5-financingcost",
+            "occurrences": 1
+          },
+          {
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-044--multi-instrument-pipeline-support",
+            "occurrences": 1
+          }
+        ],
+        "broken": [
+          {
+            "file": "CONTEXT_INVENTORY.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "TASK_REGISTRY.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-033--accountupdate-emission-timer-30s-diff-suppress"
+          },
+          {
+            "file": "TASK_REGISTRY.md",
+            "target": "docs/kb/ib_pacing_spec.md",
+            "anchor": "8-error-code-mapping-at-pacing-boundary"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/decisions/OPEN_QUESTIONS.md",
+            "anchor": "oq-015--ml-model-training-in-process-or-static-artefacts"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/kb/cost_margin_dictionary.md",
+            "anchor": "5-financingcost"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-044--multi-instrument-pipeline-support"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/dd/instrument_dictionary.md",
+            "anchor": "3-venue-mic--ib-exchange"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/DECISIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/decisions/OPEN_QUESTIONS.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          },
+          {
+            "file": "docs/kb/ib_capability_matrix.md",
+            "target": "docs/decisions/DECISIONS.md",
+            "anchor": "adr-049--ordertypeadaptive_mkt-for-ibalgo-adaptive-routing-empirical-p"
+          }
+        ],
+        "note": "slug rule is an approximation of GitHub's unpublished algorithm; every finding derived from this list is re-read by hand before it is published"
+      },
+      "reversal_archaeology": {
+        "commits": 67,
+        "commits_with_a_body": 67,
+        "commit_prose_words": 24289,
+        "mean_prose_words_per_commit": 362.5,
+        "strict_reversal_commits": 8,
+        "strict_rate_per_100_commits": 11.94,
+        "strict_rate_per_10k_prose_words": 3.29,
+        "loose_only_commits": 21,
+        "loose_rate_per_100_commits": 31.34,
+        "by_kind": {
+          "replace_decision": 25,
+          "supersede": 6,
+          "revert": 1,
+          "change_of_mind": 1
+        },
+        "strict_examples": [
+          {
+            "sha": "4d923ef838",
+            "date": "2026-04-27",
+            "session": 3,
+            "kinds": [
+              "supersede"
+            ],
+            "subject": "[blive] M2-IB substrate checkpoint: ADR-030..033 PROPOSED + DD-7/DD-2/KB-8 DRAFT",
+            "body_chars": 1741
+          },
+          {
+            "sha": "c2ac407ea5",
+            "date": "2026-04-27",
+            "session": 3,
+            "kinds": [
+              "supersede",
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IG.1 batch 2: ADR-036..039 PROPOSED + KB-16/17 + DD-8 DRAFT",
+            "body_chars": 2739
+          },
+          {
+            "sha": "2340aee1b8",
+            "date": "2026-04-27",
+            "session": 3,
+            "kinds": [
+              "supersede",
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IG.1 substrate ACCEPTED en bloc; OQ-030 RESOLVED-BY-ADR-030",
+            "body_chars": 2650
+          },
+          {
+            "sha": "5eee3c9bb3",
+            "date": "2026-04-28",
+            "session": 4,
+            "kinds": [
+              "revert"
+            ],
+            "subject": "[blive] M2-IG bridge close: RETRO-M2-IG + TASK_REGISTRY v0.3 + NEXT_PROMPT v0.4 -> M2-IB",
+            "body_chars": 3832
+          },
+          {
+            "sha": "6c53ab53b0",
+            "date": "2026-04-28",
+            "session": 4,
+            "kinds": [
+              "supersede"
+            ],
+            "subject": "[blive] M2-IB.1: substrate-verification annotation refresh",
+            "body_chars": 863
+          },
+          {
+            "sha": "eb748185b5",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "change_of_mind"
+            ],
+            "subject": "[blive] Methodology scope note: paper iteration moves to a separate research project",
+            "body_chars": 1445
+          },
+          {
+            "sha": "0ce781f9ba",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "supersede",
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.6-substrate (1/2): ADR-043 \u2014 Phase 1 strategy switch A2 \u2192 A3",
+            "body_chars": 4364
+          },
+          {
+            "sha": "4904d5a76b",
+            "date": "2026-05-03",
+            "session": 7,
+            "kinds": [
+              "supersede",
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.6.2: PRIIPs validation probe + Mon/Tue NEXT_PROMPT plan",
+            "body_chars": 3243
+          }
+        ],
+        "loose_examples": [
+          {
+            "sha": "874ef138d0",
+            "date": "2026-04-27",
+            "session": 2,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M1 close: btest strategy import + paper round-trip pipeline (G2 PARTIAL)",
+            "body_chars": 4070
+          },
+          {
+            "sha": "e0c9527af5",
+            "date": "2026-04-28",
+            "session": 4,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IG.3: IGBroker read-side BrokerPort implementation",
+            "body_chars": 3849
+          },
+          {
+            "sha": "0f871b27b2",
+            "date": "2026-04-28",
+            "session": 4,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IG.4: IGBroker.submit() for MARKET orders",
+            "body_chars": 3332
+          },
+          {
+            "sha": "dd056e57e8",
+            "date": "2026-04-28",
+            "session": 4,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.2: IBClient + IBCredentials + IB_DEFAULT_RATE_LIMITS",
+            "body_chars": 3221
+          },
+          {
+            "sha": "1fd28dc40b",
+            "date": "2026-05-01",
+            "session": 5,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.3-prereq confirmed: IB Paper Gateway handshake clean",
+            "body_chars": 1651
+          },
+          {
+            "sha": "3090da22b1",
+            "date": "2026-05-01",
+            "session": 5,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.3a-resolved: ADR-032+041 ACCEPTED, DD-7 STABLE",
+            "body_chars": 3300
+          },
+          {
+            "sha": "d579793c10",
+            "date": "2026-05-01",
+            "session": 5,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.3b-i: IBBroker read methods + AccountUpdate / ArtefactFreshnessWarning",
+            "body_chars": 5408
+          },
+          {
+            "sha": "b21c43ce76",
+            "date": "2026-05-01",
+            "session": 5,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.3b-ii: IBMarketData + factories + INV-14 (error 162 / 200)",
+            "body_chars": 5421
+          },
+          {
+            "sha": "7d64c47224",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.4a-rejected: writeside REJECTED disambiguation wire-validated",
+            "body_chars": 4500
+          },
+          {
+            "sha": "6bc72e1162",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.4a-happy: SUBMITTED \u2192 ACCEPTED \u2192 CANCELED wire-validated (SMART US)",
+            "body_chars": 3256
+          },
+          {
+            "sha": "5cf465d0a6",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.4a-happy-cacpa: bypass works, post-acceptance disambiguation fix",
+            "body_chars": 4341
+          },
+          {
+            "sha": "fa0be92be5",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.5 prereq: src/blive/runtime/ib_pipeline.py + tests",
+            "body_chars": 3755
+          },
+          {
+            "sha": "e56021ef2a",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.5 prereq: src/blive/runtime/signals.py \u2014 SMA stub for end-to-end paper test",
+            "body_chars": 2577
+          },
+          {
+            "sha": "98bf997d8e",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] M2-IB.5 driver: ASCII arrows in print statements (Windows cp1252)",
+            "body_chars": 2117
+          },
+          {
+            "sha": "31393af5e6",
+            "date": "2026-05-02",
+            "session": 6,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[blive] CONTEXT_INVENTORY \u00a710 + NEXT_PROMPT.md \u2192 M2-IB.5 in-RTH handoff",
+            "body_chars": 2270
+          }
+        ]
+      },
+      "instruction_rules": {
+        "CLAUDE.md": {
+          "versions": 3,
+          "rules_ever_stated": 26,
+          "rules_at_head": 25,
+          "rules_removed": 1,
+          "removals_announced_in_commit_message": 1,
+          "bulk_scope_removals": 0,
+          "isolated_removals": 1,
+          "isolated_removals_announced": 1,
+          "removals": [
+            {
+              "sha": "601b1a299f",
+              "session": 12,
+              "rule": "Python 3.11.x exactly. `uv sync --extra dev` then `uv run pytest -q`.",
+              "distinct_tokens": 4,
+              "tokens_named_in_commit_message": 3,
+              "rules_removed_in_same_commit": 1,
+              "bulk_scope_change": false,
+              "announced": true
+            }
+          ],
+          "survival_curve": [
+            {
+              "k": 0,
+              "at_risk": 26,
+              "alive": 26,
+              "survival": 1.0
+            },
+            {
+              "k": 1,
+              "at_risk": 26,
+              "alive": 26,
+              "survival": 1.0
+            },
+            {
+              "k": 2,
+              "at_risk": 25,
+              "alive": 25,
+              "survival": 1.0
+            },
+            {
+              "k": 3,
+              "at_risk": 25,
+              "alive": 25,
+              "survival": 1.0
+            },
+            {
+              "k": 4,
+              "at_risk": 25,
+              "alive": 25,
+              "survival": 1.0
+            },
+            {
+              "k": 5,
+              "at_risk": 25,
+              "alive": 25,
+              "survival": 1.0
+            },
+            {
+              "k": 6,
+              "at_risk": 25,
+              "alive": 24,
+              "survival": 0.96
+            },
+            {
+              "k": 7,
+              "at_risk": 25,
+              "alive": 24,
+              "survival": 0.96
+            }
+          ]
+        }
+      },
+      "hand_audit": {
+        "findings": 6,
+        "by_class": {
+          "SR-3": 2,
+          "SR-2": 1,
+          "NOT-A-REVERSAL": 1,
+          "MD-0": 1,
+          "PAIRED-CASE": 1
+        },
+        "detail": [
+          {
+            "id": "F1",
+            "project": "blive",
+            "class": "SR-2",
+            "records": [
+              "OQ-035"
+            ],
+            "opened_session": 13,
+            "title": "OQ-035 states an order-type surface the code has never had",
+            "detail": "OQ-035 ('Phase-2 order-type & TIF surface: MOO / OPG for Market-On-Open execution', opened 2026-06-06, status OPEN) asserts: 'blive's order-type surface is MKT / LMT / ADAPTIVE_MKT only ...; it has no OPG-class order type or opening-auction TIF.' At the same commit, src/blive/domain/types.py defines OrderType with SEVEN members (MKT, LMT, MOC, LOC, STP, STP_LMT, ADAPTIVE_MKT) and TimeInForce with FIVE including OPG.",
+            "why_it_is_SR2_not_SR1": "The decision OQ-035 is opening (whether to scope MOO for Phase 2) is not itself reversed - the question is still open. What is contradicted is the record's factual premise about the current system.",
+            "the_reading_that_partially_rescues_it": "The IB adapter's SUBMIT path (adapters/ib/broker.py:1421-1454) builds five order types - MKT, ADAPTIVE_MKT, LMT, STP, STP_LMT. MOC and LOC appear only in the INBOUND parse map (broker.py:1369-1375) and OPG only in the inbound TIF map (broker.py:1387-1391). So 'no submit-side OPG wiring' is defensible. 'The order-type surface is MKT / LMT / ADAPTIVE_MKT only' is not defensible on either reading: seven by enum, five by submit path, three claimed.",
+            "this_is_a_birth_defect_not_drift": "MOC, LOC, STP, STP_LMT and OPG have been in types.py since the FIRST commit (13f6997, 2026-04-26, M0 close), verified with `git log -S`. OQ-035 was written 41 days later about code that had not changed. The record was wrong on the day it was written; there was no interval during which it was true.",
+            "record_movement": "none - OQ-035 has never been edited (it is the newest record in the repo).",
+            "provenance": "This is the divergence WS4a built blive's doc-vs-code trap question on and WS4b re-verified; it is carried into WS5 as a first data point rather than rediscovered.",
+            "receipts": [
+              {
+                "path": "docs/decisions/OPEN_QUESTIONS.md",
+                "contains": "blive's order-type surface is `MKT` / `LMT` / `ADAPTIVE_MKT` only"
+              },
+              {
+                "path": "src/blive/domain/types.py",
+                "contains": "STP_LMT = \"STP_LMT\""
+              },
+              {
+                "path": "src/blive/domain/types.py",
+                "contains": "OPG = \"OPG\""
+              },
+              {
+                "path": "src/blive/adapters/ib/broker.py",
+                "contains": "\"OPG\": TimeInForce.OPG"
+              }
+            ]
+          },
+          {
+            "id": "F2",
+            "project": "blive",
+            "class": "SR-3",
+            "records": [
+              "ADR-031",
+              "ADR-032",
+              "ADR-040",
+              "ADR-041"
+            ],
+            "opened_session": 4,
+            "title": "DECISIONS.md's own index disagrees with its own bodies, and with the outer register",
+            "detail": "Four defects in one navigation surface, all machine-found and hand-confirmed. (a) The index row for ADR-031 says PROPOSED; the body has said ACCEPTED since session 4 (2026-04-28, commit dd056e57e8, 'M2-IB.2'). (b) The index row for ADR-032 says PROPOSED; the body has said ACCEPTED since session 5 (2026-05-01, commit 3090da22b1, 'M2-IB.3a-resolved: ADR-032+041 ACCEPTED'). (c) ADR-040 and ADR-041 have bodies but NO index row at all - the index jumps 039 to 042. The index carries 51 of 53 records.",
+            "why_this_is_a_failure_when_a_frozen_ADR_body_is_not": "An ADR body is append-only by blive's own CONTEXT_PROTOCOL section 5 and is a point-in-time record; it is SUPPOSED to freeze. The index table is not - it is the artefact's live navigation surface and it carries a Status column. A status column that is stale is the record failing at exactly the job it exists for.",
+            "the_sharp_part": "blive maintains TWO status registers for its ADRs. CONTEXT_INVENTORY.md's KB-10 row reads 'ADR-001..053 ACCEPTED, except ADR-021 SUPERSEDED-BY-ADR-043' - which is CORRECT. The index INSIDE DECISIONS.md is the one that is wrong. The outer register was maintained; the inner one was not.",
+            "record_movement": "none for the index rows; the bodies moved without them, and both commits that flipped the bodies name the flip in their subject.",
+            "receipts": [
+              {
+                "path": "docs/decisions/DECISIONS.md",
+                "contains": "| Token-bucket rate limiter shape for IB adapters | PROPOSED |"
+              },
+              {
+                "path": "docs/decisions/DECISIONS.md",
+                "contains": "## ADR-040 \u2014 Phase 1 deployment target: Windows host with native IB Gateway"
+              },
+              {
+                "path": "CONTEXT_INVENTORY.md",
+                "contains": "**ADR-001..053 ACCEPTED**, except **ADR-021 SUPERSEDED-BY-ADR-043**"
+              }
+            ]
+          },
+          {
+            "id": "F3",
+            "project": "blive",
+            "class": "SR-3",
+            "records": [],
+            "opened_session": null,
+            "title": "Link rot inside the substrate, propagated by copying",
+            "detail": "26 of 900 markdown anchors (2.9%) do not resolve, but they are only SEVEN distinct broken targets: two malformed anchors account for 20 of the 26. `#adr-049--...-routing-empirical-pma-cap-finding` (14 occurrences) is missing a hyphen, because the ADR title contains a '+' which GitHub's slugger deletes and leaves a doubled space; `#3-venue-mic--ib-exchange` (6 occurrences) is a truncated prefix of the real DD-7 section-3 slug. The remaining five are one-offs, including a genuinely wrong pointer: ADR-039 links `FinancingCost` to `docs/kb/cost_margin_dictionary.md#5-financingcost`, but FinancingCost is section 3 of that file and section 5 is MarginConfig.",
+            "why_it_matters": "This is the substrate's failure mode, not the agent's: a cross-reference written once wrong is copied forward by every later record that cites the same target, because citing is done by copy. Append-only preserves errors with the same fidelity it preserves decisions.",
+            "caveat": "The slug rule in survival.py is an approximation of GitHub's unpublished algorithm. All seven distinct targets were re-read by hand against the actual headings before this finding was written; the 14-occurrence one rests entirely on the '+ deletes to a doubled space' behaviour of github-slugger.",
+            "receipts": [
+              {
+                "path": "docs/kb/cost_margin_dictionary.md",
+                "contains": "## 3. FinancingCost"
+              },
+              {
+                "path": "docs/kb/cost_margin_dictionary.md",
+                "contains": "## 5. MarginConfig"
+              },
+              {
+                "path": "docs/kb/ib_pacing_spec.md",
+                "contains": "## 8. Error Codes at the Pacing Boundary"
+              }
+            ]
+          },
+          {
+            "id": "F4",
+            "project": "blive",
+            "class": "NOT-A-REVERSAL",
+            "records": [
+              "ADR-039"
+            ],
+            "opened_session": 6,
+            "title": "Supersession propagates forward to the superseding record, never backward to records that cite the superseded one",
+            "detail": "ADR-039 (2026-04-27, ACCEPTED, never amended) asserts twice that ADR-021 is alive: clause 2 reads 'ADR-021 status: PAUSED (not SUPERSEDED). The CAC.PA ETF path resumes when IB returns'; its Consequences read 'ADR-021 stays valid for IB return; no decision is reversed'. ADR-021 became SUPERSEDED-BY-ADR-043 five days later, at session 6.",
+            "why_this_is_explicitly_NOT_counted_as_a_silent_reversal": "Under blive's own CONTEXT_PROTOCOL section 5 an ADR is append-only and point-in-time: ADR-039's statement was true when written and is a historical record, not a live claim. Counting it as drift would score the append-only discipline as a defect for behaving exactly as specified - the boundary error this workstream was warned about. ADR-021's supersession WAS declared, on both ends: ADR-021 carries `superseded by: ADR-043`, ADR-043 carries `supersedes: ADR-021`, and survival.py confirms the backlink.",
+            "what_it_IS": "A named mechanism rather than a defect count: an append-only record graph propagates a supersession to the superseding record and to the superseded record, but not to the N other records that assert something about it. A reader arriving at ADR-039 gets no signal. That is a navigability property of append-only substrates, and it is the reason blive needs the CONTEXT_INVENTORY register on top of the ADR file at all.",
+            "receipts": [
+              {
+                "path": "docs/decisions/DECISIONS.md",
+                "contains": "ADR-021 stays valid for IB return; no decision is reversed"
+              },
+              {
+                "path": "docs/decisions/DECISIONS.md",
+                "contains": "- **status:** SUPERSEDED-BY-ADR-043"
+              }
+            ]
+          },
+          {
+            "id": "F5",
+            "project": "blive",
+            "class": "MD-0",
+            "records": [
+              "OQ-033"
+            ],
+            "opened_session": 13,
+            "title": "OQ-033 records an operator decision against an option never considered (carried from WS4b finding 7)",
+            "detail": "OQ-033 records 'Operator decision (2026-06-06): source from EODHD - not from sfera'. The operator confirms sfera was never on the table as a blive data source; the standing plan was always EODHD + IB. The Phase-2 readiness audit formalised a standing default into a dated decision.",
+            "carried_not_rederived": "This is WS4b finding 7, restated here because it belongs to the same commit as F1 (febc4e3, the 2026-06-06 readiness-audit refresh) and to the same failure family. It is NOT independent evidence and must not be counted twice.",
+            "class_note": "MD-0 is the inverse of a reversal: the record does not fail to track a decision, it manufactures one. Reported apart from every reversal count.",
+            "receipts": [
+              {
+                "path": "docs/decisions/OPEN_QUESTIONS.md",
+                "contains": "OQ-033"
+              }
+            ]
+          },
+          {
+            "id": "F9",
+            "project": "blive",
+            "class": "PAIRED-CASE",
+            "records": [
+              "ADR-053"
+            ],
+            "opened_session": null,
+            "title": "The same decision, the same day, the same operator, both projects - and the difference is addressability, not whether the reason was written down",
+            "detail": "On 2026-06-05 the Python floor was moved to 3.12 in both repos, because blive's Phase-2 strategy needed it and blive imports btest editable. blive recorded it as ADR-053: 4,902 characters, 46 lines, with status / date / decider / supersedes / companion, a context section, a five-clause decision, alternatives considered, consequences, and cross-references. btest recorded it as the body of commit fd106f9: 1,025 characters giving the reason (blive needs 3.12), the validation (317 unit tests on 3.12, numba/vectorbt/arcticdb wheels confirmed), the exact edits, and a flagged follow-up (the signum metadata mismatch, fixed separately at 32dab28).",
+            "the_finding_is_not_what_it_first_looks_like": "btest's record is GOOD. It is 4.8x shorter than the ADR, but it contains the reason, the evidence and the scope. The naive story - 'the unsubstrated project did not write down why' - is false here, and stating it would be the same error WS4b already caught: retrieval of recorded facts was near-perfect in btest too.",
+            "what_actually_differs": "Addressability. ADR-053 has a stable id and is cited from FIVE artifacts (CLAUDE.md, CONTEXT_INVENTORY.md, DECISIONS.md, PHASE_2_READINESS.md, NEXT_PROMPT.md), including the file an agent auto-loads on entry. btest's reasoning is cited from ZERO: its CLAUDE.md line 9 states the new fact ('Requires Python 3.11.x or 3.12.x') with no pointer to why, and the reasoning is reachable only by knowing that fd106f9 is the commit that holds it. Same content class, same author, same day; one is addressed, one must be excavated.",
+            "the_detail_that_makes_it": "ADR-053's `companion:` field names btest's fd106f9 and 32dab28 explicitly. btest's change is registered in blive's substrate and nowhere in btest's - the record for a btest decision lives in the sibling repository.",
+            "why_it_belongs_in_WS5": "It is the cleanest available control in the whole corpus: nature, domain, author, model era, calendar day and the decision itself are all held fixed, and only the recording discipline varies. Every other cross-project comparison in this eval carries the PLAN section 7 confound stack.",
+            "receipts": [
+              {
+                "path": "docs/decisions/DECISIONS.md",
+                "contains": "**companion:** btest `fd106f9` (requires-python relax)"
+              },
+              {
+                "path": "CLAUDE.md",
+                "contains": "see [ADR-053](docs/decisions/DECISIONS.md#adr-053--upgrade-to-python-312)"
+              }
+            ]
+          }
+        ]
+      },
+      "_repo_path": "~/PycharmProjects/blive"
+    },
+    "btest": {
+      "sessions": {
+        "definition": "maximal run of consecutive non-merge commits whose successive gaps are all <= 4 hours",
+        "gap_hours": 4,
+        "session_count": 83,
+        "sensitivity_session_counts": {
+          "gap_2h": 96,
+          "gap_4h": 83,
+          "gap_8h": 72
+        },
+        "first": "2025-12-09T01:37",
+        "last": "2026-07-09T23:07",
+        "commits": 415,
+        "sessions": [
+          {
+            "index": 1,
+            "start": "2025-12-09T01:37",
+            "end": "2025-12-09T01:53",
+            "commits": 2,
+            "span_hours": 0.26
+          },
+          {
+            "index": 2,
+            "start": "2025-12-10T20:14",
+            "end": "2025-12-10T23:17",
+            "commits": 8,
+            "span_hours": 3.06
+          },
+          {
+            "index": 3,
+            "start": "2025-12-11T18:55",
+            "end": "2025-12-11T18:55",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 4,
+            "start": "2025-12-12T18:44",
+            "end": "2025-12-12T23:56",
+            "commits": 5,
+            "span_hours": 5.2
+          },
+          {
+            "index": 5,
+            "start": "2025-12-13T11:12",
+            "end": "2025-12-13T13:27",
+            "commits": 6,
+            "span_hours": 2.26
+          },
+          {
+            "index": 6,
+            "start": "2025-12-13T22:47",
+            "end": "2025-12-13T23:48",
+            "commits": 2,
+            "span_hours": 1.01
+          },
+          {
+            "index": 7,
+            "start": "2025-12-14T17:06",
+            "end": "2025-12-15T00:01",
+            "commits": 8,
+            "span_hours": 6.93
+          },
+          {
+            "index": 8,
+            "start": "2025-12-16T00:37",
+            "end": "2025-12-16T00:37",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 9,
+            "start": "2025-12-16T19:28",
+            "end": "2025-12-16T19:28",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 10,
+            "start": "2025-12-17T23:34",
+            "end": "2025-12-17T23:35",
+            "commits": 2,
+            "span_hours": 0.02
+          },
+          {
+            "index": 11,
+            "start": "2025-12-18T22:58",
+            "end": "2025-12-18T23:55",
+            "commits": 2,
+            "span_hours": 0.96
+          },
+          {
+            "index": 12,
+            "start": "2025-12-19T18:40",
+            "end": "2025-12-19T22:20",
+            "commits": 4,
+            "span_hours": 3.68
+          },
+          {
+            "index": 13,
+            "start": "2025-12-20T18:52",
+            "end": "2025-12-20T19:37",
+            "commits": 5,
+            "span_hours": 0.76
+          },
+          {
+            "index": 14,
+            "start": "2025-12-23T20:36",
+            "end": "2025-12-23T20:41",
+            "commits": 2,
+            "span_hours": 0.07
+          },
+          {
+            "index": 15,
+            "start": "2025-12-24T11:24",
+            "end": "2025-12-24T11:24",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 16,
+            "start": "2025-12-24T19:50",
+            "end": "2025-12-24T19:50",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 17,
+            "start": "2025-12-25T11:05",
+            "end": "2025-12-25T11:05",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 18,
+            "start": "2025-12-25T15:45",
+            "end": "2025-12-25T15:45",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 19,
+            "start": "2025-12-26T13:10",
+            "end": "2025-12-26T13:10",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 20,
+            "start": "2025-12-26T23:00",
+            "end": "2025-12-26T23:00",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 21,
+            "start": "2025-12-27T12:28",
+            "end": "2025-12-27T13:20",
+            "commits": 2,
+            "span_hours": 0.86
+          },
+          {
+            "index": 22,
+            "start": "2025-12-27T20:34",
+            "end": "2025-12-27T21:44",
+            "commits": 2,
+            "span_hours": 1.17
+          },
+          {
+            "index": 23,
+            "start": "2025-12-28T12:50",
+            "end": "2025-12-28T13:36",
+            "commits": 2,
+            "span_hours": 0.77
+          },
+          {
+            "index": 24,
+            "start": "2026-01-05T18:58",
+            "end": "2026-01-05T19:21",
+            "commits": 3,
+            "span_hours": 0.39
+          },
+          {
+            "index": 25,
+            "start": "2026-01-31T15:39",
+            "end": "2026-01-31T15:39",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 26,
+            "start": "2026-02-11T23:33",
+            "end": "2026-02-11T23:33",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 27,
+            "start": "2026-02-14T14:45",
+            "end": "2026-02-14T14:45",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 28,
+            "start": "2026-02-21T20:38",
+            "end": "2026-02-21T20:38",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 29,
+            "start": "2026-02-22T14:51",
+            "end": "2026-02-23T01:07",
+            "commits": 9,
+            "span_hours": 10.28
+          },
+          {
+            "index": 30,
+            "start": "2026-03-15T23:09",
+            "end": "2026-03-16T00:15",
+            "commits": 8,
+            "span_hours": 1.11
+          },
+          {
+            "index": 31,
+            "start": "2026-03-16T06:47",
+            "end": "2026-03-16T07:43",
+            "commits": 25,
+            "span_hours": 0.94
+          },
+          {
+            "index": 32,
+            "start": "2026-03-16T20:58",
+            "end": "2026-03-16T23:11",
+            "commits": 43,
+            "span_hours": 2.21
+          },
+          {
+            "index": 33,
+            "start": "2026-03-18T20:08",
+            "end": "2026-03-18T22:57",
+            "commits": 14,
+            "span_hours": 2.81
+          },
+          {
+            "index": 34,
+            "start": "2026-03-19T07:45",
+            "end": "2026-03-19T08:18",
+            "commits": 2,
+            "span_hours": 0.54
+          },
+          {
+            "index": 35,
+            "start": "2026-03-19T19:28",
+            "end": "2026-03-19T23:19",
+            "commits": 15,
+            "span_hours": 3.85
+          },
+          {
+            "index": 36,
+            "start": "2026-03-20T18:00",
+            "end": "2026-03-21T01:01",
+            "commits": 13,
+            "span_hours": 7.02
+          },
+          {
+            "index": 37,
+            "start": "2026-03-21T09:38",
+            "end": "2026-03-21T11:27",
+            "commits": 2,
+            "span_hours": 1.82
+          },
+          {
+            "index": 38,
+            "start": "2026-03-21T23:33",
+            "end": "2026-03-21T23:33",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 39,
+            "start": "2026-03-22T09:57",
+            "end": "2026-03-22T11:19",
+            "commits": 8,
+            "span_hours": 1.35
+          },
+          {
+            "index": 40,
+            "start": "2026-03-22T20:50",
+            "end": "2026-03-22T23:37",
+            "commits": 4,
+            "span_hours": 2.78
+          },
+          {
+            "index": 41,
+            "start": "2026-03-23T07:48",
+            "end": "2026-03-23T08:20",
+            "commits": 4,
+            "span_hours": 0.53
+          },
+          {
+            "index": 42,
+            "start": "2026-03-28T14:13",
+            "end": "2026-03-28T15:01",
+            "commits": 7,
+            "span_hours": 0.8
+          },
+          {
+            "index": 43,
+            "start": "2026-03-28T21:50",
+            "end": "2025-12-18T12:57",
+            "commits": 5,
+            "span_hours": -2412.89
+          },
+          {
+            "index": 44,
+            "start": "2026-03-02T16:54",
+            "end": "2026-03-02T16:54",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 45,
+            "start": "2026-03-04T12:20",
+            "end": "2026-03-04T12:20",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 46,
+            "start": "2026-03-08T23:41",
+            "end": "2026-03-08T23:41",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 47,
+            "start": "2026-03-23T14:39",
+            "end": "2026-03-23T15:04",
+            "commits": 2,
+            "span_hours": 0.43
+          },
+          {
+            "index": 48,
+            "start": "2026-03-24T18:03",
+            "end": "2026-03-24T18:03",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 49,
+            "start": "2026-03-29T12:00",
+            "end": "2026-03-29T10:03",
+            "commits": 3,
+            "span_hours": 1.04
+          },
+          {
+            "index": 50,
+            "start": "2026-03-29T14:35",
+            "end": "2026-03-30T00:23",
+            "commits": 22,
+            "span_hours": 9.81
+          },
+          {
+            "index": 51,
+            "start": "2026-03-30T08:40",
+            "end": "2026-03-30T08:45",
+            "commits": 4,
+            "span_hours": 0.09
+          },
+          {
+            "index": 52,
+            "start": "2026-03-30T19:36",
+            "end": "2026-03-31T00:23",
+            "commits": 31,
+            "span_hours": 4.77
+          },
+          {
+            "index": 53,
+            "start": "2026-04-01T21:33",
+            "end": "2026-04-01T22:15",
+            "commits": 3,
+            "span_hours": 0.71
+          },
+          {
+            "index": 54,
+            "start": "2026-04-02T19:49",
+            "end": "2026-04-03T03:19",
+            "commits": 35,
+            "span_hours": 7.49
+          },
+          {
+            "index": 55,
+            "start": "2026-04-03T11:59",
+            "end": "2026-04-03T11:59",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 56,
+            "start": "2026-04-03T20:50",
+            "end": "2026-04-03T20:50",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 57,
+            "start": "2026-04-04T21:39",
+            "end": "2026-04-04T22:48",
+            "commits": 5,
+            "span_hours": 1.16
+          },
+          {
+            "index": 58,
+            "start": "2026-04-05T07:39",
+            "end": "2026-04-05T17:32",
+            "commits": 11,
+            "span_hours": 12.88
+          },
+          {
+            "index": 59,
+            "start": "2026-04-06T00:16",
+            "end": "2026-04-06T00:16",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 60,
+            "start": "2026-04-07T08:06",
+            "end": "2026-04-07T08:06",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 61,
+            "start": "2026-04-07T19:12",
+            "end": "2026-04-07T23:18",
+            "commits": 19,
+            "span_hours": 4.11
+          },
+          {
+            "index": 62,
+            "start": "2026-04-08T05:46",
+            "end": "2026-04-08T08:47",
+            "commits": 5,
+            "span_hours": 3.0
+          },
+          {
+            "index": 63,
+            "start": "2026-04-08T13:50",
+            "end": "2026-04-08T13:50",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 64,
+            "start": "2026-04-08T23:43",
+            "end": "2026-04-08T23:58",
+            "commits": 2,
+            "span_hours": 0.25
+          },
+          {
+            "index": 65,
+            "start": "2026-04-09T21:48",
+            "end": "2026-04-09T23:30",
+            "commits": 3,
+            "span_hours": 1.69
+          },
+          {
+            "index": 66,
+            "start": "2026-04-10T19:36",
+            "end": "2026-04-10T19:36",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 67,
+            "start": "2026-04-19T22:29",
+            "end": "2026-04-19T22:32",
+            "commits": 2,
+            "span_hours": 0.04
+          },
+          {
+            "index": 68,
+            "start": "2026-04-20T17:00",
+            "end": "2026-04-20T17:00",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 69,
+            "start": "2026-05-02T13:27",
+            "end": "2026-05-02T13:29",
+            "commits": 2,
+            "span_hours": 0.03
+          },
+          {
+            "index": 70,
+            "start": "2026-05-06T11:39",
+            "end": "2026-05-06T11:56",
+            "commits": 2,
+            "span_hours": 0.28
+          },
+          {
+            "index": 71,
+            "start": "2026-05-06T17:41",
+            "end": "2026-05-06T17:41",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 72,
+            "start": "2026-05-07T21:33",
+            "end": "2026-05-07T22:27",
+            "commits": 3,
+            "span_hours": 0.9
+          },
+          {
+            "index": 73,
+            "start": "2026-05-11T08:18",
+            "end": "2026-05-11T08:18",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 74,
+            "start": "2026-05-16T22:41",
+            "end": "2026-05-16T23:09",
+            "commits": 4,
+            "span_hours": 0.47
+          },
+          {
+            "index": 75,
+            "start": "2026-05-31T20:32",
+            "end": "2026-05-31T20:32",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 76,
+            "start": "2026-06-05T23:01",
+            "end": "2026-06-05T23:08",
+            "commits": 2,
+            "span_hours": 0.11
+          },
+          {
+            "index": 77,
+            "start": "2026-06-06T17:34",
+            "end": "2026-06-06T17:34",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 78,
+            "start": "2026-06-20T00:02",
+            "end": "2026-06-20T00:02",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 79,
+            "start": "2026-06-25T08:38",
+            "end": "2026-06-25T08:38",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 80,
+            "start": "2026-07-06T22:04",
+            "end": "2026-07-06T23:13",
+            "commits": 2,
+            "span_hours": 1.15
+          },
+          {
+            "index": 81,
+            "start": "2026-07-07T09:19",
+            "end": "2026-07-07T09:19",
+            "commits": 1,
+            "span_hours": 0.0
+          },
+          {
+            "index": 82,
+            "start": "2026-07-09T08:52",
+            "end": "2026-07-09T15:57",
+            "commits": 5,
+            "span_hours": 7.08
+          },
+          {
+            "index": 83,
+            "start": "2026-07-09T22:42",
+            "end": "2026-07-09T23:07",
+            "commits": 2,
+            "span_hours": 0.42
+          }
+        ]
+      },
+      "decision_records": {
+        "status": "n/a: no decision-record system in this repo",
+        "note": "This project has no ADR/decision file. Its arm of WS5 is the commit-message archaeology and the instruction-rule survival below - a different substrate type, not a zero on a shared denominator (WS2 finding 8 pattern).",
+        "searched_for": "docs/decisions/DECISIONS.md"
+      },
+      "anchor_integrity": {
+        "anchors_checked": 0,
+        "broken_count": 0,
+        "broken_share": null,
+        "distinct_broken_targets": 0,
+        "distinct_broken": [],
+        "broken": [],
+        "note": "slug rule is an approximation of GitHub's unpublished algorithm; every finding derived from this list is re-read by hand before it is published"
+      },
+      "reversal_archaeology": {
+        "commits": 415,
+        "commits_with_a_body": 311,
+        "commit_prose_words": 26024,
+        "mean_prose_words_per_commit": 62.7,
+        "strict_reversal_commits": 4,
+        "strict_rate_per_100_commits": 0.96,
+        "strict_rate_per_10k_prose_words": 1.54,
+        "loose_only_commits": 38,
+        "loose_rate_per_100_commits": 9.16,
+        "by_kind": {
+          "replace_decision": 39,
+          "supersede": 2,
+          "revert": 2
+        },
+        "strict_examples": [
+          {
+            "sha": "743d1ffa6f",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "supersede"
+            ],
+            "subject": "[SMIM FIX-1] Remove stale A-LZ-3 implementation note from ACCEPTANCE_TESTS.md",
+            "body_chars": 275
+          },
+          {
+            "sha": "2303568e3b",
+            "date": "2026-03-22",
+            "session": 39,
+            "kinds": [
+              "supersede",
+              "replace_decision"
+            ],
+            "subject": "[SMIM DATA-3] Update DATA_ACQUISITION.md with precise verified stats",
+            "body_chars": 676
+          },
+          {
+            "sha": "5f4d896af2",
+            "date": "2026-03-30",
+            "session": 52,
+            "kinds": [
+              "revert"
+            ],
+            "subject": "[SMIM D1] Complete D1-PERSISTENCE: half-life 1.7Q (H6a not supported)",
+            "body_chars": 874
+          },
+          {
+            "sha": "44a3619fa6",
+            "date": "2026-04-07",
+            "session": 61,
+            "kinds": [
+              "revert"
+            ],
+            "subject": "[SMIM] Paper: final acceptance edits (5 items from round-3 referee)",
+            "body_chars": 555
+          }
+        ],
+        "loose_examples": [
+          {
+            "sha": "770f857039",
+            "date": "2026-03-16",
+            "session": 31,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM M2.1-T3] NarrativeEdgeEstimator (NARRATIVE channel) + replace xfail stubs",
+            "body_chars": 217
+          },
+          {
+            "sha": "2dab34eb92",
+            "date": "2026-03-16",
+            "session": 31,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM M2.1-T5] AggregateOperator: weighted multi-channel combination",
+            "body_chars": 221
+          },
+          {
+            "sha": "77bcf06840",
+            "date": "2026-03-16",
+            "session": 32,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM] Replace 24 xfail stubs with real passing tests",
+            "body_chars": 431
+          },
+          {
+            "sha": "7437911766",
+            "date": "2026-03-18",
+            "session": 33,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM AT-1] Abstract null-model graph builders with Protocol + two implementations",
+            "body_chars": 871
+          },
+          {
+            "sha": "657f81eacb",
+            "date": "2026-03-18",
+            "session": 33,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM AT-4] Add pydmd dev dependency; fix R-DMD-1 skip; update ACCEPTANCE_TESTS.md",
+            "body_chars": 363
+          },
+          {
+            "sha": "7b61a05b87",
+            "date": "2026-03-18",
+            "session": 33,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM AT-6] Implement 14 Kalman filter and EM acceptance tests",
+            "body_chars": 933
+          },
+          {
+            "sha": "434d0aa530",
+            "date": "2026-03-18",
+            "session": 33,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM AT-6] Sync ACCEPTANCE_TESTS.md with AT-6 implementation deviations",
+            "body_chars": 475
+          },
+          {
+            "sha": "b85010d6e6",
+            "date": "2026-03-18",
+            "session": 33,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM AT-8] Implement 11 observability and phase transition acceptance tests",
+            "body_chars": 1084
+          },
+          {
+            "sha": "896641628d",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM] Fix all skipped tests \u2014 119/119 acceptance + 729/729 unit pass",
+            "body_chars": 841
+          },
+          {
+            "sha": "b9fb523fa5",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM] Update ACCEPTANCE_TESTS.md + add SMIM README",
+            "body_chars": 1066
+          },
+          {
+            "sha": "6f8d04938d",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM FIX-3] Restore singular vector recovery in Hermitian dilation and verify U_L/U_R",
+            "body_chars": 689
+          },
+          {
+            "sha": "ceaac8658c",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM FIX-4] Add clean DMD test with tight tolerance, move noisy test to stress category",
+            "body_chars": 562
+          },
+          {
+            "sha": "ff1c005ae4",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM] Update conftest_report baseline: Spectral 35\u219237, total 119\u2192121",
+            "body_chars": 182
+          },
+          {
+            "sha": "85a1ec4dcb",
+            "date": "2026-03-19",
+            "session": 35,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM FIX-7] Tighten criticality index stationary acceptance band from Monte Carlo calibration",
+            "body_chars": 403
+          },
+          {
+            "sha": "8db184aa64",
+            "date": "2026-03-20",
+            "session": 36,
+            "kinds": [
+              "replace_decision"
+            ],
+            "subject": "[SMIM GPU-0.1] Apply Woodbury identity to Kalman and Kim filter gain computation",
+            "body_chars": 893
+          }
+        ]
+      },
+      "instruction_rules": {
+        "CLAUDE.md": {
+          "versions": 7,
+          "rules_ever_stated": 74,
+          "rules_at_head": 46,
+          "rules_removed": 28,
+          "removals_announced_in_commit_message": 1,
+          "bulk_scope_removals": 25,
+          "isolated_removals": 3,
+          "isolated_removals_announced": 1,
+          "removals": [
+            {
+              "sha": "ac774606b6",
+              "session": 31,
+              "rule": "`docs/smim/DECISIONS.md` \u2014 architectural decision log (append after each gate)",
+              "distinct_tokens": 4,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 2,
+              "bulk_scope_change": false,
+              "announced": false
+            },
+            {
+              "sha": "ac774606b6",
+              "session": 31,
+              "rule": "`ruff` for formatting and linting",
+              "distinct_tokens": 2,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 2,
+              "bulk_scope_change": false,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "All new SMIM code goes under `src/quantdsl_backtest/smim/`",
+              "distinct_tokens": 1,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Branch per feature: `smim/m2.1-granger-edges`",
+              "distinct_tokens": 4,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Bridge signals (SMIM \u2192 btest) go in `smim/signals/` and follow `dsl/signals.py` conventions",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Commit format: `[SMIM M{wp}.{ms}-T{task}] Brief description`",
+              "distinct_tokens": 4,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Data adapters follow the existing FRED adapter pattern \u2014 read it first before writing new ones",
+              "distinct_tokens": 7,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/actor_taxonomy.md` \u2014 MVP actor universe with layer assignments and exemplars (G0 artefact)",
+              "distinct_tokens": 7,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/ADAPTER_GUIDE.md` \u2014 how to write a new data adapter (created in M1.2-T1)",
+              "distinct_tokens": 4,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/benchmark_specs.md` \u2014 formal definitions for all 5 benchmark families (G0 artefact)",
+              "distinct_tokens": 6,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/DECISIONS.md` \u2014 architectural decision log (created at Gate G0; append after each gate)",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/GPU_ACCELERATION_PLAN.md` \u2014 GPU acceleration design, measured speedups, quality gates",
+              "distinct_tokens": 7,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/IMPLEMENTATION_PLAN.md` \u2014 milestones, quality gates, acceptance criteria",
+              "distinct_tokens": 6,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/notation.md` \u2014 every mathematical symbol: LaTeX, Python variable, shape, module (G0 artefact)",
+              "distinct_tokens": 9,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/PROPOSAL_SUMMARY.md` \u2014 condensed research proposal (mathematical architecture, work packages)",
+              "distinct_tokens": 7,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/scope_selection.md` \u2014 justification for energy US+UK MVP scope (G0 artefact)",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`docs/smim/TASK_REGISTRY.md` \u2014 Claude Code task decomposition with current status",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Example: `[SMIM M2.1-T3] Implement NarrativeEdgeEstimator`",
+              "distinct_tokens": 3,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Experiment configs are YAML files in `experiments/` parsed by `smim/config.py`",
+              "distinct_tokens": 6,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`experiments/mvp_energy_us_uk.yaml` \u2014 sample experiment config for the first build",
+              "distinct_tokens": 7,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Integration tests in `tests_slow/smim/`",
+              "distinct_tokens": 3,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "SMIM components implement protocols defined in `smim/interfaces.py`",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`smim/config.py` \u2014 Pydantic config models (all tuneable parameters)",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`smim/interfaces.py` \u2014 all Protocol definitions (read this before implementing anything)",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`tests/acceptance/smim/` \u2014 130 SMIM correctness tests (run on both CPU and CUDA)",
+              "distinct_tokens": 3,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "`tests/benchmarks/smim/` \u2014 GPU vs CPU performance benchmarks (pytest-benchmark)",
+              "distinct_tokens": 5,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "7d9b86f97f",
+              "session": 69,
+              "rule": "Unit tests in `tests/unit/smim/` mirror the `smim/` directory structure",
+              "distinct_tokens": 4,
+              "tokens_named_in_commit_message": 0,
+              "rules_removed_in_same_commit": 25,
+              "bulk_scope_change": true,
+              "announced": false
+            },
+            {
+              "sha": "fd106f902f",
+              "session": 76,
+              "rule": "Python 3.11 strict",
+              "distinct_tokens": 2,
+              "tokens_named_in_commit_message": 2,
+              "rules_removed_in_same_commit": 1,
+              "bulk_scope_change": false,
+              "announced": true
+            }
+          ],
+          "survival_curve": [
+            {
+              "k": 0,
+              "at_risk": 74,
+              "alive": 74,
+              "survival": 1.0
+            },
+            {
+              "k": 1,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 2,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 3,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 4,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 5,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 6,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 7,
+              "at_risk": 71,
+              "alive": 69,
+              "survival": 0.9718
+            },
+            {
+              "k": 8,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 9,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 10,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 11,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 12,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 13,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 14,
+              "at_risk": 70,
+              "alive": 68,
+              "survival": 0.9714
+            },
+            {
+              "k": 15,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 16,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 17,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 18,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 19,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 20,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 21,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 22,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 23,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 24,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 25,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 26,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 27,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 28,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 29,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 30,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 31,
+              "at_risk": 62,
+              "alive": 60,
+              "survival": 0.9677
+            },
+            {
+              "k": 32,
+              "at_risk": 62,
+              "alive": 57,
+              "survival": 0.9194
+            },
+            {
+              "k": 33,
+              "at_risk": 62,
+              "alive": 57,
+              "survival": 0.9194
+            },
+            {
+              "k": 34,
+              "at_risk": 62,
+              "alive": 57,
+              "survival": 0.9194
+            },
+            {
+              "k": 35,
+              "at_risk": 62,
+              "alive": 57,
+              "survival": 0.9194
+            },
+            {
+              "k": 36,
+              "at_risk": 62,
+              "alive": 57,
+              "survival": 0.9194
+            },
+            {
+              "k": 37,
+              "at_risk": 62,
+              "alive": 57,
+              "survival": 0.9194
+            },
+            {
+              "k": 38,
+              "at_risk": 62,
+              "alive": 52,
+              "survival": 0.8387
+            },
+            {
+              "k": 39,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 40,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 41,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 42,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 43,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 44,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 45,
+              "at_risk": 62,
+              "alive": 35,
+              "survival": 0.5645
+            },
+            {
+              "k": 46,
+              "at_risk": 62,
+              "alive": 34,
+              "survival": 0.5484
+            },
+            {
+              "k": 47,
+              "at_risk": 59,
+              "alive": 34,
+              "survival": 0.5763
+            },
+            {
+              "k": 48,
+              "at_risk": 59,
+              "alive": 34,
+              "survival": 0.5763
+            },
+            {
+              "k": 49,
+              "at_risk": 59,
+              "alive": 34,
+              "survival": 0.5763
+            },
+            {
+              "k": 50,
+              "at_risk": 59,
+              "alive": 34,
+              "survival": 0.5763
+            },
+            {
+              "k": 51,
+              "at_risk": 59,
+              "alive": 34,
+              "survival": 0.5763
+            },
+            {
+              "k": 52,
+              "at_risk": 59,
+              "alive": 34,
+              "survival": 0.5763
+            },
+            {
+              "k": 53,
+              "at_risk": 53,
+              "alive": 33,
+              "survival": 0.6226
+            }
+          ]
+        }
+      },
+      "hand_audit": {
+        "findings": 4,
+        "by_class": {
+          "SR-2": 2,
+          "ADJUDICATION": 1,
+          "NEGATIVE": 1
+        },
+        "detail": [
+          {
+            "id": "F6",
+            "project": "btest",
+            "class": "SR-2",
+            "records": [
+              "CLAUDE.md:127-130"
+            ],
+            "opened_session": 48,
+            "title": "CLAUDE.md's data-source list has been two schemes short for 119 days across four edits of the same file",
+            "detail": "CLAUDE.md lines 127-130 state 'URL scheme dispatched by data/sources/registry.py:' and list three: parquet://, yf://, fred://. The tree carries six distinct URL prefixes: parquet:// (sources/parquet.py:86, sources/cache.py:168), yf:// (sources/yahoo.py:17), fred:// (sources/fred.py:17), csv:// (sources/csv_source.py:94), sfera:// and sfera-bars:// (sources/sfera.py:88-89).",
+            "dating": "The three-scheme list was written 2026-03-15 (c29db97, session 30). sfera:// + sfera-bars:// landed 2026-03-24 (6cecf48, session 48) - nine days later. csv:// landed 2026-03-29 (8fdf1f4, session 50) - fourteen days later. CLAUDE.md was then edited on 2026-04-03 (s55), 2026-05-02 (s69), 2026-06-05 (s76) and 2026-07-09 (s83) without the list moving: 119 days and four edits of the same file.",
+            "why_this_is_the_right_btest_comparison": "btest has no decision records, so its arm is not a zero on blive's denominator - it is the same measurement on the record type btest actually has (WS4b finding 10: a 212-line agent-instruction file). The failure is identical in shape to F1: a record asserting a fact the code contradicts, unmoved.",
+            "corroborates": "WS4a finding 3 built btest's doc-vs-code trap on this same divergence and counted six schemes; the count reproduces exactly.",
+            "receipts": [
+              {
+                "path": "CLAUDE.md",
+                "contains": "- `fred://SERIES_ID` \u2192 FRED economic data"
+              },
+              {
+                "path": "src/quantdsl_backtest/data/sources/sfera.py",
+                "contains": "SFERA_BARS_PREFIX = \"sfera-bars://\""
+              },
+              {
+                "path": "src/quantdsl_backtest/data/sources/csv_source.py",
+                "contains": "startswith(\"csv://\")"
+              }
+            ]
+          },
+          {
+            "id": "F7",
+            "project": "btest",
+            "class": "SR-2",
+            "records": [
+              "CLAUDE.md:102"
+            ],
+            "opened_session": 30,
+            "title": "CLAUDE.md's '~2600 LOC' orchestrator claim has never been true, at any commit",
+            "detail": "CLAUDE.md line 102 reads 'engine/backtest_runner.py (main orchestrator ~2600 LOC)'. The file was 1519 lines on 2026-03-15, the day the claim was written (c29db97). Across all 18 commits that have ever touched it, its maximum length is 1618 lines (2c95145, 2026-06-25), which is also its length at HEAD. The claim overstates by 71 percent on the day of writing and by 61 percent at HEAD.",
+            "this_is_a_birth_defect_not_drift": "There is no interval in the file's history during which the claim was true. Like F1 in blive, the record was wrong on arrival - which means neither substrate posture has an instrument that checks a factual claim at the moment it is deposited. Both projects' only surviving fact-drift findings are of this kind.",
+            "record_movement": "none for this line; CLAUDE.md was edited five times after the claim was written (2026-03-16, 03-21, 04-03, 05-02, 06-05, 07-09) and the number never moved.",
+            "receipts": [
+              {
+                "path": "CLAUDE.md",
+                "contains": "(main orchestrator ~2600 LOC)"
+              }
+            ]
+          },
+          {
+            "id": "F8",
+            "project": "btest",
+            "class": "ADJUDICATION",
+            "records": [],
+            "opened_session": null,
+            "title": "Three of btest's four automated strict-reversal hits are not decision reversals; one is",
+            "detail": "The commit-message lexicon in survival.py returns four strict hits for btest across 415 commits. Read by hand: 44a3619 and 5f4d896 are STATISTICAL uses of 'revert' ('mean-reverting ranks make t-1 informative', 'revert fast in absolute level') - false positives. 2303568 uses 'superseded' about an external FRED tag returning zero rows - a fact about a data provider, not a project decision. 743d1ff IS genuine: 'The workaround note (threshold 0.95, wrong normalisation) is obsolete now that the implementation uses the correct formula. Restore the original spec criterion.' That is a workaround reverted and the original spec restored, announced.",
+            "adjudicated_result": "btest announces ONE decision reversal in 415 commits (0.24 per 100). blive's eight strict hits were read the same way and all EIGHT are genuine reversal or supersession narration (11.94 per 100). A ~50x difference in how often a reversal is narrated.",
+            "the_confound_that_must_travel_with_it": "blive writes 362.5 words of commit prose per commit; btest writes 62.7. Normalised per 10,000 words of commit prose the automated rates are blive 3.29 vs btest 1.54, a 2.1x gap rather than 12x. The adjudicated per-commit gap is the headline only because the adjudication removed three quarters of btest's hits and none of blive's - state both.",
+            "the_number_this_sits_against": "WS2 measured btest at 82.2 percent rework at any horizon and 32.6 percent within 14 days, against blive's 5.2 and 3.9. btest reverses code constantly and narrates it once in 415 commits. The reversals are not hidden - there is simply nothing that records them.",
+            "receipts": [
+              {
+                "path": "CLAUDE.md",
+                "contains": "quantdsl-backtest"
+              }
+            ]
+          },
+          {
+            "id": "F10",
+            "project": "btest",
+            "class": "NEGATIVE",
+            "records": [
+              "CLAUDE.md"
+            ],
+            "opened_session": null,
+            "title": "btest's instruction file does not decay silently - the expected finding did not appear",
+            "detail": "btest's CLAUDE.md has stated 74 distinct rules across 7 versions and carries 46 at HEAD; 28 rules have been removed. Read individually: 25 went in one commit (7d9b86f, 'refactor: extract SMIM into standalone repo') whose subject states the scope change that withdraws them; 2 more are the same-commit rewording/replacement at ac77460 (the ruff -> black/isort/mypy swap, where the record was edited in place to state the new choice - a declared change under D3); and 1 is the Python-3.11-strict rule removed at fd106f9, announced in the commit subject. ZERO rule removals are unexplained.",
+            "why_it_is_published": "The hypothesis going in was that the flat project's instruction file would shed rules quietly. It does not. This is the corpus's third honest negative, alongside WS3 finding 5 and WS4b H-1, and it constrains the claim WS5 is allowed to make: btest's substrate failure is not that its records vanish without trace, it is that its records are not addressable (F9) and are not checked against the code they describe (F6, F7).",
+            "the_symmetric_number": "blive's own CLAUDE.md: 26 rules ever stated, 25 at HEAD, 1 removed - and that one is the same Python-3.11 rule, removed at ADR-053, announced. Both projects removed the same instruction on the same day and both said so.",
+            "measurement_caveat": "Rules are matched on a case- and punctuation-normalised form, so a reworded rule registers as removal plus addition. That biases the removal count UP and is not corrected for, which makes this negative conservative rather than generous.",
+            "receipts": [
+              {
+                "path": "CLAUDE.md",
+                "contains": "Python 3.11 / 3.12 strict"
+              }
+            ]
+          }
+        ]
+      },
+      "_repo_path": "~/PycharmProjects/btest"
+    }
+  },
+  "summary": {
+    "per_project": {
+      "blive": {
+        "sessions_gap_4h": 13,
+        "decision_records": 53,
+        "declared_reversals": 1,
+        "silent_reversals_of_decision_records": 0,
+        "SR-1_decision_reversed": 0,
+        "SR-2_record_fact_drift": 1,
+        "SR-3_index_incoherence": 4,
+        "MD-0_manufactured_decisions": 1,
+        "broken_anchor_targets": 7,
+        "broken_anchor_occurrences": 26,
+        "dangling_id_references": 1,
+        "reversal_commits_strict_automated": 8,
+        "reversal_rate_per_100_commits": 11.94,
+        "reversal_rate_per_10k_prose_words": 3.29,
+        "mean_commit_prose_words": 362.5,
+        "instruction_rules_at_head": 25,
+        "instruction_rules_removed": 1,
+        "instruction_rule_isolated_removals": 1
+      },
+      "btest": {
+        "sessions_gap_4h": 83,
+        "decision_records": "n/a: no decision-record system",
+        "declared_reversals": "n/a",
+        "silent_reversals_of_decision_records": "n/a",
+        "SR-1_decision_reversed": 0,
+        "SR-2_record_fact_drift": 2,
+        "SR-3_index_incoherence": "n/a",
+        "MD-0_manufactured_decisions": 0,
+        "broken_anchor_targets": 0,
+        "broken_anchor_occurrences": 0,
+        "dangling_id_references": "n/a",
+        "reversal_commits_strict_automated": 4,
+        "reversal_rate_per_100_commits": 0.96,
+        "reversal_rate_per_10k_prose_words": 1.54,
+        "mean_commit_prose_words": 62.7,
+        "instruction_rules_at_head": 46,
+        "instruction_rules_removed": 28,
+        "instruction_rule_isolated_removals": 3
+      }
+    },
+    "read_this_first": [
+      "The survival curve proper has ONE arm: blive is the only corpus project with decision records. btest's arm is a different substrate type (agent instructions + commit prose), reported as such rather than as a zero on a shared denominator.",
+      "ZERO blive ADRs were found silently reversed. That is the honest headline and it is the cheap number PLAN section 4 predicted; the informative findings are elsewhere - in the index, the anchors, and the one open question that was wrong on the day it was written.",
+      "Every declared reversal is the discipline WORKING and is never counted as a failure. blive has exactly one (ADR-021 -> ADR-043) and it is declared on both ends.",
+      "Survival points must be read with their at_risk denominator: blive's k=12 point rests on 26 records, not 53."
+    ]
+  }
+}
