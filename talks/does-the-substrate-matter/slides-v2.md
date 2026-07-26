@@ -35,7 +35,9 @@ may name it, NOTES.md says "name verbally".
 
 ## A case study, the evidence — and what this new era asks of the human
 
-**Two weeks, one legacy component — and seven personal projects instrumented to answer the n=1 objection**
+**Two weeks, one legacy component — and seven personal projects instrumented to answer the obvious objection: that one case proves nothing**
+
+*This is not a lecture, and it makes no strong claims. It is one practitioner sharing what happened — with the evidence, and its limits, shown in full.*
 
 Oleg Roshka · internal talk · 2026-07-30
 Evidence & instruments: [github.com/olegroshka/shared-substrate](https://github.com/olegroshka/shared-substrate) `research/eval/`
@@ -133,7 +135,7 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 **The pattern: the tool absorbs the mechanical layer, and the human's job moves up a level — for those who move with it.** That last clause is the honest part. The transition rewarded the weavers who became operators of the new looms, and it was hard on those who could not or would not move. Which is exactly why the *skill* — the personal substrate, next slide — is what matters.
 
-How should AI assistance be perceived, then? In my experience: not as a tool the human adopts, but as a **coupling the two grow together**. And what grows on the human's side is a **personal substrate — individual, evolving, their own**.
+How should AI assistance be perceived, then? Not as a tool the human adopts, but as a **coupling the two grow together**. And what grows on the human's side is a **personal substrate — individual, evolving, their own**.
 
 - Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. The practices accumulated from real incidents and were then indexed — none of them was designed up front from a template.
 - The same author runs different substrates on different projects, scaled to their complexity — the evidence includes a small CLI project that keeps gates and contracts and correctly skips the rest.
