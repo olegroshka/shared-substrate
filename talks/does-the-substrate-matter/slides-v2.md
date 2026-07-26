@@ -96,14 +96,14 @@ Everything else in this talk is the engineering required to make that separation
 
 ## What offloads — and what cannot
 
-The working test, in plain words: **how surprised would a strong model be by your contribution, given everything already on record?**
+The working test, in plain words: **how surprised would a strong model be by this contribution, given everything already on record?**
 
-| you produce | surprise | so it is |
+| the human produces | surprise | so it is |
 |---|---|---|
-| renames, formatting, a boilerplate adapter from a schema | ≈ none | **load — offload it** |
-| a summary of a document the agent can read itself | ≈ none | **load — offload it** |
-| *"Settle T+1, not T+2 — the broker's cutoff is 17:30 CET"* | high | **yours — write it down** |
-| *"this option list is missing the one path that keeps our goal"* | high | **yours — write it down** |
+| renames, formatting, a boilerplate adapter from a schema | ≈ none | **load — the machine's to carry** |
+| a summary of a document the agent can read itself | ≈ none | **load — the machine's to carry** |
+| *"Settle T+1, not T+2 — the broker's cutoff is 17:30 CET"* | high | **the human's — worth writing down** |
+| *"this option list is missing the one path that keeps our goal"* | high | **the human's — worth writing down** |
 
 As models strengthen, more of the table's top half becomes derivable — but the bottom half does not shrink. **The human's contribution moves toward intent and judgment; it does not disappear.**
 
@@ -117,8 +117,8 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 # Intent, decisions, scope, taste — and the judgment of meaning.
 
-- Whatever you are genuinely better at than the model stops being a comparative advantage and becomes your **entire responsibility surface** — the areas where you outperform the model are, by definition, the areas nothing else can cover.
-- The one quality check that cannot be automated is **you**: model output is *plausible by construction, not correct by construction*, and only the person who holds the intent can tell the difference at the top level.
+- Whatever the human is genuinely better at than the model stops being a comparative advantage and becomes their **entire responsibility surface** — the areas where the human outperforms the model are, by definition, the areas nothing else can cover.
+- The one quality check that cannot be automated is **the human**: model output is *plausible by construction, not correct by construction*, and only the person who holds the intent can tell the difference at the top level.
 - Delegation is not the human doing less. **It is the human's effort converging on the only work that was ever irreducibly theirs.**
 
 *(Hold this thought — section 4 includes a live example of this job being done, on this very talk.)*
@@ -133,10 +133,10 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 **The pattern: the tool absorbs the mechanical layer, and the human's job moves up a level — for those who move with it.** That last clause is the honest part. The transition rewarded the weavers who became operators of the new looms, and it was hard on those who could not or would not move. Which is exactly why the *skill* — the personal substrate, next slide — is what matters.
 
-How should AI assistance be perceived, then? Not as a tool you adopt — as a **coupling you grow**. And what grows on your side is a **personal substrate: individual, evolving, yours**.
+How should AI assistance be perceived, then? In my experience: not as a tool the human adopts, but as a **coupling the two grow together**. And what grows on the human's side is a **personal substrate — individual, evolving, their own**.
 
 - Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. The practices accumulated from real incidents and were then indexed — none of them was designed up front from a template.
-- The same author runs different substrates on different projects, scaled to their complexity — you will see a small CLI project that keeps gates and contracts and correctly skips the rest.
+- The same author runs different substrates on different projects, scaled to their complexity — the evidence includes a small CLI project that keeps gates and contracts and correctly skips the rest.
 - So an organisation cannot roll a substrate out the way it rolls out a tool. It can only make **growing one cheap** — and teach people what belongs in theirs.
 - And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous implementation at scale**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, write the lesson down, work differently tomorrow. A skill is refined the way skills always are: **by repetition with feedback, not by rollout.**
 
@@ -156,9 +156,9 @@ That was the claim going in. Seven projects and six workstreams later, the evide
 
 ## The thesis, as the evidence left it
 
-> The substrate's measurable benefit is **on the human's side of the loop, not the model's.** A good agent-instruction file and a strong model will retrieve your recorded facts. What they cannot do is make re-entry cheap, keep your short turns as delegation rather than assent, or make your reasoning findable later.
+> The substrate's measurable benefit is **on the human's side of the loop, not the model's.** A good agent-instruction file and a strong model will retrieve the facts the operator recorded. What they cannot do is make re-entry cheap, keep short messages as delegation rather than assent, or make the operator's reasoning findable later.
 >
-> The substrate is not what makes you write things down. It is what makes what you wrote down **still be there, and still be findable, three sessions later.**
+> The substrate is not what makes a person write things down. It is what makes what they wrote down **still be there, and still be findable, three sessions later.**
 
 Three exhibits carry this. All three measure **operator behaviour repeated across hundreds of turns** — the robust half of the evidence.
 
@@ -543,7 +543,7 @@ Days before this talk, the agent that built these slides — holding the **entir
 
 It was caught by the operator, applying a rule written down nowhere: *a presentation must be self-sufficient.*
 
-**The mechanism deserves a name: the weight of everything the agent held pulled its reading of the task toward what it knew.** It optimised for faithfulness to its own context, when the intent was legibility to yours.
+**The mechanism deserves a name: the weight of everything the agent held pulled its reading of the task toward what it knew.** It optimised for faithfulness to its own context, when the intent was legibility to a reader outside it.
 
 The same shape appears elsewhere in this evidence *(each seen once — a recurring shape, not a statistic)*:
 
@@ -628,7 +628,7 @@ None of this is new with AI. A surgeon can say *"scalpel"* — one word, carryin
 - Neither posture checks a claim **at write time** — and catching what the model's pattern-matching misses is now the operator's defining responsibility.
 - Your substrate will be **personal and evolving** — and below the complexity threshold, flat notes win; the discipline says so itself.
 
-**The substrate is not what makes you write things down. It is what makes what you wrote down still be there, and still be findable, three sessions later.**
+**The substrate is not what makes a person write things down. It is what makes what they wrote down still be there, and still be findable, three sessions later.**
 
 Paper, field manual, evidence: [github.com/olegroshka/shared-substrate](https://github.com/olegroshka/shared-substrate)
 

@@ -60,6 +60,13 @@ paper's three practice aphorisms remain as quotes but each carries a plain-langu
 explanation on the slide. Claim strength stays pinned to the bench captions — the
 wording changed, never the claim. Any future slide edit keeps this register.
 
+**Voice rule (S9, per Oleg):** experience shared, never lectured. No prescriptive
+second person — "a tool you adopt", "your job", "write it down" (imperative at the
+audience) are all out; the framing is first person ("in my experience", "I will
+argue") or third person ("the human", "the operator"). Deliberate exceptions where
+addressing the room *is* the point: the closing question, the self-score
+invitation, and "Your substrate will not look like mine" (peer voice, kept).
+
 **New if-challenged lines:**
 
 **Slide 4 (v2) · the era claim.**
