@@ -26,7 +26,6 @@ may name it, NOTES.md says "name verbally".
 
 **Two weeks, one legacy component — and seven personal projects instrumented to answer the n=1 objection**
 
-Oleg Roshka · internal talk · 2026-07-30
 Evidence & instruments: [github.com/olegroshka/shared-substrate](https://github.com/olegroshka/shared-substrate) `research/eval/`
 
 ---
