@@ -32,13 +32,16 @@ numbering, so use this delta map. What v2 adds:
 
 **V2 numbering:** slides 1–3 unchanged; v1 slide n ≥ 4 → v2 n+6 up to the corrections
 slide (v1 32 → v2 38); after it, +7 (altitude v1 33 → v2 40, ledger 34 → 41, spectrum
-35 → 42, close 38 → 45). Core arc 45 slides, ~36 min — the talk/discussion split still
-flexes, but the §2 block costs ~7 extra minutes; if pressed, deliver slides 5–6 as one
-breath (the table carries both), speak slide 8's precedents over slide 9 rather than
-cutting them, and never cut 4 or 9.
+35 → 42). §5 then gains **the practical-takeaway adoption menu (43)** — the abstract's
+promised "practical lessons", the à-la-carte menu with tonight's evidence as its third
+column — so closing question 44, cannot-claim 45, close 46. Core arc 46 slides,
+~37 min — the talk/discussion split still flexes, but the §2 block costs ~7 extra
+minutes; if pressed, deliver slides 5–6 as one breath (the table carries both), speak
+slide 8's precedents over slide 9 rather than cutting them, and never cut 4 or 9.
 
 **V2 never-cut set:** 4 (era), 9 (personal substrate), 11 (reframe), 12 (corpus),
-13 (A1), 23 (null), 38 (corrections), 39 (the miss), 41 (ledger).
+13 (A1), 23 (null), 38 (corrections), 39 (the miss), 41 (ledger), 43 (the practical
+takeaway — it is what the abstract advertises).
 
 **Slide 8 (v2) · the historical precedents — verify before Thursday, and the honest
 version if challenged.** The calculator resistance is documented (1970s–80s US

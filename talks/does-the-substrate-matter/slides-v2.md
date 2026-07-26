@@ -601,6 +601,22 @@ The spectrum to place yourself on:
 
 ---
 
+## The practical takeaway — adopt one piece, where it hurts
+
+Nothing tonight argues for adopting a methodology wholesale. Each element pays back on its own; the honest move is to pick the one that targets what already hurts:
+
+| if this is what hurts | one element to adopt *(and its cost)* | seen in tonight's evidence |
+|---|---|---|
+| every session starts with re-explaining the project | a pointer file the AI assistant loads automatically, plus a one-page project inventory *(an hour, once)* | session openers: ~106 characters and falling with one; ~417 and rising without |
+| "did we decide this, and why?" lives in memory and chat history | an append-only decision log with citable identifiers *(minutes per decision)* | the same decision recorded twice on the same day — only the citable copy was ever cited again |
+| one component everyone is afraid to touch | its current behaviour locked in as executable tests *before* changing anything *(about a day)* | 91 scenarios locking in the incumbent before replacement began |
+| performance regressions surface at review time | hard limits copied from the running system's production numbers, checkable by the assistant mid-work *(about a day)* | the work project's final week was spent almost entirely inside those limits |
+| the same fact maintained in several documents, drifting apart | one authoritative home per fact; everything else points to it *(a habit, not a tool)* | two copied cross-references propagated one error into 20 broken links — while the single-source register stayed correct |
+
+Each element pays back independently; together they compound. And the one near-universal prerequisite is free: **stable, citable identifiers** — they cost nothing, and they underwrite everything else.
+
+---
+
 ## The closing question
 
 None of this is new with AI. A surgeon can say *"scalpel"* — one word, carrying a complete instruction — only because an entire structure already exists around it: instruments laid out in a known order, roles assigned, a shared protocol. That structure is not free. The operating room pays to maintain it, deliberately, because it converts long explanations into short commands that cannot be misheard.
