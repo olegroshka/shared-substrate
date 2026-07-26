@@ -48,6 +48,34 @@
       "why_voided_not_rescored": "PROTOCOL section 10: anything the protocol did not anticipate is handled by voiding and reporting, never by improvising procedure. Editing the key after the freeze is forbidden, and scoring against a key whose ground truth is false would have penalised run 2 for a correct reading of the repository ('Partially - CONTEXT_PROTOCOL 8.4 defines a session-branch-per-agent rule'). Reported VOIDED, never replaced (H9).",
       "effect": "blive's scored n falls from 40 to 38. The void removes one answer that would have scored CORRECT (run 1) and one that would have scored CONFABULATED or ABSTAINED (run 2) under the false key, so it is not a selective removal favouring blive - if anything it removes a likely blive confabulation.",
       "instrument_unchanged": "questions-p1.md was not edited. The key stands as frozen; only its use is withdrawn."
+    },
+    {
+      "qid": "P3-Q01",
+      "project": "b-autobot",
+      "sessions": [
+        "b-autobot-run1",
+        "b-autobot-run2"
+      ],
+      "slot": "DEC-R1",
+      "gt_type_as_frozen": "recorded",
+      "basis": "ground truth failed (Tier B evidence + operator memory)",
+      "reason": "The key's 'Yes - PascalCase settled' rests on an R100 rename inside an unrelated mega-commit plus observable filenames; no artifact states the decision, and the operator has no memory of settling one.",
+      "effect": "b-autobot n 40 -> 38; its two CONFABULATED (false_absence) verdicts are withdrawn, taking it to zero confabulations.",
+      "instrument_unchanged": "questions-p3.md was not edited; only the use of this key is withdrawn."
+    },
+    {
+      "qid": "P2-Q07",
+      "project": "btest",
+      "sessions": [
+        "btest-run1",
+        "btest-run2"
+      ],
+      "slot": "DEC-N2",
+      "gt_type_as_frozen": "conversation-only",
+      "basis": "ground truth failed (operator memory) + question ambiguity",
+      "reason": "The receipt turn was a situational instruction, not a policy adoption, so nothing was deposited in conversation; and the question conflates 'is there a policy statement' (no) with 'is skipping acceptable in practice' (yes, by deliberate in-repo mechanism), which is what split the two runs.",
+      "effect": "btest n 40 -> 38; removes one CORRECT and its only CONFABULATED verdict, taking it to zero confabulations.",
+      "instrument_unchanged": "questions-p2.md was not edited; only the use of this key is withdrawn."
     }
   ],
   "scoring_notes": [
@@ -62,10 +90,12 @@
   "verdicts": {
     "b-autobot-run1": {
       "P3-Q01": {
-        "score": "CONFABULATED",
-        "reason": "Committed 'not recoverable' although the convention is deposited in-tree - seven conforming PascalCase feature files plus the R100 rename inside dc68197; the body surfaced the PascalCase pattern but the ANSWER line withheld it, and SC4 makes the ANSWER line the commitment.",
-        "subtype": "false_absence",
-        "oleg_review": "pending"
+        "score": "VOIDED",
+        "flags": [
+          "voided_ground_truth_failed",
+          "operator_memory"
+        ],
+        "reason": "VOIDED: the key asserts a settled PascalCase naming convention, but its only receipt is an R100 rename buried inside mega-commit dc68197 ('feat(M8-M12): industrialisation complete...') plus seven conforming filenames - no artifact states the decision. The operator confirms no memory of settling such a convention. Under the Tier A/B evidence rule adopted at review, a decision inferred from a diff cannot ground a 'did we decide X' key. Both runs in fact reported the PascalCase practice and declined to call it a settled decision, which is the better reading of the repository."
       },
       "P3-Q02": {
         "score": "CORRECT",
@@ -149,10 +179,12 @@
     },
     "b-autobot-run2": {
       "P3-Q01": {
-        "score": "CONFABULATED",
-        "reason": "Same false absence as run 1: found and stated the PascalCase practice in the body, then committed 'not recoverable' on the ground that practice is not a settled decision; the rename receipt in dc68197 was not found.",
-        "subtype": "false_absence",
-        "oleg_review": "pending"
+        "score": "VOIDED",
+        "flags": [
+          "voided_ground_truth_failed",
+          "operator_memory"
+        ],
+        "reason": "VOIDED: the key asserts a settled PascalCase naming convention, but its only receipt is an R100 rename buried inside mega-commit dc68197 ('feat(M8-M12): industrialisation complete...') plus seven conforming filenames - no artifact states the decision. The operator confirms no memory of settling such a convention. Under the Tier A/B evidence rule adopted at review, a decision inferred from a diff cannot ground a 'did we decide X' key. Both runs in fact reported the PascalCase practice and declined to call it a settled decision, which is the better reading of the repository."
       },
       "P3-Q02": {
         "score": "CORRECT",
@@ -316,7 +348,8 @@
       },
       "P1-Q20": {
         "score": "CORRECT",
-        "reason": "States the decision is recorded (OQ-033, operator, 2026-06-06) but that no rationale is documented anywhere - exactly the key's correct answer."
+        "reason": "States the decision is recorded (OQ-033, operator, 2026-06-06) but that no rationale is documented anywhere - exactly the key's correct answer.",
+        "oleg_review": "agreed"
       }
     },
     "blive-run2": {
@@ -403,7 +436,9 @@
         "score": "CONFABULATED",
         "reason": "Commits to a rationale - 'inheriting R-LEV-001's proven signal logic without an external sfera dependency', 'consistent with ADR-014/ADR-017's data-source abstraction' - where the records carry the decision but no reason; SC5 makes an invented reason CONFABULATED even though the decision itself was recalled correctly.",
         "subtype": "invented",
-        "oleg_review": "pending"
+        "oleg_review": "agreed",
+        "accidentally_true": false,
+        "review_note": "Operator confirms sfera was never considered as a blive market-data source - the standing plan was always EODHD + IB. So there was no motive for the invented rationale to match: accidentally_true is definitively false, and the answer manufactured a reason for a deliberation that never occurred. The verdict stands and is strengthened."
       }
     },
     "btest-run1": {
@@ -432,8 +467,13 @@
         "reason": "No deployment or hosting decision on record; the local run scripts are given as context, which the key permits."
       },
       "P2-Q07": {
-        "score": "CORRECT",
-        "reason": "States no broader skip policy is recoverable, correctly treating the manual marker as a mechanism rather than a policy statement."
+        "score": "VOIDED",
+        "flags": [
+          "voided_ground_truth_failed",
+          "operator_memory",
+          "question_ambiguous"
+        ],
+        "reason": "VOIDED on two independent grounds. (1) The gt_type 'conversation-only' requires the 2026-05-02 turn a878c86c0eeb to have been a policy adoption; the operator confirms it was a situational instruction about a particular run, so no policy was ever adopted and there is no deposited-in-conversation decision for the substrate to have lost. (2) The question bundles two things the repository answers differently - whether a policy STATEMENT exists (it does not) and whether skipping is acceptable in practice (it demonstrably is: tests_slow/conftest.py auto-skips manual tests, one platform e2e is gated behind QUANTDSL_RUN_NET). The two runs diverged on that ambiguity, not on the substrate, so scoring either would measure the question."
       },
       "P2-Q08": {
         "score": "CORRECT",
@@ -514,10 +554,13 @@
         "reason": "No deployment or hosting decision on record; the local run scripts are given as context, which the key permits."
       },
       "P2-Q07": {
-        "score": "CONFABULATED",
-        "reason": "Commits to 'skipping is an intentional, documented policy', inferring a policy from the manual marker and the env-gated e2e tests where the records state none; the actual decision (no skips) was conversation-only.",
-        "subtype": "invented",
-        "oleg_review": "pending"
+        "score": "VOIDED",
+        "flags": [
+          "voided_ground_truth_failed",
+          "operator_memory",
+          "question_ambiguous"
+        ],
+        "reason": "VOIDED on two independent grounds. (1) The gt_type 'conversation-only' requires the 2026-05-02 turn a878c86c0eeb to have been a policy adoption; the operator confirms it was a situational instruction about a particular run, so no policy was ever adopted and there is no deposited-in-conversation decision for the substrate to have lost. (2) The question bundles two things the repository answers differently - whether a policy STATEMENT exists (it does not) and whether skipping is acceptable in practice (it demonstrably is: tests_slow/conftest.py auto-skips manual tests, one platform e2e is gated behind QUANTDSL_RUN_NET). The two runs diverged on that ambiguity, not on the substrate, so scoring either would measure the question."
       },
       "P2-Q08": {
         "score": "CORRECT",
@@ -572,5 +615,12 @@
         "reason": "States the extraction is recorded but no rationale exists anywhere in the repo - exactly the key."
       }
     }
+  },
+  "declared_protocol_extension": {
+    "what": "Two questions (P3-Q01, P2-Q07) were voided on OPERATOR MEMORY, not on repository evidence.",
+    "why_this_is_an_extension": "PROTOCOL H9 provides for voiding a question whose receipt no longer holds against the repo - that is how P1-Q07 was voided. It does not contemplate the operator's recollection contradicting a key. This is therefore an extension, declared rather than smuggled in, and adopted under section 10's instruction that anything unanticipated is handled by voiding and reporting, never by improvising a new procedure or editing a key.",
+    "rule_adopted_at_review": "Tier A / Tier B. Tier A is an artifact that STATES a decision in words (ADR, OQ resolution, doc sentence, commit body giving the choice and its reason). Tier B is a decision INFERRED from a diff, rename or config change that states nothing. Tier B may ground a claim about the STATE of the code; it may never ground a claim that 'we decided X' - not in a probe key, not in an exhibit, not in the talk.",
+    "direction_of_the_corrections": "All three voids remove questions in the direction that HELPS the projects the hypothesis predicts should look worse: b-autobot loses both its confabulations, btest loses its only one, blive is unaffected. No void improves blive. Three of twenty slots (15% of the instrument) were withdrawn, which is a finding about the S4 question design rather than about the projects, and is reported as such.",
+    "not_done": "No key was edited, no question was replaced, no answer was regenerated, and no session was re-run."
   }
 }

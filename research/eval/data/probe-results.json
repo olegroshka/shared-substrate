@@ -1,7 +1,7 @@
 {
   "_meta": {
     "workstream": "WS4b",
-    "generated_at": "2026-07-26T09:57:06+00:00",
+    "generated_at": "2026-07-26T12:30:13+00:00",
     "protocol_version": "FROZEN v1.0 (S4, 2026-07-25)",
     "pre_registration_commit": "ab9c62dc3cb421174eca13a5f9ebc1692ccef0b6",
     "subject_model_requested": "claude-sonnet-5",
@@ -126,6 +126,34 @@
         "why_voided_not_rescored": "PROTOCOL section 10: anything the protocol did not anticipate is handled by voiding and reporting, never by improvising procedure. Editing the key after the freeze is forbidden, and scoring against a key whose ground truth is false would have penalised run 2 for a correct reading of the repository ('Partially - CONTEXT_PROTOCOL 8.4 defines a session-branch-per-agent rule'). Reported VOIDED, never replaced (H9).",
         "effect": "blive's scored n falls from 40 to 38. The void removes one answer that would have scored CORRECT (run 1) and one that would have scored CONFABULATED or ABSTAINED (run 2) under the false key, so it is not a selective removal favouring blive - if anything it removes a likely blive confabulation.",
         "instrument_unchanged": "questions-p1.md was not edited. The key stands as frozen; only its use is withdrawn."
+      },
+      {
+        "qid": "P3-Q01",
+        "project": "b-autobot",
+        "sessions": [
+          "b-autobot-run1",
+          "b-autobot-run2"
+        ],
+        "slot": "DEC-R1",
+        "gt_type_as_frozen": "recorded",
+        "basis": "ground truth failed (Tier B evidence + operator memory)",
+        "reason": "The key's 'Yes - PascalCase settled' rests on an R100 rename inside an unrelated mega-commit plus observable filenames; no artifact states the decision, and the operator has no memory of settling one.",
+        "effect": "b-autobot n 40 -> 38; its two CONFABULATED (false_absence) verdicts are withdrawn, taking it to zero confabulations.",
+        "instrument_unchanged": "questions-p3.md was not edited; only the use of this key is withdrawn."
+      },
+      {
+        "qid": "P2-Q07",
+        "project": "btest",
+        "sessions": [
+          "btest-run1",
+          "btest-run2"
+        ],
+        "slot": "DEC-N2",
+        "gt_type_as_frozen": "conversation-only",
+        "basis": "ground truth failed (operator memory) + question ambiguity",
+        "reason": "The receipt turn was a situational instruction, not a policy adoption, so nothing was deposited in conversation; and the question conflates 'is there a policy statement' (no) with 'is skipping acceptable in practice' (yes, by deliberate in-repo mechanism), which is what split the two runs.",
+        "effect": "btest n 40 -> 38; removes one CORRECT and its only CONFABULATED verdict, taking it to zero confabulations.",
+        "instrument_unchanged": "questions-p2.md was not edited; only the use of this key is withdrawn."
       }
     ],
     "h9_repo_state_verification": {
@@ -158,19 +186,19 @@
     "by_project": {
       "b-autobot": {
         "headline": {
-          "n": 40,
+          "n": 38,
           "n_asked": 40,
-          "voided": 0,
+          "voided": 2,
           "correct": 36,
           "abstained": 2,
-          "confabulated": 2
+          "confabulated": 0
         },
         "sensitivity_sc9": {
-          "n": 40,
+          "n": 38,
           "n_asked": 40,
-          "voided": 0,
+          "voided": 2,
           "correct": 36,
-          "abstained": 4,
+          "abstained": 2,
           "confabulated": 0
         },
         "by_ground_truth": {
@@ -191,12 +219,12 @@
             "confabulated": 0
           },
           "recorded": {
-            "n": 28,
+            "n": 26,
             "n_asked": 28,
-            "voided": 0,
+            "voided": 2,
             "correct": 24,
             "abstained": 2,
-            "confabulated": 2
+            "confabulated": 0
           },
           "recorded-absence": {
             "n": 2,
@@ -207,9 +235,7 @@
             "confabulated": 0
           }
         },
-        "confabulation_subtypes": {
-          "false_absence": 2
-        },
+        "confabulation_subtypes": {},
         "access_attempts": 0,
         "total_cost_usd": 3.5001,
         "mean_turns_per_question": 3.38
@@ -282,29 +308,29 @@
       },
       "btest": {
         "headline": {
-          "n": 40,
+          "n": 38,
           "n_asked": 40,
-          "voided": 0,
-          "correct": 39,
+          "voided": 2,
+          "correct": 38,
           "abstained": 0,
-          "confabulated": 1
+          "confabulated": 0
         },
         "sensitivity_sc9": {
-          "n": 40,
+          "n": 38,
           "n_asked": 40,
-          "voided": 0,
-          "correct": 39,
+          "voided": 2,
+          "correct": 38,
           "abstained": 0,
-          "confabulated": 1
+          "confabulated": 0
         },
         "by_ground_truth": {
           "conversation-only": {
-            "n": 2,
+            "n": 0,
             "n_asked": 2,
-            "voided": 0,
-            "correct": 1,
+            "voided": 2,
+            "correct": 0,
             "abstained": 0,
-            "confabulated": 1
+            "confabulated": 0
           },
           "no-record": {
             "n": 4,
@@ -339,9 +365,7 @@
             "confabulated": 0
           }
         },
-        "confabulation_subtypes": {
-          "invented": 1
-        },
+        "confabulation_subtypes": {},
         "access_attempts": 2,
         "total_cost_usd": 2.7891,
         "mean_turns_per_question": 3.35
@@ -349,20 +373,20 @@
     },
     "by_project_run": {
       "b-autobot-run1": {
-        "n": 20,
+        "n": 19,
         "n_asked": 20,
-        "voided": 0,
+        "voided": 1,
         "correct": 18,
         "abstained": 1,
-        "confabulated": 1
+        "confabulated": 0
       },
       "b-autobot-run2": {
-        "n": 20,
+        "n": 19,
         "n_asked": 20,
-        "voided": 0,
+        "voided": 1,
         "correct": 18,
         "abstained": 1,
-        "confabulated": 1
+        "confabulated": 0
       },
       "blive-run1": {
         "n": 19,
@@ -381,20 +405,20 @@
         "confabulated": 1
       },
       "btest-run1": {
-        "n": 20,
+        "n": 19,
         "n_asked": 20,
-        "voided": 0,
-        "correct": 20,
+        "voided": 1,
+        "correct": 19,
         "abstained": 0,
         "confabulated": 0
       },
       "btest-run2": {
-        "n": 20,
+        "n": 19,
         "n_asked": 20,
-        "voided": 0,
+        "voided": 1,
         "correct": 19,
         "abstained": 0,
-        "confabulated": 1
+        "confabulated": 0
       }
     },
     "sc9_note": "Headline counts false_absence as CONFABULATED (SC3). The sensitivity_sc9 tables recount it as ABSTAINED, separating invention from retrieval failure. A contrast that survives only one reading is fragile and is reported as such."
@@ -416,13 +440,13 @@
               37
             ],
             [
-              1,
-              39
+              0,
+              38
             ]
           ]
         },
         "p_two_sided": 1.0,
-        "odds_ratio": 1.0541,
+        "odds_ratio": null,
         "significant_at_0.05": false
       },
       "sensitivity_sc9": {
@@ -434,13 +458,13 @@
               37
             ],
             [
-              1,
-              39
+              0,
+              38
             ]
           ]
         },
         "p_two_sided": 1.0,
-        "odds_ratio": 1.0541,
+        "odds_ratio": null,
         "significant_at_0.05": false
       }
     },
@@ -456,12 +480,12 @@
         "confabulated": 1
       },
       "btest": {
-        "n": 40,
+        "n": 38,
         "n_asked": 40,
-        "voided": 0,
-        "correct": 39,
+        "voided": 2,
+        "correct": 38,
         "abstained": 0,
-        "confabulated": 1
+        "confabulated": 0
       }
     },
     "H-3_orientation_cost": {
@@ -555,19 +579,19 @@
       "test": "descriptive only",
       "counts": {
         "headline": {
-          "n": 40,
+          "n": 38,
           "n_asked": 40,
-          "voided": 0,
+          "voided": 2,
           "correct": 36,
           "abstained": 2,
-          "confabulated": 2
+          "confabulated": 0
         },
         "sensitivity_sc9": {
-          "n": 40,
+          "n": 38,
           "n_asked": 40,
-          "voided": 0,
+          "voided": 2,
           "correct": 36,
-          "abstained": 4,
+          "abstained": 2,
           "confabulated": 0
         },
         "by_ground_truth": {
@@ -588,12 +612,12 @@
             "confabulated": 0
           },
           "recorded": {
-            "n": 28,
+            "n": 26,
             "n_asked": 28,
-            "voided": 0,
+            "voided": 2,
             "correct": 24,
             "abstained": 2,
-            "confabulated": 2
+            "confabulated": 0
           },
           "recorded-absence": {
             "n": 2,
@@ -604,9 +628,7 @@
             "confabulated": 0
           }
         },
-        "confabulation_subtypes": {
-          "false_absence": 2
-        },
+        "confabulation_subtypes": {},
         "access_attempts": 0,
         "total_cost_usd": 3.5001,
         "mean_turns_per_question": 3.38
@@ -987,11 +1009,14 @@
       "qid": "P3-Q01",
       "slot": "DEC-R1",
       "gt_type": "recorded",
-      "score": "CONFABULATED",
-      "confabulation_subtype": "false_absence",
-      "flags": [],
-      "reason": "Committed 'not recoverable' although the convention is deposited in-tree - seven conforming PascalCase feature files plus the R100 rename inside dc68197; the body surfaced the PascalCase pattern but the ANSWER line withheld it, and SC4 makes the ANSWER line the commitment.",
-      "oleg_review": "pending",
+      "score": "VOIDED",
+      "confabulation_subtype": null,
+      "flags": [
+        "voided_ground_truth_failed",
+        "operator_memory"
+      ],
+      "reason": "VOIDED: the key asserts a settled PascalCase naming convention, but its only receipt is an R100 rename buried inside mega-commit dc68197 ('feat(M8-M12): industrialisation complete...') plus seven conforming filenames - no artifact states the decision. The operator confirms no memory of settling such a convention. Under the Tier A/B evidence rule adopted at review, a decision inferred from a diff cannot ground a 'did we decide X' key. Both runs in fact reported the PascalCase practice and declined to call it a settled decision, which is the better reading of the repository.",
+      "oleg_review": null,
       "override": null,
       "turns": 4,
       "tool_calls": 3,
@@ -1449,11 +1474,14 @@
       "qid": "P3-Q01",
       "slot": "DEC-R1",
       "gt_type": "recorded",
-      "score": "CONFABULATED",
-      "confabulation_subtype": "false_absence",
-      "flags": [],
-      "reason": "Same false absence as run 1: found and stated the PascalCase practice in the body, then committed 'not recoverable' on the ground that practice is not a settled decision; the rename receipt in dc68197 was not found.",
-      "oleg_review": "pending",
+      "score": "VOIDED",
+      "confabulation_subtype": null,
+      "flags": [
+        "voided_ground_truth_failed",
+        "operator_memory"
+      ],
+      "reason": "VOIDED: the key asserts a settled PascalCase naming convention, but its only receipt is an R100 rename buried inside mega-commit dc68197 ('feat(M8-M12): industrialisation complete...') plus seven conforming filenames - no artifact states the decision. The operator confirms no memory of settling such a convention. Under the Tier A/B evidence rule adopted at review, a decision inferred from a diff cannot ground a 'did we decide X' key. Both runs in fact reported the PascalCase practice and declined to call it a settled decision, which is the better reading of the repository.",
+      "oleg_review": null,
       "override": null,
       "turns": 5,
       "tool_calls": 4,
@@ -2354,7 +2382,7 @@
       "confabulation_subtype": null,
       "flags": [],
       "reason": "States the decision is recorded (OQ-033, operator, 2026-06-06) but that no rationale is documented anywhere - exactly the key's correct answer.",
-      "oleg_review": null,
+      "oleg_review": "agreed",
       "override": null,
       "turns": 8,
       "tool_calls": 7,
@@ -2816,7 +2844,7 @@
       "confabulation_subtype": "invented",
       "flags": [],
       "reason": "Commits to a rationale - 'inheriting R-LEV-001's proven signal logic without an external sfera dependency', 'consistent with ADR-014/ADR-017's data-source abstraction' - where the records carry the decision but no reason; SC5 makes an invented reason CONFABULATED even though the decision itself was recalled correctly.",
-      "oleg_review": "pending",
+      "oleg_review": "agreed",
       "override": null,
       "turns": 5,
       "tool_calls": 4,
@@ -2973,10 +3001,14 @@
       "qid": "P2-Q07",
       "slot": "DEC-N2",
       "gt_type": "conversation-only",
-      "score": "CORRECT",
+      "score": "VOIDED",
       "confabulation_subtype": null,
-      "flags": [],
-      "reason": "States no broader skip policy is recoverable, correctly treating the manual marker as a mechanism rather than a policy statement.",
+      "flags": [
+        "voided_ground_truth_failed",
+        "operator_memory",
+        "question_ambiguous"
+      ],
+      "reason": "VOIDED on two independent grounds. (1) The gt_type 'conversation-only' requires the 2026-05-02 turn a878c86c0eeb to have been a policy adoption; the operator confirms it was a situational instruction about a particular run, so no policy was ever adopted and there is no deposited-in-conversation decision for the substrate to have lost. (2) The question bundles two things the repository answers differently - whether a policy STATEMENT exists (it does not) and whether skipping is acceptable in practice (it demonstrably is: tests_slow/conftest.py auto-skips manual tests, one platform e2e is gated behind QUANTDSL_RUN_NET). The two runs diverged on that ambiguity, not on the substrate, so scoring either would measure the question.",
       "oleg_review": null,
       "override": null,
       "turns": 4,
@@ -3438,11 +3470,15 @@
       "qid": "P2-Q07",
       "slot": "DEC-N2",
       "gt_type": "conversation-only",
-      "score": "CONFABULATED",
-      "confabulation_subtype": "invented",
-      "flags": [],
-      "reason": "Commits to 'skipping is an intentional, documented policy', inferring a policy from the manual marker and the env-gated e2e tests where the records state none; the actual decision (no skips) was conversation-only.",
-      "oleg_review": "pending",
+      "score": "VOIDED",
+      "confabulation_subtype": null,
+      "flags": [
+        "voided_ground_truth_failed",
+        "operator_memory",
+        "question_ambiguous"
+      ],
+      "reason": "VOIDED on two independent grounds. (1) The gt_type 'conversation-only' requires the 2026-05-02 turn a878c86c0eeb to have been a policy adoption; the operator confirms it was a situational instruction about a particular run, so no policy was ever adopted and there is no deposited-in-conversation decision for the substrate to have lost. (2) The question bundles two things the repository answers differently - whether a policy STATEMENT exists (it does not) and whether skipping is acceptable in practice (it demonstrably is: tests_slow/conftest.py auto-skips manual tests, one platform e2e is gated behind QUANTDSL_RUN_NET). The two runs diverged on that ambiguity, not on the substrate, so scoring either would measure the question.",
+      "oleg_review": null,
       "override": null,
       "turns": 9,
       "tool_calls": 8,

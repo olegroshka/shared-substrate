@@ -5,11 +5,20 @@ scripted git-history measurement in the WS2 house pattern, and the instrument
 question is small). **If you attempt the kernel teaser (WS5b), bump to Opus 5**;
 PLAN §4 marks it "cut first", and a half-baked κ estimate is worse than none.
 
-> **What S5 leaves you.** WS4b came out **null** — blive 1/38 confabulations vs
-> btest 1/40, Fisher p = 1.0. That was the talk's one controlled number, so WS5
-> now carries more weight than the plan assumed. Do not respond by making WS5
-> generous. The corpus has already produced two honest negatives (WS3 finding 5,
-> WS4b H-1) and they are the reason the rest is believable.
+> **What S5 leaves you.** WS4b came out **null**, and after Oleg's SC8 review its
+> nominal direction reversed: btest 38/38 correct with zero confabulations, blive
+> 37/38 with **the corpus's only confabulation**. Fisher p = 1.0. That was the
+> talk's one controlled number, so WS5 now carries more weight than the plan
+> assumed. Do not respond by making WS5 generous. The corpus has already produced
+> two honest negatives (WS3 finding 5, WS4b H-1) and they are the reason the rest
+> is believable.
+>
+> **Two rules from S5 that now bind you.** (1) **Tier A/B evidence:** a claim that
+> "we decided X" must rest on an artifact that *states* the decision; a decision
+> inferred from a diff, rename or config change may ground a claim about the
+> **state** of the code, never about a decision. Two WS4 questions were voided for
+> failing this. (2) When ground truth turns out not to hold, **void and report** —
+> never edit the key, never replace the question, never regenerate an answer.
 
 ---
 
@@ -70,15 +79,12 @@ something a re-run can silently overwrite.
 
 ---
 
-**Pending on Oleg (carried from S5, blocking only the *final* status of
-`probe-results.json`):** the **SC8 review** of all four CONFABULATED verdicts,
-batched with their verbatim answers and frozen keys at
-`research/eval/data/probes/local/SC8-REVIEW.md`. Each verdict currently reads
-`"oleg_review": "pending"`. A disagreement resolves to Oleg's verdict and is
-logged as an override with both readings; re-run `scripts/probe_results.py`
-after editing `data/probes/scores.json`. Worth a glance in the same sitting: the
-two SC7 tie-breaks on b-autobot P3-Q05 (read as commitments, b-autobot goes 2→4)
-and the voided P1-Q07.
+**Nothing is pending on Oleg.** The SC8 review closed in S5: three of twenty
+question slots are voided (P1-Q07, P3-Q01, P2-Q07 — each in both runs), the one
+surviving CONFABULATED verdict (blive-run2 P1-Q20) is reviewed and agreed with
+`accidentally_true` explicitly false, and the two SC7 tie-breaks on b-autobot
+P3-Q05 stand. Details in `data/probes/scores.json` under `voided_h9` and
+`declared_protocol_extension`.
 
 Carried as *reconcile-before-the-talk* (unchanged, none blockers):
 1. blive's Requirements v0 is **3,375 words**; the paper says "around six
@@ -88,11 +94,23 @@ Carried as *reconcile-before-the-talk* (unchanged, none blockers):
 3. Any exhibit plotting rubric score against session-log altitude must footnote
    **seamQ** (WS1 scored the stripped tree; WS3 measured the in-flight posture).
 
-**New, and it matters for how the talk is framed:** WS4b finding 7 — btest's
-`CLAUDE.md` is a 212-line agent-instruction file, so PLAN §2's "flat" arm is flat
-in *decision records*, not in agent instructions. Every exhibit contrasting
-"substrated" against "unsubstrated" needs that qualifier, and the WS4b null may
-be explained by it entirely.
+**New from S5, and all three matter for how the talk is framed:**
+1. **WS4b finding 10** — btest's `CLAUDE.md` is a 212-line agent-instruction file,
+   so PLAN §2's "flat" arm is flat in *decision records*, not in agent
+   instructions. Every exhibit contrasting "substrated" against "unsubstrated"
+   needs that qualifier, and the WS4b null may be explained by it entirely.
+2. **WS4b finding 9 — DEC-N2 is 0 for 3.** No project yielded a decision that
+   lived only in conversation: b-autobot's slot was declared unfillable at freeze,
+   blive's turned out to be in the repo, btest's turned out not to be a decision.
+   This cuts *for* the thesis in a way the confabulation count does not, but it
+   rests on three negative constructions — state it as "we could not find one",
+   never as "they do not exist".
+3. **WS4b finding 7, a WS6 lead you will want** — blive's `OPEN_QUESTIONS.md`
+   OQ-033 records an "Operator decision (2026-06-06)" against an option the
+   operator says was never considered. The readiness audit formalised a standing
+   default into a dated decision. Append-only discipline can *manufacture*
+   decisions, not just preserve them, and that is the most interesting failure
+   mode the probe surfaced.
 
 The one genuinely soft number in the corpus is still **P8 A5** (rubric decisions
 axis, 2 PROVISIONAL-INFERRED) — settleable only from Oleg's memory; worth one
