@@ -72,6 +72,15 @@ surface stays "a legacy component at a regulated financial institution".
 4. **Post-talk deposit:** whatever the room actually did — which branch points fired,
    which module ran, which challenges came — is WS-grade evidence about the talk's own
    design. A paragraph in STATE.md's session log is enough; write it while it's warm.
+5. **Prospective instruments sketched in the S9 deck-miss discussion** (candidates if
+   the eval continues; none exist yet): **fresh-context decode tests** for any
+   audience-facing artifact (the probe pointed at deliverables instead of repos); an
+   **operator-catch ledger** — every operator override recorded with whether the
+   violated rule was written anywhere, at what layer, and whether the agent held it in
+   context; a **rule-invocation journal** at deposit time (war story 3's `file:line`
+   hypothesis extended from facts to norms). Motivation: the eval measured retrieval,
+   never comprehension — the deck miss showed an agent can hold every record and still
+   miss the semantics.
 
 **Constraints (standing):** console output ASCII-only (Windows cp1252); Python 3.11 via
 `python`; never modify the corpus repos; author judgment stays in published input files;

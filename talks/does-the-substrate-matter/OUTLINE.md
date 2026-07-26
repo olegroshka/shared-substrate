@@ -35,6 +35,12 @@ slide-level realisation of that shape and evolves independently as the deck is b
 - [x] Handout finalised (S9 — `handout-rubric.md`, incl. the Step-0 complexity check)
 - [x] Deck-side dry run: caption/caveat audit of every number slide against the exhibit
       bench (S9 — one bench caption error found and fixed, see STATE.md S9 findings)
+- [x] **slides-v2.md — the Thursday candidate** (S9 addendum, per Oleg): §2 opens with
+      the paper's frame (the era claim vs Google's New-SDLC quote · creative input vs
+      cognitive load · the responsibility inversion · the personal evolving substrate);
+      §4 gains the deck-building miss as the evaluation's third self-correction; close
+      updated. v1 kept for diffing. NOTES.md carries the v2 delta map + new
+      if-challenged lines.
 - [ ] Live branch-point rehearsal (Oleg, before Thu — checklist at the end of `NOTES.md`)
 
 Figures: the deck reuses `assets/fig-*.png` from the repo root (relative paths); no

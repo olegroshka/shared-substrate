@@ -1220,3 +1220,32 @@ Caveats that travel with S9's output:
   NOTES.md). NEXT_TASK.md rewritten as the **post-talk brief** (P8 work-side leg per
   PLAN §5). Next: **the talk itself (Thu 2026-07-30, no session needed)**, then the
   in-org round-trip.
+- **S9 addendum · 2026-07-26 · Fable 5, with Oleg:** Two operator-driven iterations
+  after the S9 commit. **(1) Self-sufficiency pass.** Oleg caught that the deck assumed
+  report context a first-time viewer lacks — project names unintroduced, probe/ADR/
+  altitude/SMIM/arms unglossed. Fixed (corpus-intro slide + glosses at first use; core
+  arc 38 slides; NOTES renumbered). The miss itself was recognised as an instance of
+  the eval's own sharpest finding: a **deposit-time failure invisible to
+  retrieval-time checks** — the agent held the full report, passed every fidelity
+  check it had, and was caught by an operator rule written nowhere (PLAN §9's
+  "complete on its own" was deposited but decoded at the wrong layer — the intent gap,
+  live). Third instance in this project of the operator, not an instrument, catching
+  the sharpest defect. The discussion also named the eval's honest limit: it measured
+  **retrieval, never comprehension**, and measured the externalized shadow of a
+  methodology whose deeper claim is about the human's semantic hierarchy (cognitive
+  traces are unrecoverable in principle; candidate prospective instruments — decode
+  tests, operator-catch ledger, rule-invocation journal — recorded in NEXT_TASK
+  carried item 5). **(2) slides-v2.md** created per Oleg's direction as the Thursday
+  candidate (v1 kept for diffing): §2 now opens with the paper's frame before any
+  evidence — the era claim engaging Google's *New SDLC* whitepaper quote ("writing
+  code → expressing intent" — true and too narrow: the shift is in **how humans engage
+  with information**), creative-input-vs-cognitive-load, the responsibility inversion
+  (what the human is genuinely better at becomes the whole job), and AI-assist
+  perceived as each operator growing a **personal, evolving substrate** ("scar tissue
+  with an index", grown not rolled out). §4 gains the deck-building miss as the
+  evaluation's **third self-correction** (surface pattern-matching vs implied intent;
+  n=1, a shape with two in-corpus siblings, never a rate). Close carries the era
+  framing. NOTES.md gains the v2 delta map, updated never-cut set, and if-challenged
+  lines for the era slide and the miss slide, plus a verify-the-quote-wording task
+  before Thursday (quote confirmed via secondary sources only). Feedback memory saved:
+  audience-facing artifacts get an explicit self-sufficiency pass.

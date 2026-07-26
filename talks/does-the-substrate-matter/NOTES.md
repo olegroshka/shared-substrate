@@ -13,6 +13,57 @@ slide, in the handout, or in these notes carries the name.
 
 ---
 
+## If presenting v2 (`slides-v2.md`) — the Thursday candidate
+
+V2 = v1 plus six slides; everything below this section is written against **v1**
+numbering, so use this delta map. What v2 adds:
+
+- **§2 opens with the paper's frame before any evidence** (new slides 4–8): the era
+  claim engaging Google's *New SDLC* quote (4) · "separate creative input from cognitive
+  load" (5) · the offload test — "how surprised would a strong model be?" (6) · the
+  responsibility inversion (7) · the personal-evolving-substrate reading of AI-assist
+  (8). The old frame slide follows as "The frame in one picture" (9).
+- **§4 gains the deck-building miss** (new slide 38, right after the corrections slide):
+  the agent's surface-perfect/illegible deck, told as the evaluation's third
+  self-correction and as the §2 inversion demonstrated live.
+- The close carries the era + personal-substrate lines.
+
+**V2 numbering:** slides 1–3 unchanged; v1 slide n ≥ 4 → v2 n+5 up to the corrections
+slide (v1 32 → v2 37); after it, +6 (altitude v1 33 → v2 39, ledger 34 → 40, spectrum
+35 → 41, close 38 → 44). Core arc 44 slides, ~35 min — the talk/discussion split still
+flexes, but the §2 block costs ~6 extra minutes; if pressed, deliver slides 5–6 as one
+breath (the table carries both) and never cut 4 or 8.
+
+**V2 never-cut set:** 4 (era), 8 (personal substrate), 10 (reframe), 11 (corpus),
+12 (A1), 22 (null), 37 (corrections), 38 (the miss), 40 (ledger).
+
+**New if-challenged lines:**
+
+**Slide 4 (v2) · the era claim.**
+*Challenge: "aren't you just restating the Google paper?"*
+The quote is the floor; the claim is the building. Google's framing stays inside
+software engineering — coder to conductor to orchestrator, a syntax tax replaced by a
+verification tax. The substrate claim is about how humans engage with information in
+any discipline whose work is thinking made durable — and note that tonight's evidence
+is deliberately *not* about code generation at all: warm-up costs, decision records,
+attention altitude are information behaviours, not coding behaviours.
+*(Before Thursday: verify the quote wording against the whitepaper itself — Google,
+"The New SDLC: From Vibe Coding to Agentic Engineering", 2026, Osmani et al.; S9
+confirmed it via secondary sources only.)*
+
+**Slide 38 (v2) · the deck-building miss.**
+*Challenge: "your own agent failed — doesn't that undermine the whole approach?"*
+The opposite, and say it plainly: the framework predicted the failure class (every
+check either arm owns runs at retrieval — that is already on the honest-split slide),
+it supplies the instrument that would catch it (a fresh-context decode test — the
+probe pointed at deliverables), and the catch itself is the §2 inversion doing its
+work: the human judgment that cannot be offloaded, being the job. Keep it n=1, a
+shape with two in-corpus siblings, never a rate.
+*Delivery: self-deprecating and quick — the room will enjoy it; do not let it become
+an AI-bashing beat. The point is the failure class and whose job the catch is.*
+
+---
+
 ## The origin anecdote — thirty seconds, no more
 
 > I was asked, entirely reasonably, to account for some heavy AI-credit usage. Fair
