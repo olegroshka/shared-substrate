@@ -257,11 +257,11 @@ Kendall's W 0.465–0.605, p < 0.001 — so no cross-project comparison in this 
 
 ## 3.2 · Explicit guardrails
 
-**Work project:** two kinds of guardrail, both taken from the incumbent rather than invented — its *behaviour* locked in as executable tests before replacement began, and its *measured performance* (latency, memory, allocation rates from production telemetry) written down as hard numeric budgets the replacement must stay within, continuously.
+**Work project:** behavioural lock-in of the incumbent; budgets taken from the live system.
 
 > *"Gain is indifferent to sign."* — an AI assistant amplifies whatever signal the operator sends, and it cannot tell a right signal from a wrong one. A clear instruction and a subtle misunderstanding are both multiplied into volume with the same fidelity — and work keeps getting built on top of a wrong signal, compounding its cost, until something checks it.
 
-**Which is why guardrails pay back out of proportion to what they cost. "Make it fast" is a wrong signal waiting to happen; "stay under the incumbent's measured p99, here is the assertion" cannot be misread — and the assistant can check itself against it while working. Every wrong signal prevented improves the entire trajectory to the goal, not just one step of it.**
+**Which is why guardrails pay back out of proportion to what they cost: anything that helps the operator avoid sending a wrong signal — behaviour locked in executable form, performance limits copied from the existing system's real production numbers — improves the entire trajectory to the goal, not just one step of it.**
 
 <p align="center"><img src="../../assets/fig-divergence.png" width="480" alt="Open vs closed loop divergence"></p>
 
