@@ -309,6 +309,8 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 - Survival S(k) — the share of records still standing un-contradicted k sessions after they were written — is **1.000** at every k from 0 to 12.
 - The *declared* curve falls only to 0.962 — one record replaced by a successor that says so, on both ends. A declared supersession is the discipline **working**.
 
+**This is the discipline's core promise, tested and kept: the record never quietly rewrote its own history — every change to a recorded decision announced itself.** Two bounds keep that honest. It demonstrates the record's *integrity*, not its downstream effect; and it has no comparison arm, because only one project has decision records at all. The failures the evaluation did find are different in kind — records wrong on the day they were written (section 3.4).
+
 *Every point carries its `at_risk` denominator: at k=12 the curve rests on **26 of the 53** records, not 53. "Sessions" here are a git proxy (maximal commit runs, 4-hour gap threshold). Coverage disclosed: 18 of 53 ADRs were read against the tree; the rest are not counted as having survived a test they were never given. And this curve has **one arm** — btest has no decision records; its column is `n/a` (a different substrate type: instruction rules + commit prose), never a zero on a shared denominator.*
 
 ---
