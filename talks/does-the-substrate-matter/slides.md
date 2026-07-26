@@ -88,7 +88,7 @@ The answer to the "it's one project" objection: same author, same era, **instrum
 | datacli | small data-ops CLI | light, à la carte |
 | smim · harp · seamQ | research projects | research-native instruments (more later) |
 
-**blive vs btest is the central pair** — same author, same trading domain, opposite postures. Evidence: 1,480 session-log turns across three log stores, 600+ commits, every extraction script published. Nothing tonight is from memory.
+**blive vs btest is the central pair** — same author, same trading domain, opposite postures. Evidence: 1,480 session-log turns across three log stores, 600+ commits, every extraction script published. Nothing here is from memory.
 
 *Caveat that governs everything: this is a case comparison, not an experiment — the full confounds ledger comes at the end, out loud.*
 
@@ -247,7 +247,7 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 
 **A 212-line CLAUDE.md — the project-root instruction file AI coding agents load automatically — plus git history plus a 2026-era model was enough for a perfect retrieval score.**
 
-The floor has risen. *"Your agent will invent decisions without a substrate"* is no longer true of a fresh agent doing retrieval — and I would rather concede that from up here than have it raised from the floor.
+The floor has risen. *"Your agent will invent decisions without a substrate"* is no longer true of a fresh agent doing retrieval — and I would rather concede that myself than have it raised from the audience.
 
 The confound is part of the story: the "flat" arm is **not flat** — it is *ephemeral*, with a real agent-instruction file. That may explain the null on its own.
 
@@ -627,4 +627,4 @@ Every number in this deck, with its source file, honest caption and the caveat t
 - `research/eval/METHODS.md` — instruments, definitions, the rules, and what the study cannot answer
 - `research/eval/data/` — every extracted metric, per project
 
-**Nothing in the bench is mandatory; nothing shown tonight is caveat-free.**
+**Nothing in the bench is mandatory; nothing shown in this deck is caveat-free.**

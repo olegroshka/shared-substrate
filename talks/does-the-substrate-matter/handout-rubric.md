@@ -47,7 +47,7 @@ citable evidence scores at most 1.
 - **15–24 · substrated** — your bottleneck is elsewhere: intent quality and oracle
   capacity.
 
-Tonight's corpus, on the same scale: 22 · 20 · 18 (provisional) · 17 · 16 · 15 · 12 · 7.
+The talk's corpus, on the same scale: 22 · 20 · 18 (provisional) · 17 · 16 · 15 · 12 · 7.
 The 17 is a small CLI that deliberately skipped half the menu — and was right to.
 
 ---

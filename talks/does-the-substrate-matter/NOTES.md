@@ -33,7 +33,7 @@ numbering, so use this delta map. What v2 adds:
 **V2 numbering:** slides 1–3 unchanged; v1 slide n ≥ 4 → v2 n+6 up to the corrections
 slide (v1 32 → v2 38); after it, +7 (altitude v1 33 → v2 40, ledger 34 → 41, spectrum
 35 → 42). §5 then gains **the practical-takeaway adoption menu (43)** — the abstract's
-promised "practical lessons", the à-la-carte menu with tonight's evidence as its third
+promised "practical lessons", the à-la-carte menu with the talk's evidence as its third
 column — so closing question 44, cannot-claim 45, close 46. Core arc 46 slides,
 ~37 min — the talk/discussion split still flexes, but the §2 block costs ~7 extra
 minutes; if pressed, deliver slides 5–6 as one breath (the table carries both), speak
@@ -77,7 +77,7 @@ invitation, and "Your substrate will not look like mine" (peer voice, kept).
 The quote is the floor; the claim is the building. Google's framing stays inside
 software engineering — coder to conductor to orchestrator, a syntax tax replaced by a
 verification tax. The substrate claim is about how humans engage with information in
-any discipline whose work is thinking made durable — and note that tonight's evidence
+any discipline whose work is thinking made durable — and note that the talk's evidence
 is deliberately *not* about code generation at all: warm-up costs, decision records,
 attention altitude are information behaviours, not coding behaviours.
 *(Before Thursday: verify the quote wording against the whitepaper itself — Google,
@@ -198,7 +198,7 @@ Concede immediately: it failed to show the substrate reduces confabulation, p = 
 published as it came out — and the one confabulation is the full-substrate project's.
 Then the two facts that size it: the "flat" arm carries a 212-line agent-instruction
 file — enough to explain the null on its own — and the reversed direction rests on one
-confabulation; the null survives any single re-scoring. The claim I am defending tonight
+confabulation; the null survives any single re-scoring. The claim I am defending here
 is the reframe (human's side of the loop), which does not rest on this experiment.
 The v2 deck itself now concedes, on the slide after the null, that the original
 formulation was too strong: whether a model invents an answer depends on the model and

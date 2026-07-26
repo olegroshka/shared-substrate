@@ -136,12 +136,12 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 How should AI assistance be perceived, then? Not as a tool the human adopts, but as a **coupling the two grow together**. And what grows on the human's side is a **personal substrate — individual, evolving, their own**.
 
-- Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. The practices accumulated from real incidents and were then indexed — none of them was designed up front from a template.
+- Every element of the discipline in this talk's evidence exists because something went wrong **once**, for this operator, on this project. The practices accumulated from real incidents and were then indexed — none of them was designed up front from a template.
 - The same author runs different substrates on different projects, scaled to their complexity — the evidence includes a small CLI project that keeps gates and contracts and correctly skips the rest.
 - So an organisation cannot roll a substrate out the way it rolls out a tool. It can only make **growing one cheap** — and teach people what belongs in theirs.
 - And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous implementation at scale**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, write the lesson down, work differently tomorrow. A skill is refined the way skills always are: **by repetition with feedback, not by rollout.**
 
-*Your substrate will not look like mine. The evidence tonight is about whether growing one matters at all.*
+*Your substrate will not look like mine. The evidence in this talk is about whether growing one matters at all.*
 
 ---
 
@@ -177,7 +177,7 @@ The answer to the "it's one project" objection: same author, same era, **instrum
 | datacli | small data-ops CLI | light, à la carte |
 | smim · harp · seamQ | research projects | research-native instruments (more later) |
 
-**blive vs btest is the central pair** — same author, same trading domain, opposite postures. Evidence: 1,480 session-log turns across three log stores, 600+ commits, every extraction script published. Nothing tonight is from memory.
+**blive vs btest is the central pair** — same author, same trading domain, opposite postures. Evidence: 1,480 session-log turns across three log stores, 600+ commits, every extraction script published. Nothing here is from memory.
 
 *Caveat that governs everything: this is a case comparison, not an experiment — the full confounds ledger comes at the end, out loud.*
 
@@ -340,7 +340,7 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 
 **A 212-line CLAUDE.md — the project-root instruction file AI coding agents load automatically — plus git history plus a 2026-era model was enough for a perfect retrieval score.**
 
-The baseline has moved. *"Your agent will invent decisions if you don't keep records"* is no longer true of a fresh agent answering questions about recorded facts — and I would rather concede that from the stage than have it raised from the audience.
+The baseline has moved. *"Your agent will invent decisions if you don't keep records"* is no longer true of a fresh agent answering questions about recorded facts — and I would rather concede that myself than have it raised from the audience.
 
 The confound is part of the story: the "undisciplined" arm was never truly without records — it had a real, substantial agent-instruction file. That alone may explain the null.
 
@@ -603,9 +603,9 @@ The spectrum to place yourself on:
 
 ## The practical takeaway — adopt one piece, where it hurts
 
-Nothing tonight argues for adopting the methodology wholesale. **This menu is the four practices from section 3, unbundled** — each element is one piece of project state made durable and readable by the assistant, which is what "substrate" means in practice. The honest move is to pick the row that targets what already hurts:
+Nothing in this talk argues for adopting the methodology wholesale. **This menu is the four practices from section 3, unbundled** — each element is one piece of project state made durable and readable by the assistant, which is what "substrate" means in practice. The honest move is to pick the row that targets what already hurts:
 
-| practice | if this is what hurts | one element to adopt *(and its cost)* | seen in tonight's evidence |
+| practice | if this is what hurts | one element to adopt *(and its cost)* | seen in this talk's evidence |
 |---|---|---|---|
 | Decomposition | a big change delivered as one risky leap | the work cut into gated increments with explicit exit criteria *(a planning session)* | 19 increments, each behind a gate — parity held at every step |
 | Guardrails | one component everyone is afraid to touch | its current behaviour locked in as executable tests *before* changing anything *(about a day)* | 91 scenarios locking in the incumbent before replacement began |
@@ -775,4 +775,4 @@ Every number in this deck, with its source file, honest caption and the caveat t
 - `research/eval/METHODS.md` — instruments, definitions, the rules, and what the study cannot answer
 - `research/eval/data/` — every extracted metric, per project
 
-**Nothing in the bench is mandatory; nothing shown tonight is caveat-free.**
+**Nothing in the bench is mandatory; nothing shown in this talk is caveat-free.**
