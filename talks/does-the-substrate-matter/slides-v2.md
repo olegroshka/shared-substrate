@@ -85,7 +85,7 @@ True — and, I will argue, **too narrow**. Code → intent is one floor of a ta
 - **Creative input** — the choices, the intent, the taste. What no pipeline can derive from what is already on record.
 - **Cognitive load** — the re-explaining, the re-deriving, the bookkeeping, the expansion. Everything a pipeline *can* derive.
 
-The human deposits the first, **once, at the right layer**. The machinery carries the second.
+The human writes the first down, **once, at the right layer**. The machinery carries the second.
 
 Everything else in this talk is the engineering required to make that separation real — and measurable.
 
@@ -99,8 +99,8 @@ The working test, in plain words: **how surprised would a strong model be by you
 |---|---|---|
 | renames, formatting, a boilerplate adapter from a schema | ≈ none | **load — offload it** |
 | a summary of a document the agent can read itself | ≈ none | **load — offload it** |
-| *"Settle T+1, not T+2 — the broker's cutoff is 17:30 CET"* | high | **yours — deposit it** |
-| *"this option list is missing the one path that keeps our goal"* | high | **yours — deposit it** |
+| *"Settle T+1, not T+2 — the broker's cutoff is 17:30 CET"* | high | **yours — write it down** |
+| *"this option list is missing the one path that keeps our goal"* | high | **yours — write it down** |
 
 As models strengthen, the top rows grow and the bottom rows do not. **The human migrates up, not out.**
 
@@ -129,7 +129,7 @@ How should AI assistance be perceived, then? Not as a tool you adopt — as a **
 - Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. A substrate is **scar tissue with an index**, not a template.
 - The same author runs different substrates on different projects, scaled to their complexity — you will see a small CLI that keeps gates and contracts and skips the rest, correctly.
 - So an organisation cannot roll a substrate out. It can only make **growing one cheap** — and teach people what belongs in theirs.
-- And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous mass implementation**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, deposit the lesson, work differently tomorrow. A skill is refined the way skills always are: **by reps with feedback, not by rollout.**
+- And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous mass implementation**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, write the lesson down, work differently tomorrow. A skill is refined the way skills always are: **by reps with feedback, not by rollout.**
 
 *Your substrate will not look like mine. The evidence tonight is about whether growing one matters at all.*
 
@@ -289,7 +289,7 @@ The practice the evaluation **changed the most**. Two robust results first — o
 **The probe, in one line:** 20 questions per project with checkable ground truth — *did we decide X? what is the state of Y? why was Z rejected?* — put to fresh AI-agent instances with repo-only access, two independent runs each. Questions and scoring frozen by commit **before any run**.
 
 **Robust result 1: facts that are written down come back near-perfectly in *both* arms** (substrated and ephemeral alike). On the questions whose answers are recorded in the repo: blive **28/28** · btest **28/28** · b-autobot **24/28**.
-Retrieval of deposited facts is **not** where the substrate boundary sits.
+Reading back what was written is **not** where the substrate boundary sits.
 
 *Denominator: 84 recorded-answer questions across 3 projects, 2 runs each.*
 
@@ -344,7 +344,7 @@ The confound is part of the story: the "flat" arm is **not flat** — it is *eph
 - btest writes commit `fd106f9` (1,025 chars) — and it is a **good** record: reason, validation, exact edits, flagged follow-up. Cited from **zero** artifacts; reachable only by knowing the sha.
 - ADR-053's `companion:` field even names `fd106f9`: the addressable record of btest's decision lives **in blive's repo**.
 
-**The naive story — "the flat project didn't write down why" — is false.** Reasons are deposited *unevenly and unaddressably*, not undeposited.
+**The naive story — "the flat project didn't write down why" — is false.** Reasons are recorded *unevenly and unaddressably*, not unrecorded.
 
 ---
 
@@ -386,7 +386,7 @@ Stated so this section is not advocacy. In the 22/24 project:
 - Two malformed anchors were copied forward into 20 of its 26 broken cross-references. Append-only preserves errors with the fidelity it preserves decisions.
 - One open question records an **"Operator decision" for an option that was never on the table** — append-only records can manufacture history as well as preserve it. *(n = 1; operator recollection.)*
 
-And the slot built to catch "a decision that lived only in conversation" failed to find one in three attempts (**0 for 3**) — which cuts *for* deposit-everything, but rests on negative constructions: **"we could not find one," never "they do not exist."**
+And the slot built to catch "a decision that lived only in conversation" failed to find one in three attempts (**0 for 3**) — which cuts *for* writing everything down, but rests on negative constructions: **"we could not find one," never "they do not exist."**
 
 ---
 
@@ -419,7 +419,7 @@ And the slot built to catch "a decision that lived only in conversation" failed 
 
 **Tests follow project nature, not substrate posture.** b-autobot 0.79→0.72 test-file share (a BDD suite *is* tests) · btest 0.13→0.35 · blive 0.22→0.30 · harp 1 test file · seamQ 0. The research projects' oracle is elsewhere: pre-registration, adversarial review.
 
-**And the cross-arm statement, said plainly because it cuts against the thesis:** neither posture checks a factual claim **at deposit time**. One record in each arm was wrong *on the day it was written* — in projects scoring 22/24 and 12/24. Every check either project owns runs at *retrieval*.
+**And the cross-arm statement, said plainly because it cuts against the thesis:** neither posture checks a factual claim **at write time**. One record in each arm was wrong *on the day it was written* — in projects scoring 22/24 and 12/24. Every check either project owns runs at *read time*.
 
 The practice's frontier, offered as a hypothesis with a receipt (n=1): require every factual claim in an audit-produced record to carry the `file:line` it was read from.
 
@@ -492,7 +492,7 @@ The hoped-for within-project migration is **not supported**.
 
 ### Zero blive ADRs were silently reversed.
 
-The drift the discipline exists to prevent **was not found in the discipline's own record**. The real failures were records **born wrong** — one per arm, at deposit time, where neither posture has a check.
+The drift the discipline exists to prevent **was not found in the discipline's own record**. The real failures were records **born wrong** — one per arm, at write time, where neither posture has a check.
 
 ---
 
@@ -591,7 +591,7 @@ The altitude exhibit earned this:
 - The shift is bigger than code → intent: it is a change in **how humans engage with information** — software is only where it lands first.
 - The measurable benefit is on the **human's side of the loop**: cheap re-entry, brevity as delegation, reasons that stay findable.
 - Recorded facts come back near-perfectly **in both arms** — the floor has risen; the boundary is the **why**, and its address.
-- Neither posture checks a claim **at deposit time** — and catching what the pattern-matcher misses is now the operator's defining job.
+- Neither posture checks a claim **at write time** — and catching what the pattern-matcher misses is now the operator's defining job.
 - Your substrate will be **personal and evolving** — and below the complexity threshold, flat notes win; the discipline says so itself.
 
 **The substrate is not what makes you write things down. It is what makes what you wrote down still be there, and still be findable, three sessions later.**
@@ -651,7 +651,7 @@ Four incidents, each **behind the robust number it illustrates** — n = 1 each,
 
 1. **The hole named forty days before anything fell into it** *(behind the rework contrast)* — a chaos drill filled the failure-modes knowledge base (KB-7), which the project's artifact inventory had registered as MISSING — with an owner and a content contract — at the repo's **first commit**. A typed absence is a work item.
 2. **The option that was not on the list** *(behind the altitude exhibit)* — an agent-drafted option set silently dropped the only intent-preserving path; the operator caught it. An option list steers by omission.
-3. **One session, two defects, in the 22/24 project** *(behind the null)* — a substrate-only audit session manufactured a decision **and** deposited a claim that was never true — while citing the row that refutes it. The cheap testable fix (n=1, a proposal, not a finding): audit records carry the `file:line` each claim was read from.
+3. **One session, two defects, in the 22/24 project** *(behind the null)* — a substrate-only audit session manufactured a decision **and** recorded a claim that was never true — while citing the row that refutes it. The cheap testable fix (n=1, a proposal, not a finding): audit records carry the `file:line` each claim was read from.
 4. **104,959 lines, and the reasoning is in a chat log** *(behind the retransmission tax)* — the corpus's largest deletion has a 1-byte commit body; the rationale survives only in a retained-by-accident session store. The rules were captured; the *reason* has no address.
 
 *Three of four are the substrated project's — it is the only project with retros to read incidents from. That is a selection property of the evidence.*

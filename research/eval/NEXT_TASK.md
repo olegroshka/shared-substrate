@@ -72,7 +72,13 @@ surface stays "a legacy component at a regulated financial institution".
 4. **Post-talk deposit:** whatever the room actually did — which branch points fired,
    which module ran, which challenges came — is WS-grade evidence about the talk's own
    design. A paragraph in STATE.md's session log is enough; write it while it's warm.
-5. **Prospective instruments sketched in the S9 deck-miss discussion** (candidates if
+5. **The paper's "deposit" vocabulary** — the talk surfaces were reworded in S9 per
+   Oleg (deposit → write down / record; deposit-time/retrieval → write time / read
+   time — humbler, and a standard engineering register). In the paper "deposit" is a
+   defined term of art with notation behind it ($\mathcal{D}_T$, the set of deposits;
+   22 occurrences), so it was deliberately left. If Oleg wants the rename global, it
+   is a single editorial pass touching the paper + the eval report's echoes.
+6. **Prospective instruments sketched in the S9 deck-miss discussion** (candidates if
    the eval continues; none exist yet): **fresh-context decode tests** for any
    audience-facing artifact (the probe pointed at deliverables instead of repos); an
    **operator-catch ledger** — every operator override recorded with whether the
