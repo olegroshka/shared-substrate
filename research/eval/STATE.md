@@ -3,6 +3,9 @@
 > Read this first in every eval session; deposit status + next step before ending.
 > Source of truth for scope and method: [PLAN.md](./PLAN.md). One session per workstream.
 > The next session's ready-to-paste prompt + model schedule: [NEXT_TASK.md](./NEXT_TASK.md).
+> **Where the argument actually stands** — what the evidence supports, what it does
+> not, and the recommended reframe: [ASSESSMENT.md](./ASSESSMENT.md) (mid-eval, written
+> after S5; revisit after WS5 and WS6). Read it before writing anything for the talk.
 
 ## Status
 
