@@ -19,9 +19,12 @@ still holds, with §2 extended beyond the report by paper material (docs/present
 is the source for the borrowed concepts).
 
 Every number travels with its caveat ON THE SAME SLIDE — a slide that shows an exhibit
-without its caveat is misquoting the report. Slide titles follow the honest captions in
-report/exhibits.md and are not sharpened beyond them. Self-sufficiency rule: a first-time
-viewer needs no prior context — every entity introduced, every term glossed at first use.
+without its caveat is misquoting the report. Slide claims are never stated more strongly
+than the honest captions in report/exhibits.md license, but their wording is adapted for
+a general professional audience (S9 style pass: guided interpretation — walk the viewer
+through what a number means, then what follows from it; no aphoristic fragments).
+Self-sufficiency rule: a first-time viewer needs no prior context — every entity
+introduced, every term glossed at first use.
 
 Public-surface rule: this file is committed to the public repo. The work project appears
 only as "a legacy component at a regulated financial institution". Where the in-room talk
@@ -49,7 +52,7 @@ That is the whole claim this talk makes about the work project up front. No inst
 
 The question to hold for the rest of this talk:
 
-> ### This wasn't model magic. What actually carried it?
+> ### A capable model was necessary — but it is not what made this work. What actually carried it?
 
 ---
 
@@ -72,9 +75,9 @@ Google's recent whitepaper on the new software development lifecycle puts it lik
 > *"The most profound shift in software engineering isn't a new language, framework, or cloud service. It's the transition from writing code to expressing intent, and trusting intelligent systems to translate that intent into working software."*
 > — Google, *The New SDLC: From Vibe Coding to Agentic Engineering* (2026)
 
-True — and, I will argue, **too narrow**. Code → intent is one floor of a taller building.
+True — and, I will argue, **too narrow**. The code-to-intent transition is one instance of a much broader change.
 
-**The shift is in how humans engage with information.** Software engineering is just where it lands first, because software has oracles — compilers, tests, an incumbent to measure against. The same transition is coming for every discipline whose work is thinking made durable.
+**The real shift is in how humans engage with information.** Software engineering is simply where it arrives first, because software has built-in ways to check the machine's work — compilers, test suites, an incumbent system to measure against. The same transition is coming to every discipline whose output is durable thinking: documents, decisions, analysis, research.
 
 ---
 
@@ -102,7 +105,7 @@ The working test, in plain words: **how surprised would a strong model be by you
 | *"Settle T+1, not T+2 — the broker's cutoff is 17:30 CET"* | high | **yours — write it down** |
 | *"this option list is missing the one path that keeps our goal"* | high | **yours — write it down** |
 
-As models strengthen, the top rows grow and the bottom rows do not. **The human migrates up, not out.**
+As models strengthen, more of the table's top half becomes derivable — but the bottom half does not shrink. **The human's contribution moves toward intent and judgment; it does not disappear.**
 
 *(The formal version — conditional description length, the κ measure — lives in module M-F for anyone who wants it.)*
 
@@ -112,13 +115,13 @@ As models strengthen, the top rows grow and the bottom rows do not. **The human 
 
 When everything derivable is offloaded, what remains is not less work — it is a **different job**:
 
-# Intent. Decisions. Scope. Taste. Judgment of meaning.
+# Intent, decisions, scope, taste — and the judgment of meaning.
 
-- Whatever you are genuinely better at than the model stops being a comparative advantage and becomes your **entire responsibility surface**.
-- The one oracle that cannot be automated is **you**: model output is *plausible by construction, not correct by construction*, and only the intent-holder can tell the difference at the top layer.
+- Whatever you are genuinely better at than the model stops being a comparative advantage and becomes your **entire responsibility surface** — the areas where you outperform the model are, by definition, the areas nothing else can cover.
+- The one quality check that cannot be automated is **you**: model output is *plausible by construction, not correct by construction*, and only the person who holds the intent can tell the difference at the top level.
 - Delegation is not the human doing less. **It is the human's effort converging on the only work that was ever irreducibly theirs.**
 
-*(Hold this thought — in section 4 I will show you this job being done, on this very talk.)*
+*(Hold this thought — section 4 includes a live example of this job being done, on this very talk.)*
 
 ---
 
@@ -126,10 +129,10 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 How should AI assistance be perceived, then? Not as a tool you adopt — as a **coupling you grow**. And what grows on your side is a **personal substrate: individual, evolving, yours**.
 
-- Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. A substrate is **scar tissue with an index**, not a template.
-- The same author runs different substrates on different projects, scaled to their complexity — you will see a small CLI that keeps gates and contracts and skips the rest, correctly.
-- So an organisation cannot roll a substrate out. It can only make **growing one cheap** — and teach people what belongs in theirs.
-- And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous mass implementation**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, write the lesson down, work differently tomorrow. A skill is refined the way skills always are: **by reps with feedback, not by rollout.**
+- Every element of the discipline in tonight's evidence exists because something went wrong **once**, for this operator, on this project. The practices accumulated from real incidents and were then indexed — none of them was designed up front from a template.
+- The same author runs different substrates on different projects, scaled to their complexity — you will see a small CLI project that keeps gates and contracts and correctly skips the rest.
+- So an organisation cannot roll a substrate out the way it rolls out a tool. It can only make **growing one cheap** — and teach people what belongs in theirs.
+- And the change does not arrive because a few people discuss ideas in a room. It arrives as **continuous implementation at scale**: everyone practising, daily, each closing their own **self-reflection loop** — notice the miss, write the lesson down, work differently tomorrow. A skill is refined the way skills always are: **by repetition with feedback, not by rollout.**
 
 *Your substrate will not look like mine. The evidence tonight is about whether growing one matters at all.*
 
@@ -184,23 +187,23 @@ A *warm-up turn* is what you type at session start to rebuild context before new
 | **blive** (substrated) | 9 of 10 sessions | ~106 chars | **falling** 192 → 106 |
 | **btest** (ephemeral) | 43 of 68 sessions | ~417 chars | **rising** 477 → 607 |
 
-Same author, same domain. This is intent going cold, measured.
+Both projects belong to the same author, working in the same trading domain — so the gap cannot be explained by skill or subject. What the numbers show: the substrated project pays a small re-entry cost that *shrinks* as the project matures; the ephemeral one pays a cost four times larger that *grows*. The operator is re-explaining more and more of his own intent to his own tools as the project ages.
 
 *Denominator: 78 sessions, 1,061 classifiable operator turns. Caveats: btest's sessions also lengthened (9.1 → 19.8 turns); paste bodies survive in only 74 of 204 paste-referencing turns, so payload-shaped warm-ups are under-counted — conservative against this finding.*
 
 ---
 
-## Exhibit 2 · What a short turn is made of
+## Exhibit 2 · What a short message is made of
 
-**In a substrated project brevity is delegation; in an ephemeral one it is a clock tick.**
+**Short messages mean different things in the two postures: where a substrate exists they delegate prepared work; where none exists they mostly just tell the agent to keep going.**
 
-Among turns under 40 characters — dispatch-by-reference (*"read `NEXT_PROMPT.md`, execute"*) per bare assent (*"continue"*):
+A short message can carry a full work order — *"read the prepared task file and execute"* — but only when there is a prepared file to point to. Without one, a short message can only nudge the agent onward. The ratio of work-delegating short messages to bare "continue"-type messages, among all messages under 40 characters:
 
 | seamQ | b-autobot | blive | btest |
 |---|---|---|---|
 | **5.0** | 0.50 | 0.25 | **0.10** |
 
-btest also has the *most* short turns: 147 — 19% of everything its operator typed.
+btest's operator also typed the *most* short messages: 147 — 19% of everything he typed — and they were overwhelmingly of the "continue" kind.
 
 *These are the four projects with enough surviving session logs to measure. Fragile numerator, stated per the rules: btest's ratio rests on **3** dispatches against 29 "continue"s — two more found dispatches would move it.*
 
@@ -209,7 +212,7 @@ btest also has the *most* short turns: 147 — 19% of everything its operator ty
 ## Exhibit 3 · Re-entry is the recurring event the substrate is for
 
 - btest took **16** gaps of ≥5 days across its 213-day history; blive took **1**; datacli **1**.
-- After btest's gaps, fix-commits run at 20.8% against an 18.3% baseline — re-entry is **not obviously costlier per event**; btest simply paid the entry fee sixteen times.
+- After btest's gaps, fix-commits run at 20.8% against an 18.3% baseline — so a single re-entry is **not obviously costlier than normal work**. The difference is frequency: btest paid the re-entry cost sixteen times where the substrated projects paid it once.
 
 And the tool-era baseline underneath it all: the same repo, pre-methodology (Dec 2025 – Feb 2026, AI-assisted, no substrate, no recoverable log): mean commit message **49 characters** (n=78). Methodology era: **585** (n=337).
 
@@ -256,7 +259,7 @@ Kendall's W 0.465–0.605, p < 0.001 — so no cross-project comparison in this 
 
 **Work project:** behavioural lock-in of the incumbent; budgets taken from the live system.
 
-> *"Gain is indifferent to sign."*
+> *"Gain is indifferent to sign."* — an AI assistant amplifies whatever you give it: it multiplies your intent into volume, and it multiplies a misunderstanding at exactly the same rate. That is why the intended behaviour has to be locked down *before* generation starts.
 
 <p align="center"><img src="../../assets/fig-divergence.png" width="480" alt="Open vs closed loop divergence"></p>
 
@@ -282,7 +285,7 @@ A 2026-era agent checks the code against the doc. What it cannot check is a clai
 
 ## 3.3 · System representation
 
-> *"Drift is excursion without reversion."*
+> *"Drift is excursion without reversion."* — every project's understanding wanders as work proceeds; that is normal. Drift is what happens when there is no recorded reference point to pull it back to.
 
 The practice the evaluation **changed the most**. Two robust results first — one positive, one null — then the case studies.
 
@@ -308,7 +311,7 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 
 ---
 
-## The pre-registered experiment, told straight
+## The pre-registered experiment, reported as it came out
 
 **My own pre-registered experiment failed to show the substrate reduces confabulation — and the one confabulation belongs to the full-substrate project.**
 
@@ -322,15 +325,15 @@ blive keeps its decisions as **53 append-only Architecture Decision Records (ADR
 
 ---
 
-## Why the null is evidence *for* the reframe
+## Why the null actually supports the revised claim
 
 **A 212-line CLAUDE.md — the project-root instruction file AI coding agents load automatically — plus git history plus a 2026-era model was enough for a perfect retrieval score.**
 
-The floor has risen. *"Your agent will invent decisions without a substrate"* is no longer true of a fresh agent doing retrieval — and I would rather concede that from up here than have it raised from the floor.
+The baseline has moved. *"Your agent will invent decisions if you don't keep records"* is no longer true of a fresh agent answering questions about recorded facts — and I would rather concede that from the stage than have it raised from the audience.
 
-The confound is part of the story: the "flat" arm is **not flat** — it is *ephemeral*, with a real agent-instruction file. That may explain the null on its own.
+The confound is part of the story: the "undisciplined" arm was never truly without records — it had a real, substantial agent-instruction file. That alone may explain the null.
 
-**btest is ephemeral, not flat** — no exhibit in this talk compares "substrate" against "nothing". The comparison is durable-and-addressable against ephemeral-and-unaddressed.
+**btest is ephemeral, not flat** — no exhibit in this talk compares "substrate" against "nothing". The comparison is between records that are durable and citable, and working files that were transient and never referenced.
 
 ---
 
@@ -344,13 +347,13 @@ The confound is part of the story: the "flat" arm is **not flat** — it is *eph
 - btest writes commit `fd106f9` (1,025 chars) — and it is a **good** record: reason, validation, exact edits, flagged follow-up. Cited from **zero** artifacts; reachable only by knowing the sha.
 - ADR-053's `companion:` field even names `fd106f9`: the addressable record of btest's decision lives **in blive's repo**.
 
-**The naive story — "the flat project didn't write down why" — is false.** Reasons are recorded *unevenly and unaddressably*, not unrecorded.
+**The naive story — "the less disciplined project didn't write down why" — is false.** The reasons were recorded in both projects. What differs is whether other records can point to them — and whether anything ever does.
 
 ---
 
-## A taxonomy is not an address
+## A classification is not a citable address
 
-**btest's commit-convention history, retitled after correction:** a stable-ID convention was replaced by a taxonomy.
+**btest's commit-convention history, retitled after correction:** a convention of stable, citable identifiers was replaced by one that only classifies.
 
 - 293 of 415 commits carry a bracketed tag — but **280 of 293 are `[SMIM]`** — a research subproject that lived inside btest — **and SMIM left the repository** in May, extracted to its own repo.
 - Scoped stable ids (`[SMIM DATA-6]`): 163 in March · **2 in April** · 0 after.
@@ -394,7 +397,7 @@ And the slot built to catch "a decision that lived only in conversation" failed 
 
 **Work project:** parity against the incumbent as the oracle; checks in the loop.
 
-> *"An oracle the agent cannot query is an audit, not a guardrail."*
+> *"An oracle the agent cannot query is an audit, not a guardrail."* — if the assistant cannot run the checks itself, while working, then problems are found at review time — after dependent work has already been built on top of them.
 
 <p align="center"><img src="../../assets/fig-loop.png" width="520" alt="The control loop"></p>
 
@@ -409,7 +412,7 @@ And the slot built to catch "a decision that lived only in conversation" failed 
 | blive | **5.2%** | 3.9% |
 | btest | **82.2%** | 32.6% |
 
-**The confound is stated wherever this number appears:** btest's history is **5× longer** (213 vs 41 days), giving its lines more opportunity to die, and the projects differ in nature. **Texture, not proof.**
+**The confound is stated wherever this number appears:** btest's history is **5× longer** (213 vs 41 days), giving its lines more time in which to be deleted, and the projects differ in nature. **This is supporting texture, not a controlled result.**
 
 *Denominators: tens of thousands of added lines per repo; churn is a blame-free LIFO approximation with documented biases; the 14-day column is comparable only across blive/btest/harp.*
 
@@ -417,7 +420,7 @@ And the slot built to catch "a decision that lived only in conversation" failed 
 
 ## The honest split — and the shared defect
 
-**Tests follow project nature, not substrate posture.** b-autobot 0.79→0.72 test-file share (a BDD suite *is* tests) · btest 0.13→0.35 · blive 0.22→0.30 · harp 1 test file · seamQ 0. The research projects' oracle is elsewhere: pre-registration, adversarial review.
+**Tests follow project nature, not substrate posture.** b-autobot 0.79→0.72 test-file share (a BDD suite *is* tests) · btest 0.13→0.35 · blive 0.22→0.30 · harp 1 test file · seamQ 0. The research projects' checks simply live elsewhere: pre-registration, adversarial review.
 
 **And the cross-arm statement, said plainly because it cuts against the thesis:** neither posture checks a factual claim **at write time**. One record in each arm was wrong *on the day it was written* — in projects scoring 22/24 and 12/24. Every check either project owns runs at *read time*.
 
@@ -519,7 +522,7 @@ The same shape appears across this corpus *(n = 1 each — a shape, not a rate)*
 - an option list that silently dropped the only intent-preserving path;
 - these slides — every fact correct, the implied reader missing.
 
-**Perfect surface pattern-matching; the implied intent missed.** The check that would catch it — a fresh-context decode test — is this evaluation's own probe, pointed at deliverables instead of repos. Until that exists, the catch is the human's job. **This is the §2 inversion, demonstrated: that judgment *is* the job now.**
+**In each case the agent satisfied every explicit requirement and missed the intent those requirements implied.** The check that would catch this — putting the artifact in front of a reader who holds none of the author's context — is this evaluation's own probe method, pointed at deliverables instead of repositories. Until that check exists, making the catch is the human's job. **This is the inversion from section 2, demonstrated live: supplying the judgment the model cannot is now the operator's core responsibility.**
 
 ---
 
@@ -572,7 +575,7 @@ The spectrum to place yourself on:
 
 The altitude exhibit earned this:
 
-> ### When you type a short message to your agent — is it a dispatch, or a "continue"?
+> ### When you type a short message to your AI assistant — is it delegating prepared work, or just telling it to keep going?
 
 ---
 
@@ -588,10 +591,10 @@ The altitude exhibit earned this:
 
 # Close
 
-- The shift is bigger than code → intent: it is a change in **how humans engage with information** — software is only where it lands first.
-- The measurable benefit is on the **human's side of the loop**: cheap re-entry, brevity as delegation, reasons that stay findable.
-- Recorded facts come back near-perfectly **in both arms** — the floor has risen; the boundary is the **why**, and its address.
-- Neither posture checks a claim **at write time** — and catching what the pattern-matcher misses is now the operator's defining job.
+- The shift is bigger than "code to intent": it is a change in **how humans engage with information** — software is only where it arrives first.
+- The measurable benefit is on the **human's side of the loop**: re-entry stays cheap, short messages stay delegation rather than nudges, and reasoning stays findable.
+- Recorded facts come back near-perfectly **in both arms** — the baseline has moved. What separates the arms is whether the *reasons* were recorded, and whether other records can cite them.
+- Neither posture checks a claim **at write time** — and catching what the model's pattern-matching misses is now the operator's defining responsibility.
 - Your substrate will be **personal and evolving** — and below the complexity threshold, flat notes win; the discipline says so itself.
 
 **The substrate is not what makes you write things down. It is what makes what you wrote down still be there, and still be findable, three sessions later.**
@@ -649,10 +652,10 @@ The boundary claim refines: exploratory work has *different substrate artifact t
 
 Four incidents, each **behind the robust number it illustrates** — n = 1 each, never aggregated:
 
-1. **The hole named forty days before anything fell into it** *(behind the rework contrast)* — a chaos drill filled the failure-modes knowledge base (KB-7), which the project's artifact inventory had registered as MISSING — with an owner and a content contract — at the repo's **first commit**. A typed absence is a work item.
+1. **The hole named forty days before anything fell into it** *(behind the rework contrast)* — a chaos drill filled the failure-modes knowledge base (KB-7), which the project's artifact inventory had registered as MISSING — with an owner and a content contract — at the repo's **first commit**. An absence that is registered, named and assigned becomes a work item instead of an unknown.
 2. **The option that was not on the list** *(behind the altitude exhibit)* — an agent-drafted option set silently dropped the only intent-preserving path; the operator caught it. An option list steers by omission.
 3. **One session, two defects, in the 22/24 project** *(behind the null)* — a substrate-only audit session manufactured a decision **and** recorded a claim that was never true — while citing the row that refutes it. The cheap testable fix (n=1, a proposal, not a finding): audit records carry the `file:line` each claim was read from.
-4. **104,959 lines, and the reasoning is in a chat log** *(behind the retransmission tax)* — the corpus's largest deletion has a 1-byte commit body; the rationale survives only in a retained-by-accident session store. The rules were captured; the *reason* has no address.
+4. **104,959 lines, and the reasoning is in a chat log** *(behind the retransmission tax)* — the corpus's largest deletion has a 1-byte commit body; the rationale survives only in a session store retained by accident. The rules were captured on the day; the reasoning behind them was never given a place other records could cite.
 
 *Three of four are the substrated project's — it is the only project with retros to read incidents from. That is a selection property of the evidence.*
 

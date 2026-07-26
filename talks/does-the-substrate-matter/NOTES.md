@@ -37,6 +37,13 @@ breath (the table carries both) and never cut 4 or 8.
 **V2 never-cut set:** 4 (era), 8 (personal substrate), 10 (reframe), 11 (corpus),
 12 (A1), 22 (null), 37 (corrections), 38 (the miss), 40 (ledger).
 
+**V2 style (S9, per Oleg):** guided interpretation for a general professional
+audience — every exhibit's interpretation walks the viewer through what the number
+means and what follows from it, in full sentences; no aphoristic fragments. The
+paper's three practice aphorisms remain as quotes but each carries a plain-language
+explanation on the slide. Claim strength stays pinned to the bench captions — the
+wording changed, never the claim. Any future slide edit keeps this register.
+
 **New if-challenged lines:**
 
 **Slide 4 (v2) · the era claim.**

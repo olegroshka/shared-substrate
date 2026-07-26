@@ -1250,4 +1250,11 @@ Caveats that travel with S9's output:
   framing. NOTES.md gains the v2 delta map, updated never-cut set, and if-challenged
   lines for the era slide and the miss slide, plus a verify-the-quote-wording task
   before Thursday (quote confirmed via secondary sources only). Feedback memory saved:
-  audience-facing artifacts get an explicit self-sufficiency pass.
+  audience-facing artifacts get an explicit self-sufficiency pass. Two further
+  operator-driven passes on the talk surfaces: **vocabulary** ("deposit" → write down /
+  record; deposit-time/retrieval → **write time / read time**; the paper's defined term
+  deliberately untouched — NEXT_TASK item 5) and **style** (v2 rewritten in guided
+  interpretation for a general professional audience: interpretation lines walk the
+  viewer from number to meaning in full sentences, aphoristic fragments removed,
+  practice aphorisms kept as quotes with plain-language glosses; claim strength stays
+  pinned to the bench captions).
