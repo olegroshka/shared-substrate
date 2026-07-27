@@ -29,19 +29,20 @@ slide-level realisation of that shape and evolves independently as the deck is b
 
 - [x] Scaffold created
 - [x] Exhibits delivered from eval workstreams (WS1–WS6 → `research/eval/report/exhibits.md`, 23 exhibits)
-- [x] slides.md core arc drafted (S9 — 38 slides mirroring REPORT §§1–5; caveats on-slide;
-      self-sufficiency pass: corpus intro slide + every term glossed at first use)
-- [x] Expansion-module slides drafted (S9 — M-A…M-F behind an explicit divider)
-- [x] Handout finalised (S9 — `handout-rubric.md`, incl. the Step-0 complexity check)
+- [x] slides.md — the deck (S9, iterated with Oleg): core arc of 46 slides — §2 opens
+      with the paper's frame (era claim vs Google's New-SDLC quote · creative input vs
+      cognitive load · the inversion · historical precedents · the personal evolving
+      substrate) then mirrors REPORT §§1–5; §4 carries the deck-building miss as the
+      evaluation's third self-correction; §5 ends with the practical adoption menu.
+      Passes applied: self-sufficiency, guided-interpretation style, shared-not-lectured
+      voice, setting-neutral wording, name/date scrub. (The first draft was kept as
+      slides-v2.md's sibling during iteration and removed 2026-07-27; history in git.)
+- [x] Expansion-module slides drafted (M-A…M-F behind an explicit divider)
+- [x] Handout finalised (`handout-rubric.md`, incl. the Step-0 complexity check)
 - [x] Deck-side dry run: caption/caveat audit of every number slide against the exhibit
-      bench (S9 — one bench caption error found and fixed, see STATE.md S9 findings)
-- [x] **slides-v2.md — the Thursday candidate** (S9 addendum, per Oleg): §2 opens with
-      the paper's frame (the era claim vs Google's New-SDLC quote · creative input vs
-      cognitive load · the responsibility inversion · the personal evolving substrate);
-      §4 gains the deck-building miss as the evaluation's third self-correction; close
-      updated. v1 kept for diffing. NOTES.md carries the v2 delta map + new
-      if-challenged lines.
-- [ ] Live branch-point rehearsal (Oleg, before Thu — checklist at the end of `NOTES.md`)
+      bench (one bench caption error found and fixed, see STATE.md S9 findings)
+- [ ] Live branch-point rehearsal (Oleg, before the talk — checklist at the end of
+      `NOTES.md`)
 
 Figures: the deck reuses `assets/fig-*.png` from the repo root (relative paths); no
 talk-specific figure exports were needed, so `assets/` here stays empty. Numbers appear

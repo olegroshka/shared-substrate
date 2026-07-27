@@ -1262,4 +1262,7 @@ Caveats that travel with S9's output:
   mid-dot number chain became a sentence or a table, every insider phrase ("cuts
   against the thesis", "n=1", "at_risk", "born wrong", "one-rater stability") was
   replaced or glossed in plain language, and "altitude" became "attention level" on
-  the audience-facing slides.
+  the audience-facing slides. Final consolidation (2026-07-27): v2 renamed to
+  `slides.md` and the original draft deleted (history in git); NOTES.md rewritten
+  against the single deck's own numbering, with the standing style/voice/
+  setting-neutral/self-sufficiency rules gathered in one place.
