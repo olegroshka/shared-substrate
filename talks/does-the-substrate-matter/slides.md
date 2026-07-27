@@ -8,10 +8,11 @@ paginate: true
 Render as slides:  npx @marp-team/marp-cli talks/does-the-substrate-matter/slides.md -o slides.html
 Or open in VS Code with the Marp extension. Reads as plain markdown on GitHub.
 
-Structure: a core arc of 46 slides (~35-40 min, complete on its own) — section 2 opens
-with the paper's frame (the era claim engaging Google's New-SDLC quote, creative input
-vs cognitive load, the responsibility inversion, the historical precedents, the
-personal evolving substrate) before the evidence, which then mirrors
+Structure: a core arc of 47 slides (~35-40 min, complete on its own) — section 2 opens
+with the paper's frame (the era claim engaging Google's New-SDLC quote, the definition
+of "substrate", creative input vs cognitive load, the responsibility inversion, the
+historical precedents, the personal evolving substrate) before the evidence, which then
+mirrors
 research/eval/report/REPORT.md sections 1-5; section 4 includes the deck-building miss
 as the evaluation's third self-correction; section 5 ends with the practical adoption
 menu. Expansion modules M-A..M-F follow an explicit divider and are optional. NOTES.md
@@ -76,6 +77,18 @@ Google's recent whitepaper on the new software development lifecycle puts it lik
 True — and, I will argue, **too narrow**. The code-to-intent transition is one instance of a much broader change.
 
 **The real shift is in how humans engage with information.** Software engineering is simply where it arrives first, because software has built-in ways to check the machine's work — compilers, test suites, an incumbent system to measure against. The same transition is coming to every discipline whose output is durable thinking: documents, decisions, analysis, research.
+
+---
+
+## The word in the title, defined
+
+**The substrate is the externalised state of a piece of work** — everything a sustained effort reads and writes to keep its own thread: what is read at the start of a session, written during it, and left behind for the next one.
+
+<p align="center"><img src="../../assets/fig-projection.png" width="540" alt="The substrate as the compressed source of the work"></p>
+
+Every project has one, whether or not anyone tends it. Untended, it is chat history, scattered notes and human memory. Tended, it is a structured, versioned, cross-referenced set of records — shortest at the top (what and why), detail only below.
+
+The picture is the paper's reading of it: **the substrate is the compressed source of the work.** The repository may be fifty thousand lines; the substrate is the forty pages a person would actually re-read after six months away. That is the sense the word carries for the rest of this talk.
 
 ---
 
