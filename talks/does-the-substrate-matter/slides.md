@@ -144,6 +144,10 @@ When everything derivable is offloaded, what remains is not less work — it is 
 
 **The pattern: the tool absorbs the mechanical layer, and the human's job moves up a level — for those who move with it.** That last clause is the honest part. The transition rewarded the weavers who became operators of the new looms, and it was hard on those who could not or would not move. Which is exactly why the *skill* — the personal substrate, next slide — is what matters.
 
+---
+
+## There is no generic substrate
+
 How should AI assistance be perceived, then? Not as a tool the human adopts, but as a **coupling the two grow together**. And what grows on the human's side is a **personal substrate — individual, evolving, their own**.
 
 - Every element of the discipline in this talk's evidence exists because something went wrong **once**, for this operator, on this project. The practices accumulated from real incidents and were then indexed — none of them was designed up front from a template.
