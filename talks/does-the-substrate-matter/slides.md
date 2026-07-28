@@ -159,11 +159,15 @@ How should AI assistance be perceived, then? Not as a tool the human adopts, but
 
 ---
 
-## The frame in one picture
+## The frame in one picture: intent, embodied
 
-<p align="center"><img src="../../assets/fig-centroid.png" width="560" alt="The pinned centroid"></p>
+<p align="center"><img src="assets/fig-centroid-course.svg" width="620" alt="The pinned centroid, riding the course of the work toward the goal"></p>
 
-In this kind of work the **human** supplies intent, decisions and taste; the **pipeline** supplies expansion; a **shared external substrate** carries the state between sessions, tools and minds.
+In this kind of work the **human** supplies intent, decisions and taste; the **pipeline** supplies expansion; the **substrate** carries the state between sessions, tools and minds. And the picture's real content is the connection between the first and the last:
+
+- **Intent is an event in a mind.** It happens at a moment, from one perspective, and then it is over — while the work extends across sessions, tools, models, and eventually other minds.
+- **The substrate is that event given a body** — written, placed, and citable, so the work can refer back to it instead of regenerating it. The difference between intent *happening* and intent *existing*.
+- **The pin is authorship, and it holds the centroid to the course, not to a place.** Intent flows in from the human's side; sessions drift and revert around it; and the whole assembly moves toward the goal, the substrate accreting the decisions the journey forces.
 
 That was the claim going in. Seven projects and six workstreams later, the evidence supports a **sharper, narrower** version —
 

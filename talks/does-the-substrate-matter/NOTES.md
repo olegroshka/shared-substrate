@@ -35,7 +35,7 @@ a slide, in the handout, or in these notes carries the name.
 ## Slide map (the deck's own numbering)
 
 §1 the case: 2–3 · §2 frame: 4 era · 5 substrate defined · 6 purpose · 7 offload test ·
-8 inversion · 9 precedents · 10 personal substrate · 11 frame picture ·
+8 inversion · 9 precedents · 10 personal substrate · 11 intent embodied (the corrected centroid picture) ·
 12 thesis/reframe · 13 corpus · 14–16 exhibits (retransmission, short messages,
 re-entry) · §3 practices: 17 divider · 18 decomposition · 19 complexity moderator ·
 20 guardrails · 21 probe negative · 22 representation + retrieval result · 23 zero

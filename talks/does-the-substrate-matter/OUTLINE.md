@@ -44,7 +44,9 @@ slide-level realisation of that shape and evolves independently as the deck is b
 - [ ] Live branch-point rehearsal (Oleg, before the talk — checklist at the end of
       `NOTES.md`)
 
-Figures: the deck reuses `assets/fig-*.png` from the repo root (relative paths); no
-talk-specific figure exports were needed, so `assets/` here stays empty. Numbers appear
-as tables with denominators on-slide rather than as rendered charts — the caveat has to
-sit next to the number, and a chart is where caveats get dropped.
+Figures: the deck reuses `assets/fig-*.png` from the repo root (relative paths), plus
+one talk-specific export in `assets/` here: `fig-centroid-course.svg`, the corrected
+centroid rendered from the paper's TikZ (pin onto the course toward the goal, handoff
+arrow added) for the intent-embodied slide. Numbers appear as tables with denominators
+on-slide rather than as rendered charts — the caveat has to sit next to the number, and
+a chart is where caveats get dropped.
