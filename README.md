@@ -34,6 +34,32 @@ Picture the participants in sustained work — the human operator, AI agents, su
 
 The substrate is the deliberately **pinned centroid** of the ensemble — the shared centre of mass of the coupled human–AI system, held steady by discipline rather than by any participant's memory. Every session begins with reversion to the centroid (*warm-up*), works at some excursion from it, and ends by depositing its results back into it (*handoff*). **Drift is excursion without reversion. A model swap moves a point mass; it does not move the centroid.** And the pin is authorship: the substrate is the human's intent given a durable, citable body, fixed not to a place but to the course of the work — what stays constant is reference, not position.
 
+## Intent, embodied
+
+The relation between intent and substrate is the paper's conceptual core, and it is worth stating slowly — because it is the joint where this work connects to everything else.
+
+**Intent is an event in a mind.** The choice of what to build and why, the resolution of a trade-off, the judgment that an option list is missing the one option that matters — each occurs at a moment, from one perspective, and then it is over. Work, by contrast, is extended in time: it spans sessions, tools, model generations, and eventually other minds. Unembodied intent has no duration, no location, and no existence for anyone else — including the operator's own future self, who returns after a gap as, in every respect that matters, another participant.
+
+**The substrate is that event given a body.** Embodiment converts intent from something that *happened* into something that *exists* — and existence has three separable requirements: the embodied intent **persists** (storage), can be **found** (address), and can be **checked** (an oracle appropriate to its layer). The three fail separately, which gives intent three grades of existence:
+
+| an intent that is… | …is |
+|---|---|
+| merely **remembered** | dead by the next session |
+| **recorded** | alive, but lost until rediscovered |
+| **addressable** | citable, checkable, and buildable-upon by participants who never met its author |
+
+A musical score stands in exactly this relation to a performance: not the music and not the composer, but the composer's intent in durable, addressable notation — from which any competent orchestra, including one assembled long after the composer, can expand the sound.
+
+**This relation is where several lines of research meet:**
+
+- **The industry framing.** Google's *New SDLC* whitepaper (2026) names the shift as "the transition from writing code to expressing intent, and trusting intelligent systems to translate that intent into working software." Necessary — and one floor short. Intent *expressed* to a machine is still an event: unless embodied, it dies in the chat scroll and is re-expressed every session at rising cost. The deeper shift is from intent expressed to intent **existing** — and it is a shift in how humans engage with information generally, arriving in software first only because software has oracles.
+- **Cognitive science.** Distributed cognition (Hutchins) and the extended-mind tradition established that thinking escapes one skull through durable external structure; Popper's "World 3" is the older name for thought given objective existence. The substrate is that result applied to *purpose*, with an address system attached.
+- **Software engineering.** Nygard's Architecture Decision Records are embodiment discovered independently for one intent type — the decision. The discipline generalises the same move across the whole abstraction tower.
+- **Agentic-AI memory research.** RAG, MemGPT-style paging, and Zettelkasten-style agent memory rediscover the same three requirements from the machine's side. The direction differs, and it matters: those systems embody the *agent's recollection*; the substrate embodies the *human's authorship* — which is why an excellent agent-memory system does not substitute for it.
+- **Formal methods.** Intent formalization as the grand challenge (Lahiri) is the checkability requirement pursued to its limit: intent embodied in forms an oracle can act on.
+
+Re-read the drift figure above in this light: the decaying curve is unembodied intent evaporating; the bounded curve is embodiment holding. The centroid's pin is the same statement as an image — authorship, riding the course of the work.
+
 ## The discipline: an atlas of layered maps
 
 The substrate is not a pile of notes. It is a structured artefact graph with explicit semantics, organised across an explicit hierarchy of abstraction layers:
