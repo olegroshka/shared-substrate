@@ -30,9 +30,9 @@ None of these is a property of any particular model. Each is a property of **uns
 
 Picture the participants in sustained work — the human operator, AI agents, successive model generations, colleagues — as noisy point masses in motion. An ensemble of noisy masses left uncoupled has no fixed point: its centre of mass wanders wherever the excursions carry it. That wandering is the drift above.
 
-<p align="center"><img src="assets/fig-centroid.png" width="520" alt="The pinned centroid: participants orbit a deliberately pinned shared substrate; drift is excursion, warm-up is reversion"></p>
+<p align="center"><img src="assets/fig-centroid.png" width="520" alt="The pinned centroid: participants orbit a deliberately pinned shared substrate riding the course of the work toward the goal; drift is excursion, warm-up is reversion, handoff deposits results back"></p>
 
-The substrate is the deliberately **pinned centroid** of the ensemble — the shared centre of mass of the coupled human–AI system, held stationary by discipline rather than by any participant's memory. Every session begins with reversion to the centroid (*warm-up*), works at some excursion from it, and ends by depositing its results back into it (*handoff*). **Drift is excursion without reversion. A model swap moves a point mass; it does not move the centroid.**
+The substrate is the deliberately **pinned centroid** of the ensemble — the shared centre of mass of the coupled human–AI system, held steady by discipline rather than by any participant's memory. Every session begins with reversion to the centroid (*warm-up*), works at some excursion from it, and ends by depositing its results back into it (*handoff*). **Drift is excursion without reversion. A model swap moves a point mass; it does not move the centroid.** And the pin is authorship: the substrate is the human's intent given a durable, citable body, fixed not to a place but to the course of the work — what stays constant is reference, not position.
 
 ## The discipline: an atlas of layered maps
 
