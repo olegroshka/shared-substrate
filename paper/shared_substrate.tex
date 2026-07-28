@@ -132,7 +132,7 @@ centre of mass wanders wherever the excursions happen to carry it.
 That wandering has a name; it is the drift of
 Figure~\ref{fig:drift}. The substrate is the deliberately
 \emph{pinned} centroid of the ensemble --- the shared centre of
-mass of the coupled human--AI system, held stationary by
+mass of the coupled human--AI system, held steady by
 discipline rather than by any participant's memory. Every session
 begins with reversion to the centroid (warm-up), works at some
 excursion from it, and ends by depositing its results back into it
@@ -150,11 +150,13 @@ centroid pinned.
 % pinned centroid
 \filldraw[fill=blue!25,draw=blue!60,thick] (0,0) circle (0.78);
 \node[font=\scriptsize,align=center] at (0,0) {shared\\substrate};
-% pin: post + ground hatching
-\draw[thick,blue!60] (0,-0.78) -- (0,-1.12);
-\draw[thick,blue!60] (-0.42,-1.12) -- (0.42,-1.12);
-\foreach \x in {-0.42,-0.24,-0.06,0.12,0.30}
-  \draw[blue!60] (\x,-1.12) -- (\x+0.14,-1.29);
+% pin: post onto the course of the work (a rail toward the goal, not the ground)
+\draw[thick,blue!60] (0,-0.78) -- (0,-2.05);
+\draw[thick,blue!60] (-0.30,-2.05) -- (0.30,-2.05);
+% the course
+\draw[->,>=stealth,black!55,thick] (-3.45,-2.05) -- (3.45,-2.05);
+\node[font=\scriptsize,black!70,anchor=west] at (3.52,-2.05) {goal};
+\node[font=\scriptsize,black!55,anchor=north] at (-2.35,-2.16) {the course of the work};
 % point masses on / near the orbit
 \filldraw[black!75] (2.55,0.85) circle (0.09);
 \node[font=\scriptsize,anchor=west] at (2.66,0.85) {human};
@@ -170,15 +172,73 @@ centroid pinned.
 % reversion (warm-up): human arrow bending to centroid
 \draw[->,>=stealth,blue!70,thick] (2.55,0.85) to[bend left=18] (0.90,0.24);
 \node[font=\scriptsize,blue!75,anchor=south] at (1.90,0.22) {warm-up};
+% handoff (deposit): a session's results written back into the centroid
+\draw[->,>=stealth,blue!70,thick] (2.55,0.85) to[bend right=24] (0.55,-0.45);
+\node[font=\scriptsize,blue!75,anchor=north] at (2.10,-0.32) {handoff};
 \end{tikzpicture}
 \caption{The pinned centroid. Participants in sustained work ---
 human, agents, successive models, colleagues --- are noisy point
 masses. The substrate is the deliberately pinned centre of mass of
 the ensemble: drift is excursion away from it, warm-up is
-reversion to it, and a model swap moves a point mass without
-moving the centroid.}
+reversion to it, handoff deposits a session's results into it, and
+a model swap moves a point mass without moving the centroid. The
+pin is authorship, and it fixes the centroid not to a place but to
+the course of the work: what stays constant is reference, not
+position.}
 \label{fig:centroid}
 \end{figure}
+
+The centroid names what the substrate does for the ensemble. It
+does not yet say what the substrate \emph{is} to the participant
+who originates the work, and that relation deserves to be stated
+precisely, because it is the paper's real subject. Intent --- the
+choice of what to build and why, the resolution of a trade-off,
+the judgment that an option list is missing the one option that
+matters --- is an \emph{event in a mind}. It occurs at a moment,
+from a perspective, and then it is over. Work, by contrast, is
+extended in time: it spans sessions, tools, models, and eventually
+other minds. Unembodied intent has no duration, no location, and
+no existence for anyone else --- including the operator's own
+future self, who returns after a gap as, in every respect that
+matters here, another participant.
+
+The substrate is that event given a body. To embody an intent is
+to convert it from something that \emph{happened} into something
+that \emph{exists}, and existence here has exactly three
+requirements: the embodied intent persists (storage), can be found
+(address), and can be checked (an oracle appropriate to its
+layer). The discipline's apparatus maps onto the three almost one
+for one: version control and append-only records supply
+persistence; stable identifiers and the inventory supply address;
+contracts, budgets, and review supply checkability. The grades
+matter because they fail separately. An intent that is merely
+remembered dies with the session. An intent that is recorded
+survives, but must be rediscovered to matter. An intent that is
+addressable can be cited, tested, and built upon by participants
+who never met its author. The discipline's central demand ---
+deposit the choice once, at the layer where it belongs --- is the
+demand that embodiment happen at the moment of authorship, rather
+than be reconstructed later from its consequences. A musical score
+stands in exactly this relation to a performance: not the music
+and not the composer, but the composer's intent in durable,
+addressable notation, from which any competent orchestra ---
+including one assembled long after the composer --- can expand the
+sound.
+
+Read against this relation, the centroid image needs two glosses,
+and it is honest to name them. First, a centre of mass is
+democratic: it weights every mass alike. The substrate is not the
+average of the ensemble's positions; it is the embodied intent the
+ensemble reverts to, and intent flows into it from one direction
+--- the human authors, the pipeline expands. The pin, in other
+words, is authorship. Second, sustained work does not stand still.
+The ensemble is going somewhere, and the substrate is what holds
+it together on the way; so the centroid is pinned not to a place
+but to the \emph{course} of the work
+(Figure~\ref{fig:centroid}). The embodied intent rides toward the
+goal with the ensemble orbiting it, drifting and reverting as
+before, while it accretes the decisions the journey forces. What
+the pin holds constant is not position but reference.
 
 An older metaphor survives in the discipline's apparatus. The
 artefact graph that realises the substrate is an \emph{atlas} ---
