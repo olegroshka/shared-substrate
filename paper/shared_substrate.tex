@@ -1338,7 +1338,7 @@ it.
 \draw[sig] (cmp) -- (agent);
 \draw[sig] (agent) -- (work);
 % feedback path
-\node[blk,fill=orange!14,minimum width=4.8cm] (obs) at (2.9,-1.65)
+\node[blk,fill=orange!14,minimum width=5.2cm] (obs) at (3.1,-1.65)
   {observation channel\\[-2pt]\scriptsize measurements $\cdot$ traces $\cdot$ check results,\\[-2pt]\scriptsize readable by the agent, on demand};
 \draw[sig] (work.south) -- (obs.north -| work.south);
 \draw[sig] (obs.west) -| (cmp.south)
