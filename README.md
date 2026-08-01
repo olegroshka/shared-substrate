@@ -254,6 +254,8 @@ The research programme it opens, deliberately flagged in the paper as future wor
 
 The discipline documented here was not invented for the paper. It is the articulation of a practice cultivated by the author over years across many domains; collaboration with current-generation AI agents is what made its elements demand explicit naming. AI assistance in *writing* the paper is acknowledged in the paper's Acknowledgements — a collaboration conducted, fittingly, in the discipline the paper describes.
 
+The paper has a lineage of its own. The first draft — **[*Cognitive Cartography* (v0.1, April 2026)](paper/archive/cognitive_cartography.pdf)** — was written inside the origin project's repository ([`blive`](https://github.com/olegroshka/blive)), where the discipline's elements first demanded naming; the [amendments log](method/amendments-log.md) carried over from that repo records how the practice evolved in the field. v0.2 supersedes the draft, and, per the discipline itself, the superseded record is kept, not edited — frozen verbatim in [`paper/archive/`](paper/archive/).
+
 ## Citing
 
 See [CITATION.cff](CITATION.cff), or:
