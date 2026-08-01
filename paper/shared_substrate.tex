@@ -1320,6 +1320,63 @@ the argument for layered oracles rather than any single
 mechanism: each layer's guardrail is blind to the layers above
 it.
 
+\paragraph{The residual gap.} One structural fact must be stated
+before observability can be read honestly. The operator's
+information-processing capacity is finite and the amplifier's
+output rate is not matched to it, so the fraction of generated
+work that can receive human-level verification falls as the
+coupling speeds up; mechanical oracles recover only what can be
+formalised; some residue always escapes both. The gap cannot be
+closed from inside the loop --- verifying the amplifier's output
+with the capacity the amplifier has already saturated is
+M\"unchhausen's escape, the system pulling itself out of the
+swamp by its own hair. And the gap has a quieter half on the
+human side of the centroid: an ever-growing share of the
+operator's own model of the work consists of the agent's
+renderings, trusted but never checked. \citet{bainbridge1983}
+named this shape four decades before the present tooling: the
+supervisor of a fast automated process is structurally the
+worst-placed participant to catch its errors, while the hands-on
+capacity that would catch them atrophies from disuse. The human
+mass of Figure~\ref{fig:centroid} drifts too --- not by amnesia
+but by induced reliance --- which is why the
+decided-versus-considered distinction and the append-only record
+exist as much for the operator as for the agent. Faced with the
+gap, exactly two postures are coherent: throttle the coupling to
+the pace of human verification, surrendering the speed that
+justified it; or accept residual error as a design input and
+move the human's work up a level --- from verifying outputs to
+designing the error-processing architecture itself: boundaries,
+invariants, escalation thresholds, and the reversibility that
+makes an error caught late cheap rather than fatal. The second
+posture is not resignation; it is the law of requisite variety
+\citep{ashby1956cybernetics} applied: a controller with less
+variety than the system it steers controls through aggregation
+and hierarchy, never item by item. This is why the governor of
+Figure~\ref{fig:loop} designs guardrails and budgets but does
+not sit in the loop as its sensor, and why the accounting later
+in this section carries unverified volume as priced debt rather
+than counting it as output: the discipline does not close the
+residual gap. It contains it, prices it, and escalates what
+crosses it.
+
+Out of the sensor path, however, is not out of the room. What
+the posture forbids is making the loop's closure depend on the
+operator reading everything --- that is the throttle by another
+name. It does not forbid watching. The operator retains a
+distinct and cheap observational act: sampling the live
+trajectory. A reasoning trace is itself an observability
+channel, a compressed projection far shorter than the output it
+generates, and a wrong turn is visible there earlier than in any
+artefact it produces; skimming the trace and interrupting while
+the excursion is still small is aggregation-level control in
+exactly Ashby's sense, and it is the cheapest correction the
+loop admits --- the supervisor's hand on the cord, not the
+inspector's eye on every part. The discipline asks only that
+this watching stay discretionary: a loop that is safe only while
+the human watches has not designed for the residual gap; it has
+papered over it with attention.
+
 % --- F10 Observability control loop (two panels, full width) ---
 \begin{figure*}[t]
 \centering
