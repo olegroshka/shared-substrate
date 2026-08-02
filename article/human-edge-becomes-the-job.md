@@ -300,5 +300,8 @@ more, but because more of what their people do is work only people can do.
 the oracle pairings, and the division of labour between human governance and
 machine execution — is articulated in full in the working paper "Shared
 Substrate: A Discipline for Sustained Human–AI Coupling on Complex
-Problems."* <!-- link: SSRN page once live; meanwhile
-https://github.com/olegroshka/shared-substrate -->
+Problems", available at
+[github.com/olegroshka/shared-substrate](https://github.com/olegroshka/shared-substrate).*
+<!-- TODO before/after posting: once the SSRN preprint is live, replace (or
+supplement) the GitHub link with the SSRN abstract page / DOI — the citable
+form is better for this audience. -->
