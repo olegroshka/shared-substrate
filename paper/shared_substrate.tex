@@ -39,12 +39,11 @@ artefact), reference rot, lost intent, and the cost of restarting
 cold each session. These limits will not be dissolved by larger
 models --- they are limits of \emph{substrate}, the externalised
 state any sustained reasoning must traverse. We articulate
-\textbf{Shared Substrate}: a discipline the author has practised
-across many domains and many years of sustained complex work, made
-explicit here in response to the demands of multi-session AI
-collaboration --- the discipline of forming, maintaining, and
-cascading hierarchical external representations across the
-manifestation trajectory of a project. The organising image is the
+\textbf{Shared Substrate}: the discipline of forming,
+maintaining, and cascading hierarchical external representations
+across the manifestation trajectory of a project, made explicit
+here in response to the demands of multi-session AI
+collaboration. The organising image is the
 \emph{centroid}: the participants in sustained work --- the human
 operator, AI agents, successive model generations, colleagues ---
 are noisy point masses in motion, and the substrate is the
@@ -355,15 +354,12 @@ closes.
 
 \paragraph{Provenance.} The discipline articulated here was not
 invented for this paper, nor co-developed with an AI agent in the
-writing of it. It is a long-running reflection of the author
-across many domains and many years --- a habit of thought and
-work shaped by experience well outside the AI context, applied to
-research, to engineering, and to sustained intellectual work of
-several kinds. Books, lab notebooks, scientific notation, version
-control, architectural decision records: each generation finds
-apparatus for stabilising thought across time and distributing it
-across minds, and the author has cultivated such apparatus, in
-one form or another, on every complex project worth sustaining.
+writing of it. Books, lab notebooks,
+scientific notation, version control, architectural decision
+records: each generation finds apparatus for stabilising thought
+across time and distributing it across minds, and some such
+apparatus, in one form or another, accompanies every complex
+project worth sustaining.
 What working with current-generation language models on complex,
 multi-session projects did was sharpen the apparatus into
 something articulable: every implicit affordance of human-only
@@ -1969,11 +1965,11 @@ The point is the substrate trajectory.
 The first project was a live algorithmic-execution engine bridging
 a research backtesting framework to a regulated broker.
 
-The project began as a chat. The author described the
-problem: a backtesting framework that produces strategies, a broker
+The project began as a chat: a description of the
+problem --- a backtesting framework that produces strategies, a broker
 API to send them to live, the gap between the two. The first
 artefact deposited to the substrate was a Requirements document ---
-flat, around three and a half thousand words, the author's
+flat, around three and a half thousand words, a
 first pass at what would be built and why.
 
 The second artefact was a Context Inventory, listing the categories
@@ -1990,8 +1986,8 @@ the content would be added.
 
 From there the substrate grew. The first Knowledge Base captured
 the strategy taxonomy --- the archetypes the project would support.
-That KB raised ten Open Questions about scope. The author
-made decisions on those OQs in a single working session; the
+That KB raised ten Open Questions about scope. The operator
+decided those OQs in a single working session; the
 decisions became the project's first set of Architectural Decision
 Records. The KB updated to mark the OQs as
 \textsc{resolved-by-adr}; the OQs were not deleted, just
@@ -2022,7 +2018,7 @@ substrate (a Requirements document) and grew the substrate as the
 work demanded it, with the discipline ensuring that every growth
 step left the artefact graph coherent. By the time implementation
 began, the substrate was sufficient to absorb a session's worth of
-work without drift, and the author could resume after a break
+work without drift, and the work could resume after a break
 of weeks without reconstruction cost.
 
 The metrics --- thirteen KBs, nineteen ADRs, twenty-two OQs ---
@@ -2035,9 +2031,9 @@ enterprise}
 
 The second example is brownfield, and adversarial in the way
 enterprise work usually is. At a regulated financial institution,
-the author replaced a legacy low-latency Java process --- a
+a legacy low-latency Java process --- a
 component that had accreted responsibilities for years, did too
-much, and had become hard to evolve --- with a new implementation
+much, and had become hard to evolve --- was replaced by a new implementation
 stood up from scratch in roughly two weeks, the second of which
 was spent almost entirely inside the non-functional envelope:
 allocation behaviour, memory footprint, latency profile.
@@ -2303,10 +2299,9 @@ foresees.
 \section*{Acknowledgements}
 % =====================================================================
 
-The discipline articulated in this paper is the author's, cultivated
-across many disciplines and projects over years of sustained complex
-work, of which collaboration with current-generation AI agents is
-the most recent and most demanding instance --- not its origin. The
+The discipline articulated in this paper long predates it;
+collaboration with current-generation AI agents is
+its most recent and most demanding instance --- not its origin. The
 discipline's choices --- its artefact categories, the status
 lifecycle, the edit protocol, the propagation rules, and the
 discipline's overall shape --- were practised and refined long
