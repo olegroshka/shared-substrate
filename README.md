@@ -4,7 +4,7 @@
 
 > For complex work that spans many sessions, many decisions, and many abstraction layers, **the substrate matters at least as much as the model** — the substrate being the externalised state any sustained reasoning, organic or artificial, must traverse.
 
-📄 **[Read the paper (PDF)](paper/shared_substrate.pdf)** — draft v0.2, July 2026 · [LaTeX source](paper/shared_substrate.tex) · [Field manual](method/field-manual.md) · [Executive brief](docs/management-brief.md) · [Slide walkthrough](docs/presentation.md)
+📄 **[Read the paper (PDF)](paper/shared_substrate.pdf)** — draft v0.2, August 2026 · **[SSRN preprint (DOI)](https://doi.org/10.2139/ssrn.7218019)** · [LaTeX source](paper/shared_substrate.tex) · [Field manual](method/field-manual.md) · [Executive brief](docs/management-brief.md) · [Slide walkthrough](docs/presentation.md)
 
 This README is a digest of the paper: read it end to end and you have the philosophy and its grounding; read the paper for the full specification, the worked examples, and the honest limits.
 
@@ -241,7 +241,7 @@ latexmk -pdf shared_substrate
 
 ## Status and roadmap
 
-**Draft v0.2** — a self-contained articulation of the method and its grounding, suitable for reading and discussion. Not yet submitted anywhere.
+**Draft v0.2** — a self-contained articulation of the method and its grounding, suitable for reading and discussion. Published as an SSRN preprint on 2026-08-08: [doi.org/10.2139/ssrn.7218019](https://doi.org/10.2139/ssrn.7218019).
 
 The research programme it opens, deliberately flagged in the paper as future work:
 
@@ -265,8 +265,9 @@ See [CITATION.cff](CITATION.cff), or:
   author = {Roshka, Oleg},
   title  = {Shared Substrate: A Discipline for Sustained Human--AI Coupling on Complex Problems},
   year   = {2026},
-  note   = {Draft v0.2},
-  url    = {https://github.com/olegroshka/shared-substrate}
+  note   = {SSRN preprint, draft v0.2},
+  doi    = {10.2139/ssrn.7218019},
+  url    = {https://ssrn.com/abstract=7218019}
 }
 ```
 
